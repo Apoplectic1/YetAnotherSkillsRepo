@@ -43,10 +43,10 @@ start-up context block):
   docs (memory was migrated out 2026-06-16). Harness-fixed path; cannot be relocated into the
   tree — but it carries no content worth moving.
 
-Consequence: **everything else (ROADMAP, ARCHITECTURE, OBSERVING, VERIFYING, TOPICNOTES,
+Consequence: **everything else (ROADMAP, ARCHITECTURE, OBSERVING, VERIFYING, NOTEBOOK,
 docs/*, NOTICE.md) is pull-on-demand.** The agent finds those *only because CLAUDE.md
 describes and routes to them.* CLAUDE.md is a router; the organization is "accessible" exactly
-to the degree CLAUDE.md indexes every leaf. (This is why `TOPICNOTES.md`, absent from the
+to the degree CLAUDE.md indexes every leaf. (This is why `NOTEBOOK.md`, absent from the
 router, was effectively invisible — the bug that motivated this review.)
 
 The agent's four access primitives and their costs:
@@ -73,7 +73,7 @@ Two access patterns, wanting opposite structures:
 
 ## The doc tiers: journal · reference · cold rationale
 
-Resolves the two-patterns tension. (Latent already — `TOPICNOTES.md`'s own header says
+Resolves the two-patterns tension. (Latent already — `NOTEBOOK.md`'s own header says
 findings "should graduate into OBSERVING.md / ROADMAP.md"; this formalizes it.) **Refined
 2026-06-28 (the CC-tuning split) from two tiers to three** — adding *cold rationale* for
 lengthy evergreen "why" that isn't needed for immediate reasoning.
@@ -81,8 +81,8 @@ lengthy evergreen "why" that isn't needed for immediate reasoning.
 ```
 JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO members:
   • docs/YYYY-MM-DD-<slug>.md  = per-topic substantial dated records (decision/review/design)
-  • TOPICNOTES.md              = the running lab notebook (short chronological empirical findings)
-  split: small finding-from-doing-the-work → TOPICNOTES; substantial standalone record → docs/
+  • NOTEBOOK.md              = the running lab notebook (short chronological empirical findings)
+  split: small finding-from-doing-the-work → NOTEBOOK; substantial standalone record → docs/
   append-only · dated · never edited · legibly historical
   answers "what did we decide/find on date X"
         │  GRADUATE: fold standing truth upward, then PRUNE the source;
@@ -127,7 +127,7 @@ CLAUDE.md routes the two tiers **differently**, and that asymmetry is the whole 
   dated decision records & reviews — `glob docs/*.md` for the current list (filenames are
   self-describing), grep for content; standing truths graduate into the reference docs
   above."* Add 50 files and that line is still accurate. (Enumerating a *growing* set is the
-  anti-pattern that orphaned TOPICNOTES.)
+  anti-pattern that orphaned NOTEBOOK.)
 
 No `DOCS.md`. Router lines are **purpose/use-centric** ("what it's for / when to read / what
 to grep") — the high-signal form for both a human skimming and the agent routing.
@@ -149,7 +149,7 @@ match its doc's charter? else move / cross-ref-and-delete):
 | `ARCHITECTURE.md` | subsystem mechanics deep-dives (how it works) |
 | `OBSERVING.md` | site · targets · workflow · NSG tuning · XFM keyword contract · repo conventions |
 | `VERIFYING.md` | run-verification runbook |
-| `TOPICNOTES.md` | dated empirical findings (journal / lab notebook) |
+| `NOTEBOOK.md` | dated empirical findings (journal / lab notebook) |
 | `docs/` | dated decision records, reviews & **cold-rationale** notes (journal + tier-3) |
 | `nsg-v8-fork/NOTICE.md` | vendor fork playbook (patches, re-fork procedure) |
 | `MEMORY.md` | stub delegating to repo docs (leave; cannot move) |
@@ -292,7 +292,7 @@ only README/RELEASING genuinely conditional.
 | `CLAUDE.md` (router) | **enforced — universal** | the router; in all 5 already |
 | `ARCHITECTURE.md` | **enforced by name** | **Library + XFM lack it** (180 / 77 .cs) → scaffold (charter-guarded if thin) |
 | `ROADMAP.md` | **enforced by name** | all 5 have it |
-| `TOPICNOTES.md` | **enforced by name** | the lab-notebook home — present even if empty (charter'd; invites use as findings accrue) |
+| `NOTEBOOK.md` | **enforced by name** | the lab-notebook home — present even if empty (charter'd; invites use as findings accrue) |
 | `VERIFYING.md` | **enforced by name** | always answers "how do I verify a change here" — even when that's just "= `dotnet test`, CI at X" (so it's useful for the test-backed apps too, *revising* the earlier "conditional") |
 | `docs/` + `YYYY-MM-DD-*` journal | **enforced — the tier** | all have `docs/`; convention varies (TP subdirs, XFM **undated**) → standardize |
 | domain/strategy doc | **enforced slot — name elicited** | name varies: TSM `UI-CONVENTIONS`, Library `PCL InterOp`, WBPP `OBSERVING` |
