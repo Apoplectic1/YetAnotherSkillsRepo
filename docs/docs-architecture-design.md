@@ -305,6 +305,29 @@ clean) — validating the trust-disk-over-claims rule. Caveat baked into the ski
 presupposes a *non-bloated* reference tier — graduating into an oversized doc is a SETUP/AUDIT split
 job first.
 
+**TRIAGE (`whats-next`) — built & validated (RED/GREEN, 2026-06-28).** The planning-layer capstone:
+sweep every backlog source → categorized/prioritized backlog + a **coverage manifest** + an
+**accepted-constraints** list, with the live-vs-accepted crux; reuses AUDIT's fan-out. RED exposed a
+**fixture trap** — WBPP, the project these skills were *derived from*, **contains the TRIAGE spec**
+(this design doc's pending-removal duplicate), so both "unguided" baselines read it and reproduced
+the manifest + cry-wolf section → contaminated. (MAINTAIN hit the mirror trap: WBPP's journal was
+already-graduated.) **Lesson: validate a skill on a project it was NOT derived from.** Clean re-RED
+on TSM (no spec): both baselines gave a good ranked list but **omitted the coverage manifest and the
+accepted-constraint section entirely** — the genuine, uncontaminated gap (prioritization is innate;
+the trustworthiness scaffolding is not). GREEN (2 schema'd passes on TSM): both produced an honest
+manifest + a correctly-classified accepted-constraints list (no cry-wolf — `CancellationToken` →
+actionable, NINA-upstream / no-migration / do-not-re-litigate → accepted), converged tightly on the
+core backlog + sequence, and surfaced a real new doc-debt (a stale `# VERIFYING.md` H1) that
+disk-verified true. The skill's value = **guaranteeing the manifest + the accepted-vs-actionable
+split**, every time, on any project.
+
+**Family complete (2026-06-28): SETUP · AUDIT · MAINTAIN · `whats-next` — all 4 built, RED/GREEN-
+validated, deployed to `~/.claude/skills/`.** Cross-cutting lessons banked: (a) capable agents do the
+*judgment* well unguided — every skill's value turned out to be **completeness / consistency /
+trustworthy structure**, not the per-item call; (b) **validate on a non-derived project** (WBPP
+poisoned both MAINTAIN and TRIAGE; TSM was the clean fixture); (c) **disk-verify agent claims** (a
+GREEN pass overreached on a false currency claim, caught by `grep`).
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

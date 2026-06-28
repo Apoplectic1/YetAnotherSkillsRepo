@@ -9,7 +9,7 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `NOTEBOOK.md`, `VERIFICATION.md` + a
   domain doc) will be **scaffolded by the SETUP skill's first run** — dogfooding the model.
 
-## Building now: the docs-architecture skill family
+## The docs-architecture skill family (all 4 built + deployed)
 A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
 1. **SETUP** ✅ *built + deployed* — bootstraps the doc skeleton (enforced filename set,
    charter-guarded) + the CLAUDE.md router + conventions in any project. (Generalizes WBPP Phase 1.)
@@ -18,7 +18,9 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
    adjudicate → fix. (Generalizes WBPP Phase 2.)
 3. **MAINTAIN** ✅ *built + deployed (RED/GREEN-validated)* — graduate journal → reference +
    prune-the-source (preserve the why/when); reuses AUDIT's fan-out. (Generalizes WBPP graduate/prune.)
-4. **TRIAGE** — "what's next" backlog synthesizer (planning layer; authored last).
+4. **TRIAGE** (`whats-next`) ✅ *built + deployed (RED/GREEN-validated)* — sweep every backlog
+   source → categorized/prioritized backlog + **coverage manifest** + **accepted-constraints** list;
+   live-vs-accepted crux; reuses AUDIT's fan-out. (Planning layer; consumes the trio's outputs.)
 
 **Design source** (genesis + full spec, graduates into this repo as it stabilizes):
 `E:\Projects\PixInsight\Scripts\WBPP_BXT_NSG\docs\2026-06-28-docs-reorg-plan.md`.
