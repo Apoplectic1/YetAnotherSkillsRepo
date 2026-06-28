@@ -64,7 +64,10 @@ Normalize filenames to the convention (no spaces; align casing).
 
 ## Procedure
 1. **Survey** the tree: existing docs + detect the scope-exclusions.
-2. **Create/align** the enforced set, each charter-guarded; **elicit the domain-doc name**.
+2. **Create/align** the enforced set, each charter-guarded; **elicit the domain-doc name** —
+   name it for what its content *is* (e.g. `DOMAIN` = science/conventions, `CONSUMERS` = a
+   shared lib's portfolio, `OBSERVING` = a workflow app's site/process, `UI-CONVENTIONS` = UI
+   rules); propose one with a one-line rationale, confirm with the user, then use it consistently.
 3. **Write `CLAUDE.md`** as the router (reference by name; journal by convention; exclusions noted;
    load-bearing gotchas only).
 4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.
