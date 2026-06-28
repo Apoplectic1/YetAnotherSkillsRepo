@@ -278,6 +278,18 @@ AUDIT (the in-flight `docs-reorg-phase2-audit` run — its agent prompts, flag s
 conservative-evidence rule are the skill's spec), and the graduate/prune workflow prototypes
 MAINTENANCE.
 
+**AUDIT — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-audit`.
+RED (2 unguided baselines on TSM `DOMAIN.md`): capable agents already cite code, key on content,
+separate placement/currency, and handle descriptive/prescriptive — but **one pass finds only ~half
+the issues, non-deterministically** (the 2 baselines overlapped on ~2 of ~10 flags). So the skill's
+job is **completeness + a mergeable output**, not per-flag judgment: a structured-schema **fan-out +
+cross-reference pass + loop-until-dry**. GREEN (3 schema'd passes + 1 cross-ref): schema / evidence /
+modality / cross-ref all worked and the **merge recovered a flag passes 1–2 individually missed**;
+but **3 *fixed* passes still missed 2 real flags** a different angle caught (true ground truth ≈30%
+larger than any single run) → hardened the skill to mandate **per-section depth + loop-until-dry over
+a fixed N** (a calibration, not a defect). Net: fan-out + merge decisively beats single-pass;
+coverage needs the *loop*, not just a bigger N.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

@@ -11,10 +11,11 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 
 ## Building now: the docs-architecture skill family
 A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
-1. **SETUP** — bootstraps the doc skeleton (enforced filename set, charter-guarded) + the
-   CLAUDE.md router + conventions in any project. (Generalizes WBPP Phase 1.)
-2. **AUDIT** — verifies docs vs charters (placement) + live code (currency); evidence-carrying
-   flags → adjudicate → fix. (Generalizes WBPP Phase 2.)
+1. **SETUP** ✅ *built + deployed* — bootstraps the doc skeleton (enforced filename set,
+   charter-guarded) + the CLAUDE.md router + conventions in any project. (Generalizes WBPP Phase 1.)
+2. **AUDIT** ✅ *built + deployed (RED/GREEN-validated)* — placement (vs charter) + currency (vs live
+   code) via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying flags →
+   adjudicate → fix. (Generalizes WBPP Phase 2.)
 3. **MAINTAIN** — graduate journal → reference, prune.
 4. **TRIAGE** — "what's next" backlog synthesizer (planning layer; authored last).
 
