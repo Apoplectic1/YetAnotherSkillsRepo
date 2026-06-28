@@ -11,6 +11,14 @@ always-loaded **router** (`CLAUDE.md`) pointing to a **canonical, enforced doc s
 **charter-guarded** (never blank). **Carry the set as a rule** — do NOT infer it from sibling
 repos (a sibling may not exist, and inference drifts between projects).
 
+## Safety — never lose existing documentation
+SETUP **restructures; it does not destroy.** Consolidating = **merge** (drop nothing); moving
+history = **move**, not delete; renames preserve content. If unsure whether something is still
+needed → **move it to `archive/`**, never delete. Run the apply on a **clean git tree** (commit
+first) so every change is recoverable, and **present the diff for review before committing.** A
+large/diverse project (many existing docs) is a *later* target, not a first one — prove the skill
+on a small project first.
+
 ## The enforced set — create every one, charter-guarded
 | File | Role |
 |---|---|
