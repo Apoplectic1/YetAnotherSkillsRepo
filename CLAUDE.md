@@ -6,7 +6,7 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 
 ## What's here
 - `skills/<name>/SKILL.md` — one directory per skill.
-- The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `TOPICNOTES.md`, `VERIFYING.md` + a
+- The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `NOTEBOOK.md`, `VERIFYING.md` + a
   domain doc) will be **scaffolded by the SETUP skill's first run** — dogfooding the model.
 
 ## Building now: the docs-architecture skill family
