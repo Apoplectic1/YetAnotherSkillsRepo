@@ -24,8 +24,13 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
 Library, XisfFileManager, IntervalScheduler — plus WBPP itself.
 
 ## Deploy
-Source = this repo. Deploy to `~/.claude/skills/` via **[symlink | copy script]** — TBD.
-Never edit the deployed copy; edit here and re-deploy.
+Source = this repo (canonical, version-controlled). Deploy to `~/.claude/skills/` via a **copy
+script** — the deployed copy is a disposable build artifact; **never edit it**, edit here and
+re-run the deploy. (Not a symlink — permanent fixture + confusing; not a move — that strips the
+VC'd source.)
+
+## Branches
+`dev` = working (all authoring lands here); `main` = distribution-ready ref. No remote yet.
 
 ## Conventions
 Author skills with the `superpowers:writing-skills` skill (naming, frontmatter, structure).
