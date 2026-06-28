@@ -309,6 +309,27 @@ lz4/zstd, each with their own READMEs; WBPP `nsg-v8-fork/`), **generated** artif
 (`BenchmarkDotNet.Artifacts`, `bin`/`obj`), and **tooling** dirs (`.claude/`, `.superpowers/`,
 `openspec/`). Without this, an audit of Library drowns in vendored docs.
 
+**Refinement candidate — router-anchored scope (surfaced by the WBPP re-apply, 2026-06-28).**
+A flat dir-glob exclusion is too coarse: a vendored tree can hold a *router-listed project doc*
+(`nsg-v8-fork/NOTICE.md` is the fork's own playbook, in the router — but the Library `PCL/`
+READMEs are *not*). Better rule: **in-scope iff the router names it** (∪ the canonical set ∪ the
+journal convention); the vendored/generated/tooling exclusions become the *default for unrouted
+files*, not a hard wall. This dissolves the "excluded-tree-with-an-included-leaf" case. Pairs
+with the **re-fork lifecycle**: fork *source* = read-only ground-truth (AUDIT currency-checks
+references *against* it, never edits it); the fork *playbook* (router-named) = a maintained doc.
+Needs a failing test before encoding in SETUP/AUDIT (Iron Law).
+
+**Sub-projects vs vendored — distinct cases (user policy, 2026-06-28).** *Vendored* = third-party
+(exclude the source; keep only router-named leaves correct, per above). A *sub-project* is the
+user's OWN nested project with its own governance — detect it by its **own router / `.git`**.
+Policy: **the root project's `.md` suite governs the whole tree**; SETUP does **not** scaffold a
+canonical set into every sub-dir, and a root run **never reaches into a sub-project to restructure
+its docs**. On encountering a sub-project it **flags-and-skips** (reports it + any unconventional
+names) and notifies the user to **run the skill from the sub-project's dir** to govern it as its
+own unit. Cross-boundary references (root↔sub) are kept correct/consistent. Clean per-sub-project
+recursion *from* the root is an acceptable **future** enhancement, but flag-and-skip is the safe
+v1. Needs a failing test before encoding (Iron Law).
+
 **Coexist, never clobber:** TSM already has `openspec/` + opsx + `.superpowers/sdd/`; TP has
 `.claude/skills/verify-ui`. SETUP augments an existing setup.
 
