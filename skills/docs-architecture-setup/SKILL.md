@@ -26,7 +26,7 @@ on a small project first.
 | `ARCHITECTURE.md` | subsystem mechanics (how it works) |
 | `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
 | `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings) |
-| `VERIFYING.md` | how to verify a change — *even if* just "= `dotnet test`, CI at X" |
+| `VERIFICATION.md` | how to verify a change — *even if* just "= `dotnet test`, CI at X" |
 | domain doc (**elicit its name**) | the human/strategy home (e.g. `OBSERVING` / `DOMAIN` / `UI-CONVENTIONS`) |
 | `docs/` | journal: `YYYY-MM-DD-<slug>.md` per-topic dated records |
 | `README.md`, `RELEASING.md` | **conditional** — public/GitHub entry; project that ships |
@@ -73,7 +73,7 @@ Normalize filenames to the convention (no spaces; align casing).
 4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.
 
 ## Common mistakes (observed when unguided)
-- Dropping **`NOTEBOOK.md`** / **`VERIFYING.md`** (the two agents reliably omit).
+- Dropping **`NOTEBOOK.md`** / **`VERIFICATION.md`** (the two agents reliably omit).
 - **Inferring** the set from a sibling instead of carrying it (drifts; fails with no sibling).
 - Routing shipped-history into `archive/`, or inventing a `CHANGELOG.md` — use git + a ROADMAP digest.
 - Scaffolding/auditing **into vendored or generated** trees.

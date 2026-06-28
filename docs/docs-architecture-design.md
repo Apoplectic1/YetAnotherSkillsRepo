@@ -43,7 +43,7 @@ start-up context block):
   docs (memory was migrated out 2026-06-16). Harness-fixed path; cannot be relocated into the
   tree — but it carries no content worth moving.
 
-Consequence: **everything else (ROADMAP, ARCHITECTURE, OBSERVING, VERIFYING, NOTEBOOK,
+Consequence: **everything else (ROADMAP, ARCHITECTURE, OBSERVING, VERIFICATION, NOTEBOOK,
 docs/*, NOTICE.md) is pull-on-demand.** The agent finds those *only because CLAUDE.md
 describes and routes to them.* CLAUDE.md is a router; the organization is "accessible" exactly
 to the degree CLAUDE.md indexes every leaf. (This is why `NOTEBOOK.md`, absent from the
@@ -89,7 +89,7 @@ JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO m
         │  the dated entry remains as the why/when record (or → archive/)
         ▼
 REFERENCE  (truth; the ONE always-current source per topic)
-  ROADMAP · ARCHITECTURE · OBSERVING · VERIFYING
+  ROADMAP · ARCHITECTURE · OBSERVING · VERIFICATION
   topic-organized · edited in place · superseded prose deleted
   answers "what is true about subsystem X right now"
         │  EXTRACT: lengthy evergreen *reasoning* not needed for immediate
@@ -148,7 +148,7 @@ match its doc's charter? else move / cross-ref-and-delete):
 | `ROADMAP.md` | feature-architecture · constant-rename table · validation matrix · *(port history → archive/)* |
 | `ARCHITECTURE.md` | subsystem mechanics deep-dives (how it works) |
 | `OBSERVING.md` | site · targets · workflow · NSG tuning · XFM keyword contract · repo conventions |
-| `VERIFYING.md` | run-verification runbook |
+| `VERIFICATION.md` | run-verification runbook |
 | `NOTEBOOK.md` | dated empirical findings (journal / lab notebook) |
 | `docs/` | dated decision records, reviews & **cold-rationale** notes (journal + tier-3) |
 | `nsg-v8-fork/NOTICE.md` | vendor fork playbook (patches, re-fork procedure) |
@@ -236,7 +236,11 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
                         emits evidence-carrying flags → adjudicate → fix. The ONLY skill that
                         catches code-doc drift (the #1 staleness source). Crux = the
                         conservative-evidence rule ("cite the code or mark unverifiable, never
-                        guess stale"). Token-heavy (parallel code-grepping agents) → not
+                        guess stale"). **Keys on content, not filename** (user, 2026-06-28) —
+                        placement/currency are judged by what a section/doc *is* and whether its
+                        claims hold vs code, never by a name pattern (no "PLAN-* → ROADMAP" rule;
+                        read the doc's content + currency, then decide where it belongs). Token-heavy
+                        (parallel code-grepping agents) → not
                         every-session; depends on SETUP's charters. Distinct from MAINTENANCE:
                         its trigger is suspected drift / post-refactor, not journal backlog.
                         TIER SCOPE: currency-check the reference tier against code; cold-rationale
@@ -283,7 +287,7 @@ Astronomy projects + this one): **TargetPlanner (TP)**, **TargetSchedulerManager
 
 **Enforce the canonical filename SET, not just the principles** (user directive 2026-06-28):
 consistent names across projects are what make switching frictionless — `ARCHITECTURE.md` is
-*always* the deep-dive; `VERIFYING.md` *always* answers "how do I verify a change here." So
+*always* the deep-dive; `VERIFICATION.md` *always* answers "how do I verify a change here." So
 SETUP creates the full named set every time (charter-guarded — see reconciliation below), with
 only README/RELEASING genuinely conditional.
 
@@ -293,7 +297,7 @@ only README/RELEASING genuinely conditional.
 | `ARCHITECTURE.md` | **enforced by name** | **Library + XFM lack it** (180 / 77 .cs) → scaffold (charter-guarded if thin) |
 | `ROADMAP.md` | **enforced by name** | all 5 have it |
 | `NOTEBOOK.md` | **enforced by name** | the lab-notebook home — present even if empty (charter'd; invites use as findings accrue) |
-| `VERIFYING.md` | **enforced by name** | always answers "how do I verify a change here" — even when that's just "= `dotnet test`, CI at X" (so it's useful for the test-backed apps too, *revising* the earlier "conditional") |
+| `VERIFICATION.md` | **enforced by name** | always answers "how do I verify a change here" — even when that's just "= `dotnet test`, CI at X" (so it's useful for the test-backed apps too, *revising* the earlier "conditional") |
 | `docs/` + `YYYY-MM-DD-*` journal | **enforced — the tier** | all have `docs/`; convention varies (TP subdirs, XFM **undated**) → standardize |
 | domain/strategy doc | **enforced slot — name elicited** | name varies: TSM `UI-CONVENTIONS`, Library `PCL InterOp`, WBPP `OBSERVING` |
 | `README.md` | conditional (public/GitHub entry) | distinct audience from CLAUDE.md; TP has one |
@@ -320,7 +324,7 @@ multi-project lib (Library 180 .cs / 11 projs), and a **design-heavy / code-ligh
 (**IS**: 3 .cs but a **75 KB `SCHEDULER_DESIGN.md`** + stub ARCHITECTURE/ROADMAP). So SETUP must
 not assume code-rich — a big standalone design doc is architecture-in-waiting: treat it as a
 **`DESIGN.md` slot** (the seed that graduates into ARCHITECTURE/ROADMAP as code lands), don't
-force-split it. VERIFYING is moot pre-code.
+force-split it. VERIFICATION is moot pre-code.
 
 **First customers / killer demo:** TP's **125 KB ROADMAP + 70 KB ARCHITECTURE** (and Library's
 33 KB ROADMAP) are the pre-split WBPP state → the SETUP+AUDIT skills' first real targets, TP the
