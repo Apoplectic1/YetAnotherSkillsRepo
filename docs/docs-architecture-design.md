@@ -79,8 +79,10 @@ findings "should graduate into OBSERVING.md / ROADMAP.md"; this formalizes it.) 
 lengthy evergreen "why" that isn't needed for immediate reasoning.
 
 ```
-JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT)
-  docs/YYYY-MM-DD-slug.md, TOPICNOTES.md
+JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO members:
+  • docs/YYYY-MM-DD-<slug>.md  = per-topic substantial dated records (decision/review/design)
+  • TOPICNOTES.md              = the running lab notebook (short chronological empirical findings)
+  split: small finding-from-doing-the-work → TOPICNOTES; substantial standalone record → docs/
   append-only · dated · never edited · legibly historical
   answers "what did we decide/find on date X"
         │  GRADUATE: fold standing truth upward, then PRUNE the source;
