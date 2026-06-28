@@ -175,10 +175,21 @@ Antidotes, in severity order:
    the currency sweep (stale-prone *and* unaudited). Extract selectively; fragmentation hurts
    synthesis.
 
-`archive/` (project root) is adopted as the physical home for **known-historical,
-do-not-trust-as-current** material — ROADMAP port-history once split, fully-graduated journal
-entries. Physical separation makes the tier legible. (Distinct from `openspec/changes/archive/`,
-OpenSpec's completed-change store.)
+**`archive/` — strict archival-only convention (user, 2026-06-28).** `archive/` holds **only
+not-current-design-relevant** material — superseded / done / obsolete. It is **deletable without
+losing current information**; **git is the backstop** for the history. Nothing an agent needs for
+*current* work lives here. The routing **test** is exactly that criterion — *"still
+current-design-relevant?"* No → `archive/` (or just let git hold it); Yes → it stays in the live
+set (journal / reference / a short ROADMAP digest). Physical separation makes the tier legible.
+(Distinct from `openspec/changes/archive/`, OpenSpec's completed-change store.)
+
+**Shipped history / "changelog": git is the changelog.** Keep a short "Recently shipped" digest in
+`ROADMAP.md` (current-relevant); the long tail is `git log`. **No `CHANGELOG.md`** (redundant with
+git) and **never route shipped-history into `archive/`** — a still-referenced changelog isn't
+archival, and routing it there blurs the term. Referenceable history (decision records, findings,
+the *why* behind current things) is the **journal** (`docs/YYYY-MM-DD-*.md`), not archive.
+(Resolves the RED-baseline split — rep1 shipped→archive, rep2 invented CHANGELOG — by adopting
+neither.)
 
 OpenSpec role: **workflow/task only** (explore / propose rituals). It is *not* a third
 knowledge home — durable knowledge stays in `.md` docs. `openspec/specs/` stays sparse by
