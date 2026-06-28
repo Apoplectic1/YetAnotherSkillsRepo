@@ -290,6 +290,21 @@ larger than any single run) → hardened the skill to mandate **per-section dept
 a fixed N** (a calibration, not a defect). Net: fan-out + merge decisively beats single-pass;
 coverage needs the *loop*, not just a bigger N.
 
+**MAINTAIN — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-maintain`,
+**lean** — it *reuses* AUDIT's fan-out machinery and adds graduation-specific flag types + the
+**prune/preserve-why linchpin** (a REQUIRED `disposition: stub | cross-ref | archive` field on every
+`graduate`). RED (2 baselines on WBPP's journal): same shape as AUDIT — capable agents judge
+graduate/keep/archive/prune well and **prune-while-preserving-why naturally** (the hypothesized
+graduate-without-prune failure didn't appear), so the real gap is **completeness** (the promotion
+candidate set is a coin-flip). Confound: WBPP's journal was already graduated by the reorg → a weak
+fixture, so volume stress-testing defers to the first full-pipeline run (TP). GREEN (2 schema'd
+passes): the `disposition` field held on **every** graduate (why/when preserved, no bare promote),
+the core converged with the expected margin coin-flip, and **disk-verification caught a pass
+overreaching on a false currency claim** (it asserted the router had dangling refs; `grep` showed it
+clean) — validating the trust-disk-over-claims rule. Caveat baked into the skill: MAINTAIN
+presupposes a *non-bloated* reference tier — graduating into an oversized doc is a SETUP/AUDIT split
+job first.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

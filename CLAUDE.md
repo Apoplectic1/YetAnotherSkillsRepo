@@ -16,7 +16,8 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
 2. **AUDIT** ✅ *built + deployed (RED/GREEN-validated)* — placement (vs charter) + currency (vs live
    code) via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying flags →
    adjudicate → fix. (Generalizes WBPP Phase 2.)
-3. **MAINTAIN** — graduate journal → reference, prune.
+3. **MAINTAIN** ✅ *built + deployed (RED/GREEN-validated)* — graduate journal → reference +
+   prune-the-source (preserve the why/when); reuses AUDIT's fan-out. (Generalizes WBPP graduate/prune.)
 4. **TRIAGE** — "what's next" backlog synthesizer (planning layer; authored last).
 
 **Design source** (genesis + full spec, graduates into this repo as it stabilizes):
