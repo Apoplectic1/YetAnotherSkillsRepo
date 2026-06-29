@@ -1,0 +1,388 @@
+{
+  "summary": "AUDIT worker sweep — model/effort/rep parameterized; per-rep phase groups auto-create from the ACTUAL reps run (do NOT hardcode rep phases here, or the /workflows display implies more reps than execute).",
+  "agentCount": 7,
+  "logs": [
+    "full-matrix mode: 1 reps × 1 models × 7 workers = 7 cells",
+    "sonnet/medium/rep1: 19 flags"
+  ],
+  "result": {
+    "project": "E:\\Projects\\AI\\TargetPlanner",
+    "effort": "medium",
+    "models": [
+      "sonnet"
+    ],
+    "reps": [
+      1
+    ],
+    "byCell": {
+      "sonnet/medium/rep1": {
+        "model": "sonnet",
+        "effort": "medium",
+        "rep": 1,
+        "units": {
+          "glossary": [
+            {
+              "location": "CLAUDE.md § Glossary – first paragraph (Apps & plugins cross-repo vocabulary sentence)",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "The cross-repo vocabulary (TP, TPP/TPS, NINA, TS/TSP, IS/ISP/ISS, XFM, TSM, AL) 'is defined once in the parent ../CLAUDE.md, which auto-loads in every astronomy subproject session.'",
+              "finding": "E:\\Projects\\AI\\CLAUDE.md does not exist. The file E:\\Projects\\AI\\ contains only two entries: Skills/ and TargetPlanner/. Claude Code cannot auto-load a parent CLAUDE.md that has never been created.",
+              "evidence": "Bash ls E:/Projects/AI/ returned only 'Skills' and 'TargetPlanner'; direct existence check confirmed NOT FOUND.",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md § Glossary – ChartEvaluation bullet",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "ChartEvaluation is a 'single-field record… Carries just BrightnessInputsChanged; consumed only by the coordinator's post-apply hook to gate PushSkyKSInputs(ctx).'",
+              "finding": "State/ChartEvaluation.cs defines three fields: required bool BrightnessInputsChanged, int EnsureWork, and int RenderWork. EnsureWork and RenderWork were added to drive the coordinator's two-phase progress bar (pre-sizing EnsureAsync work + Render work) and are read by ChartCoordinator.RunPipelineAsync. The record is no longer single-field.",
+              "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\State\\ChartEvaluation.cs:25-40 (BrightnessInputsChanged, EnsureWork, RenderWork fields); ChartCoordinator.cs:200-213 (coordinator reads EnsureWork and RenderWork to size the progress bar).",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md § Glossary – PlanningPolicy bullet (ActiveFilter description)",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "ActiveFilter is the 'Filters.Filter record (now positional record carrying Name + Lorentzian + CenterNm + BandwidthNm)'.",
+              "finding": "Filters/Filter.cs defines a 9-parameter positional record: Name, SeparationDeg, WidthDays, RelaxEnabled, RelaxMinAltDeg, RelaxMaxAltDeg, RelaxScale, CenterNm, BandwidthNm. No property named 'Lorentzian' exists. The Relax extension fields (RelaxEnabled, RelaxMinAltDeg, RelaxMaxAltDeg, RelaxScale) are entirely absent from the description; what the doc calls 'Lorentzian' apparently predates the Relax split but the label now matches no actual symbol.",
+              "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Filters\\Filter.cs:28-37 (full positional constructor); PlanningPolicy.cs:29 ('Lorentzian + Relax fields, surfaced via MoonProfile') confirms the Relax group is separate.",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md § Glossary – ChartCoordinator bullet (pipeline step listing)",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Pipeline step listed as '→ mRenderActiveArea(ctx)' — one argument.",
+              "finding": "ChartCoordinator.mRenderActiveArea is declared as Action<ChartContext, IProgress<(int Done, int Total)>> (two-arg delegate) and is called as mRenderActiveArea(ctx, renderProgress) at line 220. The single-arg pseudocode is factually wrong after the progress-bar addition.",
+              "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\State\\ChartCoordinator.cs:43 (field type) and :220 (call site mRenderActiveArea(ctx, renderProgress)).",
+              "severity": "low",
+              "action": "fix-doc"
+            }
+          ],
+          "conventions": [
+            {
+              "location": "E:\\Projects\\AI\\TargetPlanner\\CLAUDE.md line 102",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Current Log.Diag categories include `Sky` — listed as one of six in: `Coord`, `Cache`, `Day`, `Sky`, `UI`, `Overlay`.",
+              "finding": "No `Log.Diag(\"Sky\", ...)` call exists anywhere in the TP source. `AltitudeSubChart_Sky.cs` has no diag logging whatsoever. The `Sky` category is listed but unused.",
+              "evidence": "Grep `Log.Diag(\"Sky\"` across all TP .cs files returns zero matches. All other five categories have active callers: `Coord` in State/ChartCoordinator.cs:196, `Cache` in Caches/ChartCacheStore.cs:192, `Day` in Charts/AltitudeSubChart_Day.cs:348, `UI` in Forms/Presenters/*.cs, `Overlay` in Charts/AltitudeSubChart_Day.cs:210.",
+              "severity": "low",
+              "action": "fix-doc"
+            },
+            {
+              "location": "E:\\Projects\\AI\\TargetPlanner\\CLAUDE.md line 94",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Pattern C is described as filling 'any null/empty top-level field from the seed' as an additive-schema migration self-heal.",
+              "finding": "The code only fills three specific fields: `NinaTargetsRoot`, `ImageLibraryRoot`, and `NamedLocations`. `LastSelectedLocationName` is a fourth top-level string field in `AppSettings` and is NOT Pattern-C filled. The word 'any' overstates the scope and would mislead a developer adding a new `AppSettings` field who might assume automatic fill is provided.",
+              "evidence": "SettingsStore.cs:62-68 contains exactly three `if (string.IsNullOrEmpty(...))` / null-check fills for `NinaTargetsRoot`, `ImageLibraryRoot`, and `NamedLocations`. AppSettings.cs:26 declares `LastSelectedLocationName` as a top-level string property with no corresponding Pattern-C fill logic.",
+              "severity": "medium",
+              "action": "fix-doc"
+            }
+          ],
+          "architecture": [
+            {
+              "location": "CLAUDE.md §Architecture — Cache state bullet (line 81): \"single-writer four-axis cache: `(Location, Target)` yearDays\"",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "The yearDays cache axis is keyed by `(Location, Target)` — a compound key including Location.",
+              "finding": "The actual CacheAxis generic parameter is `Target` only (`CacheAxis<Target, TargetCacheEntry>`). Per-location isolation is achieved by `SetLocationAsync` draining all four axes on a location change, not by including Location in the key. The other three axes in the same sentence correctly match their actual tuple key types (`(Target, HdmKey)`, `(Target, NightDate)`, `NightDate`), so the notation inconsistency here is misleading for anyone reading the cache structure.",
+              "evidence": "Caches/ChartCacheStore.cs:65 — `private readonly CacheAxis<Target, TargetCacheEntry> mYearDaysAxis;`. Code comment at line 58 says \"yearDays is per-target\".",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md §Architecture — Orchestration bullet (line 83): \"`MainForm.RenderArea` does `sc.Render(ctx, mCache)` → `ShowOnlyAltitudeChart(sc.Control)` → `sc.Control.Refresh()`\"",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "RenderArea's pipeline is: Render → ShowOnlyAltitudeChart → Refresh (three steps).",
+              "finding": "The actual `RenderArea` method has a fourth step between `ShowOnlyAltitudeChart` and `sc.Control.Refresh()`: it calls `ResizeAltitudeChartArea(sc.IdealHeight)` to grow the Panel/GroupBox/Form to match the sub-chart's current ideal height. This step is omitted from the doc's pipeline description. Additionally, the first step in the real code is `sc.Render(ctx, mCache, progress)` (3 args), not the 2-arg form shown.",
+              "evidence": "Forms/Presenters/MainForm.ChartBuildPresenter.cs:241-255 — `sc.Render(ctx, mCache, progress); ShowOnlyAltitudeChart(sc.Control); ResizeAltitudeChartArea(sc.IdealHeight); sc.Control.Refresh();`",
+              "severity": "low",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md §Architecture — Threading paragraph (line 85): \"cache pre-population is 2–4 sec for 44 targets (yearDays)\"",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Cache pre-population (yearDays) for 44 targets takes 2–4 seconds.",
+              "finding": "Both the IChartCacheStore XML doc and the ChartCacheStore class summary consistently state \"~1-2 sec for 44 targets post-CS-removal\". The doc's 2–4 sec figure is 2× the code's own estimate. Because the doc uses this figure as a performance ceiling for future cache work (\"Design future cache work against this ceiling\"), the discrepancy matters.",
+              "evidence": "Caches/ChartCacheStore.cs:34 — \"Compute is short (~1-2 sec for 44 targets post-CS-removal)\". Caches/IChartCacheStore.cs:36 — \"Compute is short (~1-2 sec for 44 targets)\".",
+              "severity": "low",
+              "action": "fix-doc"
+            }
+          ],
+          "deps-build": [
+            {
+              "location": "CLAUDE.md line 74 — '## External dependencies that are easy to miss'",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "NuGet packages on the WinExe project include `Velopack 0.0.1298`",
+              "finding": "Velopack version is stale. The csproj pins `0.0.1589-ga2c5a97`, not `0.0.1298`.",
+              "evidence": "TargetPlanner/TargetPlanner.csproj line 63: `<PackageReference Include=\"Velopack\" Version=\"0.0.1589-ga2c5a97\" />`",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md line 65 — build bullets under '## Tool preference for symbol queries'",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Configurations: `Debug|AnyCPU`, `Release|AnyCPU`, `Debug|x64`, `Release|x64`",
+              "finding": "The solution has only two configurations: `Debug|x64` and `Release|x64`. The two AnyCPU configurations do not exist in the sln.",
+              "evidence": "TargetPlanner.sln lines 17-22 (SolutionConfigurationPlatforms block): only `Debug|x64 = Debug|x64` and `Release|x64 = Release|x64` are listed.",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md line 66 — build bullets under '## Tool preference for symbol queries'",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "The two sibling-library ProjectReferences consumed by the csproj are `..\\..\\Library\\Astronomy.Core\\Astronomy.Core.csproj` and `..\\..\\Library\\Astronomy.NINA\\Astronomy.NINA.csproj`",
+              "finding": "The csproj has a third ProjectReference to `Astronomy.Diagnostics` (added 2026-06-11) that is absent from this list. Astronomy.Diagnostics is referenced by the csproj but is NOT listed as a sln-visible project, making it invisible to the build bullets' solution inventory.",
+              "evidence": "TargetPlanner/TargetPlanner.csproj line 70: `<ProjectReference Include=\"..\\..\\Library\\Astronomy.Diagnostics\\Astronomy.Diagnostics.csproj\" />`. The path of the Library-side project itself is unverifiable (sibling repo absent) per audit rules.",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "CLAUDE.md lines 54–68 — '## Build / run' heading vs '## Tool preference for symbol queries'",
+              "axis": "placement",
+              "modality": "na",
+              "claim": "The '## Build / run' section says 'csproj-level gotchas and test-project scoping rationale below are kept here' but contains no build bullets. The actual build content (solution project inventory, TargetFramework, configurations, build commands, test invocation) appears under the immediately-following '## Tool preference for symbol queries' heading.",
+              "finding": "'## Build / run' is an empty section whose promised content is stranded under '## Tool preference for symbol queries', producing a misleading heading and burying build gotchas under a symbol-query section.",
+              "evidence": "CLAUDE.md line 54: '## Build / run' header + lines 55–58 preamble with no bullets. CLAUDE.md lines 64–68: solution structure, TFM, configurations, build commands, and test invocation command live under '## Tool preference for symbol queries' (line 60).",
+              "severity": "low",
+              "action": "fix-doc"
+            }
+          ],
+          "core-contract": [
+            {
+              "location": "E:\\Projects\\AI\\TargetPlanner\\CLAUDE.md §\"Core consumer contract\" (lines 109–116)",
+              "axis": "placement",
+              "modality": "na",
+              "claim": "Four sub-bullets (IReadOnlyList returns, DateTime.Kind UTC contract, signed-degree inputs, no static mutable state) detailing Core API guarantees placed in the always-loaded router.",
+              "finding": "Detailed Core API reference content is off-charter for the CLAUDE.md router (charter: always-loaded router + load-bearing gotchas, kept thin). DOMAIN.md's own charter names it as the home for \"the astronomy/coordinate/observing rules… the why and the contract,\" and its Status section (lines 10–26) explicitly lists this section as pending graduation to DOMAIN.md: \"When you next touch a domain convention, graduate its canonical statement here and leave a one-line pointer at the old location.\"",
+              "evidence": "DOMAIN.md:10-19 — Status block explicitly cross-references `CLAUDE.md §\"Core consumer contract\"` as un-graduated content pending migration to DOMAIN.md. ARCHITECTURE.md:3 also redirects to CLAUDE.md for this content, confirming neither reference doc absorbed it. The four sub-bullets enumerate Core method names (VisibilityWindows.For, QualitySamples.OverNight, MoonSeparation.IntervalsAboveDeg, TargetGeometry.*), return-type contracts, and Core-internal class names (TimeKindGuard) — reference depth beyond a gotcha pointer.",
+              "severity": "medium",
+              "action": "move-to"
+            }
+          ],
+          "docmap": [
+            {
+              "location": "CLAUDE.md ## Documentation map — journal section, line 26-27",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "docs/*.md + docs/design/*.md are 'substantial standalone records (YYYY-MM-DD-<slug>.md): reviews, decisions, designs'",
+              "finding": "4 of 6 files in docs/design/ do not carry the YYYY-MM-DD- date prefix: cache-contract.md, chart-fits-cache.md, personal-defaults-and-settings.md, test-project-plan.md. Only 2026-05-17-architecture-review.md and 2026-05-26-code-review-async-ui.md match the stated convention.",
+              "evidence": "E:\\Projects\\AI\\TargetPlanner\\docs\\design\\ listing: cache-contract.md, chart-fits-cache.md, personal-defaults-and-settings.md, test-project-plan.md, 2026-05-17-architecture-review.md, 2026-05-26-code-review-async-ui.md",
+              "severity": "low",
+              "action": "fix-doc"
+            }
+          ],
+          "crossref": [
+            {
+              "location": "CLAUDE.md:36",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "The parent portfolio glossary is defined in `'..\\.\\CLAUDE.md'` (rendered as `../CLAUDE.md`), which \"auto-loads in every astronomy subproject session\".",
+              "finding": "The file `E:\\Projects\\AI\\CLAUDE.md` (one directory above the project root) does not exist. The link is dangling.",
+              "evidence": "Bash `ls E:/Projects/AI/CLAUDE.md` → PARENT_MISSING",
+              "severity": "high",
+              "action": "fix-doc"
+            },
+            {
+              "location": "README.md:4",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Inline image `![TargetPlanner v1.0.0 ...](docs/screenshot.png)` references a screenshot at `docs/screenshot.png`.",
+              "finding": "`E:\\Projects\\AI\\TargetPlanner\\docs\\screenshot.png` does not exist. The image reference is dangling — the README banner is broken.",
+              "evidence": "Bash `ls E:/Projects/AI/TargetPlanner/docs/screenshot.png` → SCREENSHOT_MISSING; `find docs/` output lists no `.png` file.",
+              "severity": "medium",
+              "action": "fix-doc"
+            },
+            {
+              "location": "ROADMAP.md:24",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "Link `[docs/code-quality-audit.md](docs/code-quality-audit.md)` points to the per-item details of the 2026-05-19 six-tier audit.",
+              "finding": "No file at that path. The actual file is `E:\\Projects\\AI\\TargetPlanner\\docs\\2026-05-19-code-quality-audit.md` (date-prefixed, matching the journal naming convention).",
+              "evidence": "`find E:/Projects/AI/TargetPlanner/docs` output shows `docs/2026-05-19-code-quality-audit.md`; no `docs/code-quality-audit.md` present.",
+              "severity": "low",
+              "action": "fix-doc"
+            },
+            {
+              "location": "ARCHITECTURE.md:255",
+              "axis": "currency",
+              "modality": "descriptive",
+              "claim": "\"User-facing UX in [README.md](README.md#sky-brightness-day-sky-sub-mode)\" — links to the anchor `#sky-brightness-day-sky-sub-mode` in README.",
+              "finding": "No such anchor exists in README.md. The relevant section heading is `## Sky brightness` (README.md:98), which produces the anchor `#sky-brightness`. The slug `#sky-brightness-day-sky-sub-mode` is a rename orphan.",
+              "evidence": "README.md:98 `## Sky brightness`; no heading matching `sky-brightness-day-sky-sub-mode` found anywhere in README.md.",
+              "severity": "low",
+              "action": "fix-doc"
+            }
+          ]
+        },
+        "totalFlags": 19
+      }
+    }
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "rep1"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "sonnet/r1/glossary",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "a5b7dc717f6ab1c6a",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208713,
+      "queuedAt": 1782746208703,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746463624,
+      "tokens": 58970,
+      "toolCalls": 29,
+      "durationMs": 254911,
+      "resultPreview": "{\"flags\":[{\"location\":\"CLAUDE.md § Glossary – first paragraph (Apps & plugins cross-repo vocabulary sentence)\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"The cross-repo vocabulary (TP, TPP/TPS, NINA, TS/TSP, IS/ISP/ISS, XFM, TSM, AL) 'is defined once in the parent ../CLAUDE.md, which auto-loads in every astronomy subproject session.'\",\"finding\":\"E:\\\\Projects\\\\AI\\\\CLAUDE.md does not exist.…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "sonnet/r1/conventions",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "abc465d6462238d6c",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208714,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746412654,
+      "tokens": 52812,
+      "toolCalls": 25,
+      "durationMs": 203940,
+      "resultPreview": "{\"flags\":[{\"location\":\"E:\\\\Projects\\\\AI\\\\TargetPlanner\\\\CLAUDE.md line 102\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"Current Log.Diag categories include `Sky` — listed as one of six in: `Coord`, `Cache`, `Day`, `Sky`, `UI`, `Overlay`.\",\"finding\":\"No `Log.Diag(\\\"Sky\\\", ...)` call exists anywhere in the TP source. `AltitudeSubChart_Sky.cs` has no diag logging whatsoever. The `Sky` categor…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "sonnet/r1/architecture",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "a2834806ab3cb7820",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208714,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746452488,
+      "tokens": 72256,
+      "toolCalls": 17,
+      "durationMs": 243774,
+      "resultPreview": "{\"flags\":[{\"location\":\"CLAUDE.md §Architecture — Cache state bullet (line 81): \\\"single-writer four-axis cache: `(Location, Target)` yearDays\\\"\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"The yearDays cache axis is keyed by `(Location, Target)` — a compound key including Location.\",\"finding\":\"The actual CacheAxis generic parameter is `Target` only (`CacheAxis<Target, TargetCacheEntry>`). …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "sonnet/r1/deps-build",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "aa49f7da33fa28c11",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208714,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746323263,
+      "tokens": 36334,
+      "toolCalls": 8,
+      "durationMs": 114549,
+      "resultPreview": "{\"flags\":[{\"location\":\"CLAUDE.md line 74 — '## External dependencies that are easy to miss'\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"NuGet packages on the WinExe project include `Velopack 0.0.1298`\",\"finding\":\"Velopack version is stale. The csproj pins `0.0.1589-ga2c5a97`, not `0.0.1298`.\",\"evidence\":\"TargetPlanner/TargetPlanner.csproj line 63: `<PackageReference Include=\\\"Velopack\\\" V…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "sonnet/r1/core-contract",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "aeaf7b88a91901e12",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208714,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746396950,
+      "tokens": 46109,
+      "toolCalls": 12,
+      "durationMs": 188236,
+      "resultPreview": "{\"flags\":[{\"location\":\"E:\\\\Projects\\\\AI\\\\TargetPlanner\\\\CLAUDE.md §\\\"Core consumer contract\\\" (lines 109–116)\",\"axis\":\"placement\",\"modality\":\"na\",\"claim\":\"Four sub-bullets (IReadOnlyList returns, DateTime.Kind UTC contract, signed-degree inputs, no static mutable state) detailing Core API guarantees placed in the always-loaded router.\",\"finding\":\"Detailed Core API reference content is off-charter …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "sonnet/r1/docmap",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "aa84e86eff7d2e700",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208715,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746348720,
+      "tokens": 43462,
+      "toolCalls": 17,
+      "durationMs": 140005,
+      "resultPreview": "{\"flags\":[{\"location\":\"CLAUDE.md ## Documentation map — journal section, line 26-27\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"docs/*.md + docs/design/*.md are 'substantial standalone records (YYYY-MM-DD-<slug>.md): reviews, decisions, designs'\",\"finding\":\"4 of 6 files in docs/design/ do not carry the YYYY-MM-DD- date prefix: cache-contract.md, chart-fits-cache.md, personal-defaults-and-…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "sonnet/r1/crossref",
+      "phaseIndex": 1,
+      "phaseTitle": "rep1",
+      "agentId": "ad08d356d48d19f05",
+      "agentType": "Explore",
+      "model": "claude-sonnet-4-6",
+      "state": "done",
+      "startedAt": 1782746208715,
+      "queuedAt": 1782746208704,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Independent audit pass #1.\n\nYou are a docs-architecture AUDIT worker. Audit on two axes:\n- PLACEMENT: does this content belong in CLAUDE.md per its router/charter role (always-loaded router + load-bearing gotchas, kept thin)? Off-charter content that belongs in ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION/README → action move-to <doc>, or cross-ref+delete if duplicated.\n- CURRENCY: is each factual cla…",
+      "lastProgressAt": 1782746352353,
+      "tokens": 68803,
+      "toolCalls": 28,
+      "durationMs": 143638,
+      "resultPreview": "{\"flags\":[{\"location\":\"CLAUDE.md:36\",\"axis\":\"currency\",\"modality\":\"descriptive\",\"claim\":\"The parent portfolio glossary is defined in `'..\\\\.\\\\CLAUDE.md'` (rendered as `../CLAUDE.md`), which \\\"auto-loads in every astronomy subproject session\\\".\",\"finding\":\"The file `E:\\\\Projects\\\\AI\\\\CLAUDE.md` (one directory above the project root) does not exist. The link is dangling.\",\"evidence\":\"Bash `ls E:/Pro…"
+    }
+  ],
+  "totalTokens": 378746,
+  "totalToolCalls": 136
+}

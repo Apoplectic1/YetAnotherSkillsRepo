@@ -165,6 +165,31 @@ rep0 came from the Exp-1 script (identical prompts, no "pass #N" prefix); precis
 re-adjudicated per-rep (matched flags map to catalogued real issues; no cry-wolf seen in spot-checks);
 N=4 reps, single fixture.
 
+## Experiment 3 — effort sweep, Sonnet medium (screen: 1 rep, high effort=baseline)
+Run `wf_685c6cf2-b73` (`w1bb4ilfs`), 7 workers, **effort=medium**, 1 rep, same post-SETUP fixture.
+Scoped as a **screen, not a verdict** (1 medium rep vs the 4-rep Sonnet-high baseline). Raw:
+`raw/exp3-sonnet-medium-w1bb4ilfs.output.json`; scored: `sweeps/exp3-sonnet-medium.json`.
+
+**Result: 19 flags → 13 catalogued-solid + 2 soft + 2 new-real, 0 discipline violations.**
+(The 2 "new-real" — `mRenderActiveArea` single-arg drift and `Pattern C` only filling 3 of 4
+`AppSettings` fields ("any" overstates) — are genuine finds the classifier lacked signatures for.)
+
+| Screen axis | Reading |
+|---|---|
+| **Discipline (decisive downside)** | **CLEAN — 0 violations.** Every currency flag cited `file:line` or marked `unverifiable`; absent-lib Core claims handled correctly; no `fix-doc` on code; no cry-wolf. Medium does **not** trigger the Haiku-style discipline collapse. |
+| **Recall** | **13 solid — just below the Sonnet-high single-rep band (18,18,14,15; mean ~16).** Missed from the high union: `C2`(!), `C9, C12, C14, C15, C17, C19`. |
+| **Depth** | Still caught the *deep* `C3` (yearDays key) + `C13` (RenderArea) that Opus-high missed across 4 reps — so it's **not skimming easy issues**. |
+
+**Notable single-rep miss:** `C2` (`DayWindowKey.Range` nonexistent) — caught by *all three* models at high,
+missed here. Either ordinary per-rep variance or a sign of slightly lower medium per-pass yield; one
+rep can't tell.
+
+**Screen verdict (not a verdict on medium):** medium **passes the decisive downside gate** (discipline
+intact) and lands **modestly below** the high per-pass recall band. That's *promising-but-soft* — exactly
+the case that earns the follow-up: **2 more medium reps** to test whether medium's *cumulative ceiling*
+matches high's ~20 (just over more rounds = still cheaper) or is genuinely lower. Medium is **not
+rejected**; it's promoted to the fuller test. *(Open.)*
+
 ## Harness gotcha — `args` arrives as a JSON string (root-caused 2026-06-29)
 The backfill's full-matrix overrun was traced (via a zero-agent `args-probe.js`) to this: the
 **Workflow tool delivers `args` to the script as a JSON *string*, not a parsed object** (or

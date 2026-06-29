@@ -1,11 +1,6 @@
 export const meta = {
   name: 'audit-convergence',
-  description: 'Convergence test: Opus vs Sonnet AUDIT workers, high effort, replicate reps to measure cumulative-recall-to-union and rounds-to-dry',
-  phases: [
-    { title: 'rep1', detail: 'opus + sonnet, 7 workers each' },
-    { title: 'rep2', detail: 'opus + sonnet, 7 workers each' },
-    { title: 'rep3', detail: 'opus + sonnet, 7 workers each' },
-  ],
+  description: 'AUDIT worker sweep — model/effort/rep parameterized; per-rep phase groups auto-create from the ACTUAL reps run (do NOT hardcode rep phases here, or the /workflows display implies more reps than execute).',
 }
 
 // ---- parameters (rep0/high already on disk from wf0ozweuh; this adds rep1-3) -
@@ -123,8 +118,8 @@ const all = (await parallel(tasks)).filter(Boolean)
 
 const byCell = {}
 for (const r of all) {
-  const cell = `${r.model}/high/rep${r.rep}`
-  if (!byCell[cell]) byCell[cell] = { model: r.model, effort: 'high', rep: r.rep, units: {}, totalFlags: 0 }
+  const cell = `${r.model}/${EFFORT}/rep${r.rep}`
+  if (!byCell[cell]) byCell[cell] = { model: r.model, effort: EFFORT, rep: r.rep, units: {}, totalFlags: 0 }
   byCell[cell].units[r.key] = r.flags
   byCell[cell].totalFlags += r.flags.length
 }

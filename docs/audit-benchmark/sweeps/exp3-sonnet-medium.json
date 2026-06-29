@@ -1,0 +1,80 @@
+{
+  "experiment": "exp3-sonnet-medium",
+  "effort": "medium",
+  "model": "sonnet",
+  "reps": 1,
+  "task": "w1bb4ilfs",
+  "totalFlags": 19,
+  "solidFound": [
+    "C1",
+    "C11",
+    "C13",
+    "C3",
+    "C6",
+    "C7",
+    "C8",
+    "P1",
+    "P2",
+    "X1",
+    "X2",
+    "X3",
+    "X4"
+  ],
+  "softFound": [
+    "C18",
+    "C4"
+  ],
+  "solidCount": 13,
+  "disciplineViolations": 0,
+  "vsSonnetHigh": {
+    "highSingleRepBand": [
+      18,
+      18,
+      14,
+      15
+    ],
+    "mediumSingleRep": 13,
+    "highUnionSolid": [
+      "C1",
+      "C11",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C17",
+      "C19",
+      "C2",
+      "C3",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "mediumMissedFromHighUnion": [
+      "C12",
+      "C14",
+      "C15",
+      "C17",
+      "C19",
+      "C2",
+      "C9"
+    ],
+    "mediumFoundNotInHighUnion": []
+  },
+  "unmatchedLongTail": [
+    [
+      "glossary",
+      "Pipeline step listed as '\u2192 mRenderActiveArea(ctx)' \u2014 one argument."
+    ],
+    [
+      "conventions",
+      "Pattern C is described as filling 'any null/empty top-level field from the "
+    ]
+  ]
+}
