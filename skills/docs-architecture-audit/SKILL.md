@@ -56,6 +56,13 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
    forces depth everywhere; replicate whole-doc passes skim uniformly and miss section-local detail.
    Replicate passes also help **because independent passes find _different_ subsets** — so use them
    *with* loop-until-dry (step 3), never a fixed N. Each worker returns flags in the schema below.
+   **Worker model: default to Sonnet at high effort** — benchmarked at per-pass parity with a frontier
+   model and converging faster, with discipline intact (cites `file:line` or marks `unverifiable`; no
+   cry-wolf). For coverage, **diversify the worker model across the fan-out** (mix in a different
+   frontier model) rather than piling on same-model reps — see step 3. **Medium effort / Haiku are a
+   cheap *first-sweep* only:** medium's cumulative ceiling runs a few real issues lower than high (not
+   worth trading recall unless its cost is your scarce resource); Haiku skips sections and mislabels
+   actions, and iteration doesn't fix discipline.
 2. **Cross-reference pass** (one worker): check **inbound references** to the doc (routers, other
    docs, code comments, e.g. `.xaml`/`.cs`) for rename-orphans / dangling links, plus code↔doc
    drift the per-section workers miss. (Catches the rename-orphan class — a doc renamed, its
@@ -63,7 +70,11 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
 3. **Merge + dedup** (same location+claim = one flag). **Loop-until-dry is mandatory, not a fixed N**:
    keep running rounds until one adds nothing — in testing, *three* replicate passes each still missed
    real flags a different angle caught (ground truth was ~30% larger than any single run). Don't
-   silently cap — `log` what was dropped.
+   silently cap — `log` what was dropped. **But a single model's loop-until-dry plateaus at *that
+   model's* ceiling, not truth** — benchmarked, each model converged to a different ~20-of-25 subset
+   sharing only ~16; the full union needed *both*. So **model diversity in the fan-out is the stronger
+   completeness lever than more same-model reps** — once one model's rounds go dry, switch model rather
+   than loop deeper.
 4. **Adjudicate** — present the merged list for a per-flag call (fix / move / delete / keep / defer).
 5. **Apply** approved doc fixes; re-verify. **Report-only** flags (`flag-code-bug`, `revisit-plan`)
    are **handed off, never auto-applied** — `flag-code-bug` routes to the dev/diagnose flow + `whats-next`.
@@ -90,6 +101,8 @@ Vendored *source* = read-only ground-truth to check against, never edit.
 ## Common mistakes
 - **One careful pass, or a fixed number of them** — each finds a *different* ~half; in testing even 3
   passes missed real flags. Prefer per-section depth + loop-until-dry until a round is genuinely dry.
+- **Looping one model to exhaustion and trusting it as complete** — a dry round is *that model's*
+  ceiling (~20 of 25 in testing), not truth; switch the worker model to clear the next tier.
 - **Guessing stale** instead of citing code or marking `unverifiable → ask user`.
 - **Flagging a forward plan as stale** (modality error) — prescriptive code-absence is expected.
 - **Rewriting a doc to match buggy code** — a contract the code *violates* is a `flag-code-bug`
@@ -99,3 +112,5 @@ Vendored *source* = read-only ground-truth to check against, never edit.
 - **Auditing the journal/archive**, or scaffolding into vendored/generated trees.
 
 Full rationale + the RED baseline that justifies the fan-out: `../../docs/docs-architecture-design.md`.
+Worker-model + loop-until-dry evidence (per-pass parity, per-model ceiling, effort sweep):
+`../../docs/2026-06-29-audit-model-benchmark.md`.
