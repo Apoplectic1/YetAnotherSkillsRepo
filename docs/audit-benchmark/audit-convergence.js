@@ -9,10 +9,14 @@ export const meta = {
 }
 
 // ---- parameters (rep0/high already on disk from wf0ozweuh; this adds rep1-3) -
-const PROJECT = (args && args.project) || 'E:\\Projects\\AI\\TargetPlanner'
-const MODELS = (args && args.models) || ['opus', 'sonnet']
-const EFFORT = (args && args.effort) || 'high'
-const REPS = (args && args.reps) || [1, 2, 3]
+// NOTE: in this harness `args` arrives as a JSON *string* (or undefined), not an
+// object — parse defensively or `args.cells`/etc. are silently undefined (which
+// once cost a full 42-cell rerun instead of a 12-cell backfill).
+const A = (typeof args === 'string') ? JSON.parse(args) : (args || {})
+const PROJECT = A.project || 'E:\\Projects\\AI\\TargetPlanner'
+const MODELS = A.models || ['opus', 'sonnet']
+const EFFORT = A.effort || 'high'
+const REPS = A.reps || [1, 2, 3]
 
 const FLAG_SCHEMA = {
   type: 'object',
@@ -106,10 +110,12 @@ function thunkFor(model, rep, key) {
 // ---- fan out: full matrix, OR an explicit backfill cell list via args.cells -
 const ALL_KEYS = [...UNITS.map(u => u.key), 'crossref']
 const tasks = []
-if (args && args.cells) {
-  // backfill mode: args.cells = [{model, rep, key}, ...]
-  for (const c of args.cells) tasks.push(thunkFor(c.model, c.rep, c.key))
+if (A.cells) {
+  // backfill mode: A.cells = [{model, rep, key}, ...]
+  log(`backfill mode: ${A.cells.length} targeted cells`)
+  for (const c of A.cells) tasks.push(thunkFor(c.model, c.rep, c.key))
 } else {
+  log(`full-matrix mode: ${REPS.length} reps × ${MODELS.length} models × ${ALL_KEYS.length} workers = ${REPS.length * MODELS.length * ALL_KEYS.length} cells`)
   for (const rep of REPS) for (const model of MODELS) for (const key of ALL_KEYS) tasks.push(thunkFor(model, rep, key))
 }
 

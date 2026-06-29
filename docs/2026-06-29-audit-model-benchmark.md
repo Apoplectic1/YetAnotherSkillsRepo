@@ -163,6 +163,16 @@ rep0 came from the Exp-1 script (identical prompts, no "pass #N" prefix); precis
 re-adjudicated per-rep (matched flags map to catalogued real issues; no cry-wolf seen in spot-checks);
 N=4 reps, single fixture.
 
+## Harness gotcha — `args` arrives as a JSON string (root-caused 2026-06-29)
+The backfill's full-matrix overrun was traced (via a zero-agent `args-probe.js`) to this: the
+**Workflow tool delivers `args` to the script as a JSON *string*, not a parsed object** (or
+`undefined` when omitted). So `args.cells` was silently `undefined` and the script took its
+full-matrix branch — a 42-cell run where 12 were intended. **Fix:** normalize at the top of every
+workflow that reads `args` — `const A = (typeof args === 'string') ? JSON.parse(args) : (args || {})`
+— and read `A.x`, never `args.x`. Confirmed both ways with the probe (raw `args` type = `string`;
+post-parse `A.cells` length correct, backfill branch taken). `audit-convergence.js` also now `log()`s
+its mode + cell count at launch so a targeting failure is visible in `/workflows`, not silent.
+
 ## Pending / next axes
 - **Effort sweep (#2):** Sonnet medium vs high, *after* convergence is settled — held separate to
   avoid confounding effort with model/iteration. (Switching to medium *now* would confound Exp 2:
