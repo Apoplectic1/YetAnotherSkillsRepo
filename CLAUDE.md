@@ -45,10 +45,16 @@ only *names* the baseline — `reset --hard` rewinds tracked files but leaves be
 files a skill dropped in, so the `git clean -fd` is mandatory, not optional.
 
 ## Deploy
-Source = this repo (canonical, version-controlled). Deploy to `~/.claude/skills/` via a **copy
-script** — the deployed copy is a disposable build artifact; **never edit it**, edit here and
-re-run the deploy. (Not a symlink — permanent fixture + confusing; not a move — that strips the
+Source = this repo (canonical, version-controlled). Deploy to `~/.claude/skills/` via `deploy.sh`
+— a **copy script** (the deployed copy is a disposable build artifact; **never edit it**, edit here
+and re-run the deploy. Not a symlink — permanent fixture + confusing; not a move — that strips the
 VC'd source.)
+
+**Branch policy: only `main` deploys to the live harness.** `deploy.sh` refuses to run off `main`.
+Develop + test on `dev` **without deploying** — use the RED/GREEN subagent harness (inject the
+candidate `SKILL.md` text into the test agents; the live Skill tool reads `~/.claude/skills/`, so it
+only ever sees the deployed/main version). Merge `dev` → `main`, then deploy. To intentionally
+deploy the current branch for live Skill-tool dogfooding, `./deploy.sh --force` (loud warning).
 
 ## Branches
 `dev` = working (all authoring lands here); `main` = distribution-ready ref. No remote yet.
