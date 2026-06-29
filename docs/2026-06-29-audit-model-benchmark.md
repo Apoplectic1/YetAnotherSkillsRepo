@@ -112,12 +112,56 @@ iterated-to-dry (worker tier). Reframe vs naive form: convergence is to the **un
 **What Exp 1 already licenses:** Sonnet has *no per-pass recall deficit* (18=18), so there's no
 capability gap for iteration to overcome — encouraging but not proof.
 
-**Metrics to compute on completion:**
-- Per-model **cumulative-recall curve** (rep0→rep3): does each climb to, and converge on, the union?
-- **Rounds-to-dry** per model (the cost driver): does Sonnet need more rounds than Opus?
-- Per-rep recall mean + spread (the variance N=1 couldn't measure).
+**Data provenance (read this — it affects nothing in the numbers but explains the run count):**
+The first convergence run `wf_2b4223ef-f77` (`wybmpvx1w`) had **12 of 42 workers fail on a session
+rate-limit** (Sonnet rep2×4, rep3×7; Opus rep3×1). The backfill `wf_0be84d4b-bc0` (`w02p76xdr`) was
+*intended* to re-run only those 12, but `args.cells` did not restrict it and it **re-ran the full
+42-cell matrix** (~2.67M tokens, unintended cost). Upside: that rerun was clean (all 42 succeeded),
+giving a self-consistent rep1–3 matrix. **Scored dataset = rep0 (from Exp 1) + rep1–3 (from the
+clean rerun) = 4 reps/model.** Raw: `raw/exp2-fullrerun-w02p76xdr.output.json`; scored summary +
+classifier: `exp2-convergence.json`, `score.py`.
 
-_(Results + conclusion to be appended here when `wybmpvx1w` returns.)_
+### Results (solid issues only; classifier-scored)
+Per-rep single-pass recall, then cumulative as reps accumulate:
+
+| | rep0 | rep1 | rep2 | rep3 | **cumulative curve** | **union** |
+|---|:-:|:-:|:-:|:-:|---|:-:|
+| **Opus** | 17 | 15 | 14 | 15 | 17 → 18 → 19 → **21** (still climbing) | 21 |
+| **Sonnet** | 18 | 18 | 14 | 15 | 18 → 20 → 20 → **20** (flat by rep1) | 20 |
+
+Union overlap: **16 shared**, Opus-only 5 (`C5, C10, C21, X5, X6`), Sonnet-only 4 (`C3, C9, C13,
+C15`). **Overall union across both models = 25** (+ a long tail of ~14 rare singletons the classifier
+didn't catalog — e.g. `..\IntervalScheduler\ROADMAP` cross-refs, `AstrometryUi` deletion, settings
+seed details — so true total is even larger, per the skill's "truth keeps growing" thesis).
+
+### Conclusion — hypothesis partially confirmed, with a key refinement
+**Confirmed:** (1) **No per-pass capability deficit** — Sonnet's single-pass recall (18,18,14,15)
+matches or beats Opus's (17,15,14,15) across all 4 reps; the Exp-1 18=18 tie was not luck.
+(2) **Sonnet converges *faster/cheaper*** — flat at its ceiling by rep1–2, while Opus is still
+climbing at rep3. So cheaper-model + iteration genuinely substitutes for an expensive model on
+coverage *volume*.
+
+**Refutes the naive form:** iterating one model does **not** converge to "nearly identical" runs or
+to the full ground truth. Each model has **systematic blind spots that more reps don't cure**: Opus
+ran 4 reps and *never* found `C3` (yearDays key) or `C13` (RenderArea 4-step) — Sonnet got both on
+rep0; Sonnet ran 4 reps and never found `X5/X6` (code-comment orphans) — Opus got them on rep0. Each
+model converges to a *different* ~20-issue ceiling sharing only 16; the union of 25 needs **both**.
+
+**Therefore the real completeness lever is model diversity in the fan-out, not just more reps of one
+model.** A mixed-model fan-out (or a cheap-model base + one pass of a different model) beats deeper
+iteration of either alone. Loop-until-dry on a single model hits a model-specific ceiling (~20–21 of
+25 here), not truth.
+
+**Practical recommendation for AUDIT workers:** Sonnet is a strong, cheaper default for the worker
+tier (per-pass parity, faster convergence). For thoroughness, prefer **diversifying the worker model
+across the fan-out** over piling more same-model reps. Haiku stays a cheap first-sweep only (Exp 1
+discipline gap). *(Candidate skill note: loop-until-dry guidance should acknowledge the per-model
+ceiling and suggest model diversity — feed to `docs-architecture-design.md`.)*
+
+**Caveats:** classifier is heuristic (long-tail singletons uncounted → unions are lower bounds);
+rep0 came from the Exp-1 script (identical prompts, no "pass #N" prefix); precision not exhaustively
+re-adjudicated per-rep (matched flags map to catalogued real issues; no cry-wolf seen in spot-checks);
+N=4 reps, single fixture.
 
 ## Pending / next axes
 - **Effort sweep (#2):** Sonnet medium vs high, *after* convergence is settled — held separate to
