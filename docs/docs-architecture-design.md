@@ -305,6 +305,25 @@ holds, zero cry-wolf, all reps converged on one shape. Closes the design↔skill
 `flag-code-bug`" TRIAGE consumes is now a real schema action — report-only, never auto-applied, routed
 to the dev/diagnose flow + `whats-next`.
 
+**AUDIT worker-model benchmark 2026-06-29 — the per-model ceiling refines loop-until-dry.** A scored
+sweep on the post-SETUP TP fixture (Opus/Sonnet/Haiku × replicate reps × effort; full record:
+`docs/2026-06-29-audit-model-benchmark.md`) sharpened the original "coverage needs the *loop*, not a
+bigger N" thesis with a result the single-model RED/GREEN couldn't see: **looping ONE model to
+exhaustion plateaus at *that model's* ceiling, not truth.** Each model converged to a different
+~20-of-25 subset sharing only ~16; the full union needed *both* — Opus never found two deep
+architecture catches Sonnet got on rep0, Sonnet never found two code-comment orphans Opus got on
+rep0, and more reps cured neither. **So the strongest completeness lever is model *diversity* in the
+fan-out, not more same-model reps** — once a model's rounds go dry, switch model rather than loop
+deeper. (This *extends* loop-until-dry, doesn't replace it: within a model, replicate-passes-to-dry
+still recover the different-subset-per-pass gains; the ceiling is the model's, so diversity clears
+the next tier.) **Worker-tier recommendation:** Sonnet at **high effort** is the default — per-pass
+recall parity with Opus, converges faster, discipline intact (cites `file:line` / marks
+`unverifiable`, zero cry-wolf at any tier). **Medium effort and Haiku are first-sweep only:** medium's
+cumulative ceiling ran ~3 issues below high (per-pass parity only after rep1) — not worth the recall
+loss unless its cost is the consumer's scarce resource; Haiku skipped sections and mislabeled actions,
+and *iteration doesn't fix discipline*. Mirrored into the AUDIT skill (fan-out step 1, loop-until-dry
+step 3, a "Common mistakes" bullet) 2026-06-29.
+
 **MAINTAIN — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-maintain`,
 **lean** — it *reuses* AUDIT's fan-out machinery and adds graduation-specific flag types + the
 **prune/preserve-why linchpin** (a REQUIRED `disposition: stub | cross-ref | archive` field on every
