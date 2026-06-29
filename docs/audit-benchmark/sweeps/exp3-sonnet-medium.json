@@ -2,13 +2,87 @@
   "experiment": "exp3-sonnet-medium",
   "effort": "medium",
   "model": "sonnet",
-  "reps": 1,
-  "task": "w1bb4ilfs",
-  "totalFlags": 19,
-  "solidFound": [
+  "sources": {
+    "rep1": "exp3 screen w1bb4ilfs",
+    "rep2-3": "follow-up wuplfg72m"
+  },
+  "perRepSolid": {
+    "1": [
+      "C1",
+      "C11",
+      "C13",
+      "C3",
+      "C6",
+      "C7",
+      "C8",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "2": [
+      "C1",
+      "C10",
+      "C11",
+      "C13",
+      "C15",
+      "C2",
+      "C3",
+      "C7",
+      "C8",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "3": [
+      "C1",
+      "C11",
+      "C13",
+      "C14",
+      "C2",
+      "C3",
+      "C6",
+      "C7",
+      "C8",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ]
+  },
+  "perRepSoft": {
+    "1": [
+      "C18",
+      "C4"
+    ],
+    "2": [
+      "C4"
+    ],
+    "3": [
+      "C18",
+      "C4"
+    ]
+  },
+  "cumulativeSolid": [
+    13,
+    16,
+    17
+  ],
+  "unionSolid": [
     "C1",
+    "C10",
     "C11",
     "C13",
+    "C14",
+    "C15",
+    "C2",
     "C3",
     "C6",
     "C7",
@@ -20,21 +94,8 @@
     "X3",
     "X4"
   ],
-  "softFound": [
-    "C18",
-    "C4"
-  ],
-  "solidCount": 13,
-  "disciplineViolations": 0,
   "vsSonnetHigh": {
-    "highSingleRepBand": [
-      18,
-      18,
-      14,
-      15
-    ],
-    "mediumSingleRep": 13,
-    "highUnionSolid": [
+    "highUnion": [
       "C1",
       "C11",
       "C12",
@@ -56,25 +117,69 @@
       "X3",
       "X4"
     ],
-    "mediumMissedFromHighUnion": [
-      "C12",
+    "medUnion": [
+      "C1",
+      "C10",
+      "C11",
+      "C13",
       "C14",
       "C15",
+      "C2",
+      "C3",
+      "C6",
+      "C7",
+      "C8",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "shared": [
+      "C1",
+      "C11",
+      "C13",
+      "C14",
+      "C15",
+      "C2",
+      "C3",
+      "C6",
+      "C7",
+      "C8",
+      "P1",
+      "P2",
+      "X1",
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "medOnly": [
+      "C10"
+    ],
+    "highOnlyMedMissed": [
+      "C12",
       "C17",
       "C19",
-      "C2",
       "C9"
     ],
-    "mediumFoundNotInHighUnion": []
-  },
-  "unmatchedLongTail": [
-    [
-      "glossary",
-      "Pipeline step listed as '\u2192 mRenderActiveArea(ctx)' \u2014 one argument."
-    ],
-    [
-      "conventions",
-      "Pattern C is described as filling 'any null/empty top-level field from the "
+    "highCurve": [
+      18,
+      20,
+      20,
+      20
     ]
-  ]
+  },
+  "unmatchedLongTail": {
+    "Pipeline step listed as '\u2192 mRenderActiveArea(ctx)' \u2014 one argument.": 1,
+    "Pattern C is described as filling 'any null/empty top-level field from": 1,
+    "Pattern C fills any null/empty top-level field in the deserialised App": 1,
+    "After LocalLib was dropped, Button_BrowseTargetList_Click uses FolderB": 1,
+    "Pattern C fills any null/empty top-level field from the seed.": 1
+  },
+  "perRepFlagCount": {
+    "1": 19,
+    "2": 20,
+    "3": 20
+  }
 }

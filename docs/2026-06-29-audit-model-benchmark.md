@@ -188,7 +188,48 @@ rep can't tell.
 intact) and lands **modestly below** the high per-pass recall band. That's *promising-but-soft* — exactly
 the case that earns the follow-up: **2 more medium reps** to test whether medium's *cumulative ceiling*
 matches high's ~20 (just over more rounds = still cheaper) or is genuinely lower. Medium is **not
-rejected**; it's promoted to the fuller test. *(Open.)*
+rejected**; it's promoted to the fuller test. *(Resolved below.)*
+
+### Follow-up — 2 more medium reps (reps 2 & 3): cumulative ceiling settled
+Run `wf_5d2b2508-4b7` (`wuplfg72m`), 14 agents, ~795K tokens, ~7.5 min, same `0080879` fixture.
+Raw: `raw/exp3-sonnet-medium-rep2-3-wuplfg72m.output.json`; classifier `score-medium.py`; scored:
+`sweeps/exp3-sonnet-medium.json`. Reps 2 & 3 each emitted 20 flags.
+
+| | rep1 | rep2 | rep3 | **cumulative** | **union** |
+|---|:-:|:-:|:-:|---|:-:|
+| **Sonnet/medium** | 13 | 15 | 15 | 13 → 16 → **17** (increments shrinking) | 17 |
+| Sonnet/high (ref) | 18 | 15 | 14/15 | 18 → 20 → **20** (flat by rep1) | 20 |
+
+**Conclusion — medium's cumulative ceiling is genuinely lower (~17 vs 20), so it is NOT a drop-in
+for high.** Three reps later medium has the *same* systematic blind spots, not just bad luck:
+- **Union 17 vs high's 20**, sharing 16. Medium **never found** `C9` (one-vs-two projects), `C12`
+  (`Button_Graph_Click` funnel), `C17` (ScreenCapture routing), `C19` (`AstrometryUi` deletion) across
+  all 3 reps — high's Sonnet got every one. Medium did add `C10` (three sibling projects) that high's
+  Sonnet union missed, so it's not a strict subset — but **net −3**, a real ~15% recall deficit.
+- **Per-pass parity holds *after* rep1:** medium's rep2/rep3 (15/15) sit squarely in the high band
+  (15,14,15); only its rep1 (13) lagged. So the deficit is a **lower cumulative ceiling**, not a
+  per-pass capability gap — fewer *distinct* issues surface no matter how many medium rounds you run.
+- **Screen's `C2` scare was per-rep variance:** rep2 *and* rep3 both caught `C2` (`DayWindowKey.Range`).
+  The lone rep1 miss was noise, not a medium yield signal — answers the screen's open question.
+- **Discipline: near-clean, one minor wobble.** No fabrications, no cardinal sins. The absent-lib
+  Core claims were handled right — incl. a **disciplined new-real catch** (`AltAzCalculator.At` vs the
+  doc's `AltAz.At`, corroborated via TP-side callsites `AltitudeSubChart_Sky.cs:509` /
+  `ChartCacheStore.cs:669`, *not* guessed). The single slip: the cross-ref worker actioned a `.cs`
+  comment's dangling doc-ref as `fix-doc` (`FitTooltipResolver.cs:16`) where the skill wants
+  `flag-code-bug` (report-only) — a minor action-mislabel on a *real* issue, the same family as Exp-1
+  Haiku's slips but isolated (1 in 14 workers), not the Haiku-style collapse.
+
+**Verdict (now a verdict, not a screen): high effort stays the recommended worker tier.** Medium
+buys ~lower cost but leaves ~3 real issues permanently on the table (its ceiling, not its variance).
+It's a fine **cheap first-sweep**; for coverage, spend the tokens on **high effort + model diversity**
+(Exp 2) rather than more medium rounds. Net AUDIT-worker recommendation across Exp 1–3: **Sonnet-high
+default; diversify the fan-out model for thoroughness; medium/Haiku are first-sweep only.**
+
+**Caveats:** N=3 reps, single fixture; classifier is heuristic (the `AltAzCalculator.At` new-real
+collided into `P2` via an "architecture" token in its evidence — doesn't move the union count;
+long-tail singletons like `mRenderActiveArea` single-arg and the `Pattern C` overstatement remain
+uncatalogued, so unions are lower bounds); rep1 came from the earlier screen script (no "pass #N"
+prefix).
 
 ## Harness gotcha — `args` arrives as a JSON string (root-caused 2026-06-29)
 The backfill's full-matrix overrun was traced (via a zero-agent `args-probe.js`) to this: the
@@ -201,6 +242,11 @@ post-parse `A.cells` length correct, backfill branch taken). `audit-convergence.
 its mode + cell count at launch so a targeting failure is visible in `/workflows`, not silent.
 
 ## Pending / next axes
-- **Effort sweep (#2):** Sonnet medium vs high, *after* convergence is settled — held separate to
-  avoid confounding effort with model/iteration. (Switching to medium *now* would confound Exp 2:
-  the baseline/ground-truth and rep0 are all high-effort.)
+- **Effort sweep — ✅ done (Exp 3 + follow-up).** Sonnet medium vs high settled: medium ceilings ~3
+  issues lower (17 vs 20), per-pass parity after rep1, discipline near-clean. High stays the worker
+  default; medium is first-sweep only.
+- **Feed the recommendation into the skill (open):** Exp 1–3 land on "Sonnet-high default + diversify
+  the fan-out model; loop-until-dry hits a per-model ceiling, not truth." Graduate this into
+  `docs-architecture-design.md` and AUDIT's loop-until-dry guidance.
+- **Candidate axes (lower priority):** mixed-model fan-out measured directly (vs inferred from the
+  Opus/Sonnet union gap); a second fixture to test whether the ~25 ceiling is project-specific.
