@@ -234,7 +234,10 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
                       • AUDIT skill (triggered/periodic) — generalized Phase 2: per-doc parallel
                         fan-out that verifies docs vs charters (placement) + live code (currency),
                         emits evidence-carrying flags → adjudicate → fix. The ONLY skill that
-                        catches code-doc drift (the #1 staleness source). Crux = the
+                        catches code-doc drift (the #1 staleness source). When that drift is a *code* contract-violation
+                        (not a stale doc), AUDIT emits a **report-only `flag-code-bug`** — it never
+                        edits code and never rewrites a contract to match the bug → feeds TRIAGE.
+                        Crux = the
                         conservative-evidence rule ("cite the code or mark unverifiable, never
                         guess stale"). **Keys on content, not filename** (user, 2026-06-28) —
                         placement/currency are judged by what a section/doc *is* and whether its
@@ -261,7 +264,7 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
                         COVERAGE MANIFEST (what it swept / couldn't) — the antidote to the
                         "am I seeing everything when I ask 'what's next?'" uncertainty. Crux =
                         separating a live bug / gotcha-needing-attention from an ACCEPTED
-                        constraint (needs a FIXME/pending marker or an AUDIT code-bug flag, else
+                        constraint (needs a FIXME/pending marker or an AUDIT `flag-code-bug`, else
                         it cries wolf on every gotcha). Consumes the trio's outputs (esp. AUDIT)
                         + project sources; composes AFTER audit (stale docs → stale backlog).
                         Proposes priority; user owns the call. No Phase prototypes it yet —
@@ -289,6 +292,18 @@ but **3 *fixed* passes still missed 2 real flags** a different angle caught (tru
 larger than any single run) → hardened the skill to mandate **per-section depth + loop-until-dry over
 a fixed N** (a calibration, not a defect). Net: fan-out + merge decisively beats single-pass;
 coverage needs the *loop*, not just a bigger N.
+
+**AUDIT refined 2026-06-29 (RED/GREEN) — code-bug findings.** Added a **report-only `flag-code-bug`**
+action + a **stale-doc-vs-contract-violation discriminator** + an explicit **"AUDIT writes docs only,
+never code"** boundary. RED (3 workers, old skill): a doc asserting a contract the code *violates* (a
+fail-fast keyword guarantee vs code that silently returns a `"UNKNOWN"` default) was filed `fix-doc` by
+**3/3** — faithfully following the skill *rewrites the contract to enshrine the bug*; the correct
+"fix the code" call survived only as non-mergeable prose (1/3). GREEN (3 workers, updated skill):
+**3/3** emit `flag-code-bug` for the contract violation ("do not fix-doc into agreement") **and 3/3**
+keep ordinary value-drift (a cache count 256→512, intentionally raised) as `fix-doc` — discriminator
+holds, zero cry-wolf, all reps converged on one shape. Closes the design↔skill gap: the "AUDIT
+`flag-code-bug`" TRIAGE consumes is now a real schema action — report-only, never auto-applied, routed
+to the dev/diagnose flow + `whats-next`.
 
 **MAINTAIN — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-maintain`,
 **lean** — it *reuses* AUDIT's fan-out machinery and adds graduation-specific flag types + the

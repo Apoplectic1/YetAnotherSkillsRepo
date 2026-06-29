@@ -25,13 +25,26 @@ a mergeable, consistent output** is what the skill must force.
 
 ## Currency: code is ground truth — but classify modality first
 - **Descriptive** (how the system *is* — ARCHITECTURE, gotchas, "current status"): **code wins.**
-  Mismatch = stale doc → fix the doc.
+  Mismatch = stale doc → `fix-doc`. **Exception — a contract the code is *meant* to honor:** when the
+  doc asserts a guarantee (a `must`/`always`/`never`/aborts-on-X rule — ideally stating its rationale,
+  or corroborated by a test / another doc) and the code *violates* it, the **code is the suspected bug,
+  not the doc stale** → `flag-code-bug` (report-only). **Never `fix-doc` a contract into agreement with
+  code you suspect is buggy** — that silently encodes the bug into the spec. Plain value drift with no
+  guarantee (a count, an intentionally-changed default/path) is ordinary staleness → `fix-doc`;
+  genuinely unsure which → `unverifiable → ask user`.
 - **Prescriptive** (how it *should/will* be — ROADMAP "Future", `PLAN-*`, "Open follow-ups"):
   **the plan wins.** Code-not-matching is *expected*, NOT staleness — never flag "planned X absent
   from code" as stale. Two report-only exceptions: plan **already satisfied** by code → `graduate`
   (→ "Recently shipped" / archive the `PLAN-`); plan **contradicted** by current structure →
   `revisit-plan` (don't edit intent). Tense/charter decides: future "will/planned/TODO" +
   ROADMAP-Future/`PLAN-` = prescriptive; present "is/does/returns" + ARCHITECTURE = descriptive.
+
+## AUDIT writes docs only — code findings are report-only
+AUDIT edits **documentation**, never source — not first-party, not vendored. When currency analysis
+implicates the *code* (a contract violation, an apparent bug), AUDIT **does not fix it**: it emits
+`flag-code-bug` carrying `file:line` evidence and hands it off to the dev/diagnose flow (and to
+`whats-next`/TRIAGE as a backlog input). `flag-code-bug` — like `revisit-plan` — is **report-only:
+never auto-applied** in step 5.
 
 ## Conservative evidence — required, not optional
 Every currency flag carries **either a code citation (`file:line` / symbol) OR the literal marker
@@ -52,7 +65,8 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
    real flags a different angle caught (ground truth was ~30% larger than any single run). Don't
    silently cap — `log` what was dropped.
 4. **Adjudicate** — present the merged list for a per-flag call (fix / move / delete / keep / defer).
-5. **Apply** approved fixes; re-verify.
+5. **Apply** approved doc fixes; re-verify. **Report-only** flags (`flag-code-bug`, `revisit-plan`)
+   are **handed off, never auto-applied** — `flag-code-bug` routes to the dev/diagnose flow + `whats-next`.
 
 ## Flag schema — every flag, every worker (this is what makes the fan-out mergeable)
 ```
@@ -63,7 +77,7 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
 - finding:   what's wrong, or the off-charter target home
 - evidence:  file:line / symbol   OR   "unverifiable → ask user"
 - severity:  high | medium | low
-- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | revisit-plan | keep
+- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | revisit-plan | flag-code-bug | keep
 ```
 
 ## Scope — router-anchored
@@ -78,6 +92,8 @@ Vendored *source* = read-only ground-truth to check against, never edit.
   passes missed real flags. Prefer per-section depth + loop-until-dry until a round is genuinely dry.
 - **Guessing stale** instead of citing code or marking `unverifiable → ask user`.
 - **Flagging a forward plan as stale** (modality error) — prescriptive code-absence is expected.
+- **Rewriting a doc to match buggy code** — a contract the code *violates* is a `flag-code-bug`
+  (report-only), never a `fix-doc`. AUDIT never edits code and never encodes a suspected bug into the spec.
 - **Unstructured prose flags** — they don't merge across the fan-out; use the schema.
 - **Skipping the cross-reference pass** — rename-orphans / dangling links hide *outside* the doc.
 - **Auditing the journal/archive**, or scaffolding into vendored/generated trees.
