@@ -22,10 +22,27 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
    source → categorized/prioritized backlog + **coverage manifest** + **accepted-constraints** list;
    live-vs-accepted crux; reuses AUDIT's fan-out. (Planning layer; consumes the trio's outputs.)
 
+**Dependency:** AUDIT, MAINTAIN, and TRIAGE assume the docs-architecture conventions are already in
+place (a CLAUDE.md router + charter'd reference set) — i.e. **SETUP must have run first**. On a raw
+project (like the worst-case fixture below) run SETUP before testing the other three.
+
 **Design source** (genesis + full spec, graduates into this repo as it stabilizes):
 `E:\Projects\PixInsight\Scripts\WBPP_BXT_NSG\docs\2026-06-28-docs-reorg-plan.md`.
 **First customers:** the Astronomy constellation — TargetPlanner, TargetSchedulerManager,
 Library, XisfFileManager, IntervalScheduler — plus WBPP itself.
+
+## Test fixtures
+`E:\Projects\AI\TargetPlanner` — a **pristine, skills-unmodified** copy of TargetPlanner kept as a
+close-to-worst-case fixture for exercising the in-development skills (missing/scattered docs, no
+router, drift). Use it as the input project when testing AUDIT / MAINTAIN / SETUP / `whats-next`.
+
+**Reset contract** — restore baseline after every test run that mutated the tree:
+```
+git reset --hard 9034e6f && git clean -fd
+```
+The baseline is an empty marker commit (`9034e6f`, "SKILLS-TEST BASELINE"). **Gotcha:** the marker
+only *names* the baseline — `reset --hard` rewinds tracked files but leaves behind any **untracked**
+files a skill dropped in, so the `git clean -fd` is mandatory, not optional.
 
 ## Deploy
 Source = this repo (canonical, version-controlled). Deploy to `~/.claude/skills/` via a **copy
