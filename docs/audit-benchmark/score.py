@@ -1,12 +1,10 @@
 import json, re
 
-TASKS='C:/Users/djsta/AppData/Local/Temp/claude/E--Projects-AI-Skills/47085c51-abd9-49aa-8525-09f941b46478/tasks/'
 DOCS='E:/Projects/AI/Skills/docs/audit-benchmark/'
 
-# rep0 from exp1
-e1=json.loads(open(DOCS+'exp1-model-compare.json',encoding='utf-8').read())
-# rep1-3 from full rerun
-fr=json.loads(open(TASKS+'w02p76xdr.output',encoding='utf-8').read())
+# rep0 from exp1 (scored result) + rep1-3 from full-rerun raw output (both repo-tracked, reproducible)
+e1=json.loads(open(DOCS+'sweeps/exp1-model-compare.json',encoding='utf-8').read())
+fr=json.loads(open(DOCS+'raw/exp2-fullrerun-w02p76xdr.output.json',encoding='utf-8').read())
 frr=fr['result']
 if isinstance(frr,str): frr=json.loads(frr)
 
@@ -138,5 +136,5 @@ for m in ['opus','sonnet']:
     for rep in sorted(x for x in reps[m] if isinstance(x,int)):
         cum|={x for x in percell[(m,rep)] if x in SOLID}; curve.append(len(cum))
     summary['cumulative'][m]=curve
-open('E:/Projects/AI/Skills/docs/audit-benchmark/exp2-convergence.json','w',encoding='utf-8').write(json.dumps(summary,indent=2))
+open(DOCS+'sweeps/exp2-convergence.json','w',encoding='utf-8').write(json.dumps(summary,indent=2))
 print('saved exp2-convergence.json; curves:',summary['cumulative'])

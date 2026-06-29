@@ -3,7 +3,9 @@
 **Charter — empirical record of how the `docs-architecture-audit` skill performs across worker
 models and iterations.** Captures method, ground-truth issue catalog, per-model/per-rep scores, and
 conclusions that inform the model recommendation for AUDIT's fan-out workers. Raw flag data lives in
-`docs/audit-benchmark/*.json`. Dated record; append new experiments, don't rewrite old ones.
+`docs/audit-benchmark/sweeps/*.json` (scored results) + `docs/audit-benchmark/raw/*` (untouched task
+outputs); harness scripts at `docs/audit-benchmark/*.js` + `score.py`. Dated record; append new
+experiments, don't rewrite old ones.
 
 ## Why this exists
 AUDIT's thesis (see `docs-architecture-design.md`): *a single careful pass finds only ~half the real
@@ -66,7 +68,7 @@ naming convention overstated (S); **C-loc** sibling-lib absolute path possibly s
 
 ## Experiment 1 — model comparison (single round, high effort)
 Run `wf_1086285c-9b2` (task `wf0ozweuh`), 21 agents, 1.29M tokens, ~7.5 min. Raw:
-`docs/audit-benchmark/exp1-model-compare.json`.
+`docs/audit-benchmark/sweeps/exp1-model-compare.json`.
 
 | Metric | Opus | Sonnet | Haiku |
 |---|---|---|---|
@@ -118,8 +120,8 @@ rate-limit** (Sonnet rep2×4, rep3×7; Opus rep3×1). The backfill `wf_0be84d4b-
 *intended* to re-run only those 12, but `args.cells` did not restrict it and it **re-ran the full
 42-cell matrix** (~2.67M tokens, unintended cost). Upside: that rerun was clean (all 42 succeeded),
 giving a self-consistent rep1–3 matrix. **Scored dataset = rep0 (from Exp 1) + rep1–3 (from the
-clean rerun) = 4 reps/model.** Raw: `raw/exp2-fullrerun-w02p76xdr.output.json`; scored summary +
-classifier: `exp2-convergence.json`, `score.py`.
+clean rerun) = 4 reps/model.** Raw: `raw/exp2-fullrerun-w02p76xdr.output.json`; scored summary:
+`sweeps/exp2-convergence.json`; classifier: `score.py`.
 
 ### Results (solid issues only; classifier-scored)
 Per-rep single-pass recall, then cumulative as reps accumulate:
