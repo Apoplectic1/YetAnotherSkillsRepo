@@ -27,7 +27,7 @@ on a small project first.
 | `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
 | `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings) |
 | `VERIFICATION.md` | how to verify a change — *even if* just "= `dotnet test`, CI at X" |
-| domain doc (**elicit its name**) | the human/strategy home (e.g. `OBSERVING` / `DOMAIN` / `UI-CONVENTIONS`) |
+| domain doc (**elicit its name; default `DOMAIN.md`**) | the human/strategy home (e.g. `OBSERVING` / `DOMAIN` / `UI-CONVENTIONS`) |
 | `docs/` | journal: `YYYY-MM-DD-<slug>.md` per-topic dated records |
 | `README.md`, `RELEASING.md` | **conditional** — public/GitHub entry; project that ships |
 
@@ -68,6 +68,9 @@ Normalize filenames to the convention (no spaces; align casing).
    name it for what its content *is* (e.g. `DOMAIN` = science/conventions, `CONSUMERS` = a
    shared lib's portfolio, `OBSERVING` = a workflow app's site/process, `UI-CONVENTIONS` = UI
    rules); propose one with a one-line rationale, confirm with the user, then use it consistently.
+   **When no domain doc exists, always offer `DOMAIN.md` as one of the choices** — the safe generic
+   home — so the user is never left without a ready landing spot. Never skip the domain doc; if the
+   user declines a specific name, fall back to a charter'd-thin `DOMAIN.md`.
 3. **Write `CLAUDE.md`** as the router (reference by name; journal by convention; exclusions noted;
    load-bearing gotchas only).
 4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.
