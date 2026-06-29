@@ -1,0 +1,681 @@
+{
+  "experiment": "exp1-model-compare",
+  "runId": "wf_1086285c-9b2",
+  "taskId": "wf0ozweuh",
+  "effort": "high",
+  "models": [
+    "opus",
+    "sonnet",
+    "haiku"
+  ],
+  "agentCount": 21,
+  "totalTokens": 1287776,
+  "byModel": {
+    "opus": {
+      "units": {
+        "glossary": [
+          {
+            "location": "Glossary § ChartEvaluation — \"single-field record in State/ChartEvaluation.cs ... Carries just BrightnessInputsChanged; consumed only by the coordinator's post-apply hook to gate PushSkyKSInputs(ctx)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "ChartEvaluation is a single-field record carrying only BrightnessInputsChanged, consumed only by the coordinator's post-apply hook.",
+            "finding": "The record now has THREE init-properties: BrightnessInputsChanged, EnsureWork, RenderWork. EnsureWork/RenderWork were added for progress-bar sizing and are consumed in the coordinator's pipeline (not the post-apply hook) to drive an OffsetProgress across the EnsureAsync+Render phases. 'single-field' and 'consumed only by the post-apply hook' are both stale.",
+            "evidence": "State/ChartEvaluation.cs:25 (BrightnessInputsChanged), :33 (EnsureWork), :40 (RenderWork); ChartCoordinator.cs:211-214 (eval.EnsureWork/RenderWork build OffsetProgress in RunPipelineAsync, before the post-apply hook at :226)",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Glossary § EnsureAsync / § ChartCoordinator — \"IChartCacheStore.EnsureAsync(ctx, nightDate) is the single pre-render pipeline\" and pipeline \"await mCache.EnsureAsync(ctx, nightDate) → generation guard → mRenderActiveArea(ctx)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "EnsureAsync takes (ctx, nightDate); the coordinator awaits mCache.EnsureAsync(ctx, nightDate) and dispatches mRenderActiveArea(ctx).",
+            "finding": "EnsureAsync now takes a third optional parameter IProgress<(int Done, int Total)> progress, and the coordinator threads progress through: it awaits EnsureAsync(ctx, nightDate, progress) and invokes mRenderActiveArea(ctx, renderProgress). The glossary's two-arg/one-arg phrasing predates the progress-bar work. Minor (optional param, two-arg call still compiles) but the signatures are factually drifted.",
+            "evidence": "IChartCacheStore.cs:63-64 (EnsureAsync(ctx, nightDate, IProgress<...> progress = null)); ChartCoordinator.cs:200 (await mCache.EnsureAsync(ctx, nightDate, progress)), :220 (mRenderActiveArea(ctx, renderProgress))",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Glossary § Apps & plugins — \"defined once in the parent [`..\\CLAUDE.md`](../CLAUDE.md), which auto-loads in every astronomy subproject session\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A parent ..\\CLAUDE.md exists one directory up and auto-loads in every astronomy subproject session, defining the cross-repo Apps/plugins vocabulary.",
+            "finding": "The relative link ..\\CLAUDE.md resolves to E:\\Projects\\AI\\CLAUDE.md, which does not exist in this checkout. However the repo appears relocated from its canonical dev location (the csproj sibling Library at ..\\..\\Library is also absent, and the doc itself cites the canonical path E:\\Projects\\VisualStudio\\Astronomy\\Library\\). Cannot confirm whether the parent portfolio CLAUDE.md exists at the canonical location — the broken link here may be purely a relocation artifact, not genuine doc drift.",
+            "evidence": "E:\\Projects\\AI\\CLAUDE.md absent (directory listing of E:\\Projects\\AI shows only Skills, TargetPlanner); sibling Library ..\\..\\Library unresolvable in this checkout → unverifiable → ask user",
+            "severity": "low",
+            "action": "keep"
+          }
+        ],
+        "conventions": [
+          {
+            "location": "Conventions §, `Log.Diag` bullet: \"Current categories: `Coord`, `Cache`, `Day`, `Sky`, `UI`, `Overlay`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Sky is one of the live Log.Diag diagnostic categories.",
+            "finding": "No `Log.Diag(\"Sky\")` or `Log.IsDiagEnabled(\"Sky\")` callsite exists anywhere in TargetPlanner. A full grep of Diag/IsDiagEnabled string-literal categories yields only UI, Cache, Coord, Overlay, Day. `Sky` appears to have been retired (e.g. AltitudeSubChart_Sky.cs uses no Sky diag tag). The doc's own \"grep Log.Diag( callers to confirm\" hedge confirms this list is meant to track code.",
+            "evidence": "Categories in use: UI (TargetScanner.cs:127 + many), Cache (Caches/ChartCacheStore.cs:192), Coord (State/ChartCoordinator.cs:196), Overlay (Charts/OverlayController.cs:17), Day (Charts/AltitudeSubChart_Day.cs:348). Exhaustive grep of `Log\\.Diag(\"...\")` / `IsDiagEnabled(\"...\")` returns NO \"Sky\" match.",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "architecture": [
+          {
+            "location": "Architecture §Cache state — \"slice the night-spanning entries to `DayWindowKey.Range` at paint time\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Sub-charts slice cache entries to a member named DayWindowKey.Range.",
+            "finding": "No `Range` member exists on DayWindowKey. The struct exposes `ChartStartUtcTicks`, `Count`, and the derived `ChartStartUtc` only (Caches/DayWindowKey.cs:27-34). Project-wide grep for `.Range` / `DayWindowKey.Range` returns zero hits. Slicing is actually done by index off ChartStartUtc/Count — BuildTrajectoryAsync samples `window.Count` minutes from `window.ChartStartUtc` (ChartCacheStore.cs:553-555) and the in-code comment says \"consumers reading the night-only range slice the corresponding indices\" (ChartCacheStore.cs:543-545). The concept (index slicing) is right; the named member is wrong. Fix to reference ChartStartUtc/Count (or just \"the window's index range\").",
+            "evidence": "Caches/DayWindowKey.cs:27-34 (no Range member); ChartCacheStore.cs:543-545,553-555 (index-based slicing)",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Architecture §Threading — \"cache pre-population is 2–4 sec for 44 targets (yearDays)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "yearDays cache pre-population takes 2–4 sec for 44 targets.",
+            "finding": "In-repo code comment states the figure differently: \"Compute is short (~1-2 sec for 44 targets post-CS-removal)\" (ChartCacheStore.cs:33-34). The two prose figures disagree (1-2 s vs 2-4 s); they may measure different scopes (total compute vs yearDays-only), but the discrepancy is real. Actual perf is unverifiable from static reading → ask user which figure is current. Report-only.",
+            "evidence": "ChartCacheStore.cs:33-34 (\"~1-2 sec for 44 targets post-CS-removal\"); live timing unverifiable → ask user",
+            "severity": "low",
+            "action": "keep"
+          }
+        ],
+        "deps-build": [
+          {
+            "location": "## Build / run + ## Tool preference for symbol queries — the Solution/csproj/test build bullets (\"Solution TargetPlanner.sln contains...\", \"F5 in Visual Studio...\", \"TP-side tests live in...\") sit under the \"## Tool preference for symbol queries\" heading; the \"## Build / run\" heading above contains only a one-paragraph pointer to VERIFICATION.md whose own text says the gotchas are kept \"below\".",
+            "axis": "placement",
+            "modality": "na",
+            "claim": "Build/csproj/test gotcha bullets belong under the \"## Build / run\" heading (the intro paragraph promises them \"below\").",
+            "finding": "The bullets are orphaned under the unrelated \"## Tool preference for symbol queries\" heading, leaving \"## Build / run\" effectively empty and the LSP section bloated with build content. Move the three build bullets to directly follow the \"## Build / run\" intro paragraph.",
+            "evidence": "CLAUDE.md:54-58 (empty Build/run), CLAUDE.md:60-68 (build bullets under Tool preference)",
+            "severity": "medium",
+            "action": "move-to"
+          },
+          {
+            "location": "## External dependencies that are easy to miss — \"NuGet packages on the WinExe project: ... Velopack 0.0.1298\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Velopack package version is 0.0.1298.",
+            "finding": "Stale version. The csproj pins Velopack 0.0.1589-ga2c5a97.",
+            "evidence": "TargetPlanner/TargetPlanner.csproj:63 — <PackageReference Include=\"Velopack\" Version=\"0.0.1589-ga2c5a97\" />",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "## Tool preference (build bullet) — \"Configurations: Debug|AnyCPU, Release|AnyCPU, Debug|x64, Release|x64.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The project/solution offers four configurations including AnyCPU (Debug|AnyCPU, Release|AnyCPU).",
+            "finding": "Stale. The project is x64-only (<Platforms>x64</Platforms>) and the solution declares only Debug|x64 and Release|x64 — no AnyCPU configurations exist. Should read just Debug|x64, Release|x64.",
+            "evidence": "TargetPlanner/TargetPlanner.csproj:35 — <Platforms>x64</Platforms>; TargetPlanner.sln:17-19 — SolutionConfigurationPlatforms lists only Debug|x64 and Release|x64",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "## Tool preference (build bullet) — \"Solution TargetPlanner.sln contains one project authored here plus two sibling-library projects listed for Solution Explorer visibility:\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The solution contains one locally-authored project plus two sibling-library projects.",
+            "finding": "Both counts are stale. The sln lists TWO locally-authored projects (TargetPlanner + TargetPlanner.Tests) and THREE sibling-library projects (Astronomy.Core, Astronomy.XISF, Astronomy.NINA). The bullet's own sub-items even enumerate XISF, so the prose count \"two sibling-library projects\" contradicts its own list.",
+            "evidence": "TargetPlanner.sln:6 (TargetPlanner), :8 (Astronomy.Core), :10 (Astronomy.XISF), :12 (Astronomy.NINA), :14 (TargetPlanner.Tests)",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "## Tool preference (build bullet) — \"..\\Library\\Astronomy.Core\\... + ..\\Library\\Astronomy.NINA\\... — consumed via csproj <ProjectReference>.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The csproj consumes exactly two sibling libraries via <ProjectReference>: Astronomy.Core and Astronomy.NINA.",
+            "finding": "Incomplete. The WinExe csproj has THREE direct <ProjectReference>s — Astronomy.Core, Astronomy.NINA, AND Astronomy.Diagnostics. The Diagnostics reference (the shared logging/screen-capture library noted elsewhere in CLAUDE.md, line 101) is omitted from the build-dependency enumeration. (Note: Astronomy.Diagnostics is also absent from the .sln, which lists only Core/XISF/NINA as siblings — a separate inconsistency.)",
+            "evidence": "TargetPlanner/TargetPlanner.csproj:67-70 — three ProjectReferences incl. ..\\..\\Library\\Astronomy.Diagnostics\\Astronomy.Diagnostics.csproj",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "## External dependencies that are easy to miss — \"WinExe csproj ProjectReference paths are ..\\..\\Library\\Astronomy.Core\\Astronomy.Core.csproj + ..\\..\\Library\\Astronomy.NINA\\Astronomy.NINA.csproj.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The WinExe csproj ProjectReference set is Astronomy.Core + Astronomy.NINA.",
+            "finding": "Incomplete — same omission as the build bullet. A third ProjectReference, ..\\..\\Library\\Astronomy.Diagnostics\\Astronomy.Diagnostics.csproj, is present and required to build but not listed here.",
+            "evidence": "TargetPlanner/TargetPlanner.csproj:70 — <ProjectReference Include=\"..\\..\\Library\\Astronomy.Diagnostics\\Astronomy.Diagnostics.csproj\" />",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "## External dependencies that are easy to miss — \"Astronomy library is an external sibling at E:\\Projects\\VisualStudio\\Astronomy\\Library\\ (its own git repo).\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The Astronomy sibling library lives at absolute path E:\\Projects\\VisualStudio\\Astronomy\\Library\\.",
+            "finding": "Cannot verify the sibling library location (sibling is absent from this checkout per audit rule). Note for the user: this checkout is at E:\\Projects\\AI\\TargetPlanner, so the csproj relative ref ..\\..\\Library resolves to E:\\Projects\\AI\\Library here — NOT E:\\Projects\\VisualStudio\\Astronomy\\Library. The documented absolute path may be stale after the repo moved under E:\\Projects\\AI\\. Confirm the actual sibling location.",
+            "evidence": "unverifiable → ask user",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "core-contract": [
+          {
+            "location": "CLAUDE.md §\"Core consumer contract\" — whole section (lines 109-117), e.g. the enumerations \"VisibilityWindows.For, QualitySamples.OverNight, MoonSeparation.IntervalsAboveDeg\" and \"AltAz.At, NightCalculator.ComputeNight, SiderealTime.Local, JulianDate.FromUtc, MoonSeparation.DegreesAt\"",
+            "axis": "placement",
+            "modality": "na",
+            "claim": "A detailed multi-bullet public-API contract for the sibling Astronomy.Core library (method-signature enumerations, the internal TimeKindGuard.AsUtc routing, the ObservationMoment record-struct shape) lives in the always-loaded TP router.",
+            "finding": "This is reference-grade API detail, not thin router/gotcha content. The descriptive facts are already duplicated in ARCHITECTURE.md (signed-degrees: line 16; Kind=Utc: lines 13,17; IReadOnlyList<NightCacheEntry>: line 57; ObservationMoment (Utc,Zone): line 87) and DOMAIN.md cross-refs this section (lines 18-19). The load-bearing part is the DST/ToUniversalTime trap; the method enumeration could move to ARCHITECTURE/DOMAIN with a thin pointer + the gotcha retained in the router.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\ARCHITECTURE.md:13,16,17,57,87 (duplicate descriptive facts); DOMAIN.md:18-19 (cross-ref to this section)",
+            "severity": "medium",
+            "action": "move-to"
+          },
+          {
+            "location": "CLAUDE.md §\"Core consumer contract\" — \"Collection returns are IReadOnlyList<T>. Every Session / Moon helper ... callers are allowed to assume immutability, ordering stability, and no-nulls without checking.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "All Core list-returning helpers (VisibilityWindows.For, QualitySamples.OverNight, MoonSeparation.IntervalsAboveDeg, BestSession-style planners) type returns as IReadOnlyList<T> and guarantee immutability/ordering/no-nulls.",
+            "finding": "Cannot verify: these types are defined in the absent Astronomy.Core library (..\\..\\Library), not in this repo. The IReadOnlyList return type and the immutability/ordering/no-null guarantees are Core-internal and not readable here. (TP only consumes results, e.g. ARCHITECTURE.md notes IReadOnlyList<NightCacheEntry> on the TP cache side.)",
+            "evidence": "unverifiable → ask user (Glob for VisibilityWindows.cs/QualitySamples.cs/MoonSeparation.cs in repo returns no files; defs in absent ..\\..\\Library)",
+            "severity": "low",
+            "action": "keep"
+          },
+          {
+            "location": "CLAUDE.md §\"Core consumer contract\" — \"DateTime.Kind contract ... NightWindow.AstronomicalDawn/AstronomicalDusk are DateTimeKind.Utc ... route through Astronomy.Core.Time.TimeKindGuard.AsUtc (internal) ... ObservationMoment (record struct, (Utc, Zone)) ... FromLocal(local, zone) or Now(zone).\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "NightWindow dawn/dusk are DateTimeKind.Utc; Core math helpers route DateTime utc params through internal TimeKindGuard.AsUtc; ObservationMoment is a (Utc,Zone) record struct with FromLocal/Now factories.",
+            "finding": "Cannot verify the Core-internal contract: NightWindow, TimeKindGuard, ObservationMoment are defined in the absent Library, not this repo. TP consumer usage corroborates the API surface only — ObservationMoment.FromLocal(local, zone) at MainForm.cs:728, ObservationMoment.Now(zone) at ObservationMomentPresenter.cs:44, and .Utc passed to NightCalculator.ComputeNight (ChartCoordinator.cs:191, SortPresenter.cs:234) — but the DateTimeKind.Utc field guarantee and the internal AsUtc routing are not readable here.",
+            "evidence": "unverifiable → ask user; consumer corroboration only: E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Forms\\MainForm.cs:728, Forms\\Presenters\\MainForm.ObservationMomentPresenter.cs:44, State\\ChartCoordinator.cs:191",
+            "severity": "low",
+            "action": "keep"
+          },
+          {
+            "location": "CLAUDE.md §\"Core consumer contract\" — \"Signed-degree inputs. TargetGeometry.MeridianAltitude, HourAngleAtAltitude, AltitudeAtHourAngle, AzimuthAtHourAngle take signed lat/dec ... AltAz.At is the canonical resolution idiom.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "TargetGeometry methods and AltAz.At interpret lat/dec as signed degrees, with the caller resolving the hemisphere flag.",
+            "finding": "Cannot verify the Core method's interpretation: TargetGeometry/AltAz are in the absent Library. TP consumer side corroborates the signed-input calling idiom — ChartCacheStore.cs:643 calls TargetGeometry.MeridianAltitude(latSigned, decSigned) — but whether the Core method actually treats inputs as signed is not readable here.",
+            "evidence": "unverifiable → ask user; consumer corroboration: E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\ChartCacheStore.cs:643 (passes latSigned/decSigned)",
+            "severity": "low",
+            "action": "keep"
+          },
+          {
+            "location": "CLAUDE.md §\"Core consumer contract\" — \"No static mutable state in Core. Pure-Meeus path; every helper threads instances through parameters; consumers are free to call from any thread without external synchronization.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Core has no static mutable state and is thread-safe for concurrent consumer calls without external synchronization.",
+            "finding": "Cannot verify: this is a statement about the internal implementation of the absent Astronomy.Core library. No Core source is present in this repo to confirm absence of static mutable state or thread-safety.",
+            "evidence": "unverifiable → ask user (no Core source in repo; defs in absent ..\\..\\Library)",
+            "severity": "low",
+            "action": "keep"
+          }
+        ],
+        "docmap": [
+          {
+            "location": "## What this is — \"Single render entry point: `Button_Graph_Click` → `mCoordinator.ApplyImmediateAsync(SnapshotCurrent(targets))`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Button_Graph_Click is the single render entry point that calls mCoordinator.ApplyImmediateAsync(SnapshotCurrent(targets)).",
+            "finding": "The ApplyImmediateAsync(SnapshotCurrent(...)) funnel is real, but Button_Graph_Click is not the single entry point. Three handlers feed the shared RunGraphBuildAsync (which builds SnapshotCurrent then awaits mCoordinator.ApplyImmediateAsync): Button_Graph_Click (single-target), Button_CheckedTargets_Click, and CheckedToggleDebounce_Tick (multi/checked-set). The 'single ... Button_Graph_Click' phrasing understates the funnel; the arrow chain itself is accurate but routes through RunGraphBuildAsync, not directly.",
+            "evidence": "MainForm.ChartBuildPresenter.cs:67 (Button_Graph_Click → RunGraphBuildAsync), :121-143 (RunGraphBuildAsync builds SnapshotCurrent then ApplyImmediateAsync), :159-165 (CheckedToggleDebounce_Tick → RunGraphBuildAsync), :179-186 (Button_CheckedTargets_Click → RunGraphBuildAsync)",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "crossref": [
+          {
+            "location": "CLAUDE.md §Glossary, line 36 — \"defined once in the parent [`..\\CLAUDE.md`](../CLAUDE.md), which auto-loads in every astronomy subproject session\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A parent-portfolio CLAUDE.md exists one directory up and auto-loads the cross-repo vocabulary (TP, TPP/TPS, NINA, TS/TSP, etc.).",
+            "finding": "Dangling parent reference: relative to E:\\Projects\\AI\\TargetPlanner the link resolves to E:\\Projects\\AI\\CLAUDE.md, which does not exist. The repo appears relocated (its own docs place the astronomy projects at E:\\Projects\\VisualStudio\\Astronomy\\), so the portfolio CLAUDE.md is absent here and the glossary's vocabulary source does not load. Whether the parent SHOULD live at E:\\Projects\\AI is environment-dependent.",
+            "evidence": "Listed E:\\Projects\\AI\\ — contains only .claude\\, Skills\\, TargetPlanner\\; no CLAUDE.md (confirmed: ls 'E:/Projects/AI/CLAUDE.md' → MISSING). Correct portfolio root unverifiable → ask user.",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "ROADMAP.md item 5, line 24 — \"See [`docs/code-quality-audit.md`](docs/code-quality-audit.md) for per-item details.\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The code-quality audit details live at docs/code-quality-audit.md.",
+            "finding": "Rename-orphan: docs/code-quality-audit.md does not exist; the actual file is docs/2026-05-19-code-quality-audit.md (a date prefix was added). Link is dangling.",
+            "evidence": "ls 'E:/Projects/AI/TargetPlanner/docs/code-quality-audit.md' → MISSING; docs/ tree contains docs/2026-05-19-code-quality-audit.md.",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "README.md header, line 5 — \"![TargetPlanner v1.0.0 ... Abell 21](docs/screenshot.png)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A header screenshot image exists at docs/screenshot.png.",
+            "finding": "Dangling image link: docs/screenshot.png does not exist anywhere in the repo, so the README's lead image fails to render.",
+            "evidence": "ls 'E:/Projects/AI/TargetPlanner/docs/screenshot.png' → MISSING; full docs/ file listing contains no screenshot.png.",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "ARCHITECTURE.md §Sky brightness, line 255 — \"User-facing UX in [README.md](README.md#sky-brightness-day-sky-sub-mode).\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "README has a section anchored #sky-brightness-day-sky-sub-mode.",
+            "finding": "Dangling anchor: README's heading is \"## Sky brightness\" (anchor #sky-brightness). No heading generates #sky-brightness-day-sky-sub-mode — the heading was simplified but the inbound anchor was not updated. (ARCH lines 204 #chart-interactions and 249 #filters--moon-avoidance both resolve correctly.)",
+            "evidence": "README.md headings: line 98 \"## Sky brightness\" (only sky-brightness heading). ARCHITECTURE.md:255 links README.md#sky-brightness-day-sky-sub-mode.",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Code comments referencing the renamed audit doc — TargetPlanner/Charts/FitTooltipResolver.cs:16 \"<c>docs/code-quality-audit.md</c>\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The code-quality audit doc is at docs/code-quality-audit.md (and bare code-quality-audit.md).",
+            "finding": "Multiple code comments point at the pre-rename filename code-quality-audit.md; actual file is docs/2026-05-19-code-quality-audit.md. Stale doc references in source comments. Report-only (code-side, not editable in this pass).",
+            "evidence": "FitTooltipResolver.cs:16; ChartLayout.cs:250,309; DuskDawnGradient.cs:15; ChartLegendPanel.cs:17; MoonOverlay.cs:22; CacheAxis.cs:17 — all cite 'code-quality-audit.md'. Target docs/2026-05-19-code-quality-audit.md.",
+            "severity": "low",
+            "action": "flag-code-bug"
+          },
+          {
+            "location": "Code comment — TargetPlanner/Forms/MainForm.cs:305 \"(see plan: mode-removal-against-current-dev.md, Edge case 4).\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A plan doc mode-removal-against-current-dev.md exists for reference.",
+            "finding": "Dangling code→doc reference: no file named mode-removal-against-current-dev.md exists anywhere in the repo (likely an ephemeral/never-committed plan). Report-only (code-side).",
+            "evidence": "find -iname '*mode-removal*' over E:\\Projects\\AI\\TargetPlanner → no matches; docs/ tree has no such file.",
+            "severity": "low",
+            "action": "flag-code-bug"
+          }
+        ]
+      },
+      "totalFlags": 25
+    },
+    "sonnet": {
+      "units": {
+        "glossary": [
+          {
+            "location": "CLAUDE.md §Glossary, 'Apps & plugins' para — \"defined once in the parent [\\.\\\\CLAUDE.md](../CLAUDE.md), which auto-loads in every astronomy subproject session\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The cross-repo vocabulary (TP, TPP/TPS, NINA, TS/TSP, IS/ISP/ISS, XFM, TSM, AL) is defined once in the parent `..\\CLAUDE.md` which auto-loads in every astronomy subproject session.",
+            "finding": "`E:\\Projects\\AI\\CLAUDE.md` does not exist. The parent directory (`E:\\Projects\\AI\\`) contains only `Skills/` and `TargetPlanner/` — no CLAUDE.md. The referenced router file and its vocabulary definitions are absent; the 'auto-loads' claim is false.",
+            "evidence": "E:\\Projects\\AI\\CLAUDE.md — NOT FOUND (confirmed via bash ls)",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Glossary, **ChartEvaluation** bullet — \"single-field record in `State/ChartEvaluation.cs` ... Carries just `BrightnessInputsChanged`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "ChartEvaluation is a single-field record that carries only `BrightnessInputsChanged`; consumed only by the coordinator's post-apply hook to gate `PushSkyKSInputs(ctx)`.",
+            "finding": "The record has three fields: `BrightnessInputsChanged` (required bool), `EnsureWork` (int), and `RenderWork` (int). The coordinator reads all three — `EnsureWork` and `RenderWork` drive the progress bar's offset/total calculation in `RunPipelineAsync` (lines 212-213).",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\State\\ChartEvaluation.cs:25,33,40",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Glossary, **NightDate** bullet — \"`DayWindowKey` survives only inside `ChartLayout.BuildDayWindow` for the chart's render-time X-axis bounds and is carried as the entries' `Window` field\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "After NightDate replaced DayWindowKey on the cache surface, DayWindowKey survives only inside `ChartLayout.BuildDayWindow` and as the cache entries' `Window` field.",
+            "finding": "DayWindowKey is used in at least four additional locations: (1) `ChartCacheStore.cs:584` has a private `BuildDayWindowForDate` that independently constructs DayWindowKeys; (2) `AltitudeSubChart_Day.cs:132` stores `mLastDayKey` for per-render pruning decisions; (3) `AltitudeSubChart_Sky.cs:318` reads `dayKey` from BuildDayWindow for moon-cache lookups; (4) `MainForm.CheckboxTintPresenter.cs:105` stores `mLastAppliedDayKey`. The 'only inside ChartLayout.BuildDayWindow' characterisation is inaccurate.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\ChartCacheStore.cs:584; E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Charts\\AltitudeSubChart_Day.cs:132; E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Charts\\AltitudeSubChart_Sky.cs:318; E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Forms\\Presenters\\MainForm.CheckboxTintPresenter.cs:105",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Glossary, **PlanningPolicy** bullet — \"When both a polyline `.hrz` AND a non-zero floor exist, `SnapshotCurrent` composes via `MaxOfHorizonProfile(polyline, ScalarHorizonProfile(floor))`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Composition via `MaxOfHorizonProfile` occurs when BOTH a polyline and a non-zero floor exist.",
+            "finding": "`SnapshotCurrent` always creates `ScalarHorizonProfile(mPlanningPreferences.TargetFloorDeg)` regardless of whether the floor is zero, then composes via `MaxOfHorizonProfile` whenever `mLocalHorizon != null` — there is no non-zero floor gate. A zero floor with a loaded polyline still produces a `MaxOfHorizonProfile`.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Forms\\MainForm.cs:789-792",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "conventions": [
+          {
+            "location": "CLAUDE.md §\"Conventions worth knowing before editing\" → Diagnostics dialog bullet: \"auto-captured MainForm screenshot path (`Graphics.CopyFromScreen` because LC2's SKControl returns blank from `Control.DrawToBitmap`)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The OK button's screenshot is captured via `Graphics.CopyFromScreen` directly.",
+            "finding": "The code in `TryCaptureScreenshot()` delegates to `ScreenCapture.ToPng(b.X, b.Y, b.Width, b.Height, ...)` from the shared `Astronomy.Diagnostics` library — not a direct `Graphics.CopyFromScreen` call. The doc is also internally inconsistent: the Capture-button sentence in the same bullet correctly states \"the grab now routes through the shared `ScreenCapture`\", but the earlier OK-button sentence still references the old mechanism. Both OK and Capture now use the same `ScreenCapture.ToPng()` path.",
+            "evidence": "TargetPlanner\\Forms\\DiagnosticsDialog.cs:231-235",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "architecture": [
+          {
+            "location": "CLAUDE.md §Architecture, Cache state bullet — \"single-writer four-axis cache: `(Location, Target)` yearDays\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The yearDays cache axis is keyed by the tuple `(Location, Target)`.",
+            "finding": "The implementation field is `CacheAxis<Target, TargetCacheEntry> mYearDaysAxis` — key is just `Target`. Location is managed implicitly: `SetLocationAsync` calls `DrainAndReset()` on the axis, wiping all entries and starting fresh. The cache comment itself says \"yearDays is per-target\". Describing the key as `(Location, Target)` misrepresents the invalidation model (key-based eviction vs. full wipe).",
+            "evidence": "TargetPlanner/Caches/ChartCacheStore.cs:65 (field declaration), ChartCacheStore.cs:59-60 (comment: \"yearDays is per-target\")",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Architecture, Cache state / Rendering bullets — \"slice the night-spanning entries to `DayWindowKey.Range` at paint time\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "`DayWindowKey` has a `.Range` property that sub-charts use to slice entries at paint time.",
+            "finding": "`DayWindowKey` has no `.Range` property. Its only members are `ChartStartUtcTicks` (long), `Count` (int), and the derived `ChartStartUtc` (DateTime). Sub-charts slice by calling `ChartLayout.BuildDayWindow(night, zone)` which returns a tuple — they read `dayWindow.StartUtc` and `dayWindow.Count` directly, never `DayWindowKey.Range`.",
+            "evidence": "TargetPlanner/Caches/DayWindowKey.cs:25-46 (no .Range member); TargetPlanner/Charts/AltitudeSubChart_Day.cs:370-374 (uses dayWindow.StartUtc / dayWindow.Count from full tuple)",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Architecture, Threading paragraph — \"cache pre-population is **2–4 sec for 44 targets** (yearDays)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Cache pre-population takes 2–4 seconds for 44 targets (yearDays).",
+            "finding": "Two independent code comments put the figure at ~1–2 sec, not 2–4 sec. ChartCacheStore.cs says \"Compute is short (~1-2 sec for 44 targets post-CS-removal)\"; IChartCacheStore.cs echoes \"~1-2 sec for 44 targets\".",
+            "evidence": "TargetPlanner/Caches/ChartCacheStore.cs:35; TargetPlanner/Caches/IChartCacheStore.cs:37",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Architecture, Orchestration bullet — \"`MainForm.RenderArea` does `sc.Render(ctx, mCache)` → `ShowOnlyAltitudeChart(sc.Control)` → `sc.Control.Refresh()`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "RenderArea executes a 3-step pipeline: Render → ShowOnly → Refresh.",
+            "finding": "RenderArea has a 4-step pipeline: `sc.Render(ctx, mCache, progress)` → `ShowOnlyAltitudeChart(sc.Control)` → `ResizeAltitudeChartArea(sc.IdealHeight)` → `sc.Control.Refresh()`. The doc omits `ResizeAltitudeChartArea(sc.IdealHeight)` (the call that keeps the plot area at a fixed pixel height as legend rows wrap) and also elides the `progress` arg on `Render`.",
+            "evidence": "TargetPlanner/Forms/Presenters/MainForm.ChartBuildPresenter.cs:241-255",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Architecture, Threading paragraph — \"observed only at the outer `Task.WhenAny(warmupTask, cancelledTask)` boundary in the NINA-load warmup\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "`mFormClosingCts.Token` is observed at exactly one site: the `Task.WhenAny` boundary in the cache-warmup path.",
+            "finding": "The token is also passed to `TargetScanner.ScanAsync` as the `cancellationToken` argument in `ScanPathAsync`, giving it a second observation point: active directory scans are cancelled when the form closes. The \"only at\" claim is false.",
+            "evidence": "TargetPlanner/Forms/Presenters/MainForm.TargetLoadingPresenter.cs:247 (`TargetScanner.ScanAsync(path, kinds, mFormClosingCts.Token, progress)`); the WhenAny boundary is at line 347",
+            "severity": "medium",
+            "action": "fix-doc"
+          }
+        ],
+        "deps-build": [
+          {
+            "location": "External dependencies that are easy to miss § \"NuGet packages on the WinExe project: Newtonsoft.Json 13.0.4, MinVer 7.0.0 (PrivateAssets=all; tag-derived AssemblyVersion), Velopack 0.0.1298\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Velopack NuGet package version is 0.0.1298",
+            "finding": "Actual version in csproj is 0.0.1589-ga2c5a97, not 0.0.1298",
+            "evidence": "TargetPlanner\\TargetPlanner.csproj:63",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Tool preference for symbol queries § (build bullet) \"Configurations: Debug|AnyCPU, Release|AnyCPU, Debug|x64, Release|x64\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The solution has four configurations: Debug|AnyCPU, Release|AnyCPU, Debug|x64, Release|x64",
+            "finding": "The sln GlobalSection(SolutionConfigurationPlatforms) defines only two configurations: Debug|x64 and Release|x64. The AnyCPU variants do not exist.",
+            "evidence": "TargetPlanner.sln:17-19",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "External dependencies that are easy to miss § \"WinExe csproj ProjectReference paths are ..\\..\\Library\\Astronomy.Core\\Astronomy.Core.csproj + ..\\..\\Library\\Astronomy.NINA\\Astronomy.NINA.csproj\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The WinExe csproj has two ProjectReference paths: Astronomy.Core and Astronomy.NINA",
+            "finding": "The csproj has a third direct ProjectReference to ..\\..\\Library\\Astronomy.Diagnostics\\Astronomy.Diagnostics.csproj which is omitted from the listed paths. Astronomy.Diagnostics is also absent from the sln (not sln-visible), so it is invisible to discovery from both the doc and the solution.",
+            "evidence": "TargetPlanner\\TargetPlanner.csproj:70",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Build / run § \"The csproj-level gotchas and test-project scoping rationale below are kept here as load-bearing context for editing the build itself\"",
+            "axis": "placement",
+            "modality": "na",
+            "claim": "The build structure bullets (Solution layout, F5/msbuild/dotnet commands, TP-side tests invocation) live under the Build / run heading",
+            "finding": "The three build-content bullets actually appear under the next heading, ## Tool preference for symbol queries, not under ## Build / run. The ## Build / run section contains only the one-sentence pointer to VERIFICATION.md and the forward-reference sentence; the content it promises 'below' is stranded under the wrong heading, interleaved with unrelated LSP tool guidance.",
+            "evidence": "CLAUDE.md:54-68",
+            "severity": "medium",
+            "action": "move-to"
+          },
+          {
+            "location": "Tool preference for symbol queries § (build bullet) \"Solution TargetPlanner.sln contains one project authored here plus two sibling-library projects listed for Solution Explorer visibility\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The solution contains one project authored here (TargetPlanner)",
+            "finding": "TargetPlanner.sln also includes TargetPlanner.Tests, which is also authored in this repo. There are two projects authored here, not one.",
+            "evidence": "TargetPlanner.sln:6,14",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "core-contract": [
+          {
+            "location": "CLAUDE.md § Core consumer contract — \"These are the explicit guarantees / expectations Core makes of its consumers (TargetPlanner today, XisfManager and a planned NINA scheduler plugin tomorrow). Preserve them when editing Core public API.\"",
+            "axis": "placement",
+            "modality": "na",
+            "claim": "Four detailed bullets specifying Core library API contracts (IReadOnlyList return shapes, DateTime.Kind contract, signed-degree method parameters, no static mutable state) placed in the always-loaded TP router.",
+            "finding": "The section is Core library API reference documentation, not TP-side load-bearing gotchas. CLAUDE.md's charter is 'always-loaded router + load-bearing gotchas, kept thin.' ARCHITECTURE.md § Astronomy.Core already partially covers the same ground (NightWindow UTC Kind at line 13, TargetGeometry signed-degrees at line 16, Session/Moon method catalogue at lines 19–26) and explicitly delegates readers to CLAUDE.md for this section (ARCHITECTURE.md:3, ARCHITECTURE.md:13) — indicating ARCHITECTURE.md is the natural home that inverts the reference. The section header ('Preserve them when editing Core public API') frames this as guidance for Core API editors, not TP editors, further confirming it is off-charter for the TP router. Additionally, the signed-degree bullet is substantially duplicated within CLAUDE.md by the Conventions section at line 92 ('Core helpers that take \"signed degrees\" (e.g. TargetGeometry.MeridianAltitude) expect the caller to resolve the flag'). Content should move to ARCHITECTURE.md § Astronomy.Core; CLAUDE.md should carry a one-line pointer.",
+            "evidence": "ARCHITECTURE.md:3, ARCHITECTURE.md:13, ARCHITECTURE.md:16",
+            "severity": "medium",
+            "action": "move-to"
+          },
+          {
+            "location": "CLAUDE.md § Core consumer contract — \"Every Session / Moon helper that returns a list (VisibilityWindows.For, QualitySamples.OverNight, MoonSeparation.IntervalsAboveDeg, BestSession-style planners) types the return as IReadOnlyList<T>\" and \"Core methods...route through Astronomy.Core.Time.TimeKindGuard.AsUtc (internal): Local/Unspecified are converted via the machine zone\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "VisibilityWindows.For, QualitySamples.OverNight, MoonSeparation.IntervalsAboveDeg return IReadOnlyList<T>; TimeKindGuard.AsUtc (internal) converts Local/Unspecified via the machine zone; Core carries no static mutable state.",
+            "finding": "No TP-side callers of VisibilityWindows.For, QualitySamples.OverNight, or MoonSeparation.IntervalsAboveDeg exist in the TP source, so their IReadOnlyList<T> return types cannot be confirmed from TP code. TimeKindGuard.AsUtc is explicitly described as '(internal)' — a Core-internal class invisible from TP. The 'no static mutable state in Core' claim cannot be verified without Core source. All three claims require the sibling Astronomy.Core library to verify, which is absent from this repo.",
+            "evidence": "unverifiable → ask user",
+            "severity": "low",
+            "action": "keep"
+          }
+        ],
+        "docmap": [
+          {
+            "location": "CLAUDE.md § What this is — \"Single render entry point: `Button_Graph_Click` → `mCoordinator.ApplyImmediateAsync(SnapshotCurrent(targets))`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Button_Graph_Click calls mCoordinator.ApplyImmediateAsync(SnapshotCurrent(targets)) as the single render entry point",
+            "finding": "Button_Graph_Click (line 67) calls RunGraphBuildAsync(new[] { current }) at line 97; it is RunGraphBuildAsync (line 121) that calls SnapshotCurrent(targets) and then mCoordinator.ApplyImmediateAsync(ctxSnapshot) at line 143. The intermediary method RunGraphBuildAsync is elided from the described call chain. An agent looking at Button_Graph_Click will not find ApplyImmediateAsync or SnapshotCurrent called directly there.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Forms\\Presenters\\MainForm.ChartBuildPresenter.cs:97 (Button_Graph_Click → RunGraphBuildAsync), :143 (RunGraphBuildAsync → mCoordinator.ApplyImmediateAsync)",
+            "severity": "low",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md § Documentation map — \"`docs/*.md` + `docs/design/*.md` — substantial standalone records (`YYYY-MM-DD-<slug>.md`)\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "All files in docs/design/*.md follow the YYYY-MM-DD-<slug>.md naming convention",
+            "finding": "4 of 6 files in docs/design/ carry no date prefix: cache-contract.md, chart-fits-cache.md, personal-defaults-and-settings.md, test-project-plan.md. Only 2026-05-17-architecture-review.md and 2026-05-26-code-review-async-ui.md conform. The convention description overstates uniformity.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\docs\\design\\ directory listing (verified via ls)",
+            "severity": "low",
+            "action": "fix-doc"
+          }
+        ],
+        "crossref": [
+          {
+            "location": "README.md § What it does, line 5: `![TargetPlanner v1.0.0 showing the Day altitude chart for Abell 21](docs/screenshot.png)`",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A screenshot PNG exists at docs/screenshot.png",
+            "finding": "No PNG file exists anywhere under docs/ — glob returns zero results for docs/*.png and docs/**/*.png. The image link is broken and the README renders without the demo screenshot.",
+            "evidence": "README.md:5 — target docs/screenshot.png; confirmed absent via Glob E:\\Projects\\AI\\TargetPlanner\\docs\\screenshot* (no files found)",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Glossary, line 36: `the parent [`..\\.CLAUDE.md`](../CLAUDE.md)`",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A parent portfolio CLAUDE.md exists one level up at E:\\Projects\\AI\\CLAUDE.md and auto-loads in every astronomy subproject session",
+            "finding": "E:\\Projects\\AI\\CLAUDE.md does not exist. The parent directory contains only two entries: Skills/ and TargetPlanner/. The glossary link is dangling and the cross-repo vocabulary it claims to delegate to is unreachable.",
+            "evidence": "CLAUDE.md:36 — target ../CLAUDE.md; confirmed absent: `ls E:\\Projects\\AI` shows only Skills and TargetPlanner, no CLAUDE.md",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "ROADMAP.md §Currently open item 5, line 24: `[docs/code-quality-audit.md](docs/code-quality-audit.md)`",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "A file named docs/code-quality-audit.md holds per-item details for the code-quality audit residuals",
+            "finding": "The file docs/code-quality-audit.md does not exist. The actual file, confirmed on disk, is docs/2026-05-19-code-quality-audit.md — it was created with the date-prefixed naming convention but the link was not updated.",
+            "evidence": "ROADMAP.md:24 — target docs/code-quality-audit.md; actual file E:\\Projects\\AI\\TargetPlanner\\docs\\2026-05-19-code-quality-audit.md confirmed via `ls E:\\Projects\\AI\\TargetPlanner\\docs`",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "ARCHITECTURE.md §K-S sky brightness (Sky chart area), line 255: `[README.md](README.md#sky-brightness-day-sky-sub-mode)`",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "README.md contains a section anchored at #sky-brightness-day-sky-sub-mode covering user-facing K-S UX",
+            "finding": "The anchor #sky-brightness-day-sky-sub-mode does not exist in README.md. The actual section heading is `## Sky brightness` which generates the anchor #sky-brightness. The link resolves to the top of the file rather than the Sky brightness section.",
+            "evidence": "ARCHITECTURE.md:255 — target README.md#sky-brightness-day-sky-sub-mode; README.md:98 has `## Sky brightness` (anchor #sky-brightness), confirmed via `grep -n '^## ' README.md`",
+            "severity": "medium",
+            "action": "fix-doc"
+          }
+        ]
+      },
+      "totalFlags": 23
+    },
+    "haiku": {
+      "units": {
+        "glossary": [
+          {
+            "location": "Glossary §ChartEvaluation (line 44)",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "single-field record in `State/ChartEvaluation.cs` carrying just `BrightnessInputsChanged`",
+            "finding": "ChartEvaluation.cs now has three public properties: BrightnessInputsChanged (bool), EnsureWork (int), and RenderWork (int). The code comment references Phase-7 scaffolding removal but does not mark EnsureWork/RenderWork as temporary.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\State\\ChartEvaluation.cs:19-40 shows record with three fields marked public init",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "Glossary §Apps & plugins (line 36)",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Portfolio vocabulary is defined in parent `[..\\.\\CLAUDE.md](../CLAUDE.md)` which auto-loads in every astronomy subproject session",
+            "finding": "The referenced file at relative path `../CLAUDE.md` (E:\\Projects\\AI\\CLAUDE.md) does not exist. The portfolio CLAUDE.md with the vocabulary definitions exists at E:\\Projects\\VisualStudio\\Astronomy\\CLAUDE.md, but is not accessible via the documented relative path from E:\\Projects\\AI\\TargetPlanner.",
+            "evidence": "E:\\Projects\\CLAUDE.md does not exist; E:\\Projects\\VisualStudio\\Astronomy\\CLAUDE.md exists at different location with correct vocabulary table (AL, TP, TSM, XFM, IS/ISP/ISS, TS/TSP, NINA)",
+            "severity": "high",
+            "action": "fix-doc"
+          }
+        ],
+        "conventions": [
+          {
+            "location": "CLAUDE.md § Conventions worth knowing before editing, \"Current categories: `Coord`, `Cache`, `Day`, `Sky`, `UI`, `Overlay`\"",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "The listed Log.Diag categories include 'Sky' as one of the current categories",
+            "finding": "The 'Sky' category is listed but never actually used in the codebase. Grep across all 80+ .cs files for Log.Diag calls finds zero instances of Log.Diag(\"Sky\", ...). Actual categories in use are only: Coord, Cache, Day, Overlay, UI.",
+            "evidence": "Bash: grep -r 'Log.Diag(' TargetPlanner/ returns 57 matches across multiple files; all Log.Diag calls use only Coord, Cache, Day, Overlay, or UI. Zero matches for Sky category.",
+            "severity": "medium",
+            "action": "fix-doc"
+          }
+        ],
+        "architecture": [
+          {
+            "location": "CLAUDE.md §Architecture, line 81",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Sub-charts slice night-spanning entries to DayWindowKey.Range at paint time",
+            "finding": "DayWindowKey has no Range method. Entries are pre-sliced at cache-build time (BuildTrajectoryAsync sets TargetTrajectoryEntry.Window + Samples), not at render time. Sub-charts call GetTrajectoryOrNull and receive entries already keyed to the chart window.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\DayWindowKey.cs (no Range method exists); E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\TargetTrajectoryEntry.cs shows Window + Samples; E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\ChartCacheStore.cs:546-592 BuildTrajectoryAsync calls BuildDayWindowForDate at build time, not render time",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md §Architecture, line 81",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Four-axis cache keyed as: (Location, Target) yearDays",
+            "finding": "YearDays axis is keyed by Target only, not (Location, Target). Location is implicit—the cache maintains a single mLocation and all axes reset on SetLocationAsync. Actual keys are: Target → TargetCacheEntry, (Target, HdmKey) → TargetFitEntry, (Target, NightDate) → TargetTrajectoryEntry, NightDate → MoonEphemerisEntry.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\Caches\\ChartCacheStore.cs:65 shows `CacheAxis<Target, TargetCacheEntry> mYearDaysAxis` (keyed by Target, not (Location, Target)); SetLocationAsync at line 400 resets all axes on location swap, showing location is external to key structure",
+            "severity": "medium",
+            "action": "fix-doc"
+          }
+        ],
+        "deps-build": [
+          {
+            "location": "CLAUDE.md § External dependencies that are easy to miss, \"NuGet packages\" bullet",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Velopack 0.0.1298 is a NuGet dependency",
+            "finding": "Actual version in TargetPlanner.csproj is 0.0.1589-ga2c5a97, not 0.0.1298",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\TargetPlanner.csproj:63",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md § Tool preference for symbol queries, first bullet (Solution structure), line mentioning Configurations",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Configurations are Debug|AnyCPU, Release|AnyCPU, Debug|x64, Release|x64",
+            "finding": "Solution file and csproj show only Debug|x64 and Release|x64 exist. No AnyCPU configurations.",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\TargetPlanner.sln:17-19 and E:\\Projects\\AI\\TargetPlanner\\TargetPlanner\\TargetPlanner.csproj:35",
+            "severity": "high",
+            "action": "fix-doc"
+          },
+          {
+            "location": "CLAUDE.md § Build / run (lines 54-58) vs § Tool preference for symbol queries (lines 60-68)",
+            "axis": "placement",
+            "modality": "na",
+            "claim": "Build content (solution structure, platforms, build commands, test invocation) belongs in § Build / run",
+            "finding": "Lines 64-68 contain build/csproj/platform/configuration bullets that are currently under § Tool preference for symbol queries but should be under the empty § Build / run heading per the charter routing of csproj-level gotchas",
+            "evidence": "E:\\Projects\\AI\\TargetPlanner\\CLAUDE.md:54-68 structural review",
+            "severity": "medium",
+            "action": "move-to"
+          }
+        ],
+        "core-contract": [],
+        "docmap": [
+          {
+            "location": "## What this is ¶ 'Single render entry point: `Button_Graph_Click` → `mCoordinator.ApplyImmediateAsync(SnapshotCurrent(targets))`'",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Button_Graph_Click is the single render entry point to ApplyImmediateAsync",
+            "finding": "The code contains multiple entry points that trigger coordinator rendering. ApplyImmediateAsync is called from at least 3 locations (Button_Graph_Click, SessionsRebuildDebounce_Tick, ResetForLocationChange), and Apply is called from at least 4 additional locations (TargetDuration/Floor changes, WireDayChartModeChanged, FireBaselinePaint, Sort changes). The statement is misleading about the architecture.",
+            "evidence": "MainForm.ChartBuildPresenter.cs:143 (Button_Graph_Click via RunGraphBuildAsync), MainForm.LocationPresenter.cs:227 (SessionsRebuildDebounce_Tick), MainForm.LocationPresenter.cs:292 (ResetForLocationChange), plus Apply calls at 135/154, MainForm.ChartCoordinatorPresenter.cs:44/106, MainForm.SortPresenter.cs:174",
+            "severity": "medium",
+            "action": "fix-doc"
+          }
+        ],
+        "crossref": [
+          {
+            "location": "CLAUDE.md § Glossary, line 36",
+            "axis": "placement",
+            "modality": "prescriptive",
+            "claim": "Parent [..\\.CLAUDE.md](../CLAUDE.md) defines cross-repo vocabulary for the astronomy constellation (TP, TPP/TPS, NINA, TS/TSP, IS/ISP/ISS, XFM, TSM, AL)",
+            "finding": "Dangling reference: target file /e/Projects/CLAUDE.md does not exist at the relative path (would be ../ from E:\\Projects\\AI\\TargetPlanner)",
+            "evidence": "unverifiable → ask user",
+            "severity": "high",
+            "action": "cross-ref+delete"
+          },
+          {
+            "location": "ROADMAP.md line 24",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Link to [docs/code-quality-audit.md](docs/code-quality-audit.md) for audit details",
+            "finding": "Renamed file: actual filename is docs/2026-05-19-code-quality-audit.md, not docs/code-quality-audit.md. Link points to non-existent file.",
+            "evidence": "ROADMAP.md:24 contains broken markdown link; actual file exists as E:\\Projects\\AI\\TargetPlanner\\docs\\2026-05-19-code-quality-audit.md",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "TargetPlanner/Charts/FitTooltipResolver.cs line 16",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Code comment references docs/code-quality-audit.md",
+            "finding": "Stale reference: actual filename is docs/2026-05-19-code-quality-audit.md. Comment references non-existent name.",
+            "evidence": "FitTooltipResolver.cs:16 contains XML doc comment `<c>docs/code-quality-audit.md</c>`; file renamed to docs/2026-05-19-code-quality-audit.md",
+            "severity": "medium",
+            "action": "fix-doc"
+          },
+          {
+            "location": "README.md line 5",
+            "axis": "currency",
+            "modality": "descriptive",
+            "claim": "Image reference ![TargetPlanner v1.0.0 showing the Day altitude chart for Abell 21](docs/screenshot.png)",
+            "finding": "Dangling reference: file docs/screenshot.png does not exist. README cannot render the image.",
+            "evidence": "README.md:5 contains broken markdown image link; E:\\Projects\\AI\\TargetPlanner\\docs\\screenshot.png not found",
+            "severity": "medium",
+            "action": "cross-ref+delete"
+          }
+        ]
+      },
+      "totalFlags": 13
+    }
+  }
+}
