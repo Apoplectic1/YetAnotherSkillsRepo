@@ -7,7 +7,7 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 ## Reference docs (current truth — edit in place)
 - `ARCHITECTURE.md` — repo layout, the 4-skill family + its dependency order, dev→deploy pipeline.
 - `ROADMAP.md` — forward plan + Recently-shipped digest (git is the full changelog).
-- `VERIFICATION.md` — RED/GREEN subagent harness, the TargetPlanner fixture + reset contract.
+- `VERIFICATION.md` — RED/GREEN subagent harness, on-demand fixture recipe + reset contract.
 - `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
 - `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
 - `docs/docs-architecture-design.md` — **canonical design**: full spec, tier model, RED/GREEN
@@ -29,5 +29,5 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - **Only `main` deploys** (`deploy.sh` refuses otherwise); test on `dev` via the RED/GREEN
   harness, which injects candidate SKILL.md text — the live Skill tool only ever sees the
   deployed/main version.
-- After any test run that mutates the TargetPlanner fixture, run its reset contract
-  (`VERIFICATION.md`) — `git clean -fd` is mandatory, not optional.
+- Skill tests run against a disposable fixture created on demand (`VERIFICATION.md`); after
+  any mutating run, apply its reset contract — `git clean -fd` is mandatory, not optional.

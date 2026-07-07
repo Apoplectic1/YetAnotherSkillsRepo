@@ -17,15 +17,18 @@ Two method rules (learned the hard way; provenance in `docs/docs-architecture-de
 - **Disk-verify agent claims** — a validation pass once asserted a broken reference that
   `grep` showed was already fixed. Trust the disk, not the claim.
 
-## Test fixture
-`E:\Projects\AI\TargetPlanner` — a **pristine, skills-unmodified** copy of TargetPlanner
-kept as a close-to-worst-case fixture (missing/scattered docs, no router, drift). Use it as
-the input project when testing SETUP / AUDIT / MAINTAIN / `whats-next`.
+## Test fixture — create on demand
+There is **no standing fixture**; create one when testing. (The original RED/GREEN rounds
+used a pristine TargetPlanner copy at `E:\Projects\AI\TargetPlanner`, since deleted.)
+
+Recipe: copy a **pristine, skills-unmodified** project — close-to-worst-case is best
+(missing/scattered docs, no router, drift) — to a scratch location, and commit an empty
+marker commit ("SKILLS-TEST BASELINE") to name the baseline.
 
 **Reset contract** — restore baseline after every test run that mutated the tree:
 ```
-git reset --hard 9034e6f && git clean -fd
+git reset --hard <baseline-marker> && git clean -fd
 ```
-The baseline is an empty marker commit (`9034e6f`, "SKILLS-TEST BASELINE"). **Gotcha:** the
-marker only *names* the baseline — `reset --hard` rewinds tracked files but leaves behind any
-**untracked** files a skill dropped in, so the `git clean -fd` is mandatory, not optional.
+**Gotcha:** the marker only *names* the baseline — `reset --hard` rewinds tracked files but
+leaves behind any **untracked** files a skill dropped in, so the `git clean -fd` is
+mandatory, not optional.
