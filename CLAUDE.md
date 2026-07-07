@@ -1,67 +1,33 @@
-# CLAUDE.md — AI Skills (development home)
+# CLAUDE.md — AI Skills (development home, router)
 
 **Charter / router.** Development home for global Claude Code skills — authored and
 version-controlled *here*, deployed to `~/.claude/skills/` (the live harness location). Edit
 skills here, **never** in `~/.claude/` directly (no version control there).
 
-## What's here
-- `skills/<name>/SKILL.md` — one directory per skill.
-- `openspec/` — opsx planning home (workflow/change artifacts only — not project docs; excluded
-  from doc audits per the tooling scope-exclusion).
-- The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `NOTEBOOK.md`, `VERIFICATION.md` +
-  `DOMAIN.md`) will be **scaffolded by the SETUP skill's first run** — dogfooding the model.
+## Reference docs (current truth — edit in place)
+- `ARCHITECTURE.md` — repo layout, the 4-skill family + its dependency order, dev→deploy pipeline.
+- `ROADMAP.md` — forward plan + Recently-shipped digest (git is the full changelog).
+- `VERIFICATION.md` — RED/GREEN subagent harness, the TargetPlanner fixture + reset contract.
+- `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
+- `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
+- `docs/docs-architecture-design.md` — **canonical design**: full spec, tier model, RED/GREEN
+  provenance. Deployed skills reference this path by absolute name — do not move or split it.
 
-## The docs-architecture skill family (all 4 built + deployed)
-A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
-1. **SETUP** ✅ *built + deployed* — bootstraps the doc skeleton (enforced filename set,
-   charter-guarded) + the CLAUDE.md router + conventions in any project. (Generalizes WBPP Phase 1.)
-2. **AUDIT** ✅ *built + deployed (RED/GREEN-validated)* — placement (vs charter) + currency (vs live
-   code) via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying flags →
-   adjudicate → fix. (Generalizes WBPP Phase 2.)
-3. **MAINTAIN** ✅ *built + deployed (RED/GREEN-validated)* — graduate journal → reference +
-   prune-the-source (preserve the why/when); reuses AUDIT's fan-out. (Generalizes WBPP graduate/prune.)
-4. **TRIAGE** (`whats-next`) ✅ *built + deployed (RED/GREEN-validated)* — sweep every backlog
-   source → categorized/prioritized backlog + **coverage manifest** + **accepted-constraints** list;
-   live-vs-accepted crux; reuses AUDIT's fan-out. (Planning layer; consumes the trio's outputs.)
+## Journal (dated capture)
+- `NOTEBOOK.md` — running lab notebook (small findings).
+- `docs/YYYY-MM-DD-<slug>.md` — substantial records; find by convention (glob `docs/*.md` +
+  grep), not an enumerated list. Companion data in `docs/audit-benchmark/`.
 
-**Dependency:** AUDIT, MAINTAIN, and TRIAGE assume the docs-architecture conventions are already in
-place (a CLAUDE.md router + charter'd reference set) — i.e. **SETUP must have run first**. On a raw
-project (like the worst-case fixture below) run SETUP before testing the other three.
+## Excluded from the doc set
+- `openspec/` — opsx planning home (workflow/change artifacts only, not project docs).
+- `.claude/` — harness tooling.
+- `skills/*/SKILL.md` — the *product*, governed by `superpowers:writing-skills`, not by doc audits.
 
-**Canonical design:** `docs/docs-architecture-design.md` — full spec + RED/GREEN records (genesis:
-the WBPP docs-reorg, 2026-06-28; the WBPP-side duplicate was removed, WBPP `1bd0e68`). Empirical
-records live in `docs/` (e.g. `docs/2026-06-29-audit-model-benchmark.md`, the worker-model benchmark).
-**First customers:** the Astronomy constellation — TargetPlanner, TargetSchedulerManager,
-Library, XisfFileManager, IntervalScheduler — plus WBPP itself.
-
-## Test fixtures
-`E:\Projects\AI\TargetPlanner` — a **pristine, skills-unmodified** copy of TargetPlanner kept as a
-close-to-worst-case fixture for exercising the in-development skills (missing/scattered docs, no
-router, drift). Use it as the input project when testing AUDIT / MAINTAIN / SETUP / `whats-next`.
-
-**Reset contract** — restore baseline after every test run that mutated the tree:
-```
-git reset --hard 9034e6f && git clean -fd
-```
-The baseline is an empty marker commit (`9034e6f`, "SKILLS-TEST BASELINE"). **Gotcha:** the marker
-only *names* the baseline — `reset --hard` rewinds tracked files but leaves behind any **untracked**
-files a skill dropped in, so the `git clean -fd` is mandatory, not optional.
-
-## Deploy
-Source = this repo (canonical, version-controlled). Deploy to `~/.claude/skills/` via `deploy.sh`
-— a **copy script** (the deployed copy is a disposable build artifact; **never edit it**, edit here
-and re-run the deploy. Not a symlink — permanent fixture + confusing; not a move — that strips the
-VC'd source.)
-
-**Branch policy: only `main` deploys to the live harness.** `deploy.sh` refuses to run off `main`.
-Develop + test on `dev` **without deploying** — use the RED/GREEN subagent harness (inject the
-candidate `SKILL.md` text into the test agents; the live Skill tool reads `~/.claude/skills/`, so it
-only ever sees the deployed/main version). Merge `dev` → `main`, then deploy. To intentionally
-deploy the current branch for live Skill-tool dogfooding, `./deploy.sh --force` (loud warning).
-
-## Branches
-`dev` = working (all authoring lands here); `main` = distribution-ready ref. No remote yet.
-
-## Conventions
-Author skills with the `superpowers:writing-skills` skill (naming, frontmatter, structure).
-LF line endings.
+## Load-bearing gotchas
+- **Never edit `~/.claude/skills/` directly** — it's a disposable build artifact; edit here,
+  re-run `deploy.sh`.
+- **Only `main` deploys** (`deploy.sh` refuses otherwise); test on `dev` via the RED/GREEN
+  harness, which injects candidate SKILL.md text — the live Skill tool only ever sees the
+  deployed/main version.
+- After any test run that mutates the TargetPlanner fixture, run its reset contract
+  (`VERIFICATION.md`) — `git clean -fd` is mandatory, not optional.
