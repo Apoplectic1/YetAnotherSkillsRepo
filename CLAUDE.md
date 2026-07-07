@@ -28,8 +28,9 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
 place (a CLAUDE.md router + charter'd reference set) — i.e. **SETUP must have run first**. On a raw
 project (like the worst-case fixture below) run SETUP before testing the other three.
 
-**Design source** (genesis + full spec, graduates into this repo as it stabilizes):
-`E:\Projects\PixInsight\Scripts\WBPP_BXT_NSG\docs\2026-06-28-docs-reorg-plan.md`.
+**Canonical design:** `docs/docs-architecture-design.md` — full spec + RED/GREEN records (genesis:
+the WBPP docs-reorg, 2026-06-28; the WBPP-side copy is a pending-removal duplicate). Empirical
+records live in `docs/` (e.g. `docs/2026-06-29-audit-model-benchmark.md`, the worker-model benchmark).
 **First customers:** the Astronomy constellation — TargetPlanner, TargetSchedulerManager,
 Library, XisfFileManager, IntervalScheduler — plus WBPP itself.
 

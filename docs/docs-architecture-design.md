@@ -10,14 +10,15 @@ agent's work in any project trustworthy — every fact current, single-sourced, 
 (removed from there later); the WBPP examples kept below are the grounding worked-example.
 
 > **Note (2026-06-28):** graduated out of WBPP `docs/2026-06-28-docs-reorg-plan.md` — that copy
-> is a pending-removal duplicate; **this** file is canonical. Some body text still uses WBPP-first
-> "Phase 1/2 executed" framing; it'll be generalized as each skill is authored.
+> is a pending-removal duplicate; **this** file is canonical. The WBPP-first "Phase 1/2 executed"
+> framing below is retained as the grounding worked-example (all four skills are now authored —
+> nothing pending behind that framing).
 
 > **Status:** Phases 1 & 2 **executed 2026-06-28**. Phase 1 (structure, `docs-reorg-phase1`) —
 > CLAUDE.md router + always-on lean (20→14 KB), ROADMAP port-history → `archive/`, per-doc
 > charters. Phase 2 (content/currency audit, `docs-reorg-phase2-audit`) — 41 flags adjudicated
 > & applied across the live reference tier (currency fixes, single-source relocations, GPU +
-> correspondence → archive/design-doc). **Phase 3 (skillify) is the remaining arc.** This note
+> correspondence → archive/design-doc). **Phase 3 (skillify) completed 2026-06-28** (family-complete + fix-batch records below). This note
 > follows the conventions it proposes (dated journal entry, purpose-first header, cross-refs)
 > — dog-fooding the model.
 
@@ -496,8 +497,12 @@ there compounds.
 
 ## Open / still to decide
 
-- ROADMAP history split: confirm the exact seam (what is "history / phase-log" vs "live
-  feature-architecture") when Phase 1 runs.
-- Whether the SETUP skill is authored after Phase 1 alone or after Phase 2 (so it captures the
-  audit step as part of bootstrap).
-- Each phase to be formalized as its own effort when leaving explore mode (Phase 1 first).
+*(All three original opens resolved by execution — closed 2026-07-07, resolutions inline.)*
+- ~~ROADMAP history split: confirm the exact seam when Phase 1 runs.~~ Resolved by Phase 1
+  (2026-06-28): port-history → `archive/`, along the history-is-a-record-regardless-of-currency seam.
+- ~~Whether SETUP is authored after Phase 1 alone or after Phase 2.~~ Resolved: after both —
+  do-then-skillify needed the audit step worked as well (Phase 2 prototyped AUDIT's spec).
+- ~~Each phase formalized as its own effort when leaving explore mode.~~ Overtaken by execution:
+  Phases 1–3 all complete (family 2026-06-28; fix batch 2026-07-06/07).
+
+Nothing currently open.

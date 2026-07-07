@@ -245,8 +245,9 @@ its mode + cell count at launch so a targeting failure is visible in `/workflows
 - **Effort sweep — ✅ done (Exp 3 + follow-up).** Sonnet medium vs high settled: medium ceilings ~3
   issues lower (17 vs 20), per-pass parity after rep1, discipline near-clean. High stays the worker
   default; medium is first-sweep only.
-- **Feed the recommendation into the skill (open):** Exp 1–3 land on "Sonnet-high default + diversify
-  the fan-out model; loop-until-dry hits a per-model ceiling, not truth." Graduate this into
-  `docs-architecture-design.md` and AUDIT's loop-until-dry guidance.
+- **Feed the recommendation into the skill — ✅ done (2026-06-29 → 2026-07-07):** graduated into
+  `docs-architecture-design.md` (commit `8390f48`) and AUDIT's fan-out / loop-until-dry guidance
+  (commit `f17c392`; wording compressed meaning-preserving in the 2026-07-07 fix batch — all
+  benchmark numbers kept).
 - **Candidate axes (lower priority):** mixed-model fan-out measured directly (vs inferred from the
   Opus/Sonnet union gap); a second fixture to test whether the ~25 ceiling is project-specific.
