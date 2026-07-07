@@ -66,6 +66,12 @@ Soft issues: **C4** cache pre-pop "2–4 s" vs code-comment "1–2 s" (perf unve
 **C16** `PlanningPolicy` `MaxOfHorizonProfile` floor-gate phrasing (S); **C18** `docs/design/*.md`
 naming convention overstated (S); **C-loc** sibling-lib absolute path possibly stale post-move (O).
 
+**Catalog addendum (2026-07-07)** — IDs the classifier assigned as reps accumulated (referenced by
+Exp 2/3 below) but never appended here: **C19** `AstrometryUi` deletion (solid), **C21**
+user-defaults menu (clear/edit settings) claim (solid), **C20** `Designer.cs` line-count drift
+(soft). With C19/C21 the solid set totals 25 — the Exp-2 "overall union = 25". Signatures:
+`docs/audit-benchmark/score.py`.
+
 ## Experiment 1 — model comparison (single round, high effort)
 Run `wf_1086285c-9b2` (task `wf0ozweuh`), 21 agents, 1.29M tokens, ~7.5 min. Raw:
 `docs/audit-benchmark/sweeps/exp1-model-compare.json`.

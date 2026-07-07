@@ -35,7 +35,7 @@ it"). Prioritization is innate; this skill guarantees the two missing pieces + s
 ## The crux — live-actionable vs accepted-constraint (or it cries wolf)
 A gotcha / limitation is **work** only if it's a *live* problem. Most are **accepted constraints**
 (by-design, "do not re-litigate", deferred-by-decision, vendored/upstream). Treat as actionable
-**only** when it carries a live marker — a `TODO`/`FIXME` you own, an audit code-drift flag, a
+**only** when it carries a live marker — a `TODO`/`FIXME` you own, an audit `flag-code-bug`, a
 ROADMAP "Next" item, or an explicit pending/open marker. Everything else → the accepted-constraint
 list (shown, not actioned). **Default to accepted when unsure** — a false "todo" on every gotcha
 trains the user to ignore the output.

@@ -1,6 +1,6 @@
 ---
 name: docs-architecture-maintain
-description: Use when a project's journal (dated docs/ notes + NOTEBOOK) has accrued findings that may have hardened into standing truth — a periodic graduate-and-prune sweep to keep the reference docs current and the journal from becoming a stale pile. Assumes the docs-architecture conventions.
+description: Use when a project's journal (dated docs/ notes + NOTEBOOK) has accrued findings that may have hardened into standing truth, when the reference docs feel behind the journal, or for a periodic journal-health sweep. Assumes the docs-architecture conventions (a CLAUDE.md router + charter'd reference set).
 ---
 
 # Docs-architecture maintain (graduate & prune)

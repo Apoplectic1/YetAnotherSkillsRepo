@@ -45,7 +45,7 @@ read), and is *never blank*:
 | `README.md`, `RELEASING.md` | conditional (public entry / ships) |
 
 **Three tiers:** *journal* (dated capture — `docs/` + `NOTEBOOK`) → *reference* (current truth —
-`ARCHITECTURE` / `ROADMAP` / domain) → *cold-rationale* (evergreen "why", parked off the daily path).
+`ARCHITECTURE` / `ROADMAP` / domain / `VERIFICATION`) → *cold-rationale* (evergreen "why", parked off the daily path).
 **Git is the changelog** — no `CHANGELOG.md`. Routing is by **convention** for the journal
 (`glob docs/*.md` + grep) and **by name** for the small, stable reference set.
 

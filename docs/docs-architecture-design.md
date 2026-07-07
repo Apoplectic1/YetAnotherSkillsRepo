@@ -84,7 +84,7 @@ JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO m
   • docs/YYYY-MM-DD-<slug>.md  = per-topic substantial dated records (decision/review/design)
   • NOTEBOOK.md              = the running lab notebook (short chronological empirical findings)
   split: small finding-from-doing-the-work → NOTEBOOK; substantial standalone record → docs/
-  append-only · dated · never edited · legibly historical
+  append-only · dated · never retconned (edits only via graduation-prune) · legibly historical
   answers "what did we decide/find on date X"
         │  GRADUATE: fold standing truth upward, then PRUNE the source;
         │  the dated entry remains as the why/when record (or → archive/)
@@ -141,7 +141,9 @@ Two cheap conventions make the free tools sing (the docs/ entries already do bot
 ## Per-doc charters — the placement test
 
 A one-line charter per reference doc makes the Phase 2 audit objective (does this section
-match its doc's charter? else move / cross-ref-and-delete):
+match its doc's charter? else move / cross-ref-and-delete). The table is **WBPP's instance**
+(the grounding worked example — charters are per-project; the general roles live in the
+SETUP-skill spec table below):
 
 | Doc | Charter |
 |---|---|
@@ -415,6 +417,22 @@ guidance, one shrank to a structural line, one was dropped:
   vocabulary in use.)
 Word-count REFACTOR: AUDIT's step-1/step-3 model-guidance stacking compressed meaning-preserving
 (all benchmark numbers kept) — AUDIT 1287 w, SETUP 927 w after the additions.
+
+**Family review 2026-07-07 — round 2 (mechanical half applied; behavioral half queued).** A
+max-effort correctness+intent review after SETUP's first in-repo run verified: all three synced
+spec files satisfied by shipped text, deployed=source byte-identical, AUDIT's benchmark numbers
+faithful to the origin record, DOMAIN.md-rename propagation clean — and banked a **live GREEN**:
+the sub-project flag-and-skip + redirect (the 0/4 RED gap) fired correctly on a real portfolio
+root. Mechanical fixes applied directly: MAINTAIN's description trimmed to SDO triggers (the
+whats-next-spec rule, applied family-wide); README's tier line gains VERIFICATION; whats-next's
+crux uses the schema term `flag-code-bug`; the journal tier reads "never retconned (edits only
+via graduation-prune)" (reconciling MAINTAIN's prune); the charter table labeled as WBPP's
+instance; the benchmark catalog's later-assigned IDs (C19/C21 solid, C20 soft) appended. Five
+behavioral candidates await RED→GREEN in `openspec/changes/fix-skill-review-round2/`: SETUP
+legacy-named domain doc (rename-into-`DOMAIN.md` on re-run, else the WBPP/TSM/Library re-runs
+mint a duplicate domain home), SETUP non-git-target safety, SETUP container/portfolio-root
+router-only case (live RED this session — a scaffolded portfolio-root set was judged noise),
+whats-next scoped audit-first, AUDIT small-set right-sizing.
 
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
