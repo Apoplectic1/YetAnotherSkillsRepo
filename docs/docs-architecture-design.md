@@ -44,7 +44,7 @@ start-up context block):
   docs (memory was migrated out 2026-06-16). Harness-fixed path; cannot be relocated into the
   tree — but it carries no content worth moving.
 
-Consequence: **everything else (ROADMAP, ARCHITECTURE, OBSERVING, VERIFICATION, NOTEBOOK,
+Consequence: **everything else (ROADMAP, ARCHITECTURE, DOMAIN, VERIFICATION, NOTEBOOK,
 docs/*, NOTICE.md) is pull-on-demand.** The agent finds those *only because CLAUDE.md
 describes and routes to them.* CLAUDE.md is a router; the organization is "accessible" exactly
 to the degree CLAUDE.md indexes every leaf. (This is why `NOTEBOOK.md`, absent from the
@@ -75,7 +75,7 @@ Two access patterns, wanting opposite structures:
 ## The doc tiers: journal · reference · cold rationale
 
 Resolves the two-patterns tension. (Latent already — `NOTEBOOK.md`'s own header says
-findings "should graduate into OBSERVING.md / ROADMAP.md"; this formalizes it.) **Refined
+findings "should graduate into DOMAIN.md / ROADMAP.md"; this formalizes it.) **Refined
 2026-06-28 (the CC-tuning split) from two tiers to three** — adding *cold rationale* for
 lengthy evergreen "why" that isn't needed for immediate reasoning.
 
@@ -90,7 +90,7 @@ JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO m
         │  the dated entry remains as the why/when record (or → archive/)
         ▼
 REFERENCE  (truth; the ONE always-current source per topic)
-  ROADMAP · ARCHITECTURE · OBSERVING · VERIFICATION
+  ROADMAP · ARCHITECTURE · DOMAIN · VERIFICATION
   topic-organized · edited in place · superseded prose deleted
   answers "what is true about subsystem X right now"
         │  EXTRACT: lengthy evergreen *reasoning* not needed for immediate
@@ -113,7 +113,7 @@ content that is BOTH (a) **cold** — not needed for immediate reasoning — AND
 reasoning**, not code-coupled: it explains *why a principle holds* and would still be true if
 the code were never written. Anything naming a **file / function / flag / value** stays in the
 audited reference tier. (CC worked example: "why high sigma sheds the noise tail" / "denoise
-late" → cold doc; `configureAutoCC` → ROADMAP; `ccDarkK = 18` → OBSERVING.) Extract
+late" → cold doc; `configureAutoCC` → ROADMAP; `ccDarkK = 18` → DOMAIN.) Extract
 **selectively** — fragmentation hurts synthesis, so split only when the why is genuinely
 lengthy *and* cold.
 
@@ -148,7 +148,7 @@ match its doc's charter? else move / cross-ref-and-delete):
 | `CLAUDE.md` | always-on **router** + load-bearing gotchas only (no volatile content) |
 | `ROADMAP.md` | feature-architecture · constant-rename table · validation matrix · *(port history → archive/)* |
 | `ARCHITECTURE.md` | subsystem mechanics deep-dives (how it works) |
-| `OBSERVING.md` | site · targets · workflow · NSG tuning · XFM keyword contract · repo conventions |
+| `DOMAIN.md` | domain/strategy home — site · targets · workflow · tuning · contracts · repo conventions (WBPP's is historically `OBSERVING.md`) |
 | `VERIFICATION.md` | run-verification runbook |
 | `NOTEBOOK.md` | dated empirical findings (journal / lab notebook) |
 | `docs/` | dated decision records, reviews & **cold-rationale** notes (journal + tier-3) |
@@ -437,9 +437,16 @@ only README/RELEASING genuinely conditional.
 | `NOTEBOOK.md` | **enforced by name** | the lab-notebook home — present even if empty (charter'd; invites use as findings accrue) |
 | `VERIFICATION.md` | **enforced by name** | always answers "how do I verify a change here" — even when that's just "= `dotnet test`, CI at X" (so it's useful for the test-backed apps too, *revising* the earlier "conditional") |
 | `docs/` + `YYYY-MM-DD-*` journal | **enforced — the tier** | all have `docs/`; convention varies (TP subdirs, XFM **undated**) → standardize |
-| domain/strategy doc | **enforced slot — name elicited** | name varies: TSM `UI-CONVENTIONS`, Library `PCL InterOp`, WBPP `OBSERVING` |
+| `DOMAIN.md` (domain/strategy doc) | **enforced by name — always `DOMAIN.md`** | name **fixed** 2026-07-07 (superseded the elicited-name model); existing per-project docs — TSM `UI-CONVENTIONS`, Library `PCL InterOp`, WBPP `OBSERVING` — predate the rename, untouched until re-run |
 | `README.md` | conditional (public/GitHub entry) | distinct audience from CLAUDE.md; TP has one |
 | `RELEASING.md` | conditional (project ships) | TP has one |
+
+**Domain-doc name fixed to `DOMAIN.md` (user, 2026-07-07).** Superseded the original *elicited,
+content-specific* name (OBSERVING / UI-CONVENTIONS / PCL InterOp). A single canonical filename
+makes cross-project switching frictionless (same rationale as the rest of the enforced set) and
+drops a per-run naming prompt; SETUP now always creates/keeps `DOMAIN.md` and never renames an
+existing one. Per-project domain docs already under other names predate this and stay untouched
+until each project is re-run.
 
 **Hard scope-exclusion list — the key new requirement the survey surfaced.** SETUP never
 scaffolds into, and AUDIT never scans: **vendored** trees (Library `PCL/` + its `3rdparty/`

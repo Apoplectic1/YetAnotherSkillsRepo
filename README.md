@@ -40,7 +40,7 @@ read), and is *never blank*:
 | `ROADMAP.md` | forward plan + a short "Recently shipped" digest |
 | `NOTEBOOK.md` | running lab journal (chronological findings) |
 | `VERIFICATION.md` | how to build/run/test/verify a change |
-| domain doc (name *elicited*) | the human/strategy home (`OBSERVING` / `DOMAIN` / …) |
+| `DOMAIN.md` | the human/strategy home (science/conventions/site-process/UI rules) |
 | `docs/YYYY-MM-DD-*.md` | dated journal: decision records, reviews |
 | `README.md`, `RELEASING.md` | conditional (public entry / ships) |
 
@@ -66,7 +66,8 @@ Each entry: **what it is · does · does *not* do · when · how**.
   trees (flags-and-skips a nested project — run it from there).
 - **When:** a new project; an existing one with no router / scattered docs / inconsistent names;
   onboarding a project into a portfolio that shares this convention.
-- **How:** invoke the skill; it surveys the tree, elicits the domain-doc name, scaffolds, and routes.
+- **How:** invoke the skill; it surveys the tree, scaffolds the canonical set (domain doc is always
+  `DOMAIN.md`), and routes.
 
 ### 2. `docs-architecture-audit` — drift catcher (occasional)
 - **Is:** checks docs against reality on two axes — **placement** (does a section match its doc's

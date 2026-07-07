@@ -8,8 +8,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - `skills/<name>/SKILL.md` — one directory per skill.
 - `openspec/` — opsx planning home (workflow/change artifacts only — not project docs; excluded
   from doc audits per the tooling scope-exclusion).
-- The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `NOTEBOOK.md`, `VERIFICATION.md` + a
-  domain doc) will be **scaffolded by the SETUP skill's first run** — dogfooding the model.
+- The enforced doc set (`ARCHITECTURE.md`, `ROADMAP.md`, `NOTEBOOK.md`, `VERIFICATION.md` +
+  `DOMAIN.md`) will be **scaffolded by the SETUP skill's first run** — dogfooding the model.
 
 ## The docs-architecture skill family (all 4 built + deployed)
 A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
