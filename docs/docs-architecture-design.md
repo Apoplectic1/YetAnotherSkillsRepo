@@ -434,6 +434,33 @@ mint a duplicate domain home), SETUP non-git-target safety, SETUP container/port
 router-only case (live RED this session — a scaffolded portfolio-root set was judged noise),
 whats-next scoped audit-first, AUDIT small-set right-sizing.
 
+**Round-2 behavioral batch — executed 2026-07-07 (RED→GREEN; synthetic fixtures per the
+structural-failure rule; Sonnet workers; 2 reps/scenario; candidate-text injection;
+disk-verified throughout).** **3 of 5 passed RED — no-failure gate, no text shipped:**
+legacy-named domain doc (2/2 `git mv` `OBSERVING.md`→`DOMAIN.md`, content preserved, zero
+duplicate homes — the existing whatever-the-content-is + normalize-filenames lines already
+induce the rename), whats-next audit-first (2/2 proceeded on fresh docs; absent audit output
+recorded as an honest manifest row, no unconditional-precondition reading), AUDIT small-set
+right-sizing (2/2 volume-reasoned plans — "per-section collapses to per-doc", conditional
+round 3, loop-until-dry intact; both reps caught both planted drifts + two accidental ones,
+zero cry-wolf, one textbook `flag-code-bug`). Their delta-spec requirements carry
+disk-verify-style status notes. **2 shipped text:** (1) **SETUP non-git net** — RED 2/2
+merged-then-*deleted* originals on the unversioned tree with no net (rep 2 noticed the gap,
+"compensated" with self-review, deleted anyway; rep 2 partially confounded by harness
+leave-uncommitted wording, rep 1 failed clean); encoded the Safety branch ("Not a git repo?
+Create the net first… never merge-and-delete on an unversioned tree; pure-scaffold may
+proceed"); GREEN 2/2 — both `git init`'d and committed the originals verbatim *before*
+restructuring (baselines disk-verified recoverable). (2) **SETUP container root** — live RED
+banked (this session: full set scaffolded at the portfolio root, judged noise, trimmed to
+router-only); encoded the container-root router-only rule beside the sub-project rule; GREEN
+2/2 — router-only at root, sub-projects untouched (clean trees), redirects delivered, and
+both reps *composed* the two new rules (pure-scaffold exception correctly invoked for the
+additive router; b-reps correctly judged it not-applicable). Method notes: poisoned-fixture
+rule held (no spec-containing project used); footer doc-pointers stripped from injected
+texts; fixture D's accidental ROADMAP↔NOTEBOOK mismatch was caught by both whats-next reps
+(bonus discipline signal). SETUP 927→970 words after the additions — within precedent, no
+compression pass. Change record: `openspec/changes/archive/2026-07-07-fix-skill-review-round2/`.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

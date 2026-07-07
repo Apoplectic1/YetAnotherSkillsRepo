@@ -18,3 +18,10 @@ results warrant. Loop-until-dry remains the terminator in all cases.
 - **WHEN** an audit runs on a project with large multi-section reference docs
 - **THEN** per-section workers, loop-until-dry, and model diversity apply as currently
   specified
+
+**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
+on a 5-thin-doc fixture both reps planned a proportionate opening round (6 workers; explicit
+"per-section collapses to per-doc" volume reasoning), kept round 3 conditional on a wet round 2,
+and preserved loop-until-dry as the terminator. Per the no-failure gate no scale sentence was
+added; if a future run deploys machinery grossly over volume, encode then. Record: design doc,
+review-round-2 RED/GREEN entry.

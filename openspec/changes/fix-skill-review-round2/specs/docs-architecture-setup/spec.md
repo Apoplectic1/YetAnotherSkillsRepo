@@ -20,6 +20,13 @@ single-source.
 - **THEN** SETUP keeps that name (no rename to a content-specific name), per the existing
   always-`DOMAIN.md` rule
 
+**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
+both reps `git mv`'d `OBSERVING.md` → `DOMAIN.md` (content preserved, router updated, zero
+duplicate homes; disk-verified). The existing "whatever the content is, it lives in DOMAIN.md" +
+filename-normalization lines already induce the rename. Per the no-failure gate no text was
+added; if a future run mints a duplicate domain home, that is the failing test this guidance was
+waiting for. Record: design doc, review-round-2 RED/GREEN entry.
+
 ### Requirement: Non-git targets get a recovery net before restructuring
 When the target tree is not a git repository, SETUP SHALL establish a recovery net before any
 restructuring apply (offer `git init` + an initial commit, or snapshot the originals) rather

@@ -15,7 +15,10 @@ repos (a sibling may not exist, and inference drifts between projects).
 SETUP **restructures; it does not destroy.** Consolidating = **merge** (drop nothing); moving
 history = **move**, not delete; renames preserve content. If unsure whether something is still
 needed → **move it to `archive/`**, never delete. Run the apply on a **clean git tree** (commit
-first) so every change is recoverable, and **present the diff for review before committing.** A
+first) so every change is recoverable, and **present the diff for review before committing.**
+**Not a git repo? Create the net first:** `git init` + commit the originals (or snapshot them to
+`archive/pre-setup/`) **before** any restructuring — never merge-and-delete on an unversioned
+tree. A pure-scaffold run (new files only) may proceed, noting the tree is unversioned. A
 large/diverse project (many existing docs) deserves extra care: survey fully before touching
 anything, and prefer several small reviewed applies over one big one.
 
@@ -65,6 +68,10 @@ A **sub-project** (nested tree with its own router / own `.git`) is its own gove
 **flag-and-skip** — leave its docs alone, note it excluded in the root router, and **report:
 "run this skill from `<sub-dir>` to govern it as its own unit"** (mirrors AUDIT's scope rule; not
 a submodule/vendoring call — that's the user's separate decision).
+A **container root** (the invocation dir holds no first-party project content — only
+sub-projects + tooling/exclusions) gets the **router only**: a `CLAUDE.md` chartered as a
+router with flag-and-skip routing to each sub-project and the exclusions — **not** the full
+enforced set (per-project docs are the truth; a portfolio-level set is noise).
 
 ## Design-heavy / code-light — the DESIGN slot
 When the tree is mostly design (a large standalone design doc, little code), that doc **is the

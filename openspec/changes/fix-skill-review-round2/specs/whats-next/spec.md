@@ -19,3 +19,10 @@ to the backlog, noting doc freshness in the coverage manifest instead of demandi
   audit)
 - **THEN** the run recommends running docs-architecture-audit first (stale docs → stale
   backlog)
+
+**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
+on a fresh-docs fixture both reps proceeded straight to backlog + manifest without demanding or
+performing an audit, recording the absent audit output as an honest manifest row. The feared
+unconditional-precondition reading did not occur. Per the no-failure gate the When-to-use text
+was not changed; if a future run blocks on or performs an unneeded audit, encode then. Record:
+design doc, review-round-2 RED/GREEN entry.
