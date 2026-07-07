@@ -3,11 +3,10 @@
 ## ADDED Requirements
 
 ### Requirement: Legacy-named domain doc is normalized into DOMAIN.md
-On a project whose domain/strategy doc exists under a legacy or content-specific name (e.g.
-`OBSERVING.md`, `UI-CONVENTIONS.md`, `PCL InterOp.md`) and no `DOMAIN.md` exists, SETUP SHALL
-rename/merge that doc into `DOMAIN.md` (content-preserving, references updated). SETUP SHALL
-NOT create a charter'd-thin `DOMAIN.md` alongside the legacy doc — two domain homes violate
-single-source.
+SETUP SHALL rename/merge a domain/strategy doc that exists under a legacy or content-specific
+name (e.g. `OBSERVING.md`, `UI-CONVENTIONS.md`, `PCL InterOp.md`, with no `DOMAIN.md` present)
+into `DOMAIN.md` — content-preserving, references updated. SETUP SHALL NOT create a
+charter'd-thin `DOMAIN.md` alongside the legacy doc — two domain homes violate single-source.
 
 #### Scenario: OBSERVING.md is renamed, not duplicated
 - **WHEN** a SETUP-guided run encounters a project with `OBSERVING.md` (real domain content)
@@ -43,10 +42,10 @@ proceed without a net.
 - **THEN** the run may scaffold without a net, noting the tree is unversioned
 
 ### Requirement: Container roots get a router only
-When the survey finds no first-party project content at the invocation root — only
-sub-projects (own router/`.git`) and tooling/scope-exclusions — SETUP SHALL scaffold a
-router-only `CLAUDE.md` (charter + flag-and-skip routing to each sub-project + exclusions)
-and SHALL NOT create the full enforced set at the container level.
+SETUP SHALL scaffold a router-only `CLAUDE.md` when the survey finds no first-party project
+content at the invocation root — only sub-projects (own router/`.git`) and
+tooling/scope-exclusions: charter + flag-and-skip routing to each sub-project + the
+exclusions. SETUP SHALL NOT create the full enforced set at the container level.
 
 #### Scenario: Portfolio root gets router-only
 - **WHEN** a SETUP-guided run is invoked at a directory whose only members are two
