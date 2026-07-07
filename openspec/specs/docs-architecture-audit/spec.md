@@ -4,9 +4,7 @@
 TBD — created by syncing change `fix-skill-review-findings`. Covers only the requirements that
 change established for the AUDIT skill (`skills/docs-architecture-audit/SKILL.md`); not a
 retroactive full spec of the skill.
-
 ## Requirements
-
 ### Requirement: Cold-rationale docs get a decision-consistency check
 Cold-rationale documents (dated `docs/` rationale notes that a reference doc cites) SHALL be
 audited with a decision-consistency check only — does the reasoning still support the decision it
@@ -24,9 +22,10 @@ content parked in tier 3 escapes the currency sweep.
 - **THEN** no flag is emitted for it (no cry-wolf)
 
 ### Requirement: Extraction candidates are flagged via the schema
-Reference-tier sections that are lengthy AND cold AND evergreen (per the extract discriminator)
-SHALL be flagged as cold-rationale extraction candidates using a schema action (`extract-cold`),
-carried through merge/dedup like any flag and applied only after user adjudication.
+Workers SHALL flag reference-tier sections that are lengthy AND cold AND evergreen (per the
+extract discriminator) as cold-rationale extraction candidates using a schema action
+(`extract-cold`), carried through merge/dedup like any flag and applied only after user
+adjudication.
 
 #### Scenario: Lengthy cold evergreen section is proposed for extraction
 - **WHEN** an audit worker reads a reference-doc section that is lengthy, not needed for immediate
@@ -64,3 +63,28 @@ then. RED/GREEN record: `docs/docs-architecture-design.md`, fix-batch behavioral
 - **WHEN** the merged list contains a flag whose cited evidence does not hold on disk (e.g., it
   asserts a dangling reference that grep shows clean)
 - **THEN** the orchestrator detects the mismatch before adjudication and the flag is not applied
+
+### Requirement: Fan-out is right-sized to doc volume
+The fan-out SHALL scale with the audited doc set's volume. On a thin doc set (few, small,
+recently-written reference docs) the run SHALL NOT deploy machinery disproportionate to the
+content — per-doc workers plus the cross-reference pass suffice as the opening round;
+per-section splitting, replicate rounds, and model diversity engage as volume and dry-round
+results warrant. Loop-until-dry remains the terminator in all cases.
+
+#### Scenario: Thin fresh set gets a small opening round
+- **WHEN** an audit runs on a project with a handful of small, recently-written reference docs
+- **THEN** the opening round is per-doc (not per-section × multiple models), the cross-ref
+  pass still runs, and the run stops when a round is dry
+
+#### Scenario: Large doc set still gets the full machinery
+- **WHEN** an audit runs on a project with large multi-section reference docs
+- **THEN** per-section workers, loop-until-dry, and model diversity apply as currently
+  specified
+
+**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
+on a 5-thin-doc fixture both reps planned a proportionate opening round (6 workers; explicit
+"per-section collapses to per-doc" volume reasoning), kept round 3 conditional on a wet round 2,
+and preserved loop-until-dry as the terminator. Per the no-failure gate no scale sentence was
+added; if a future run deploys machinery grossly over volume, encode then. Record: design doc,
+review-round-2 RED/GREEN entry.
+
