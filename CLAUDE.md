@@ -29,7 +29,7 @@ place (a CLAUDE.md router + charter'd reference set) — i.e. **SETUP must have 
 project (like the worst-case fixture below) run SETUP before testing the other three.
 
 **Canonical design:** `docs/docs-architecture-design.md` — full spec + RED/GREEN records (genesis:
-the WBPP docs-reorg, 2026-06-28; the WBPP-side copy is a pending-removal duplicate). Empirical
+the WBPP docs-reorg, 2026-06-28; the WBPP-side duplicate was removed, WBPP `1bd0e68`). Empirical
 records live in `docs/` (e.g. `docs/2026-06-29-audit-model-benchmark.md`, the worker-model benchmark).
 **First customers:** the Astronomy constellation — TargetPlanner, TargetSchedulerManager,
 Library, XisfFileManager, IntervalScheduler — plus WBPP itself.

@@ -6,11 +6,11 @@ agent's work in any project trustworthy — every fact current, single-sourced, 
 **token-efficiently, without being pointed at files**.
 
 **Genesis / worked example:** derived by reorganizing the WBPP project's docs (2026-06-28 —
-"Phase 1" structure + "Phase 2" audit). The WBPP-specific *execution* record stays in WBPP
-(removed from there later); the WBPP examples kept below are the grounding worked-example.
+"Phase 1" structure + "Phase 2" audit). The WBPP-specific *execution* record stays in WBPP;
+the WBPP examples kept below are the grounding worked-example.
 
 > **Note (2026-06-28):** graduated out of WBPP `docs/2026-06-28-docs-reorg-plan.md` — that copy
-> is a pending-removal duplicate; **this** file is canonical. The WBPP-first "Phase 1/2 executed"
+> was removed same-day (WBPP `1bd0e68`; git is the backstop); **this** file is canonical. The WBPP-first "Phase 1/2 executed"
 > framing below is retained as the grounding worked-example (all four skills are now authored —
 > nothing pending behind that framing).
 
