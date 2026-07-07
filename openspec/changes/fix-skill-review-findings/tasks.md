@@ -28,15 +28,15 @@ Decision 6). Skill edit + design-doc sync land in the same commit.
 - [x] 3.2 RED design-heavy: SETUP on the synthetic fixture — does it force-split the design doc?
 - [x] 3.3 RED cold-rationale: AUDIT on TP — is the cold doc skipped entirely ("not the journal") and the extraction candidate unflagged?
 - [x] 3.4 RED disk-verify: orchestrator-role agent with the seeded false flag — is it rubber-stamped into adjudication?
-- [ ] 3.5 Gate check: for any scenario where the baseline did NOT fail, drop that guidance from scope and record the no-failure outcome in `docs-architecture-design.md`
+- [x] 3.5 Gate check: for any scenario where the baseline did NOT fail, drop that guidance from scope and record the no-failure outcome in `docs-architecture-design.md`
 
 ## 4. GREEN — write minimal guidance per failing scenario, re-run, commit each
 
-- [ ] 4.1 SETUP: sub-project flag-and-skip (mirror AUDIT's scope wording) + scope the "coexist, never clobber" rule to root-project files; re-run 3.1 scenario → complies; commit with design-doc record
+- [x] 4.1 SETUP: sub-project flag-and-skip (mirror AUDIT's scope wording) + scope the "coexist, never clobber" rule to root-project files; re-run 3.1 scenario → complies; commit with design-doc record
 - [x] 4.2 SETUP: design-heavy `DESIGN.md`-slot rule (preserve whole; charter'd-thin ARCHITECTURE/ROADMAP alongside); re-run 3.2 → complies; commit with design-doc record
-- [ ] 4.3 AUDIT: cold-rationale tier scope (decision-consistency check; code-coupled-fact-in-cold-doc = misplacement flag) + `extract-cold` schema action; re-run 3.3 → complies, no cry-wolf on sound reasoning; commit with design-doc record
-- [ ] 4.4 AUDIT: disk-verify gate in merge/adjudicate steps (spot-check cited evidence; failed evidence corrected/dropped, never presented as verified); re-run 3.4 → catches the seeded flag; commit with design-doc record
-- [ ] 4.5 REFACTOR: close any new rationalizations from GREEN runs; enforce the word-count guard (AUDIT ≤ ~1250 words — trim step-1/step-3 bold stacking if over)
+- [x] 4.3 AUDIT: cold-rationale tier scope (decision-consistency check; code-coupled-fact-in-cold-doc = misplacement flag) + `extract-cold` schema action; re-run 3.3 → complies, no cry-wolf on sound reasoning; commit with design-doc record
+- [x] 4.4 AUDIT: disk-verify gate in merge/adjudicate steps (spot-check cited evidence; failed evidence corrected/dropped, never presented as verified); re-run 3.4 → catches the seeded flag; commit with design-doc record
+- [x] 4.5 REFACTOR: close any new rationalizations from GREEN runs; enforce the word-count guard (AUDIT ≤ ~1250 words — trim step-1/step-3 bold stacking if over)
 
 ## 5. Finalize
 

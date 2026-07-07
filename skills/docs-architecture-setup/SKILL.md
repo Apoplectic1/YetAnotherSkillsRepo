@@ -61,6 +61,19 @@ READMEs are not this project's docs and are not audited.
 ## Coexist, never clobber
 Augment an existing setup — don't overwrite a present `CLAUDE.md` / `openspec/` / `.claude/`.
 Normalize filenames to the convention (no spaces; align casing).
+A **sub-project** (nested tree with its own router / own `.git`) is its own governance unit:
+**flag-and-skip** — leave its docs alone, note it excluded in the root router, and **report:
+"run this skill from `<sub-dir>` to govern it as its own unit"** (mirrors AUDIT's scope rule; not
+a submodule/vendoring call — that's the user's separate decision).
+
+## Design-heavy / code-light — the DESIGN slot
+When the tree is mostly design (a large standalone design doc, little code), that doc **is the
+project's `DESIGN` slot** — architecture-in-waiting, not content to distribute. **Keep it whole:**
+charter it, route it by name in CLAUDE.md, and scaffold the rest of the enforced set
+**charter'd-thin pointing into it** ("mechanics live in `<DESIGN doc>` §N until code lands"). Its
+content **graduates into ARCHITECTURE/ROADMAP as code arrives** (a later MAINTAIN job). A SETUP
+run never splits it, relocates it, or archives it — it is the *current* design, not superseded
+history, and "distributed then archived verbatim" still destroys it as the single living home.
 
 ## Procedure
 1. **Survey** the tree: existing docs + detect the scope-exclusions.

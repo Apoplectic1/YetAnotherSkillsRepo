@@ -377,6 +377,44 @@ alone doesn't raise rank) and its frontmatter description is trimmed to SDO trig
 "assumes the conventions" clause. Change record:
 `openspec/changes/fix-skill-review-findings/` (in this repo).
 
+**Family review 2026-07-06/07 — fix batch, behavioral half (RED→GREEN; TP-fixture worktrees + a
+synthetic design-heavy fixture; 2 reps per scenario per phase; Sonnet workers; candidate-text
+injection).** Four review gaps were RED-tested before encoding (Iron Law). Two survived to full
+guidance, one shrank to a structural line, one was dropped:
+- **SETUP sub-project boundary — feared failure absent; omitted element real.** Baseline never
+  scaffolded into or augmented a nested own-`.git` project: **4/4 no-touch** (2 reps on an easy
+  fixture whose sub-CLAUDE.md declares independence, then 2 on a *hard* fixture with no such prose —
+  detection held on `.git`/router alone). What did fail: **0/4 delivered the run-from-its-own-dir
+  redirect** (one rep steered toward submodule/subtree instead — repo plumbing, not governance). Per
+  match-the-form-to-the-failure this took a structural flag-and-skip line mirroring AUDIT's scope
+  rule, **not** a prohibition. GREEN 2/2 (soft + hard): no-touch held, redirect delivered.
+- **SETUP design-heavy/code-light — RED 2/2 force-split.** Both reps distributed a 155-line
+  standalone `SCHEDULER_DESIGN.md` across ARCHITECTURE/ROADMAP/DOMAIN/VERIFICATION, removed the
+  root copy, and archived the original verbatim (rationalizations: "didn't map 1:1 onto one
+  canonical file"; archived-verbatim-is-safe). Encoded the **DESIGN-slot** section (keep whole;
+  thin set points into it; never split/relocate/archive — "distributed then archived" still
+  destroys the living home). GREEN 2/2, disk-verified: doc intact at root both reps (one chartered
+  by reference, one added an additive in-file charter).
+- **AUDIT cold-rationale (tier 3) — RED 2/2 missed both planted axes** while producing 15–22
+  disciplined real flags each: neither rep followed the reference-cited cold doc (its drifted
+  code-coupled `DayWindowKey` snapshot escaped both), and both cleared a planted
+  lengthy+cold+evergreen section with no extraction concept available. Encoded: the
+  journal-exception (follow citations; **decision-consistency check**; code-coupled fact in a cold
+  doc = tier violation) + the **`extract-cold`** schema action. GREEN 2/2: both flagged the cold
+  doc's snapshot with exact evidence while keeping its sound reasoning (zero cry-wolf), both
+  emitted textbook `extract-cold` on the planted section — and **the rule generalized**: both also
+  caught the *unplanted* real instance (`docs/design/cache-contract.md`, a code-coupled contract
+  doc riding in the journal tier).
+- **AUDIT disk-verify gate — DROPPED; baseline passed.** 2/2 orchestrator reps independently
+  re-verified every seeded flag against disk and refuted the fabricated one ("conservative
+  evidence cuts both ways") — the existing evidence rule already induces orchestrator-level
+  verification, so per the no-failure gate the guidance was not added; this record is the
+  no-failure documentation. (The seeded list also exercised the group-1 wording: `graduate`
+  presented as apply-able post-adjudication, `flag-code-bug` as report-only, approve/amend/defer
+  vocabulary in use.)
+Word-count REFACTOR: AUDIT's step-1/step-3 model-guidance stacking compressed meaning-preserving
+(all benchmark numbers kept) — AUDIT 1287 w, SETUP 927 w after the additions.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET
@@ -416,7 +454,9 @@ journal convention); the vendored/generated/tooling exclusions become the *defau
 files*, not a hard wall. This dissolves the "excluded-tree-with-an-included-leaf" case. Pairs
 with the **re-fork lifecycle**: fork *source* = read-only ground-truth (AUDIT currency-checks
 references *against* it, never edits it); the fork *playbook* (router-named) = a maintained doc.
-Needs a failing test before encoding in SETUP/AUDIT (Iron Law).
+*(Status 2026-07-06: AUDIT's Scope section ships router-anchored scope — this gate-note had gone
+stale; SETUP keeps the flat exclusion list, correct for bootstrap since the router doesn't exist
+yet when SETUP runs.)*
 
 **Sub-projects vs vendored — distinct cases (user policy, 2026-06-28).** *Vendored* = third-party
 (exclude the source; keep only router-named leaves correct, per above). A *sub-project* is the
@@ -427,7 +467,9 @@ its docs**. On encountering a sub-project it **flags-and-skips** (reports it + a
 names) and notifies the user to **run the skill from the sub-project's dir** to govern it as its
 own unit. Cross-boundary references (root↔sub) are kept correct/consistent. Clean per-sub-project
 recursion *from* the root is an acceptable **future** enhancement, but flag-and-skip is the safe
-v1. Needs a failing test before encoding (Iron Law).
+v1. *(Status 2026-07-06/07: AUDIT had already shipped flag-and-skip; SETUP's side is now encoded
+after RED→GREEN — baseline no-touch held 4/4, but 0/4 gave the run-from-sub-dir redirect, so SETUP
+gained the structural flag-and-skip + redirect line. See the fix-batch behavioral record above.)*
 
 **Coexist, never clobber:** TSM already has `openspec/` + opsx + `.superpowers/sdd/`; TP has
 `.claude/skills/verify-ui`. SETUP augments an existing setup.

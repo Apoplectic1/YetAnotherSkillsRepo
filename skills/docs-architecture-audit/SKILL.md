@@ -17,10 +17,18 @@ a mergeable, consistent output** is what the skill must force.
 - After a refactor/rename, or when code and a doc may have drifted.
 - Before trusting a reference doc as current; or a periodic doc-health pass.
 - **Not** the journal (`docs/`, `NOTEBOOK.md`) — append-only, not currency-audited; **not** `archive/`.
+  **Exception — cold-rationale docs** (dated `docs/` notes a reference doc cites as its "why"):
+  follow the citation and check **decision-consistency only** (does the reasoning still support the
+  decision?). A **code-coupled fact** (file / function / flag / value) inside one is a **tier
+  violation** → flag it — cold docs escape the currency sweep, so code-coupled content must live in
+  the audited reference tier, not ride along in tier 3.
 
 ## The two axes — never conflate
 - **PLACEMENT** — does this section belong in THIS doc, per its charter? Off-charter → move, or
-  cross-ref-and-delete (single-source).
+  cross-ref-and-delete (single-source). A reference-doc section that is **lengthy AND cold AND
+  evergreen** (pure "why" — not code-coupled, not needed for immediate reasoning) → `extract-cold`:
+  propose a dated `docs/` cold doc + a one-line reference back. All three tests must hold — a short,
+  warm, or code-coupled section stays put.
 - **CURRENCY** — is each claim true vs the live code? Verify by grepping the actual source.
 
 ## Currency: code is ground truth — but classify modality first
@@ -54,15 +62,14 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
 ## Fan out for coverage — the heart of the skill
 1. **Fan out** independent audit workers. **Prefer per-section** (one worker per major section) — it
    forces depth everywhere; replicate whole-doc passes skim uniformly and miss section-local detail.
-   Replicate passes also help **because independent passes find _different_ subsets** — so use them
-   *with* loop-until-dry (step 3), never a fixed N. Each worker returns flags in the schema below.
-   **Worker model: default to Sonnet at high effort** — benchmarked at per-pass parity with a frontier
-   model and converging faster, with discipline intact (cites `file:line` or marks `unverifiable`; no
-   cry-wolf). For coverage, **diversify the worker model across the fan-out** (mix in a different
-   frontier model) rather than piling on same-model reps — see step 3. **Medium effort / Haiku are a
-   cheap *first-sweep* only:** medium's cumulative ceiling runs a few real issues lower than high (not
-   worth trading recall unless its cost is your scarce resource); Haiku skips sections and mislabels
-   actions, and iteration doesn't fix discipline.
+   Replicate passes find *different* subsets — use them *with* loop-until-dry (step 3), never a
+   fixed N. Each worker returns flags in the schema below. **Worker model: default to Sonnet at
+   high effort** — benchmarked at per-pass parity with a frontier model, converging faster,
+   discipline intact (cites `file:line` or marks `unverifiable`; no cry-wolf). For coverage,
+   **diversify the worker model across the fan-out** rather than piling on same-model reps (step 3).
+   **Medium effort / Haiku are a cheap *first-sweep* only:** medium's cumulative ceiling runs ~3
+   real issues below high (only worth it when its cost is your scarce resource); Haiku skips
+   sections and mislabels actions — iteration doesn't fix discipline.
 2. **Cross-reference pass** (one worker): check **inbound references** to the doc (routers, other
    docs, code comments, e.g. `.xaml`/`.cs`) for rename-orphans / dangling links, plus code↔doc
    drift the per-section workers miss. (Catches the rename-orphan class — a doc renamed, its
@@ -71,10 +78,9 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
    keep running rounds until one adds nothing — in testing, *three* replicate passes each still missed
    real flags a different angle caught (ground truth was ~30% larger than any single run). Don't
    silently cap — `log` what was dropped. **But a single model's loop-until-dry plateaus at *that
-   model's* ceiling, not truth** — benchmarked, each model converged to a different ~20-of-25 subset
-   sharing only ~16; the full union needed *both*. So **model diversity in the fan-out is the stronger
-   completeness lever than more same-model reps** — once one model's rounds go dry, switch model rather
-   than loop deeper.
+   model's* ceiling, not truth** (benchmarked: two models' ~20-of-25 unions shared only ~16; the
+   full union needed both) — so **model diversity in the fan-out is the stronger completeness lever
+   than more same-model reps**: once one model's rounds go dry, switch model rather than loop deeper.
 4. **Adjudicate** — present the merged list; per flag the user **approves / amends / defers** its
    proposed schema action.
 5. **Apply** approved doc fixes; re-verify. **Report-only** flags (`flag-code-bug`, `revisit-plan`)
@@ -89,7 +95,7 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
 - finding:   what's wrong, or the off-charter target home
 - evidence:  file:line / symbol   OR   "unverifiable → ask user"
 - severity:  high | medium | low
-- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | revisit-plan | flag-code-bug | keep
+- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | extract-cold | revisit-plan | flag-code-bug | keep
 ```
 
 ## Scope — router-anchored
