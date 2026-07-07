@@ -40,8 +40,8 @@ Decision 6). Skill edit + design-doc sync land in the same commit.
 
 ## 5. Finalize
 
-- [ ] 5.1 Reset TP fixture (mandatory reset contract); delete scratchpad fixture
-- [ ] 5.2 Full-family final re-read: schema/vocabulary/cross-skill consistency, footer links, frontmatter (verify whats-next description passes the SDO check)
-- [ ] 5.3 Update `docs-architecture-design.md`: stale "needs a failing test before encoding" gate notes (AUDIT already ships router-anchored scope + flag-and-skip) + this batch's RED/GREEN outcomes; include in the relevant commits
-- [ ] 5.4 Merge `dev` → `main`; run `./deploy.sh`
-- [ ] 5.5 Verify deployment: deployed copies byte-identical to repo; footer links resolve from `~/.claude/skills/<name>/`
+- [x] 5.1 Reset TP fixture (mandatory reset contract); delete scratchpad fixture
+- [x] 5.2 Full-family final re-read: schema/vocabulary/cross-skill consistency, footer links, frontmatter (verify whats-next description passes the SDO check)
+- [x] 5.3 Update `docs-architecture-design.md`: stale "needs a failing test before encoding" gate notes (AUDIT already ships router-anchored scope + flag-and-skip) + this batch's RED/GREEN outcomes; include in the relevant commits
+- [x] 5.4 Merge `dev` → `main`; run `./deploy.sh`
+- [x] 5.5 Verify deployment: deployed copies byte-identical to repo; footer links resolve from `~/.claude/skills/<name>/`
