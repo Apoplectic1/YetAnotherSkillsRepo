@@ -375,7 +375,7 @@ the skill on a small project first" note replaced with evergreen large-project c
 whats-next's rank formula names its risk term **exposure-if-deferred** (implementation riskiness
 alone doesn't raise rank) and its frontmatter description is trimmed to SDO triggers + the
 "assumes the conventions" clause. Change record:
-`E:\Projects\AI\openspec\changes\fix-skill-review-findings\`.
+`openspec/changes/fix-skill-review-findings/` (in this repo).
 
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
