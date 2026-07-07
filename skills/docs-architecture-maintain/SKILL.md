@@ -70,4 +70,4 @@ preserve it (stub or archive), don't erase it. The two failures are **graduate-w
 - **Graduating into an already-bloated reference doc** — if the target is oversized, that's a
   **setup/audit split** job *first*, not more content.
 
-Full rationale + the RED baseline: `../../docs/docs-architecture-design.md`.
+Full rationale + the RED baseline: `E:\Projects\AI\Skills\docs\docs-architecture-design.md`.

@@ -1,6 +1,6 @@
 ---
 name: whats-next
-description: Use when asked "what should I work on next?", "what's the backlog?", or to prioritize a project's open work — a synthesized, prioritized backlog swept across every source (roadmap, known-limitations, gotchas, journal pending-items, code TODO/FIXME, audit findings, cross-repo blockers) with a coverage manifest and an accepted-constraints list. Composes after an audit (stale docs → stale backlog).
+description: Use when asked "what should I work on next?", "what's the backlog?", or when planning a session, prioritizing a project's open work, or checking that nothing pending has been missed. Assumes the docs-architecture conventions (a CLAUDE.md router + charter'd reference set).
 ---
 
 # What's next (backlog triage)
@@ -42,8 +42,9 @@ trains the user to ignore the output.
 
 ## Categorize + prioritize
 Bucket each actionable item: **{ urgent (red tests / broken) · deferred-fix · future-feature ·
-doc-debt }**. Rank by value × (1 / effort) × risk; give a **top-N with a recommended sequence** (what
-unblocks / de-risks what). Tag effort (XS/S/M/L) + risk. Priority is a *proposal* — the user owns the call.
+doc-debt }**. Rank by value × (1 / effort) × **exposure-if-deferred** (the cost of *not* doing it —
+what it blocks or de-risks; mere implementation riskiness does not raise rank); give a **top-N with a
+recommended sequence** (what unblocks / de-risks what). Tag effort (XS/S/M/L) + risk. Priority is a *proposal* — the user owns the call.
 
 ## Fan out for completeness
 **REQUIRED:** use the fan-out from **docs-architecture-audit** (independent passes + merge +
@@ -64,4 +65,5 @@ different long-tail items. Merge them.
 - **Single pass** — margins are a coin-flip; fan out + merge.
 - **A flat list** — no buckets, no top-N, no sequence is a dump, not a plan.
 
-Full rationale + the RED baseline (clean vs spec-contaminated fixture): `../../docs/docs-architecture-design.md`.
+Full rationale + the RED baseline (clean vs spec-contaminated fixture):
+`E:\Projects\AI\Skills\docs\docs-architecture-design.md`.

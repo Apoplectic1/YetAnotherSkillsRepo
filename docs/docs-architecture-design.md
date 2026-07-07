@@ -362,6 +362,21 @@ trustworthy structure**, not the per-item call; (b) **validate on a non-derived 
 poisoned both MAINTAIN and TRIAGE; TSM was the clean fixture); (c) **disk-verify agent claims** (a
 GREEN pass overreached on a false currency claim, caught by `grep`).
 
+**Family review 2026-07-06 — fix batch, mechanical half (behavioral half follows via RED→GREEN).**
+A correctness+intent review of the four shipped skills against this design found two correctness
+bugs + polish, fixed without behavior change: (1) **footer links absolute** — the deployed copies'
+`../../docs/…` links resolved to `~/docs/…` (dangling; deploy is a plain copy); (2) **AUDIT
+`graduate` disambiguated** — an ordinary apply-able doc edit once adjudicated; **"report-only" now
+means exactly `flag-code-bug` + `revisit-plan`** (the prescriptive-modality text says "two
+non-stale statuses", ending its contradiction with step 5); (3) AUDIT's adjudication step now uses
+the schema's action vocabulary (approve / amend / defer the proposed action); (4) SETUP's
+reference-tier line gains VERIFICATION (matching the tier table here); (5) SETUP's dev-era "prove
+the skill on a small project first" note replaced with evergreen large-project care; (6)
+whats-next's rank formula names its risk term **exposure-if-deferred** (implementation riskiness
+alone doesn't raise rank) and its frontmatter description is trimmed to SDO triggers + the
+"assumes the conventions" clause. Change record:
+`E:\Projects\AI\openspec\changes\fix-skill-review-findings\`.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

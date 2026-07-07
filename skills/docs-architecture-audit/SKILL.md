@@ -34,9 +34,9 @@ a mergeable, consistent output** is what the skill must force.
   genuinely unsure which → `unverifiable → ask user`.
 - **Prescriptive** (how it *should/will* be — ROADMAP "Future", `PLAN-*`, "Open follow-ups"):
   **the plan wins.** Code-not-matching is *expected*, NOT staleness — never flag "planned X absent
-  from code" as stale. Two report-only exceptions: plan **already satisfied** by code → `graduate`
-  (→ "Recently shipped" / archive the `PLAN-`); plan **contradicted** by current structure →
-  `revisit-plan` (don't edit intent). Tense/charter decides: future "will/planned/TODO" +
+  from code" as stale. Two non-stale statuses: plan **already satisfied** by code → `graduate`
+  (an ordinary doc edit once adjudicated: → "Recently shipped" / archive the `PLAN-`); plan
+  **contradicted** by current structure → `revisit-plan` (**report-only** — don't edit intent). Tense/charter decides: future "will/planned/TODO" +
   ROADMAP-Future/`PLAN-` = prescriptive; present "is/does/returns" + ARCHITECTURE = descriptive.
 
 ## AUDIT writes docs only — code findings are report-only
@@ -75,7 +75,8 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
    sharing only ~16; the full union needed *both*. So **model diversity in the fan-out is the stronger
    completeness lever than more same-model reps** — once one model's rounds go dry, switch model rather
    than loop deeper.
-4. **Adjudicate** — present the merged list for a per-flag call (fix / move / delete / keep / defer).
+4. **Adjudicate** — present the merged list; per flag the user **approves / amends / defers** its
+   proposed schema action.
 5. **Apply** approved doc fixes; re-verify. **Report-only** flags (`flag-code-bug`, `revisit-plan`)
    are **handed off, never auto-applied** — `flag-code-bug` routes to the dev/diagnose flow + `whats-next`.
 
@@ -111,6 +112,7 @@ Vendored *source* = read-only ground-truth to check against, never edit.
 - **Skipping the cross-reference pass** — rename-orphans / dangling links hide *outside* the doc.
 - **Auditing the journal/archive**, or scaffolding into vendored/generated trees.
 
-Full rationale + the RED baseline that justifies the fan-out: `../../docs/docs-architecture-design.md`.
+Full rationale + the RED baseline that justifies the fan-out:
+`E:\Projects\AI\Skills\docs\docs-architecture-design.md`.
 Worker-model + loop-until-dry evidence (per-pass parity, per-model ceiling, effort sweep):
-`../../docs/2026-06-29-audit-model-benchmark.md`.
+`E:\Projects\AI\Skills\docs\2026-06-29-audit-model-benchmark.md`.
