@@ -31,9 +31,24 @@ if [ -n "$(git -C "$REPO" status --porcelain)" ]; then
 fi
 
 mkdir -p "$DEST"
+MARKER=".deployed-from-ai-skills"
+
 for d in "$SRC"/*/; do
   name="$(basename "$d")"
   rm -rf "${DEST:?}/$name"
   cp -r "$d" "$DEST/$name"
+  printf 'source: %s\n' "$SRC/$name" > "$DEST/$name/$MARKER"
   echo "deployed: $name -> $DEST/$name"
+done
+
+# Prune: a marker-carrying deployed dir whose source dir is gone was deployed by this repo
+# and then renamed/removed — delete it, loudly. Unmarked dirs (skills from other sources)
+# are never touched.
+for d in "$DEST"/*/; do
+  [ -d "$d" ] || continue
+  name="$(basename "$d")"
+  if [ -f "$d$MARKER" ] && [ ! -d "$SRC/$name" ]; then
+    rm -rf "${DEST:?}/$name"
+    echo "pruned: $name (marker present, source dir gone)"
+  fi
 done

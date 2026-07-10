@@ -8,8 +8,8 @@ project.
 TDD for documentation: **RED** (watch an *unguided* agent attempt the task and see how it
 falls short) → write/edit the skill → **GREEN** (watch a guided agent comply) → REFACTOR.
 Inject the candidate `SKILL.md` text into the test agents — the live Skill tool reads
-`~/.claude/skills/`, so it only ever sees the deployed/main version; this is what lets you
-test on `dev` without deploying.
+`~/.claude/skills/`, so it only ever sees the deployed copy (normally `main`; see
+`RELEASING.md`); this is what lets you test on `dev` without deploying.
 
 Three method rules (the first two learned the hard way — provenance in
 `docs/docs-architecture-design.md`; the third adopted 2026-07-10, first self-audit):

@@ -11,6 +11,12 @@ bash deploy.sh        # copies skills/*/ → ~/.claude/skills/
 it**, edit here and re-run the deploy. (Not a symlink: permanent fixture + confusing. Not a
 move: strips the version-controlled source.)
 
+Deploy also: **warns loudly on an uncommitted working tree** (it deploys tree state, not a
+commit), **stamps** each copied skill with a `.deployed-from-ai-skills` marker, and
+**prunes** any marker-carrying deployed dir whose source dir no longer exists — so renaming
+or removing a skill can't leave a stale live copy. Unmarked dirs (skills from other
+sources) are never touched.
+
 ## Branch policy
 **Only `main` deploys.** `deploy.sh` refuses to run off `main`. Develop + test on `dev`
 without deploying (the RED/GREEN harness injects candidate SKILL.md text — see

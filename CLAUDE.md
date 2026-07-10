@@ -11,7 +11,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
 - `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
 - `docs/docs-architecture-design.md` — **canonical design**: full spec, tier model, RED/GREEN
-  provenance. Deployed skills reference this path by absolute name — do not move or split it.
+  provenance. Deployed skills reference this file *and* `docs/2026-06-29-audit-model-benchmark.md`
+  by absolute name — move or split neither.
 
 ## Journal (dated capture)
 - `NOTEBOOK.md` — running lab notebook (small findings).
@@ -28,6 +29,6 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   re-run `deploy.sh`.
 - **Only `main` deploys** (`deploy.sh` refuses otherwise); test on `dev` via the RED/GREEN
   harness, which injects candidate SKILL.md text — the live Skill tool only ever sees the
-  deployed/main version.
+  deployed copy (normally `main`; `--force` exceptions: `RELEASING.md`).
 - Skill tests run against a disposable fixture created on demand (`VERIFICATION.md`); after
   any mutating run, apply its reset contract — `git clean -fd` is mandatory, not optional.

@@ -4,11 +4,15 @@
 changelog. The design doc's own open-items section closed 2026-07-07 with nothing open.
 
 ## Open
-- Candidate: publish to GitHub — `README.md` is already written for public consumers; no
-  remote yet. Pre-publish (review 2026-07-07): rewrite the skills' absolute `E:\…` footer
-  links + portfolio-specific exclusion examples for external readers.
+- (none — next candidates surface via `whats-next` sweeps and NOTEBOOK follow-ups)
 
 ## Recently shipped
+- 2026-07-10 — **first self-audit** (4 rounds, 3 models, 36 findings; lessons in NOTEBOOK):
+  design-doc running-commentary staleness fixed (SETUP-spec survey stamped as a 2026-06-28
+  derivation snapshot), `README.md` dissolved into `DOMAIN.md`/`ARCHITECTURE.md` (the
+  publish-to-GitHub candidate retired with it — a public README would be rewritten fresh at
+  publish time), `deploy.sh` now marker-stamps deployed skills and prunes family-stale
+  dirs, VERIFICATION gains the downstream-state method rule.
 - 2026-07-07 — review round 2, behavioral batch (RED→GREEN, archived): SETUP gains the
   non-git recovery net + container-root router-only rules (both GREEN 2/2); legacy-domain
   rename, scoped audit-first, and AUDIT right-sizing all passed RED (no-failure gate —

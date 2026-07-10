@@ -40,9 +40,9 @@ start-up context block):
 - `~/.claude/CLAUDE.md` — global cross-project rules (genuinely global; does **not** move into
   the repo).
 - `<project>/CLAUDE.md` — project orientation + gotchas. **The router.**
-- `<memory>/MEMORY.md` — a ~1.3 KB stub that already delegates project knowledge to the repo
-  docs (memory was migrated out 2026-06-16). Harness-fixed path; cannot be relocated into the
-  tree — but it carries no content worth moving.
+- `<memory>/MEMORY.md` — auto-memory; harness-fixed path, cannot be relocated into the tree.
+  (In the WBPP survey session this was a ~1.3 KB delegating stub with no content worth
+  moving; per-project contents vary — this repo's is a standing-findings index.)
 
 Consequence: **everything else (ROADMAP, ARCHITECTURE, DOMAIN, VERIFICATION, NOTEBOOK,
 docs/*, NOTICE.md) is pull-on-demand.** The agent finds those *only because CLAUDE.md
@@ -169,8 +169,8 @@ Antidotes, in severity order:
    source. Charters enforce one home per fact.
 3. **Make currency legible.** Dated journal files are *good* here (self-evidently snapshots).
    The danger is **undated reference prose** silently gone stale → use grep-pointers ("grep
-   the headers, they drift" — ARCHITECTURE.md already does this) or last-verified stamps on
-   volatile sections.
+   the headers, they drift" — WBPP's ARCHITECTURE.md did this at survey time) or
+   last-verified stamps on volatile sections.
 4. **Docs describe *why / contract*, not line-by-line *how*.** The tighter prose mirrors exact
    code, the faster it rots; point at code (always current) for the "how."
 5. **Cold rationale (tier 3) stays evergreen-only.** Lengthy "why" extracted to a dated cold
@@ -207,7 +207,8 @@ staleness actively works against the meta-goal (it asserts relationships authori
 
 ## Decisions locked
 
-- CLAUDE.md = router; two-tier (journal → reference) + graduation/prune workflow adopted.
+- CLAUDE.md = router; three-tier (journal → reference · cold rationale, refined from two
+  2026-06-28 — see the tier section above) + graduation/prune workflow adopted.
 - Convention-routing for the journal; enumerate-by-name only the stable reference set; **no
   DOCS.md**. Purpose/use-centric router lines.
 - Always-on lean: agent will propose cuts to CLAUDE.md (volatile detail down, routing +
@@ -270,8 +271,8 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
                         constraint (needs a FIXME/pending marker or an AUDIT `flag-code-bug`, else
                         it cries wolf on every gotcha). Consumes the trio's outputs (esp. AUDIT)
                         + project sources; composes AFTER audit (stale docs → stale backlog).
-                        Proposes priority; user owns the call. No Phase prototypes it yet —
-                        author after the trio, once real audit/maintain outputs exist to consume.
+                        Proposes priority; user owns the call. (Authored last as planned,
+                        after the trio — built & validated 2026-06-28; record below.)
                       All four GLOBAL (~/.claude/skills/), data-driven (read the project's
                       charters at runtime). Non-redundant with `init` / `improve-architecture`.
                       Author with `superpowers:writing-skills`.
@@ -280,9 +281,9 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
 Sequencing rationale: Phase 1 enables Phase 2 (charters make the audit objective) *and*
 shrinks it (history split out of scope). Phase 3 is derived, not speculative — doing Phases
 1–2 well **is** the design effort for the skills: Phase 1 prototypes SETUP, Phase 2 prototypes
-AUDIT (the in-flight `docs-reorg-phase2-audit` run — its agent prompts, flag schema, and
-conservative-evidence rule are the skill's spec), and the graduate/prune workflow prototypes
-MAINTENANCE.
+AUDIT (the `docs-reorg-phase2-audit` run, completed 2026-06-28 — its agent prompts, flag
+schema, and conservative-evidence rule are the skill's spec), and the graduate/prune workflow
+prototypes MAINTENANCE.
 
 **AUDIT — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-audit`.
 RED (2 unguided baselines on TSM `DOMAIN.md`): capable agents already cite code, key on content,
@@ -346,7 +347,7 @@ job first.
 sweep every backlog source → categorized/prioritized backlog + a **coverage manifest** + an
 **accepted-constraints** list, with the live-vs-accepted crux; reuses AUDIT's fan-out. RED exposed a
 **fixture trap** — WBPP, the project these skills were *derived from*, **contains the TRIAGE spec**
-(this design doc's pending-removal duplicate), so both "unguided" baselines read it and reproduced
+(this design doc's WBPP-side duplicate, since removed — `1bd0e68`), so both "unguided" baselines read it and reproduced
 the manifest + cry-wolf section → contaminated. (MAINTAIN hit the mirror trap: WBPP's journal was
 already-graduated.) **Lesson: validate a skill on a project it was NOT derived from.** Clean re-RED
 on TSM (no spec): both baselines gave a good ranked list but **omitted the coverage manifest and the
@@ -378,7 +379,7 @@ the skill on a small project first" note replaced with evergreen large-project c
 whats-next's rank formula names its risk term **exposure-if-deferred** (implementation riskiness
 alone doesn't raise rank) and its frontmatter description is trimmed to SDO triggers + the
 "assumes the conventions" clause. Change record:
-`openspec/changes/fix-skill-review-findings/` (in this repo).
+`openspec/changes/archive/2026-07-07-fix-skill-review-findings/` (archived in this repo).
 
 **Family review 2026-07-06/07 — fix batch, behavioral half (RED→GREEN; TP-fixture worktrees + a
 synthetic design-heavy fixture; 2 reps per scenario per phase; Sonnet workers; candidate-text
@@ -418,7 +419,7 @@ guidance, one shrank to a structural line, one was dropped:
 Word-count REFACTOR: AUDIT's step-1/step-3 model-guidance stacking compressed meaning-preserving
 (all benchmark numbers kept) — AUDIT 1287 w, SETUP 927 w after the additions.
 
-**Family review 2026-07-07 — round 2 (mechanical half applied; behavioral half queued).** A
+**Family review 2026-07-07 — round 2 (mechanical half applied; behavioral half executed — next entry).** A
 max-effort correctness+intent review after SETUP's first in-repo run verified: all three synced
 spec files satisfied by shipped text, deployed=source byte-identical, AUDIT's benchmark numbers
 faithful to the origin record, DOMAIN.md-rename propagation clean — and banked a **live GREEN**:
@@ -428,7 +429,8 @@ whats-next-spec rule, applied family-wide); README's tier line gains VERIFICATIO
 crux uses the schema term `flag-code-bug`; the journal tier reads "never retconned (edits only
 via graduation-prune)" (reconciling MAINTAIN's prune); the charter table labeled as WBPP's
 instance; the benchmark catalog's later-assigned IDs (C19/C21 solid, C20 soft) appended. Five
-behavioral candidates await RED→GREEN in `openspec/changes/fix-skill-review-round2/`: SETUP
+behavioral candidates then ran RED→GREEN (record:
+`openspec/changes/archive/2026-07-07-fix-skill-review-round2/`; outcomes next entry): SETUP
 legacy-named domain doc (rename-into-`DOMAIN.md` on re-run, else the WBPP/TSM/Library re-runs
 mint a duplicate domain home), SETUP non-git-target safety, SETUP container/portfolio-root
 router-only case (live RED this session — a scaffolded portfolio-root set was judged noise),
@@ -466,13 +468,24 @@ compression pass. Change record: `openspec/changes/archive/2026-07-07-fix-skill-
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET
 Astronomy projects + this one): **TargetPlanner (TP)**, **TargetSchedulerManager (TSM)**,
 **Library** (shared, multi-consumer), **XisfFileManager (XFM)**, **IntervalScheduler (IS)**,
-**WBPP** (here). Enforce the *shape*, not a rigid filename list:
+**WBPP** (the genesis project). Enforce the *shape*, not a rigid filename list:
+
+> **Derivation snapshot (2026-06-28) — historical record.** The survey rows and target
+> statements below describe the constellation as it stood at derivation. It has since
+> converged via SETUP runs: TSM `0b61237` 2026-06-28 (incl. `UI-CONVENTIONS`→`DOMAIN.md`);
+> Library `337f081` 2026-06-28 + a full applied AUDIT + charter'd-thin `DOMAIN.md`
+> (`275527c` 2026-07-07); TP `e20d401` 2026-07-07; XFM full set on disk, journal now
+> date-prefixed; WBPP's `OBSERVING.md` still pending its re-run. **Current truth lives in
+> each project's own docs — do not re-derive it from these rows.** (Stamped by the
+> 2026-07-10 self-audit. Nuance: Library shows no `docs/` dir — git can't track an empty
+> directory, so an enforced-but-empty journal dir has no on-disk existence until used.)
 
 **Enforce the canonical filename SET, not just the principles** (user directive 2026-06-28):
 consistent names across projects are what make switching frictionless — `ARCHITECTURE.md` is
 *always* the deep-dive; `VERIFICATION.md` *always* answers "how do I verify a change here." So
 SETUP creates the full named set every time (charter-guarded — see reconciliation below), with
-only README/RELEASING genuinely conditional.
+only README/RELEASING genuinely conditional *(container roots excepted — router-only; encoded
+2026-07-07)*.
 
 | Doc | Enforcement | Survey evidence / note |
 |---|---|---|
@@ -499,7 +512,8 @@ lz4/zstd, each with their own READMEs; WBPP `nsg-v8-fork/`), **generated** artif
 (`BenchmarkDotNet.Artifacts`, `bin`/`obj`), and **tooling** dirs (`.claude/`, `.superpowers/`,
 `openspec/`). Without this, an audit of Library drowns in vendored docs.
 
-**Refinement candidate — router-anchored scope (surfaced by the WBPP re-apply, 2026-06-28).**
+**Adopted (AUDIT) — router-anchored scope (surfaced by the WBPP re-apply, 2026-06-28; shipped
+in AUDIT's Scope section).**
 A flat dir-glob exclusion is too coarse: a vendored tree can hold a *router-listed project doc*
 (`nsg-v8-fork/NOTICE.md` is the fork's own playbook, in the router — but the Library `PCL/`
 READMEs are *not*). Better rule: **in-scope iff the router names it** (∪ the canonical set ∪ the
@@ -537,15 +551,17 @@ SETUP **creates the full set every time**, charter-guarded; content scales with 
 **Project-shape variance SETUP must handle:** the survey spans populated apps (TP 95 .cs), a
 multi-project lib (Library 180 .cs / 11 projs), and a **design-heavy / code-light** project
 (**IS**: 3 .cs but a **75 KB `SCHEDULER_DESIGN.md`** + stub ARCHITECTURE/ROADMAP). So SETUP must
-not assume code-rich — a big standalone design doc is architecture-in-waiting: treat it as a
-**`DESIGN.md` slot** (the seed that graduates into ARCHITECTURE/ROADMAP as code lands), don't
-force-split it. VERIFICATION is moot pre-code.
+not assume code-rich — a big standalone design doc is architecture-in-waiting: treat it as the
+project's **DESIGN slot** — keep it whole under its existing name and route it by name (the
+seed that graduates into ARCHITECTURE/ROADMAP as code lands), don't force-split it.
+VERIFICATION is enforced even pre-code (charter'd-thin; the earlier "moot pre-code" position
+was revised — see the enforced-set table).
 
 **First customers / killer demo:** TP's **125 KB ROADMAP + 70 KB ARCHITECTURE** (and Library's
 33 KB ROADMAP) are the pre-split WBPP state → the SETUP+AUDIT skills' first real targets, TP the
-lean/split demo. XFM is critical/daily-use and **mid-migration to Library** (a consumer of the
-multi-consumer lib; *upstream* of WBPP's XFM keyword contract), so cross-project doc consistency
-there compounds.
+lean/split demo. XFM is critical/daily-use (*upstream* of WBPP's XFM keyword contract; a
+Library migration was then thought imminent — per Library's `CONSUMERS.md` it remains
+aspirational, zero references), so cross-project doc consistency there compounds.
 
 ## Open / still to decide
 

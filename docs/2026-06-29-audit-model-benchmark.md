@@ -1,4 +1,4 @@
-# AUDIT worker-model benchmark — findings
+# 2026-06-29 — AUDIT worker-model benchmark — findings
 
 **Charter — empirical record of how the `docs-architecture-audit` skill performs across worker
 models and iterations.** Captures method, ground-truth issue catalog, per-model/per-rep scores, and
