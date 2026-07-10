@@ -11,11 +11,16 @@ Inject the candidate `SKILL.md` text into the test agents — the live Skill too
 `~/.claude/skills/`, so it only ever sees the deployed/main version; this is what lets you
 test on `dev` without deploying.
 
-Two method rules (learned the hard way; provenance in `docs/docs-architecture-design.md`):
+Three method rules (the first two learned the hard way — provenance in
+`docs/docs-architecture-design.md`; the third adopted 2026-07-10, first self-audit):
 - **Validate on a project the skill was *not* derived from** — the source project is a
   poisoned fixture (already-conformant, or it literally contains the spec).
 - **Disk-verify agent claims** — a validation pass once asserted a broken reference that
   `grep` showed was already fixed. Trust the disk, not the claim.
+- **Downstream project state is never validation evidence** — consumer projects are the
+  skills' *outputs*, not oracles: their existence/commits are checkable facts, their
+  conformance is not. Field findings enter the spec only via RED→GREEN on a non-derived
+  fixture.
 
 ## Test fixture — create on demand
 There is **no standing fixture**; create one when testing. (The original RED/GREEN rounds
