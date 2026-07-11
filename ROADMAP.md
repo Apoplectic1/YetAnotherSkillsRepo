@@ -7,6 +7,9 @@ changelog. The design doc's own open-items section closed 2026-07-07 with nothin
 - (none — next candidates surface via `whats-next` sweeps and NOTEBOOK follow-ups)
 
 ## Recently shipped
+- 2026-07-10 — **published to GitHub** (`github.com/Apoplectic1/docs-architecture`, MIT):
+  fresh public README (OpenSpec-style Why / Updating / Usage Notes backbone), LICENSE,
+  `origin` wired, `main` pushed — `dev` stays local (change: `publish-to-github`).
 - 2026-07-10 — **AUDIT worker-death hardening** (field RED from TSM's live audit run — a
   section worker died on an API 5xx and vanished silently; synthetic RED→GREEN on a
   non-derived fixture, GREEN 2/2): fan-out step 1 gains retry-a-dead-worker-once, step 3 a

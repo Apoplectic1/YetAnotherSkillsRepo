@@ -20,6 +20,7 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   grep), not an enumerated list. Companion data in `docs/audit-benchmark/`.
 
 ## Excluded from the doc set
+- `README.md` — public GitHub-facing distribution artifact (marketing copy, not a reference doc).
 - `openspec/` — opsx planning home (workflow/change artifacts only, not project docs).
 - `.claude/` — harness tooling.
 - `skills/*/SKILL.md` — the *product*, governed by `superpowers:writing-skills`, not by doc audits.
