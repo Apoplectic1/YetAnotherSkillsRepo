@@ -6,18 +6,18 @@ Your docs become the agent's persistent memory: a thin always-loaded router (`CL
 
 ## What you get
 
-Four skills, deployed to `~/.claude/skills/`:
+Four skills, shipped as standard [Agent Skills](https://agentskills.io) — authored and tested on Claude Code, loadable by any skills-compatible agent (see [Beyond Claude Code](#beyond-claude-code)):
 
 | Skill | What it does | Reach for it when |
 |---|---|---|
 | [`docs-architecture-setup`](skills/docs-architecture-setup/SKILL.md) | Scaffolds the convention — a `CLAUDE.md` router plus charter'd reference docs — around whatever docs already exist | A new project, or an existing one with scattered, missing, or drifting docs |
 | [`docs-architecture-audit`](skills/docs-architecture-audit/SKILL.md) | Verifies the reference docs still match the live code: a fan-out of audit workers converging on one merged, evidence-carrying flag list you adjudicate | After a refactor or rename; before trusting a doc as current; periodic doc-health pass |
-| [`docs-architecture-maintain`](skills/docs-architecture-maintain/SKILL.md) | Sweeps the journal for findings that have hardened into standing truth and promotes them into the reference docs | The journal has accumulated; the reference docs feel behind the notebook |
+| [`docs-architecture-maintain`](skills/docs-architecture-maintain/SKILL.md) | Sweeps the journal — the project's dated, append-only working notes (`docs/`, `NOTEBOOK.md`) — for findings that have hardened into standing truth and promotes them into the reference docs | The journal has accumulated; the reference docs feel behind it |
 | [`whats-next`](skills/whats-next/SKILL.md) | Builds a prioritized what-to-work-on view from the ROADMAP, open follow-ups, and audit output | Session planning; "what should I work on next?" |
 
 ## Quick Start
 
-Requirements: [Claude Code](https://claude.com/claude-code) (any harness that reads `~/.claude/skills/` works), `git`, `bash`.
+Requirements: [Claude Code](https://claude.com/claude-code) — or any [Agent Skills](https://agentskills.io)-compatible agent, see [Beyond Claude Code](#beyond-claude-code) — plus `git` and `bash`.
 
 ```bash
 git clone https://github.com/Apoplectic1/YetAnotherSkillsRepo.git
@@ -56,6 +56,10 @@ The skills assume the convention they enforce: a `CLAUDE.md` router plus charter
 ### Safety properties
 
 The audit is report-only until you adjudicate each flag (approve / amend / defer), and it edits documentation only — a doc claim the code violates surfaces as a suspected *code* bug, never silently rewritten to match. Workers that die mid-run (transient API errors) are retried once, and any span still uncovered is named in a coverage note: a visible gap beats false completeness.
+
+### Beyond Claude Code
+
+The skills are standard [Agent Skills](https://agentskills.io) — an open format supported by Gemini CLI, OpenAI Codex, Cursor, GitHub Copilot, Goose, and [many others](https://agentskills.io/clients). `deploy.sh` is Claude Code's installer; for another tool, copy the same `skills/*/` folders into that tool's documented skills directory. Two things degrade gracefully there: the worker-model recommendations are Claude tiers (substitute your stack's strong/cheap equivalents), and the audit's fan-out assumes parallel subagents — without orchestration the passes run sequentially (slower, same convergence loop). One thing to adapt: setup scaffolds a `CLAUDE.md` router; if your tool auto-loads a different instructions file (e.g. `AGENTS.md`), point it at the router or mirror it.
 
 ## Repo layout
 
