@@ -69,7 +69,10 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
    **diversify the worker model across the fan-out** rather than piling on same-model reps (step 3).
    **Medium effort / Haiku are a cheap *first-sweep* only:** medium's cumulative ceiling runs ~3
    real issues below high (only worth it when its cost is your scarce resource); Haiku skips
-   sections and mislabels actions — iteration doesn't fix discipline.
+   sections and mislabels actions — iteration doesn't fix discipline. **Workers die** — a
+   transient API error kills a worker and its result comes back null/empty, which the merge
+   silently filters. **Retry a dead worker once; still dead → name it in the coverage note
+   (step 3).**
 2. **Cross-reference pass** (one worker): check **inbound references** to the doc (routers, other
    docs, code comments, e.g. `.xaml`/`.cs`) for rename-orphans / dangling links, plus code↔doc
    drift the per-section workers miss. (Catches the rename-orphan class — a doc renamed, its
@@ -77,7 +80,9 @@ prioritize *what to read*; the verdict comes only from reading + grepping.
 3. **Merge + dedup** (same location+claim = one flag). **Loop-until-dry is mandatory, not a fixed N**:
    keep running rounds until one adds nothing — in testing, *three* replicate passes each still missed
    real flags a different angle caught (ground truth was ~30% larger than any single run). Don't
-   silently cap — `log` what was dropped. **But a single model's loop-until-dry plateaus at *that
+   silently cap — `log` what was dropped — and end with a **coverage note** in the adjudication
+   report: name any span whose worker died after retry (step 1) and what covered it instead
+   (e.g. only whole-doc replicates). A visible gap beats false completeness. **But a single model's loop-until-dry plateaus at *that
    model's* ceiling, not truth** (benchmarked: two models' ~20-of-25 unions shared only ~16; the
    full union needed both) — so **model diversity in the fan-out is the stronger completeness lever
    than more same-model reps**: once one model's rounds go dry, switch model rather than loop deeper.
@@ -116,6 +121,8 @@ Vendored *source* = read-only ground-truth to check against, never edit.
   (report-only), never a `fix-doc`. AUDIT never edits code and never encodes a suspected bug into the spec.
 - **Unstructured prose flags** — they don't merge across the fan-out; use the schema.
 - **Skipping the cross-reference pass** — rename-orphans / dangling links hide *outside* the doc.
+- **Swallowing dead workers** — filtering null results hides a span that lost its deep pass;
+  retry once, then name the gap in the coverage note.
 - **Auditing the journal/archive**, or scaffolding into vendored/generated trees.
 
 Full rationale + the RED baseline that justifies the fan-out:

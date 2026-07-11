@@ -5,6 +5,15 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-10 — **AUDIT worker-death hardening** (field RED: TSM's `tsm-docs-audit` run,
+  `wf_ed9d6885-ddb` — a Round-1 section worker (ROADMAP.md 73-260) died on an API
+  `server_error` mid-response; the script's `filter(Boolean)` absorbed the null: no retry, no
+  named gap). Synthetic RED on a non-derived fixture split 1/2 — the omission is
+  non-deterministic, text ships. Wrinkle worth keeping: hand-rolled JSON parsing is what
+  *organically* prompts retry thinking; the real `schema` API moves validation to the tool
+  layer, leaving `agent()→null` as the sole failure surface — exactly the path forgotten in
+  the field. GREEN 2/2 (retry-once keyed on null/throw; coverage note naming dead spans +
+  what covered them). Skill: step 1 retry-once, step 3 coverage note, one mistakes bullet.
 - 2026-07-10 — **first self-audit** (AUDIT on this repo: 4 rounds, 16 workers,
   Sonnet→Opus→Fable; 36 findings, zero code-contract violations). Lessons: (a)
   **running-commentary tense is the dominant staleness class** (17 of 18 design-doc flags) —

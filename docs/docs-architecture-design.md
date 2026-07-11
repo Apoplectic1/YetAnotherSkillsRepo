@@ -463,6 +463,27 @@ texts; fixture D's accidental ROADMAP↔NOTEBOOK mismatch was caught by both wha
 (bonus discipline signal). SETUP 927→970 words after the additions — within precedent, no
 compression pass. Change record: `openspec/changes/archive/2026-07-07-fix-skill-review-round2/`.
 
+**AUDIT worker-death hardening — 2026-07-10 (field RED → synthetic RED→GREEN on a non-derived
+fixture; 2 reps/phase; script-authoring task, report-only, no fixture tree).** Field evidence:
+TSM's `tsm-docs-audit` workflow (`wf_ed9d6885-ddb`) lost a Round-1 section worker (ROADMAP.md
+73-260, "2026-07-06..08 shipped entries") to an API `server_error` mid-response; the
+orchestrator's script — authored with the then-current skill — had `filter(Boolean)` and nothing
+else: no retry, and the adjudication report would never have said the span lost its deep pass
+(whole-doc replicates happened to cover it; nothing would have disclosed that). Synthetic RED
+(fictional HydroLog fixture — non-derived per the poisoned-fixture rule): **1/2 failed** — rep 1
+no retry, dead workers mislabeled as parse failures in a buried stats field; rep 2 organically
+retried unparseable output once and named unswept partitions. Non-deterministic omission → text
+ships. Mechanism note: hand-rolled JSON parsing is what *prompts* retry thinking; the real
+Workflow `schema` API moves validation to the tool layer, leaving `agent()→null` as the sole
+failure surface — precisely the path the field run forgot. Shipped (structural recipe elements,
+not prohibitions): step 1 "retry a dead worker once; still dead → name it in the coverage note
+(step 3)", step 3 the coverage note itself (name the span + what covered it instead), one
+Common-mistakes bullet ("Swallowing dead workers"). **GREEN 2/2**: both candidate-text reps
+built a retry-once wrapper keyed on null/throw (one correctly distinguishing `[]` = clean slice
+from null = dead) and a coverage-note section naming dead spans with their fallback coverage
+(one pre-computed a `coveredBy` string per worker class; one refused to count a
+round-with-deaths as dry). AUDIT SKILL.md 1287→1382 words — within precedent.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

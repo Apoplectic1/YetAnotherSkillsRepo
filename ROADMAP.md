@@ -7,6 +7,11 @@ changelog. The design doc's own open-items section closed 2026-07-07 with nothin
 - (none — next candidates surface via `whats-next` sweeps and NOTEBOOK follow-ups)
 
 ## Recently shipped
+- 2026-07-10 — **AUDIT worker-death hardening** (field RED from TSM's live audit run — a
+  section worker died on an API 5xx and vanished silently; synthetic RED→GREEN on a
+  non-derived fixture, GREEN 2/2): fan-out step 1 gains retry-a-dead-worker-once, step 3 a
+  coverage note naming lost spans + their fallback coverage. On `dev`; deploys with the next
+  `main` merge.
 - 2026-07-10 — **first self-audit** (4 rounds, 3 models, 36 findings; lessons in NOTEBOOK):
   design-doc running-commentary staleness fixed (SETUP-spec survey stamped as a 2026-06-28
   derivation snapshot), `README.md` dissolved into `DOMAIN.md`/`ARCHITECTURE.md` (the
