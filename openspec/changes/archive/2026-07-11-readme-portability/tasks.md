@@ -13,5 +13,5 @@
 
 ## 3. Later, on user go-ahead (outside this change if deferred)
 
-- [ ] 3.1 Merge `dev` → `main` (ff), `git push origin main`, verify rendered subsection + anchors on github.com
-- [ ] 3.2 Archive the change (`openspec archive readme-portability --yes` — judge by output text)
+- [x] 3.1 Merge `dev` → `main` (ff), `git push origin main`, verify rendered subsection + anchors on github.com (WebFetch: 4/4 checks pass — sections, adopters+caveats, journal gloss, anchors)
+- [x] 3.2 Archive the change (`openspec archive readme-portability --yes` — judge by output text)
