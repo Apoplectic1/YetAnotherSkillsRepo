@@ -23,6 +23,10 @@ without deploying (the RED/GREEN harness injects candidate SKILL.md text — see
 `VERIFICATION.md`). Merge `dev` → `main`, then deploy. To intentionally deploy the current
 branch for live dogfooding: `./deploy.sh --force` (loud warning).
 
-`dev` = working (all authoring lands here); `main` = distribution-ready ref. No remote yet —
-GitHub publication would be distribution, not a change of source-of-truth (local repo is
-canonical).
+`dev` = working (all authoring lands here); `main` = distribution-ready ref.
+
+## Public mirror
+`origin` = `github.com/Apoplectic1/YetAnotherSkillsRepo` (published 2026-07-10; renamed from
+`docs-architecture` the same day — GitHub redirects the old name). Distribution only, not a
+change of source-of-truth (local repo is canonical). Publish = `git push origin main`;
+`dev` never pushes. Deploy (local install) and push (public mirror) are independent steps.

@@ -1,6 +1,6 @@
-# docs-architecture
+# YetAnotherSkillsRepo
 
-Claude Code skills that set up, audit, and maintain AI-navigable project documentation.
+Claude Code skills, RED/GREEN-tested before they ship. Flagship: the **docs-architecture** family — skills that set up, audit, and maintain AI-navigable project documentation.
 
 Your docs become the agent's persistent memory: a thin always-loaded router (`CLAUDE.md`), a small set of charter'd reference docs, and an append-only journal — kept honest by audits that treat the code as ground truth.
 
@@ -20,8 +20,8 @@ Four skills, deployed to `~/.claude/skills/`:
 Requirements: [Claude Code](https://claude.com/claude-code) (any harness that reads `~/.claude/skills/` works), `git`, `bash`.
 
 ```bash
-git clone https://github.com/Apoplectic1/docs-architecture.git
-cd docs-architecture
+git clone https://github.com/Apoplectic1/YetAnotherSkillsRepo.git
+cd YetAnotherSkillsRepo
 bash deploy.sh        # copies skills/*/ → ~/.claude/skills/
 ```
 

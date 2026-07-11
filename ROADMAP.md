@@ -7,6 +7,10 @@ changelog. The design doc's own open-items section closed 2026-07-07 with nothin
 - (none — next candidates surface via `whats-next` sweeps and NOTEBOOK follow-ups)
 
 ## Recently shipped
+- 2026-07-10 — **GitHub mirror renamed** `docs-architecture` → `YetAnotherSkillsRepo`
+  (redirects live); README reframed as skills home (flagship: docs-architecture family);
+  `github-distribution` spec Purpose filled + URL updated; RELEASING's stale "No remote
+  yet" replaced with the mirror section (missed at publication).
 - 2026-07-10 — **published to GitHub** (`github.com/Apoplectic1/docs-architecture`, MIT):
   fresh public README (OpenSpec-style Why / Updating / Usage Notes backbone), LICENSE,
   `origin` wired, `main` pushed — `dev` stays local (change: `publish-to-github`).
