@@ -15,13 +15,15 @@ design doc: `docs/docs-architecture-design.md`.
 
 ## The skill family (all 4 built + deployed)
 A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
-1. **SETUP** — bootstraps the doc skeleton (enforced filename set, charter-guarded) + the
-   CLAUDE.md router + conventions in any project. (Generalizes WBPP Phase 1.) RED/GREEN-validated.
-2. **AUDIT** — placement (vs charter) + currency (vs live code) via a structured-schema
-   fan-out + cross-ref pass + loop-until-dry; evidence-carrying flags → adjudicate → fix.
-   (Generalizes WBPP Phase 2.) RED/GREEN-validated.
-3. **MAINTAIN** — graduate journal → reference + prune-the-source (preserve the why/when);
-   reuses AUDIT's fan-out. (Generalizes WBPP graduate/prune.) RED/GREEN-validated.
+1. **SETUP** (`docs-architecture-setup`) — bootstraps the doc skeleton (enforced filename
+   set, charter-guarded) + the CLAUDE.md router + conventions in any project. (Generalizes
+   WBPP Phase 1.) RED/GREEN-validated.
+2. **AUDIT** (`docs-architecture-audit`) — placement (vs charter) + currency (vs live code)
+   via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying
+   flags → adjudicate → fix. (Generalizes WBPP Phase 2.) RED/GREEN-validated.
+3. **MAINTAIN** (`docs-architecture-maintain`) — graduate journal → reference +
+   prune-the-source (preserve the why/when); reuses AUDIT's fan-out. (Generalizes WBPP
+   graduate/prune.) RED/GREEN-validated.
 4. **TRIAGE** (`whats-next`) — sweep every backlog source → categorized/prioritized backlog +
    coverage manifest + accepted-constraints list; live-vs-accepted crux; reuses AUDIT's
    fan-out. (Planning layer; consumes the trio's outputs.) RED/GREEN-validated.
