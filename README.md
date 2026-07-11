@@ -29,7 +29,7 @@ Then, in any project, ask Claude Code to **"set up this project's docs"** — th
 
 ## Why docs-architecture?
 
-- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: the router always loads, and everything else is one hop away by charter.
+- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: the router always loads, and everything else is one hop away by charter. The router is a thin map — one line per doc saying what lives there — so the whole doc set stays reachable at near-zero standing context cost, and those one-liners double as the charters the audit judges placement against.
 - **Docs written for humans drift silently.** Nothing forces them back to the truth until someone trusts a stale claim. The audit treats code as ground truth and requires evidence on every flag — a `file:line` citation or the literal `unverifiable → ask user` — and never guesses stale.
 - **One careful read is not an audit.** In baseline testing, a single careful pass surfaced only about half the real issues ([benchmark](docs/2026-06-29-audit-model-benchmark.md)). The audit skill fans out per-section workers plus replicate rounds and loops until a round finds nothing new — then switches worker model, because one model's "done" is that model's ceiling, not the truth.
 - **Skill text is tested, not vibed.** Every rule shipped RED→GREEN: watch an unguided agent fail, write the minimal text that fixes it, watch it comply ([design + provenance](docs/docs-architecture-design.md)).
