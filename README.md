@@ -61,6 +61,8 @@ The audit is report-only until you adjudicate each flag (approve / amend / defer
 
 `skills/` is the product; everything else — `docs/`, `NOTEBOOK.md`, `openspec/` — is the open lab notebook: the RED/GREEN baselines, benchmarks, and design records behind every rule in the skill text (cited in skill footers by the author's local path; in this repo they live under `docs/`). The repo documents itself with the same convention the skills enforce.
 
+The `openspec/` change records are planned with [OpenSpec](https://github.com/Fission-AI/OpenSpec) — spec-driven change workflows for AI coding, and the README whose shape this one borrows. Recommended.
+
 ## License
 
 [MIT](LICENSE)
