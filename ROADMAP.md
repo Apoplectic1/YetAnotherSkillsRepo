@@ -4,7 +4,10 @@
 changelog. The design doc's own open-items section closed 2026-07-07 with nothing open.
 
 ## Open
-- (none — next candidates surface via `whats-next` sweeps and NOTEBOOK follow-ups)
+- **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
+  restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
+  two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
+  Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
 - 2026-07-10 — **GitHub mirror renamed** `docs-architecture` → `YetAnotherSkillsRepo`
