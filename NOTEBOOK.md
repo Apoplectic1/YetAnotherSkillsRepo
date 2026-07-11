@@ -5,6 +5,11 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-10 — **openspec archive prompts interactively** (third CLI gotcha, joins the
+  2026-07-07 pair): `archive` asks "Proceed with spec updates?" and dies in a
+  non-interactive shell ("User force closed the prompt", exit 1 — *after* printing
+  "Task status: ✓ Complete"). Run `openspec archive <name> --yes`; keep judging by output
+  text, never exit code.
 - 2026-07-10 — **AUDIT worker-death hardening** (field RED: TSM's `tsm-docs-audit` run,
   `wf_ed9d6885-ddb` — a Round-1 section worker (ROADMAP.md 73-260) died on an API
   `server_error` mid-response; the script's `filter(Boolean)` absorbed the null: no retry, no
