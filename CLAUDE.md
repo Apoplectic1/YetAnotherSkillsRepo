@@ -25,6 +25,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 ## Excluded from the doc set
 - `README.md` — public GitHub-facing distribution artifact (marketing copy, not a reference doc).
 - `openspec/` — opsx planning home (workflow/change artifacts only, not project docs).
+- `harness/` — RED/GREEN fixture sources: the fixture's own CLAUDE/ARCHITECTURE/etc. are
+  **test content for a fictional project**, never this repo's docs (see `harness/README.md`).
 - `.claude/` — harness tooling.
 - `skills/*/SKILL.md` — the *product*, governed by `superpowers:writing-skills`, not by doc audits.
 

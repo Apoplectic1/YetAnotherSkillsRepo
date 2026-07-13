@@ -1,0 +1,9 @@
+[project]
+name = "tidepool"
+version = "0.6.0"
+description = "Plan tidepooling trips around low-tide windows using NOAA predictions."
+requires-python = ">=3.11"
+dependencies = ["requests>=2.31", "astral>=3.2"]
+
+[project.scripts]
+tidepool = "tidepool.cli:main"

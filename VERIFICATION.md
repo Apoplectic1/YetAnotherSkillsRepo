@@ -22,13 +22,18 @@ Three method rules (the first two learned the hard way — provenance in
   conformance is not. Field findings enter the spec only via RED→GREEN on a non-derived
   fixture.
 
-## Test fixture — create on demand
-There is **no standing fixture**; create one when testing. (The original RED/GREEN rounds
-used a pristine TargetPlanner copy at `E:\Projects\AI\TargetPlanner`, since deleted.)
+## Test fixture — harness source + create-on-demand recipe
+A **standing fixture source** lives at `harness/tidepool-fixture/` (round-3 synthetic:
+cataloged planted defects + verified genuine drift; ground truth in
+`harness/catalog-tidepool.md`, usage + derivation caveats in `harness/README.md`). Per-run
+copies are still disposable: copy to scratch, `git init`, baseline marker commit.
 
-Recipe: copy a **pristine, skills-unmodified** project — close-to-worst-case is best
-(missing/scattered docs, no router, drift) — to a scratch location, and commit an empty
-marker commit ("SKILLS-TEST BASELINE") to name the baseline.
+For tests the standing fixture can't serve (derivation caveat, or a different project
+shape), create one on demand: copy a **pristine, skills-unmodified** project —
+close-to-worst-case is best (missing/scattered docs, no router, drift) — to a scratch
+location, and commit an empty marker commit ("SKILLS-TEST BASELINE") to name the baseline.
+(The original rounds used a pristine TargetPlanner copy, since deleted; arms 1–2 used
+FermCtl/TrailKit, which died with the Cowork container.)
 
 **Reset contract** — restore baseline after every test run that mutated the tree:
 ```
