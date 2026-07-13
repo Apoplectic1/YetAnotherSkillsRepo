@@ -1,7 +1,8 @@
 # ROADMAP.md — forward plan
 
-**Charter:** forward-looking design + a short Recently-shipped digest. Git is the full
-changelog. The design doc's own open-items section closed 2026-07-07 with nothing open.
+**Charter:** forward-looking design + a short Recently-shipped digest (shipped history →
+`CHANGELOG.md` when it accrues; git backstops commits). The design doc's own open-items
+section closed 2026-07-07 with nothing open.
 
 ## Open
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
@@ -10,6 +11,11 @@ changelog. The design doc's own open-items section closed 2026-07-07 with nothin
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-13 — **hybrid-rulebook family shipped + CHANGELOG convention** (change:
+  `apply-hybrid-rewrite`): all four SKILL.md replaced with the RED/GREEN-validated hybrid
+  candidates (rule IDs, −21% words, portable GitHub-URL footers); SETUP A2′ + AUDIT
+  R25/R14/R21 encode shipped-history→`CHANGELOG.md`; deployed + pushed. Validation:
+  `docs/2026-07-13-round3-red-green-results.md`. TidePool fixture promoted to `harness/`.
 - 2026-07-10 — **GitHub mirror renamed** `docs-architecture` → `YetAnotherSkillsRepo`
   (redirects live); README reframed as skills home (flagship: docs-architecture family);
   `github-distribution` spec Purpose filled + URL updated; RELEASING's stale "No remote
