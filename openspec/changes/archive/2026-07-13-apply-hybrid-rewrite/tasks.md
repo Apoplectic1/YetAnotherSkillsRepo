@@ -29,9 +29,9 @@
 - [x] 3.3 `openspec validate` passes for the change artifacts (if available).
 
 ## 4. Ship
-- [ ] 4.1 Commit on `dev` (skills + repo lines + design-doc edit + openspec artifacts,
+- [x] 4.1 Commit on `dev` (skills + repo lines + design-doc edit + openspec artifacts,
       one commit).
-- [ ] 4.2 Merge `dev` → `main`.
-- [ ] 4.3 `bash deploy.sh` from `main`; confirm deployed `~/.claude/skills/*/SKILL.md`
+- [x] 4.2 Merge `dev` → `main`.
+- [x] 4.3 `bash deploy.sh` from `main`; confirm deployed `~/.claude/skills/*/SKILL.md`
       match `skills/` (deploy output + spot diff).
-- [ ] 4.4 Push `main` to origin (distribution channel publishes main only).
+- [x] 4.4 Push `main` to origin (distribution channel publishes main only).
