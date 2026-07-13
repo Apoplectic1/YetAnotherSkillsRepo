@@ -6,13 +6,16 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 
 ## Reference docs (current truth — edit in place)
 - `ARCHITECTURE.md` — repo layout, the 4-skill family + its dependency order, dev→deploy pipeline.
-- `ROADMAP.md` — forward plan + Recently-shipped digest (git is the full changelog).
+- `ROADMAP.md` — forward plan + Recently-shipped digest (shipped history → `CHANGELOG.md`
+  when it accrues; git backstops commits).
 - `VERIFICATION.md` — RED/GREEN subagent harness, on-demand fixture recipe + reset contract.
 - `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
 - `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
 - `docs/docs-architecture-design.md` — **canonical design**: full spec, tier model, RED/GREEN
-  provenance. Deployed skills reference this file *and* `docs/2026-06-29-audit-model-benchmark.md`
-  by absolute name — move or split neither.
+  provenance. Every deployed skill footer links this file **by public GitHub URL** (`main`) —
+  move, split, or rename it and every shipped footer breaks. (Benchmark figures ride in skill
+  text as uncited claims; `docs/2026-06-29-audit-model-benchmark.md` is no longer name-cited
+  from skill text.)
 
 ## Journal (dated capture)
 - `NOTEBOOK.md` — running lab notebook (small findings).

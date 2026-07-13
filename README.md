@@ -64,7 +64,7 @@ The skills are standard [Agent Skills](https://agentskills.io) — an open forma
 
 ## Repo layout
 
-`skills/` is the product; everything else — `docs/`, `NOTEBOOK.md`, `openspec/` — is the open lab notebook: the RED/GREEN baselines, benchmarks, and design records behind every rule in the skill text (cited in skill footers by the author's local path; in this repo they live under `docs/`). The repo documents itself with the same convention the skills enforce.
+`skills/` is the product; everything else — `docs/`, `NOTEBOOK.md`, `openspec/` — is the open lab notebook: the RED/GREEN baselines, benchmarks, and design records behind every rule in the skill text (each skill footer links the canonical design doc by its public GitHub URL; in this repo the evidence lives under `docs/`). The repo documents itself with the same convention the skills enforce.
 
 The `openspec/` change records are planned with [OpenSpec](https://github.com/Fission-AI/OpenSpec) — spec-driven change workflows for AI coding, and the README whose shape this one borrows. Recommended.
 

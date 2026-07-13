@@ -5,65 +5,51 @@ description: Use when asked "what should I work on next?", "what's the backlog?"
 
 # What's next (backlog triage)
 
-## Overview
-Answer "what's next?" by **sweeping every backlog source**, separating **live-actionable** work from
-**accepted constraints**, and returning a **categorized, prioritized** backlog **plus a coverage
-manifest**. Baseline finding (clean-fixture RED): an unguided "what's next" gives a decent ranked
-list but **omits the two things that make it trustworthy** — a **coverage manifest** ("did I see
-everything?") and an explicit **accepted-constraint list** ("I considered X; it's by-design; skip
-it"). Prioritization is innate; this skill guarantees the two missing pieces + sweep completeness.
+Answer "what's next?" by **sweeping every backlog source**, separating **live-actionable** work
+from **accepted constraints**, and returning a **categorized, prioritized backlog plus a
+coverage manifest**. Prioritization is innate to a capable agent; the rules below force the two
+things unguided runs omit — the manifest ("did I see everything?") and the accepted-constraints
+list ("considered; by design; skip") — plus sweep completeness. This is the planning layer on
+top of the docs-architecture family (it consumes audit flags and maintain's residue as backlog
+inputs; doc hygiene itself belongs to the siblings). **After** an audit when doc currency is in
+doubt: stale docs → stale backlog, so currency-check first.
 
-## When to use
-- "What should I work on next?" / planning a session / building a backlog / "am I seeing everything?"
-- **After** an audit (`docs-architecture-audit`): stale docs → stale backlog, so currency-check first.
-- Consumes the sibling skills' outputs (audit flags, maintain's residue) as backlog inputs.
-- NOT for doc hygiene itself — this is the planning layer on top (setup/audit/maintain do the docs).
-
-## Sweep every source — the checklist (don't skip a row; manifest what you can't reach)
+## Sweep — every row; manifest whatever you can't reach
 | Source | Yields |
 |---|---|
 | working tree + `git status` / `log` | uncommitted WIP to finish; recent direction |
-| ROADMAP "Future directions" / "Next" / Known-limitations | planned features + accepted limits |
-| `CLAUDE.md` + docs gotchas | hazards — but most are *accepted constraints*, not work (see crux) |
+| ROADMAP "Future directions" / "Next" / known-limitations | planned features + accepted limits |
+| `CLAUDE.md` + docs gotchas | hazards — most are *accepted constraints*, not work (W1–W2) |
 | journal `docs/` + `NOTEBOOK.md` "pending / open items" | un-promoted decisions, open questions |
-| code `TODO` / `FIXME` (note **whose** — fork-owned vs vendored/upstream) | actionable only if fork-owned |
-| OpenSpec `changes/` (active vs archived) | in-flight work |
+| code `TODO` / `FIXME` (note **whose** — first-party vs vendored/upstream) | actionable only if first-party |
+| planning/change-tool state (e.g. `openspec/` changes, issue tracker) | in-flight work |
 | **audit findings** (`docs-architecture-audit` output) | doc-drift fixes |
 | cross-repo blockers / consumers | dependencies + sequencing |
 | tests / build status | red = urgent |
 
-## The crux — live-actionable vs accepted-constraint (or it cries wolf)
-A gotcha / limitation is **work** only if it's a *live* problem. Most are **accepted constraints**
-(by-design, "do not re-litigate", deferred-by-decision, vendored/upstream). Treat as actionable
-**only** when it carries a live marker — a `TODO`/`FIXME` you own, an audit `flag-code-bug`, a
-ROADMAP "Next" item, or an explicit pending/open marker. Everything else → the accepted-constraint
-list (shown, not actioned). **Default to accepted when unsure** — a false "todo" on every gotcha
-trains the user to ignore the output.
+## Rules
+- **W1.** Live-actionable requires a **live marker**: a first-party `TODO`/`FIXME`, an audit
+  `flag-code-bug`, a ROADMAP "Next" item, or an explicit pending/open marker. Everything else —
+  by-design, "do not re-litigate", deferred-by-decision, vendored/upstream — → the
+  accepted-constraints list (shown, not actioned).
+- **W2.** **Default to accepted when unsure.** *(A false "todo" on every gotcha trains the user
+  to ignore the output.)*
+- **W3.** Bucket each actionable: **urgent** (red tests / broken) · **deferred-fix** ·
+  **future-feature** · **doc-debt**.
+- **W4.** Rank by value × (1 / effort) × **exposure-if-deferred** — the cost of *not* doing it
+  (what it blocks or de-risks); implementation riskiness alone never raises rank. Tag effort
+  (XS/S/M/L) + risk.
+- **W5.** Deliver a **top-N with a recommended sequence** (what unblocks / de-risks what) —
+  never a flat list. Priority is a *proposal*; the user owns the call.
+- **W6.** **REQUIRED:** reuse the fan-out from **docs-architecture-audit** — independent passes,
+  merge, **loop-until-dry**. *(Passes agree on the core; the margins are a coin-flip.)*
 
-## Categorize + prioritize
-Bucket each actionable item: **{ urgent (red tests / broken) · deferred-fix · future-feature ·
-doc-debt }**. Rank by value × (1 / effort) × **exposure-if-deferred** (the cost of *not* doing it —
-what it blocks or de-risks; mere implementation riskiness does not raise rank); give a **top-N with a
-recommended sequence** (what unblocks / de-risks what). Tag effort (XS/S/M/L) + risk. Priority is a *proposal* — the user owns the call.
+## Two REQUIRED outputs
+- **W7.** **Coverage manifest** — a table over every sweep row: **swept** (with what it yielded)
+  or **not reached** (and why — no run logs, vendored, sibling repo). *(Without it the backlog
+  reads complete when it isn't — the #1 unguided omission.)*
+- **W8.** **Accepted constraints — "considered, not work"** — each with the one-line reason to
+  skip. *(Shows the work; prevents re-litigation.)*
 
-## Fan out for completeness
-**REQUIRED:** use the fan-out from **docs-architecture-audit** (independent passes + merge +
-loop-until-dry). Passes agree on the core but the *margins* are a coin-flip — different passes surface
-different long-tail items. Merge them.
-
-## Two REQUIRED outputs (the baseline omits both)
-1. **Coverage manifest** — a table over every source row above: **swept** (with what it yielded) or
-   **not reached** (and why — no run logs, vendored, sibling repo). The "am I seeing everything?"
-   answer; without it the list reads complete when it isn't.
-2. **Accepted constraints — "considered, not work"** — the items that surfaced but are by-design /
-   decided / vendored, each with the one-line reason to skip. Shows the work; prevents re-litigation.
-
-## Common mistakes
-- **No coverage manifest** — the #1 omission; the backlog looks complete when it isn't.
-- **Crying wolf** — flagging accepted constraints / vendored TODOs / "do-not-re-litigate" items as work.
-- **Skipping the audit-first step** — building a backlog on stale doc claims.
-- **Single pass** — margins are a coin-flip; fan out + merge.
-- **A flat list** — no buckets, no top-N, no sequence is a dump, not a plan.
-
-Full rationale + the RED baseline (clean vs spec-contaminated fixture):
-`E:\Projects\AI\Skills\docs\docs-architecture-design.md`.
+Full rationale + RED/GREEN provenance:
+https://github.com/Apoplectic1/YetAnotherSkillsRepo/blob/main/docs/docs-architecture-design.md

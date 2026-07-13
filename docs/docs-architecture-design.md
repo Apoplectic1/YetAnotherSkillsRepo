@@ -188,13 +188,18 @@ current-design-relevant?"* No → `archive/` (or just let git hold it); Yes → 
 set (journal / reference / a short ROADMAP digest). Physical separation makes the tier legible.
 (Distinct from `openspec/changes/archive/`, OpenSpec's completed-change store.)
 
-**Shipped history / "changelog": git is the changelog.** Keep a short "Recently shipped" digest in
-`ROADMAP.md` (current-relevant); the long tail is `git log`. **No `CHANGELOG.md`** (redundant with
-git) and **never route shipped-history into `archive/`** — a still-referenced changelog isn't
-archival, and routing it there blurs the term. Referenceable history (decision records, findings,
-the *why* behind current things) is the **journal** (`docs/YYYY-MM-DD-*.md`), not archive.
-(Resolves the RED-baseline split — rep1 shipped→archive, rep2 invented CHANGELOG — by adopting
-neither.)
+**Shipped history / "changelog": `CHANGELOG.md`, journal tier (user, 2026-07-12 — supersedes
+the 2026-06-28 "git is the changelog / no CHANGELOG.md" rule; decision record:
+`docs/2026-07-12-changelog-convention-adopted.md`).** Shipped history lives in **`CHANGELOG.md`**
+— append-only, dated, newest first, never currency-audited; created when history accrues
+(conditional, like README). `ROADMAP.md` keeps only a short "Recently shipped" digest plus a
+one-line pointer; never a long dated history embedded in ROADMAP. Unchanged: **never route
+shipped-history into `archive/`** (a still-referenced changelog isn't archival), and git remains
+the commit-level backstop — the changelog holds the curated *story* (design summaries, test
+counts, rationale) that `git log` doesn't. The three-way journal split: finding → NOTEBOOK ·
+shipped unit → CHANGELOG · substantial record → `docs/YYYY-MM-DD-*.md`. (The old rule's
+"redundant with git" rationale fell against curated real-world history — RED→GREEN round 3,
+`docs/2026-07-13-round3-red-green-results.md`.)
 
 OpenSpec role: **workflow/task only** (explore / propose rituals). It is *not* a third
 knowledge home — durable knowledge stays in `.md` docs. `openspec/specs/` stays sparse by
