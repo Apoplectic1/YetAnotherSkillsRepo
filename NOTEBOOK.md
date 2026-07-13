@@ -5,6 +5,12 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-13 — **TestProjects/ stays untracked — decided, don't re-propose.** Nested `.git`
+  means a plain add records only a contentless gitlink stub, and committing real content
+  would publish the user's TargetPlanner source through the public mirror on the next
+  `main` push. Backup, if ever wanted, = push the fixture's own nested repo to a private
+  remote. Keep until fat-router-lean + the B4 portfolio probe ship (it holds the real 24 KB
+  router those need); recreatable-with-effort from real TP history after that.
 - 2026-07-13 — **fat-router-lean backlog item refined** (disposition of the user's held
   q1.txt question, now deleted; source: ecological field finding 1 — both skill generations
   left a 24 KB router's glossary/contract weight in place, and the audit didn't placement-flag
