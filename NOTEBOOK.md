@@ -5,6 +5,22 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-13 — **fat-router-lean backlog item refined** (disposition of the user's held
+  q1.txt question, now deleted; source: ecological field finding 1 — both skill generations
+  left a 24 KB router's glossary/contract weight in place, and the audit didn't placement-flag
+  it). Two linked pieces, both gated on RED→GREEN: **(a) lean rule** — SETUP relocates
+  off-charter router weight to charter-selected reference docs on encounter (glossary →
+  DOMAIN.md; abbreviations-for-CLI-use are an authoring convention, squarely DOMAIN charter),
+  plus one AUDIT clarifying clause making the router itself explicitly placement-audited.
+  Leaning: content test ("reference content vs routing/gotchas") over a numeric size
+  threshold, with the ~40 KB perf line as the *why*. Est. ~450–500k subagent tokens
+  (SETUP 2+2 reps + narrow AUDIT probe; `harness/tidepool-fixture` + fat-router variant —
+  not poisoned: rule derives from the TP ecological run, not TidePool). **(b) B4 amendment**
+  — portfolio-shared DOMAIN.md at a container root (user's Astronomy-portfolio glossary
+  idea): collides with shipped B4 ("router only; portfolio-level set is noise"), so it's a
+  rule change with a single-sourcing design question (per-project DOMAIN.md cross-refs up?).
+  Cheap probe first: run SETUP at `E:\Projects\VisualStudio\Astronomy` and observe (expected:
+  router-only per B4; old non-portfolio projects get B3 flag-and-skip lines — not a blocker).
 - 2026-07-10 — **openspec archive prompts interactively** (third CLI gotcha, joins the
   2026-07-07 pair): `archive` asks "Proceed with spec updates?" and dies in a
   non-interactive shell ("User force closed the prompt", exit 1 — *after* printing
