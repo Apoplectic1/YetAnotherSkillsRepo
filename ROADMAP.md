@@ -5,6 +5,12 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
+- **AUDIT scaled-coverage mode** (field "R26", 2026-07-17 — gated, GREEN-only): one-round mode
+  for small / low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK
+  2026-07-17; batch-mate for the fat-router-lean AUDIT clause.
+- **fat-router-lean + B4 portfolio probe** (2026-07-13 — gated RED→GREEN): SETUP lean rule +
+  AUDIT router-placement clause; B4 portfolio-DOMAIN amendment (cheap SETUP probe at the
+  Astronomy container first). Refined in NOTEBOOK 2026-07-13; est. ~450–500k subagent tokens.
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.

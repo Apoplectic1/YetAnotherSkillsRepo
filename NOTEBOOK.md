@@ -5,6 +5,26 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-17 — **AUDIT scaled-coverage backlog item (field "R26") — pulled out of the skill,
+  gated.** Added mid-session from another (small) project straight into the skill text — repo
+  copy *and* live deployed copy, bypassing dev→main→deploy.sh — reviewed and reverted same day
+  (live copy restored to main's state). Concept accepted, wording deferred. Target shape from
+  review: predicate = **small doc set AND low expected drift** (not source-file count); mode =
+  one per-section round + the R19 cross-reference pass, **pinned to the R22 default tier**
+  (else R22's "first sweep only" cheap-tier allowance legally covers the whole audit), no loop
+  / no model switch; coverage note announces the mode + what a full run would add; full loop
+  stays default for large/drift-prone sets and on request. Companion edits found mandatory:
+  Procedure step 3 gains the branch (else the unconditional loop-until-dry checklist wins),
+  R18 gains a sanctioned-exception clause (its "never any fixed N" contradicts the rule),
+  italic rationale marks it a **user-set cost tradeoff, not an empirical ceiling**, provenance
+  date goes to the design doc (whose coverage section still mandates the unconditional loop —
+  needs a dated addendum), and the "~12–15 workers" instance-overfit count drops (count falls
+  out of section count). Gate: GREEN-only — preference rule, no failure to reproduce (cf.
+  2026-07-07 "AUDIT right-sizing" passed RED no-failure): TidePool scaled-branch reps + one
+  not-small control that must NOT trigger, + a catalog entry. Est. ~150–200k subagent tokens;
+  natural batch-mate for the fat-router-lean AUDIT clause (same fixture family, one deploy).
+  Open sub-question: audit-only or family-wide (MAINTAIN / whats-next also mandate
+  loop-until-dry)?
 - 2026-07-13 — **TestProjects/ stays untracked — decided, don't re-propose.** Nested `.git`
   means a plain add records only a contentless gitlink stub, and committing real content
   would publish the user's TargetPlanner source through the public mirror on the next
