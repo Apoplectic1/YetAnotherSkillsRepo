@@ -47,6 +47,13 @@ capable agent already does well, so the rules below force what one pass can't gi
   is **one structural placement flag** → `move-to CHANGELOG.md` — the embedded entries are
   **not** currency-flagged individually. *(The entries are journal-tier; the structural
   misplacement, not per-entry drift, is the finding — per-entry flags bury it.)*
+- **R26.** The `CLAUDE.md` router is **itself placement-audited**: reference content embedded
+  in it (glossary, contract/API prose, conventions, subsystem mechanics — anything neither
+  routing nor a load-bearing gotcha) → **one structural flag per block** → `move-to <charter
+  home>`. Never per-fact *placement* flags, and never flag routing lines or gotchas,
+  regardless of router size. Currency flags on stale claims inside the block remain
+  legitimate — unlike R25's journal-tier entries, router-embedded reference content is
+  reference-tier; the two axes stay judged separately.
 
 ## Scope
 - **R12.** In-scope = what the `CLAUDE.md` router names, ∪ the canonical reference set.

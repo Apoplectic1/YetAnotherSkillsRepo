@@ -26,7 +26,7 @@ projects.)*
 ## The enforced set — create every file, charter-guarded
 | File | Role |
 |---|---|
-| `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin) |
+| `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin — enforced by S7) |
 | `ARCHITECTURE.md` | subsystem mechanics (how it works) |
 | `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
 | `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings) |
@@ -43,6 +43,17 @@ projects.)*
 - **S6.** The domain doc is **always named `DOMAIN.md`** — do not elicit a content-specific
   name; do not rename an existing `DOMAIN.md`. Whatever the content *is*, it lives there; when
   absent, create it charter'd-thin. Never skip it.
+- **S7.** **Lean an encountered fat router in this run:** reference content inside
+  `CLAUDE.md` — glossary, contract/API prose, conventions, subsystem mechanics: anything
+  that is neither routing nor a load-bearing gotcha — **moves now** to its charter home
+  (glossary / authoring conventions → `DOMAIN.md`; mechanics / contracts →
+  `ARCHITECTURE.md`), as an S1 content-preserving move with a router pointer where needed;
+  name each move in the run report. The trigger is **content, never size** — a gotcha-dense
+  router stays, a small glossary still moves. A hybrid block **splits**: the gotcha line
+  stays in the router, the reference body moves. B2's "never clobber" forbids overwriting an
+  existing setup, **not** relocating its off-charter weight — "noted as a follow-up" is the
+  job left undone. *(Unguided runs leave a 24 KB router fat and grow it; oversized routers
+  load every conversation and degrade the harness — the why, never the trigger.)*
 
 ## Tiers & routing — teach these in CLAUDE.md
 - **T1.** **journal** (dated capture) = `docs/YYYY-MM-DD-*.md` + `NOTEBOOK.md` +

@@ -5,18 +5,25 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **AUDIT scaled-coverage mode** (field "R26", 2026-07-17 — gated, GREEN-only): one-round mode
-  for small / low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK
-  2026-07-17; batch-mate for the fat-router-lean AUDIT clause.
-- **fat-router-lean + B4 portfolio probe** (2026-07-13 — gated RED→GREEN): SETUP lean rule +
-  AUDIT router-placement clause; B4 portfolio-DOMAIN amendment (cheap SETUP probe at the
-  Astronomy container first). Refined in NOTEBOOK 2026-07-13; est. ~450–500k subagent tokens.
+- **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
+  low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
+  informal "field R26" alias is stale — R26 was taken by the router-placement clause
+  (shipped 2026-07-17); assign the next free number when it ships.
+- **B4 portfolio probe** (2026-07-13): B4 portfolio-DOMAIN amendment — cheap observational
+  SETUP probe at the Astronomy container first (expected router-only per B4; old projects get
+  B3 flag-and-skip lines). Refined in NOTEBOOK 2026-07-13. *(Split out 2026-07-17: the
+  fat-router-lean half shipped as SETUP S7 + AUDIT R26.)*
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-17 — **fat-router-lean shipped: SETUP S7 + AUDIT R26** (change: `fat-router-lean`).
+  Router lean on encounter (content test, perform via S1 move, B2 carve-out) + router
+  placement-audited (one structural flag per block, currency orthogonal). RED reproduced only
+  at scale (real 24 KB TP router, 2/2; small synthetic 0/3) — mechanism: B2 misread as
+  forbidding the trim. GREEN 4/4 disk-verified. Fixture catalog: `harness/catalog-fat-router.md`.
 - 2026-07-13 — **hybrid-rulebook family shipped + CHANGELOG convention** (change:
   `apply-hybrid-rewrite`): all four SKILL.md replaced with the RED/GREEN-validated hybrid
   candidates (rule IDs, −21% words, portable GitHub-URL footers); SETUP A2′ + AUDIT

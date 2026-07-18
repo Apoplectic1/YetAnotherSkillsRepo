@@ -5,7 +5,30 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-17 — **AUDIT scaled-coverage backlog item (field "R26") — pulled out of the skill,
+- 2026-07-17 — **fat-router-lean GREEN 4/4 — S7 + R26 ship.** Candidate text (SETUP S7 lean
+  rule with explicit B2 carve-out; AUDIT R26 router-placement clause): SETUP GREEN 2/2 on the
+  real TP router — 24 KB → 3.5/4.3 KB, every off-charter block to its charter home
+  (glossary/conventions→DOMAIN, mechanics/contracts→ARCHITECTURE, build/run→VERIFICATION),
+  hybrid gotchas split one-liner-stays+pointer, disk-verified content-preserving (verbatim
+  phrase checks incl. the perf-budget sentence); lean-router control 1/1 no-trigger (no
+  cry-wolf); AUDIT GREEN 1/1 — one structural `move-to` flag per block citing R26, currency
+  flags inside blocks correctly preserved (two-axis), routing/gotchas untouched. GREEN ran
+  where RED reproduced (TP), not the small fixture that passed under current text — plan
+  amended mid-run. **R26 number now taken** by the router-placement clause: the 2026-07-17
+  scaled-coverage backlog item's informal "field R26" alias needs a new number when it ships
+  (its ROADMAP entry updated). Ground truth: `harness/catalog-fat-router.md`.
+  0/3 on the small synthetic.** Small tidepool fat-router variant (3 planted blocks, ~3.5 KB
+  router): SETUP 0/2 — both reps leaned perfectly unprompted (F1→DOMAIN, contracts→ARCH,
+  hybrid split correct); AUDIT 0/1 — router placement-flagged under existing R10+R12. Real
+  24 KB TP router (`TestProjects/` copies): SETUP 2/2 reproduced — both did the A2 history
+  move + scaffolding but left glossary/conventions/contract in the router and **grew** it
+  (24.3→26.1 KB and 24.3→25.9 KB; the ecological 24→26 KB replay). Mechanism captured by rep
+  2 verbatim: it *saw* the fat, then read **B2 "coexist, never clobber" as forbidding the
+  trim** — a rule collision, not inattention; S7 wording must explicitly carve moves out of
+  B2. Also: probe currency-flagged stale claims *inside* a misplaced router block — correct
+  per the two-axis frame; R26 must suppress only per-fact *placement* flags, not currency
+  (unlike R25, router fat is reference-tier, not journal-tier). Fixture evidence in
+  scratchpad reps; ground truth `harness/catalog-fat-router.md`.
   gated.** Added mid-session from another (small) project straight into the skill text — repo
   copy *and* live deployed copy, bypassing dev→main→deploy.sh — reviewed and reverted same day
   (live copy restored to main's state). Concept accepted, wording deferred. Target shape from
