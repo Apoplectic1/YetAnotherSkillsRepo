@@ -53,9 +53,11 @@
 
 ## 5. Docs + ship
 
-- [ ] 5.1 Update ROADMAP (close the fat-router-lean Open item; B4 probe + R26
-  scaled-coverage remain open), NOTEBOOK (gate outcome + R26-alias renumber note), and
-  CHANGELOG — same commit as the skill text per doc convention
-- [ ] 5.2 Commit on `dev`; merge to `main`; run `deploy.sh` (only `main` deploys); verify
-  deployed copies match repo
-- [ ] 5.3 Final fixture reset/cleanup of scratch copies
+- [x] 5.1 Update ROADMAP (close the fat-router-lean Open item; B4 probe + scaled-coverage
+  remain open, alias note added), NOTEBOOK (RED + GREEN entries incl. R26-alias renumber
+  note) — same commit as the skill text (no repo CHANGELOG.md yet; digest rides in ROADMAP
+  per its charter)
+- [x] 5.2 Commit `878a483` on `dev`; fast-forward merge to `main`; `deploy.sh` ran on
+  `main`; deployed copies diff-verified identical to repo
+- [x] 5.3 Scratch fixture copies removed (tidepool + TP reps, controls); `TestProjects/`
+  master untouched
