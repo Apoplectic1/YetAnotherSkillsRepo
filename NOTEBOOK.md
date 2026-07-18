@@ -5,6 +5,9 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-17 — **TestProjects/ hidden via `.git/info/exclude`** (local-only, untracked file —
+  nothing reaches the mirror): still on disk, still per the 2026-07-13 keep-until-B4-probe
+  decision; it just no longer shows in `git status`.
 - 2026-07-17 — **fat-router-lean GREEN 4/4 — S7 + R26 ship.** Candidate text (SETUP S7 lean
   rule with explicit B2 carve-out; AUDIT R26 router-placement clause): SETUP GREEN 2/2 on the
   real TP router — 24 KB → 3.5/4.3 KB, every off-charter block to its charter home
