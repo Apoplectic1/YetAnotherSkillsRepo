@@ -10,7 +10,7 @@ Four skills, shipped as standard [Agent Skills](https://agentskills.io) — auth
 
 | Skill | What it does | Reach for it when |
 |---|---|---|
-| [`docs-architecture-setup`](skills/docs-architecture-setup/SKILL.md) | Scaffolds the convention — a `CLAUDE.md` router plus charter'd reference docs — around whatever docs already exist | A new project, or an existing one with scattered, missing, or drifting docs |
+| [`docs-architecture-setup`](skills/docs-architecture-setup/SKILL.md) | Scaffolds the convention — a `CLAUDE.md` router plus charter'd reference docs — around whatever docs already exist, and leans an overgrown router down to routing + gotchas | A new project, or an existing one with scattered, missing, or drifting docs — or a fat `CLAUDE.md` doing reference-doc work |
 | [`docs-architecture-audit`](skills/docs-architecture-audit/SKILL.md) | Verifies the reference docs still match the live code: a fan-out of audit workers converging on one merged, evidence-carrying flag list you adjudicate | After a refactor or rename; before trusting a doc as current; periodic doc-health pass |
 | [`docs-architecture-maintain`](skills/docs-architecture-maintain/SKILL.md) | Sweeps the journal — the project's dated, append-only working notes (`docs/`, `NOTEBOOK.md`) — for findings that have hardened into standing truth and promotes them into the reference docs | The journal has accumulated; the reference docs feel behind it |
 | [`whats-next`](skills/whats-next/SKILL.md) | Builds a prioritized what-to-work-on view from the ROADMAP, open follow-ups, and audit output | Session planning; "what should I work on next?" |
@@ -29,7 +29,7 @@ Then, in any project, ask Claude Code to **"set up this project's docs"** — th
 
 ## Why docs-architecture?
 
-- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: the router always loads, and everything else is one hop away by charter. The router is a thin map — one line per doc saying what lives there — so the whole doc set stays reachable at near-zero standing context cost, and those one-liners double as the charters the audit judges placement against.
+- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: the router always loads, and everything else is one hop away by charter. The router is a thin map — one line per doc saying what lives there — so the whole doc set stays reachable at near-zero standing context cost, and those one-liners double as the charters the audit judges placement against. Thinness is enforced from both sides: setup moves reference content it finds embedded in the router (glossary, contracts, mechanics) down to the charter'd docs, and the audit placement-flags anything reference-shaped that creeps back in.
 - **Docs written for humans drift silently.** Nothing forces them back to the truth until someone trusts a stale claim. The audit treats code as ground truth and requires evidence on every flag — a `file:line` citation or the literal `unverifiable → ask user` — and never guesses stale.
 - **One careful read is not an audit.** In baseline testing, a single careful pass surfaced only about half the real issues ([benchmark](docs/2026-06-29-audit-model-benchmark.md)). The audit skill fans out per-section workers plus replicate rounds and loops until a round finds nothing new — then switches worker model, because one model's "done" is that model's ceiling, not the truth.
 - **Docs-vs-code disagreement runs both ways.** When a doc asserts a guarantee (must / always / never) and the code violates it, the audit flags the *code* as the suspect — a `file:line`-cited bug report handed to your dev flow — rather than quietly rewriting the doc to match broken behavior. Doc audits that only ever "fix the doc" encode bugs into the spec.
@@ -56,7 +56,7 @@ The skills assume the convention they enforce: a `CLAUDE.md` router plus charter
 
 ### Safety properties
 
-The audit is report-only until you adjudicate each flag (approve / amend / defer), and it edits documentation only — a doc claim the code violates surfaces as a suspected *code* bug, never silently rewritten to match. Workers that die mid-run (transient API errors) are retried once, and any span still uncovered is named in a coverage note: a visible gap beats false completeness.
+Setup restructures, never destroys: every relocation — including the router lean — is a content-preserving move on a clean git tree, landed as a reviewable commit. The audit is report-only until you adjudicate each flag (approve / amend / defer), and it edits documentation only — a doc claim the code violates surfaces as a suspected *code* bug, never silently rewritten to match. Workers that die mid-run (transient API errors) are retried once, and any span still uncovered is named in a coverage note: a visible gap beats false completeness.
 
 ### Beyond Claude Code
 
