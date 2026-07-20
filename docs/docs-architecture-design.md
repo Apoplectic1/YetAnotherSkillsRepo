@@ -1,7 +1,7 @@
 # Docs-architecture skill family — design & spec (canonical)
 
 **Canonical design** for the global docs-architecture skills (SETUP · AUDIT · MAINTAIN ·
-TRIAGE), maintained here in `E:\Projects\AI\Skills`. The goal these skills serve: make an AI
+TRIAGE), maintained here in `E:\Projects\AI\Skills\doc-architecture`. The goal these skills serve: make an AI
 agent's work in any project trustworthy — every fact current, single-sourced, and accessible
 **token-efficiently, without being pointed at files**.
 

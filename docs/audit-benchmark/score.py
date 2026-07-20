@@ -1,6 +1,6 @@
 import json, re
 
-DOCS='E:/Projects/AI/Skills/docs/audit-benchmark/'
+DOCS='E:/Projects/AI/Skills/doc-architecture/docs/audit-benchmark/'
 
 # rep0 from exp1 (scored result) + rep1-3 from full-rerun raw output (both repo-tracked, reproducible)
 e1=json.loads(open(DOCS+'sweeps/exp1-model-compare.json',encoding='utf-8').read())

@@ -5,6 +5,11 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-20 — **Repo relocated to `E:\Projects\AI\Skills\doc-architecture`** (was
+  `E:\Projects\AI\Skills` root). deploy.sh needed no change (self-locates via `dirname "$0"`);
+  skill footers unaffected (GitHub URL, remote unchanged). Updated the live absolute paths:
+  design-doc header + the two `docs/audit-benchmark/score*.py` `DOCS` constants. Old paths in
+  dated docs / openspec archive left as historical record.
 - 2026-07-17 — **TestProjects/ hidden via `.git/info/exclude`** (local-only, untracked file —
   nothing reaches the mirror): still on disk, still per the 2026-07-13 keep-until-B4-probe
   decision; it just no longer shows in `git status`.

@@ -1,6 +1,6 @@
 import json, collections
 
-DOCS='E:/Projects/AI/Skills/docs/audit-benchmark/'
+DOCS='E:/Projects/AI/Skills/doc-architecture/docs/audit-benchmark/'
 
 # Sonnet/medium reps: rep1 = Exp-3 screen; rep2,rep3 = follow-up (wuplfg72m)
 rep1f=json.load(open(DOCS+'raw/exp3-sonnet-medium-w1bb4ilfs.output.json',encoding='utf-8'))
