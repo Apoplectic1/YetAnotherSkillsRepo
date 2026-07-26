@@ -5,6 +5,13 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-26 — **superpowers plugin retired; writing-skills conventions vendored.** The only
+  load-bearing dependency was `superpowers:writing-skills` (authoring conventions — the
+  testing half was long since absorbed as VERIFICATION.md's RED/GREEN harness). Digest of
+  v6.2.0 now lives in DOMAIN.md § Authoring conventions; citations repointed (router
+  CLAUDE.md, design doc). Deployed skills never referenced superpowers → zero runtime
+  impact. Digest is a frozen snapshot — upstream updates no longer flow; historical
+  superpowers mentions in dated docs / opsx archive left as record.
 - 2026-07-26 — **Openspec-archive RED failure mode: non-determinism, not absence.** The RED
   maintain rep *found* the planted archive rationale but hedged it as "conditional — user
   call … arguably outside this sweep", citing the router's blanket `openspec/` exclusion —

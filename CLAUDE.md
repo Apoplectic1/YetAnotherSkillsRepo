@@ -30,7 +30,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - `harness/` — RED/GREEN fixture sources: the fixture's own CLAUDE/ARCHITECTURE/etc. are
   **test content for a fictional project**, never this repo's docs (see `harness/README.md`).
 - `.claude/` — harness tooling.
-- `skills/*/SKILL.md` — the *product*, governed by `superpowers:writing-skills`, not by doc audits.
+- `skills/*/SKILL.md` — the *product*, governed by the authoring conventions in `DOMAIN.md`
+  (vendored from `superpowers:writing-skills`), not by doc audits.
 
 ## Load-bearing gotchas
 - **Never edit `~/.claude/skills/` directly** — it's a disposable build artifact; edit here,

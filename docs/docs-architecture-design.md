@@ -280,7 +280,8 @@ Phase 3  SKILLIFY   → by EXTRACTION from the worked Phase 1/2 example (do-then
                         after the trio — built & validated 2026-06-28; record below.)
                       All four GLOBAL (~/.claude/skills/), data-driven (read the project's
                       charters at runtime). Non-redundant with `init` / `improve-architecture`.
-                      Author with `superpowers:writing-skills`.
+                      Author per DOMAIN.md's authoring conventions (vendored
+                      2026-07-26 from `superpowers:writing-skills` v6.2.0).
 ```
 
 Sequencing rationale: Phase 1 enables Phase 2 (charters make the audit objective) *and*
