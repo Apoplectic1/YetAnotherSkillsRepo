@@ -2,45 +2,45 @@
 
 ## 1. Candidate skill text (authored on dev, per RELEASING branch policy)
 
-- [ ] 1.1 Draft maintain edit: new source-class rule in
+- [x] 1.1 Draft maintain edit: new source-class rule in
       `skills/docs-architecture-maintain/SKILL.md` — archived
       `openspec/changes/archive/*/design.md` as a journal source, disposition pinned to
       `cross-ref`-only (pointer lives in the reference doc; archive never edited), plus the
       override clause: a router's generic `openspec/` exclusion does not exempt this source.
       Keep it to one rule; follow `superpowers:writing-skills` conventions.
-- [ ] 1.2 Draft audit edits in `skills/docs-architecture-audit/SKILL.md`: R14 gains explicit
+- [x] 1.2 Draft audit edits in `skills/docs-architecture-audit/SKILL.md`: R14 gains explicit
       `openspec/changes/archive/`; R15 gains the carve-out (decision-consistency only,
       tier-violation flags suppressed, never edited).
-- [ ] 1.3 Draft setup edit in `skills/docs-architecture-setup/SKILL.md`: B1 exclusion-wording
+- [x] 1.3 Draft setup edit in `skills/docs-architecture-setup/SKILL.md`: B1 exclusion-wording
       clause (archived design.md = historical records the maintain sweep reads; no scaffolding
       change, no T1 change).
 
 ## 2. RED/GREEN harness (behavior-bearing edits only, per design D5)
 
-- [ ] 2.1 Extend the on-demand fixture (`VERIFICATION.md` recipe) with an
+- [x] 2.1 Extend the on-demand fixture (`VERIFICATION.md` recipe) with an
       `openspec/changes/archive/<id>/design.md` carrying (a) graduable rationale absent from
       the reference tier and (b) code-coupled facts that have drifted, plus an
       ARCHITECTURE.md citation into it. The fixture router keeps the OLD blanket
       "`openspec/` — excluded, tooling" wording, so the runs exercise the override clause.
-- [ ] 2.2 RED maintain: run current skill text against the fixture — assert the miss (source
+- [x] 2.2 RED maintain: run current skill text against the fixture — assert the miss (source
       not swept, or a `stub`/`archive` disposition touching the archive). Record verbatim.
-- [ ] 2.3 GREEN maintain: run candidate 1.1 text — assert graduate-with-cross-ref and a
+- [x] 2.3 GREEN maintain: run candidate 1.1 text — assert graduate-with-cross-ref and a
       byte-identical archive. Apply the no-failure gate: if RED already passes, drop the
       corresponding candidate text and record why.
-- [ ] 2.4 RED audit: run current skill text — assert tier-violation flags fire on the cited
+- [x] 2.4 RED audit: run current skill text — assert tier-violation flags fire on the cited
       archived design.md. Record verbatim.
-- [ ] 2.5 GREEN audit: run candidate 1.2 text — assert consistency-check-only, zero
+- [x] 2.5 GREEN audit: run candidate 1.2 text — assert consistency-check-only, zero
       tier-violation flags, archive untouched. Same no-failure gate.
-- [ ] 2.6 After every mutating fixture run, apply the reset contract (`git clean -fd` —
+- [x] 2.6 After every mutating fixture run, apply the reset contract (`git clean -fd` —
       mandatory).
 
 ## 3. Docs (same commit as the skill edits, not separate)
 
-- [ ] 3.1 Record rationale + RED/GREEN results in `docs/docs-architecture-design.md` (edit in
+- [x] 3.1 Record rationale + RED/GREEN results in `docs/docs-architecture-design.md` (edit in
       place — footer-linked by URL, never rename/move).
-- [ ] 3.2 Update `ARCHITECTURE.md` (skill-family behavior summary) and `ROADMAP.md`
+- [x] 3.2 Update `ARCHITECTURE.md` (skill-family behavior summary) and `ROADMAP.md`
       (Recently shipped) as warranted; note the run in `NOTEBOOK.md`.
-- [ ] 3.3 Update this repo's own `CLAUDE.md` router exclusion note per the setup carve-out
+- [x] 3.3 Update this repo's own `CLAUDE.md` router exclusion note per the setup carve-out
       wording (dogfood the new convention here).
 
 ## 4. Verify, sync, ship

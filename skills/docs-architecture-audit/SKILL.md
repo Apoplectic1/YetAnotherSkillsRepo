@@ -61,11 +61,15 @@ capable agent already does well, so the rules below force what one pass can't gi
   upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`), and tooling (`.claude/`,
   `openspec/`). A router-named leaf inside them *is* in scope.
 - **R14.** Never currency-audit the journal (`docs/`, `NOTEBOOK.md`, `CHANGELOG.md`) or
-  `archive/`. *(Append-only, legibly historical.)*
+  archives (`archive/`, `openspec/changes/archive/`). *(Append-only, legibly historical.)*
 - **R15.** Cold-rationale docs a reference doc cites: follow the citation and run a
   **decision-consistency check only** — does the reasoning still support the decision? A
   code-coupled fact (file / function / flag / value) inside one → flag as a **tier violation**.
-  *(Cold docs escape the currency sweep.)*
+  *(Cold docs escape the currency sweep.)* Exception — an archived openspec design doc
+  (`openspec/changes/archive/*/design.md`) gets the consistency check **only**: its
+  code-coupled facts are design-time values, never tier violations (dense with them by
+  design; an immutable change record — never edit it; standing truth inside it is the
+  MAINTAIN graduate path's job, not a flag).
 - **R16.** A sub-project (own router / `.git`) → flag-and-skip; audit it from its own dir.
 - **R17.** Vendored *source* is read-only ground truth — check against it, never edit it.
 

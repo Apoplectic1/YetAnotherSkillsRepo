@@ -21,4 +21,6 @@ terminal table or `export.export_csv`.
 ## Design constraints
 - Pure-math core: everything in `plan.py` except the astral wrappers is deterministic and
   unit-testable with no network or dependency footprint.
+- Scoring weights are a deliberate balance — rationale in
+  `openspec/changes/archive/2026-06-08-three-factor-scoring/design.md`.
 - The CLI never writes anywhere except an explicit `--out` path and the cache directory.

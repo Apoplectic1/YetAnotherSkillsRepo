@@ -489,6 +489,44 @@ from null = dead) and a coverage-note section naming dead spans with their fallb
 (one pre-computed a `coveredBy` string per worker class; one refused to count a
 round-with-deaths as dry). AUDIT SKILL.md 1287→1382 words — within precedent.
 
+**Openspec-archive awareness — 2026-07-26 (RED→GREEN on the TidePool fixture, extended with a
+planted `openspec/changes/archive/`; opsx change `openspec-archive-awareness`).** Motivating gap
+(from this repo's own opsx workflow, so TidePool stays a non-derived fixture): archived
+`openspec/changes/archive/*/design.md` holds the *why* behind shipped decisions, and no skill
+ever read the archive — audit can't flag absence (the schema requires a claim), maintain didn't
+source it, so rationale silently died there. Fixture plants: O1 = archived design doc **cited**
+from ARCHITECTURE, dense with design-time values drifted from shipped code (weights/norm/
+falloff); O2 = **uncited** archived design doc carrying standing policy ("hand-curated
+permanently; decline MDAPI-sync suggestions"); O3 = router with the old blanket "`openspec/` —
+excluded, tooling" wording; O4 = the cited doc's cited-vs-uncited control. RED maintain
+(1 rep, current text): failure mode sharper than predicted — **not absence but
+non-determinism**: the rep found O2 only by declared scope-stretch ("conditional — user call,
+since `openspec/` is excluded … arguably outside this sweep"), cited the router wording (O3) as
+the basis of the hedge, and chose disposition `stub` while glossing it "archive stays
+untouched" — the same output's Flag 1 used `stub` to mean *trim the source*, so the vocabulary
+was unpinned and an apply pass could legitimately trim the archive. O4 classified `keep` per M2
+**correctly** → per the no-failure gate, no cited-vs-uncited text was added. RED audit (1 rep,
+current text): R15 tier-violation flag **fired** on O1 exactly as predicted (all three planted
+drifts cited); the rep self-moderated the fix (edit the citation, not the archive), so the
+failure is the mislabeling — archive-resident facts branded misplaced, one flag per citation as
+archives accrue. Shipped: MAINTAIN **M11** (archived design docs a *first-class sweep source*,
+router's generic exclusion does not exempt them, graduate disposition pinned `cross-ref`-only —
+pointer lives in the reference doc, the archive is never stubbed/trimmed/relocated); AUDIT
+**R14** names `openspec/changes/archive/` in the never-currency-audited set, **R15** gains the
+carve-out (consistency check only; code-coupled facts there are design-time values, never tier
+violations; standing truth inside is MAINTAIN's graduate job); SETUP **B1** wording clause
+(router exclusion note marks archived design docs as maintain-swept historical records —
+hygiene only; M11's override carries the behavior). GREEN maintain (1 rep): O2 graduated
+unhedged → ARCHITECTURE with explicit "M11 mandates cross-ref only", O3 override stated in the
+sources list, O4 still `keep` (and the rep spontaneously refused to back-port the archive's
+drifted numbers), tree disk-verified byte-identical. GREEN audit (1 rep): O1 got the
+consistency check with verdict *consistent*, the three drifts explicitly classified
+"design-time values, not tier violations", zero tier-violation flags, general coverage intact
+(R25 single structural flag held, planted D4 and both genuine-drift clusters found). MAINTAIN
+SKILL.md 488→568, AUDIT 1070→1118 words — within precedent. Caveat:
+1 rep/arm (not 2) — the RED failures were legible in the reps' own rationale, but a replicate
+pass is the cheap upgrade if field behavior wobbles.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET
