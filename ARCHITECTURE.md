@@ -11,7 +11,8 @@ design doc: `docs/docs-architecture-design.md`.
   (`docs/audit-benchmark/` — scripts, sweeps, raw workflow outputs behind the 2026-06-29 note).
 - `deploy.sh` — copies `skills/*/` → `~/.claude/skills/`, marker-stamps each copy, prunes
   family-stale deployed dirs (see `RELEASING.md`).
-- `openspec/`, `.claude/` — tooling, excluded from the doc set.
+- `openspec/`, `.claude/` — tooling, excluded from the doc set (exception: archived
+  `openspec/changes/archive/*/design.md` are historical records the MAINTAIN sweep reads).
 
 ## The skill family (all 4 built + deployed)
 A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in order:
@@ -22,8 +23,9 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
    via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying
    flags → adjudicate → fix. (Generalizes WBPP Phase 2.) RED/GREEN-validated.
 3. **MAINTAIN** (`docs-architecture-maintain`) — graduate journal → reference +
-   prune-the-source (preserve the why/when); reuses AUDIT's fan-out. (Generalizes WBPP
-   graduate/prune.) RED/GREEN-validated.
+   prune-the-source (preserve the why/when); also sources archived openspec design docs
+   (M11: first-class, `cross-ref`-only, archive never edited); reuses AUDIT's fan-out.
+   (Generalizes WBPP graduate/prune.) RED/GREEN-validated.
 4. **TRIAGE** (`whats-next`) — sweep every backlog source → categorized/prioritized backlog +
    coverage manifest + accepted-constraints list; live-vs-accepted crux; reuses AUDIT's
    fan-out. (Planning layer; consumes the trio's outputs.) RED/GREEN-validated.

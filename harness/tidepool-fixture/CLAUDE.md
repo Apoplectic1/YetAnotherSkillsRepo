@@ -14,6 +14,9 @@ predictions in, scored daylight low-tide windows out. Python 3.11 CLI, `src/` la
 - `docs/YYYY-MM-DD-<slug>.md` — substantial dated records; find by convention
   (glob `docs/*.md` + grep), not an enumerated list.
 
+## Excluded from the doc set
+- `openspec/` — opsx planning home (workflow/change artifacts only, not project docs).
+
 ## Load-bearing gotchas
 - The NOAA API is unauthenticated but rate-limited — never loop station fetches without the
   cache check (`stations.cache_fresh`).

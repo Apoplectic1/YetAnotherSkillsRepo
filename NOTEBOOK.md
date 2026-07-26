@@ -5,6 +5,14 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-26 — **Openspec-archive RED failure mode: non-determinism, not absence.** The RED
+  maintain rep *found* the planted archive rationale but hedged it as "conditional — user
+  call … arguably outside this sweep", citing the router's blanket `openspec/` exclusion —
+  and used `stub` with two different meanings in one output (trim-the-source vs
+  leave-untouched). Unpinned scope + unpinned vocabulary is the failure; a rule that pins
+  both (M11) is the fix. Also: TidePool fixture extended with `openspec/changes/archive/`
+  plants (catalog O1–O4) — reusable for future archive-related rules, but any rule *derived
+  from* these plants poisons them (non-derived rule stands).
 - 2026-07-20 — **Repo relocated to `E:\Projects\AI\Skills\doc-architecture`** (was
   `E:\Projects\AI\Skills` root). deploy.sh needed no change (self-locates via `dirname "$0"`);
   skill footers unaffected (GitHub URL, remote unchanged). Updated the live absolute paths:

@@ -12,7 +12,8 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   drift** that accrued by accident and was kept deliberately (dead cache subsystem, DOMAIN
   daylight-contract violation, Gulf-coast plan contradiction, Atlantic-pilot cross-record
   conflict, CLI-smoke install gap). Provenance + scoring expectations:
-  `docs/2026-07-13-round3-red-green-results.md`.
+  `docs/2026-07-13-round3-red-green-results.md`. Extended 2026-07-26 with a planted
+  `openspec/changes/archive/` (O1–O4 in the catalog) for the archive-awareness runs.
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.

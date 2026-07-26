@@ -34,6 +34,14 @@ record loses the why/when.
 - **M9.** Don't over-graduate — and never graduate into an already-bloated reference doc:
   an oversized target is a **setup/audit split job first**, not more content.
 
+## Sources — one class beyond the dated journal
+- **M11.** Archived openspec design docs (`openspec/changes/archive/*/design.md`) are a
+  **first-class sweep source**, not a scope judgment call — a router's generic `openspec/`
+  exclusion does not exempt them (no `openspec/`? silently skip). A graduate from this class
+  takes disposition **`cross-ref` only**, written as the pointer in the *reference doc*; the
+  archived file is an immutable change record — never stub, trim, or relocate it. *(Shipped
+  rationale concentrates there and nothing else ever reads the archive.)*
+
 ## Coverage
 - **M10.** **REQUIRED:** reuse the fan-out from **docs-architecture-audit** — independent
   workers, structured flags, merge + dedup, **loop-until-dry**. *(One pass finds a different

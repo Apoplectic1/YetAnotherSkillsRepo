@@ -80,7 +80,9 @@ projects.)*
 - **B1.** **Hard scope-exclusions — never scaffold into:** vendored trees (`vendor/`,
   `third_party/`, forked upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`),
   tooling (`.claude/`, `openspec/`). Their own READMEs are not this project's docs; `CLAUDE.md`
-  notes them excluded.
+  notes them excluded — for `openspec/`, the note marks archived design docs
+  (`changes/archive/*/design.md`) as historical records the **maintain** sweep reads (still
+  never scaffolded into, and never an authoring target for the T1 journal split).
 - **B2.** **Coexist, never clobber:** augment an existing setup — don't overwrite a present
   `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the convention (no spaces;
   align casing).

@@ -45,6 +45,21 @@ as noise vs genuine.
   clobbered; diff-before-commit discipline (S2).
 - Both arms: mutating runs — score against `git diff` from the rep-copy baseline.
 
+## Openspec-archive extension (added 2026-07-26, change `openspec-archive-awareness`)
+Planted for the archive-awareness RED/GREEN runs. Ground truth:
+
+| ID | Where | Plant | Expected — RED (current deployed text) | Expected — GREEN (candidate text) |
+|---|---|---|---|---|
+| O1 | `openspec/changes/archive/2026-06-08-three-factor-scoring/design.md`, cited from ARCHITECTURE §Design constraints | Drifted code-coupled facts: weights "0.5/0.35/0.15" (code: 0.5/0.3/0.2), phase normalization "7.0" (code: 7.4), falloff "zero at +3.0 ft" (code: 2.5). Reasoning itself still sound (matches DOMAIN syzygy claims). | AUDIT: workers follow the citation; expected failure = tier-violation / misplacement flags on the code-coupled facts (or currency flags). Record verbatim. | AUDIT: decision-consistency check only; ZERO tier-violation/currency flags on O1 facts; file never edited. Consistency verdict: reasoning sound → no flag. |
+| O2 | `openspec/changes/archive/2026-06-20-station-curation/design.md` — UNCITED, D1 "curated by hand, permanently" + 3-item access checklist | Standing policy absent from reference tier (ARCHITECTURE says nothing on why-curated; DOMAIN nothing on admission criteria). | MAINTAIN: expected failure = archive not swept at all (journal = docs/ + NOTEBOOK only; router brands openspec/ excluded). | MAINTAIN: O2/D1 classified `graduate` (target ARCHITECTURE or DOMAIN — either defensible), disposition `cross-ref` with the pointer written in the reference doc; archive file byte-identical. |
+| O3 | Fixture `CLAUDE.md` "Excluded from the doc set — openspec/" (old blanket wording) | The nudge the override clause targets. | MAINTAIN: old wording reinforces the O2 miss (record whether the rep cites it). | MAINTAIN: sweep proceeds despite the router note (override clause honored); router may be left as-is (healing it is setup's job, not maintain's). |
+| O4 | `2026-06-08` design.md D1 rationale — CITED from ARCHITECTURE | Cited cold rationale. | — | MAINTAIN: classified `keep` (M2 — intentional cold-rationale a reference doc cites), NOT graduate; distinguishes cited vs uncited archive content. |
+
+Scoring notes: three-factor design.md drifted facts are design→implementation drift, normal
+for archived designs — any GREEN flag on them is a fail. MAINTAIN reps are report-through-
+adjudication (flag list) runs; if a rep applies, score the applied tree. O1–O4 leave D1–D5
+expectations unchanged.
+
 ## Must-nots (all reps)
 - N1: no source-code edits (AUDIT R3; SETUP scope).
 - N2: no fixture-master mutation — reps run on their own copy only.

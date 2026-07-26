@@ -19,6 +19,16 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-26 — **openspec-archive awareness shipped: MAINTAIN M11 + AUDIT R14/R15 + SETUP B1**
+  (change: `openspec-archive-awareness`). Archived `openspec/changes/archive/*/design.md` is
+  now a first-class MAINTAIN source (graduate disposition pinned `cross-ref`-only; archive
+  never edited; router's generic exclusion overridden), AUDIT never currency-audits the
+  openspec archive and R15 suppresses tier-violations on cited archived design docs
+  (consistency check only), SETUP's router exclusion wording carves the archive out. RED/GREEN
+  on the TidePool fixture extended with planted archives (catalog O1–O4); RED failure mode =
+  non-deterministic hedged sourcing + unpinned disposition, GREEN clean. Record in the design
+  doc; supersedes half of the 2026-07-17 "no openspec integration" decision (in-flight/specs
+  exclusions stand).
 - 2026-07-17 — **fat-router-lean shipped: SETUP S7 + AUDIT R26** (change: `fat-router-lean`).
   Router lean on encounter (content test, perform via S1 move, B2 carve-out) + router
   placement-audited (one structural flag per block, currency orthogonal). RED reproduced only
