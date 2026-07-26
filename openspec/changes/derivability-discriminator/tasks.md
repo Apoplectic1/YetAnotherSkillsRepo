@@ -11,15 +11,15 @@
 
 ## 2. RED — current deployed text
 
-- [ ] 2.1 1–2 RED AUDIT reps (or targeted micro-probes) on fixture copies: record the
+- [x] 2.1 1–2 RED AUDIT reps (or targeted micro-probes) on fixture copies: record the
       proposed fix-shape for D4-class trivia — expected: value re-cache, no deletion
       proposal; capture verbatim reasoning; reset contract after mutating reps
-- [ ] 2.2 Classify the failure form (expected: compliant-but-wrong-shape → conditional +
+- [x] 2.2 Classify the failure form (expected: compliant-but-wrong-shape → conditional +
       positive recipe per DOMAIN); no-failure → status-note in specs, stop
 
 ## 3. Candidate text
 
-- [ ] 3.1 Draft AUDIT R28 (two-condition discriminator, deletion-leads/update-alternative,
+- [x] 3.1 Draft AUDIT R28 (two-condition discriminator, deletion-leads/update-alternative,
       out-of-reach classes named); IDs append-only; word delta ≤ ~80
 
 ## 4. GREEN + micro-variants

@@ -2,7 +2,7 @@
 
 ## 1. Fixture — fat-ARCHITECTURE variant
 
-- [ ] 1.1 Generate a fattened TidePool ARCHITECTURE.md variant (~25 KB+: plausible
+- [x] 1.1 Generate a fattened TidePool ARCHITECTURE.md variant (~25 KB+: plausible
       subsystem prose dominating the file; content a split would relocate) + 1–2 journal
       entries whose charter target is that doc (FA1: graduate-with-bloated-target cell);
       keep a healthy-target graduate cell in the same tree (FA2: must still apply — the
