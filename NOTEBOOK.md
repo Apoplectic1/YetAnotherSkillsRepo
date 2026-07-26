@@ -5,7 +5,22 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-26 — **Candidate: fix-or-delete discriminator (AUDIT), proposed as
+- 2026-07-26 — **Field RED (TSM maintain run): M9 stuff-then-ask.** The rep graduated into
+  a 37.6→38.6 KB ARCHITECTURE.md three times in one sweep, *then* asked "split it?" — knew
+  the rule (quoted "split before you stuff" in its own closing) and inverted M9's required
+  order under finish-the-graduate pressure. Failure class: knows-rule-skips-under-pressure →
+  fix form is prohibition + rationalization red-flags (DOMAIN table), unlike this week's
+  REQUIRED-slot fixes. Target behavior sketch: bloated target → HOLD its graduations
+  (record in the M13 report + a ROADMAP line naming the pending split job), split is a
+  separately-adjudicated job, promotions land in the split homes. Gate: RED→GREEN on a
+  fat-reference-doc fixture variant (fat-router family precedent; new plant class).
+- 2026-07-26 — **Field finding (same TSM run): a "dry" round from an overloaded worker is
+  not evidence.** Worker holding 16 records skimmed (found 2); re-partitioning the same set
+  four ways found 2 more; the dedicated dry-check emptied at round 3 while a critic worker
+  kept finding. Hole in loop-until-dry semantics (M10/R20): dryness only means exhaustion if
+  partition size stays small enough to force depth — candidate: partition-size cap or
+  re-partition-before-dry clause. Natural batch-mate for the AUDIT scaled-coverage backlog
+  item (both touch round/coverage mechanics). Ungated; needs synthetic RED.
   `derivability-discriminator`.** User question ("are we documenting what's better derived
   from code?") exposed the gap: on stale derivable trivia (counts, versions, column lists —
   rationale-free, one grep from truth), AUDIT's reps consistently propose `fix-doc`
