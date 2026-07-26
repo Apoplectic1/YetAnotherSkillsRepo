@@ -92,6 +92,33 @@ separate them, note reps that lump them:
   scoring below ground truth. Also note the test suite inherits the code's misconception
   (checks the instant), so green tests can't catch either — evidence for the family's
   docs-vs-code-as-separate-pass thesis.
+
+## Derivability extension (added 2026-07-26, change `derivability-discriminator`)
+For the AUDIT R28 fix-or-delete rounds. DV2 reuses D4 (no new plant).
+
+| ID | Where | Plant | Expected — RED (current text) | Expected — GREEN (R28 candidate) |
+|---|---|---|---|---|
+| DV1 | ARCHITECTURE.md module map — `CACHE_TTL_HOURS = 6` now carries its rationale inline ("deliberately short of a day: NOAA re-fits harmonics within hours after storms; 6 h keeps a same-day return trip fresh") | Rationale-bearing derivable value (control) | Value matches code — no flag either way | Must NOT receive a deletion/de-value proposal in any rep; the attached rationale disqualifies it from R28's reach. A deletion proposal here = over-fire, fail |
+| DV2 | = D4 (ROADMAP Now/Next "12 curated NOAA stations" vs 18 in code) — rationale-free derivable count | Existing plant, reused | fix-doc re-caching the value (every rep to date did exactly this — the RED baseline) | Flag unchanged (still fired, still evidenced — D4's live-section-control role intact); the proposed fix LEADS with removal/de-valuing ("a curated station registry"), value-update offered as the stated alternative. A bare update-to-18 = R28 miss |
+
+## Fat-ARCH variant (added 2026-07-26, change `m9-hold-on-bloat`)
+Separate variant, swapped at copy time (fat-router precedent): copy the standing fixture,
+replace `ARCHITECTURE.md` with `harness/tidepool-fixture-variants/fat-arch/ARCHITECTURE.md`
+(24–30 KB; four feature-design sections dominate; every code-coupled value true to src
+except the original's single 30 s-timeout drift line, which rides along unchanged), prepend
+the two entries in `tidepool-fixture-variants/fat-arch/NOTEBOOK-append.md`, then git init +
+baseline as usual.
+
+| ID | Where | Plant | Expected — RED (current text) | Expected — GREEN (M9-hardened + M14) |
+|---|---|---|---|---|
+| FA1 | Variant NOTEBOOK 2026-07-08 (CO-OPS resilience policy — decided, standing) — charter target = the bloated ARCHITECTURE.md | Graduate whose target is bloated | Expected failure: promotion applied INTO the fat doc (stuff-then-ask or stuff-silently); capture verbatim rationale | Promotion HELD: fat ARCHITECTURE byte-identical; graduation recorded in the dated maintain report (claim + target + disposition); ROADMAP gains exactly ONE open-line naming the pending split job; source entry keeps its why/when |
+| FA2 | Variant NOTEBOOK 2026-07-06 (scoring-regression-test practice — decided, standing) — charter target = VERIFICATION.md (healthy, ~1 KB) | Over-holding control | Applies normally (record) | MUST still apply in the same run — holding FA2 = over-fire, fail |
+
+Scoring notes: CB/O/D expectations ride along unchanged in the variant tree. The fat doc's
+essays are deliberately placement-suspect — a rep *flagging* the bloat/split (report or
+ROADMAP line) is correct at any stage; only *writing more content into it* is the failure.
+
+## Must-nots (all reps)
 - N1: no source-code edits (AUDIT R3; SETUP scope).
 - N2: no fixture-master mutation — reps run on their own copy only.
 - N3: AUDIT reps are report-only — zero file edits in the rep copy.

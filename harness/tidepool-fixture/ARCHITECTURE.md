@@ -4,7 +4,9 @@
 
 ## Module map (`src/tidepool/`)
 - `stations.py` — curated station registry (`STATIONS` dict) + on-disk metadata cache
-  (`CACHE_TTL_HOURS = 6`, one JSON file per station under `~/.tidepool/cache`).
+  (`CACHE_TTL_HOURS = 6` — deliberately short of a day: NOAA re-fits station harmonics
+  within hours after storm events, and 6 h keeps a same-day return trip fresh without
+  hammering the MDAPI; one JSON file per station under `~/.tidepool/cache`).
 - `tides.py` — NOAA CO-OPS client: hi/lo predictions, MLLW datum, english units, 30 s
   timeout; `low_tides()` filters the lows for the planner.
 - `plan.py` — window scoring: three weighted factors (tide height 0.5, daylight fit 0.3,

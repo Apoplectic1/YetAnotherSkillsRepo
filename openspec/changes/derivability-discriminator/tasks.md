@@ -2,10 +2,10 @@
 
 ## 1. Fixture — one control cell + catalog variants
 
-- [ ] 1.1 Add a rationale-bearing-number control to TidePool (DV1): a reference-doc value
+- [x] 1.1 Add a rationale-bearing-number control to TidePool (DV1): a reference-doc value
       with its why attached (must NOT receive a deletion proposal); confirm existing D4
       (station count) serves as the rationale-free cell (DV2 = D4 reuse, no new plant)
-- [ ] 1.2 Catalog: record DV1/DV2 expected RED/GREEN fix-shapes; amend D4's GREEN
+- [x] 1.2 Catalog: record DV1/DV2 expected RED/GREEN fix-shapes; amend D4's GREEN
       expectation (deletion/reword preferred, value-update acceptable-but-noted; flag
       itself unchanged — still the R25 live-section control)
 

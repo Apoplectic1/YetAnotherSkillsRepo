@@ -5,6 +5,15 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-26 — **Field signal #2 for B4 (same TSM maintain run): cross-project glossary
+  loop.** The sweep surfaced a cross-ref cycle around glossary content shared across the
+  Astronomy constellation — the per-repo convention gives portfolio-level truth no owner, so
+  each repo's locally-correct "single-source it there, point up" produces A→B and B→A with
+  nobody holding the content. Interim discipline (pre-B4): ownership follows the code that
+  defines the term (shared concepts → Library; scheduler terms → TSM); pointers one-way
+  only; MAINTAIN must flag-and-ask on cross-project ownership, never improvise cross-repo
+  pointers (rule candidate, gated). Bumps the B4 portfolio probe — now hit in the wild
+  twice. Specific loop details pending from the TSM session.
 - 2026-07-26 — **Field RED (TSM maintain run): M9 stuff-then-ask.** The rep graduated into
   a 37.6→38.6 KB ARCHITECTURE.md three times in one sweep, *then* asked "split it?" — knew
   the rule (quoted "split before you stuff" in its own closing) and inverted M9's required

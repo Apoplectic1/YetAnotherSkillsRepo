@@ -9,10 +9,12 @@ section closed 2026-07-07 with nothing open.
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
   (shipped 2026-07-17); assign the next free number when it ships.
-- **B4 portfolio probe** (2026-07-13): B4 portfolio-DOMAIN amendment — cheap observational
-  SETUP probe at the Astronomy container first (expected router-only per B4; old projects get
-  B3 flag-and-skip lines). Refined in NOTEBOOK 2026-07-13. *(Split out 2026-07-17: the
-  fat-router-lean half shipped as SETUP S7 + AUDIT R26.)*
+- **B4 portfolio probe** (2026-07-13, **bumped 2026-07-26** — hit in the wild twice): B4
+  portfolio-DOMAIN amendment — cheap observational SETUP probe at the Astronomy container
+  first (expected router-only per B4; old projects get B3 flag-and-skip lines). Refined in
+  NOTEBOOK 2026-07-13; second field signal NOTEBOOK 2026-07-26 (TSM maintain surfaced a
+  cross-project glossary cross-ref loop — portfolio truth has no owner under per-repo
+  charters). *(Split out 2026-07-17: the fat-router-lean half shipped as SETUP S7 + R26.)*
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.

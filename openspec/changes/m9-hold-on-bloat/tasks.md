@@ -7,7 +7,7 @@
       entries whose charter target is that doc (FA1: graduate-with-bloated-target cell);
       keep a healthy-target graduate cell in the same tree (FA2: must still apply — the
       over-holding control)
-- [ ] 1.2 Catalog FA1/FA2 expected RED/GREEN behaviors in `harness/catalog-tidepool.md`
+- [x] 1.2 Catalog FA1/FA2 expected RED/GREEN behaviors in `harness/catalog-tidepool.md`
       (variant kept separate from the standing lean fixture — copy-time swap, like the
       fat-router variant)
 
