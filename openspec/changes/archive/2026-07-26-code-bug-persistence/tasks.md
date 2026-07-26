@@ -47,5 +47,5 @@
 - [x] 5.2 Record RED/GREEN provenance entry in `docs/docs-architecture-design.md`; scorecard
       to a dated `docs/` record or NOTEBOOK; update ROADMAP Recently-shipped; disposition
       the NOTEBOOK 2026-07-26 field entry (stub → pointer once graduated)
-- [ ] 5.3 `openspec sync` / archive the change (`--yes`, judge by output text); merge
+- [x] 5.3 `openspec sync` / archive the change (`--yes`, judge by output text); merge
       `dev` → `main`, `deploy.sh`, push mirror
