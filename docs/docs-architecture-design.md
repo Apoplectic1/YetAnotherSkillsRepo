@@ -610,6 +610,18 @@ M13 rails with container byte-untouched, PL2 targets the DOMAIN when present. Re
 `docs/2026-07-26-b4-portfolio-probe.md`, `docs/2026-07-26-b4-red-green.md`; fixture
 `harness/reefstack-fixture/` + `catalog-reefstack.md`.
 
+**Maintain right-sizing — 2026-07-26 (opsx change `maintain-right-sizing`; MAINTAIN M16;
+two halves no-failed).** Origin: TSM field feedback (12:1 add:remove ratchet; same-day
+ritual sweeps). Proposed three teeth; the iron law kept one: the description rewording
+no-failed (invocation probes 0/2 — agents already decline low-yield sweeps under the
+current text) and the mandatory prune pass no-failed (RED rep found both planted prune
+cells unforced) — both status-noted in the delta spec, no text. Shipped: **M16** — the
+dated report ends with a REQUIRED accounting slot (prune/archive candidates or the
+explicit "prune candidates: none found" + a one-line net reference-tier delta; silence
+illegal for either). RED: the delta line was absent in the synthetic rep and every prior
+report. GREEN 1/1 disk-verified with full M-stack regressions clean. Record:
+`docs/2026-07-26-right-sizing-red-green.md`; cells PR1–PR3 in `harness/catalog-tidepool.md`.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

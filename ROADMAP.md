@@ -14,19 +14,18 @@ section closed 2026-07-07 with nothing open.
   `DOMAIN.md` (cross-repo truth only), relocate the router's Data-flow-hubs detail per
   B4′/S7, keep readings-style owned contracts pointed down; (b) TSM + siblings: resolve
   the glossary loop to one-way pointers against the new portfolio DOMAIN.
-- **MAINTAIN right-sizing candidates** (2026-07-26 — gated, from TSM's field feedback,
-  NOTEBOOK same date): (a) skill `description` says "periodic journal-health sweep" —
-  candidate rewording to trigger conditions (~10 archived changes / subsystem rewrite /
-  journal visibly ahead); (b) **prune-teeth / anti-ratchet** — graduate:prune ran 12:1 in
-  the field; candidate rule making prune candidates a first-class sweep output (or a
-  graduation-count budget). Both iron-law gated (RED on a non-derived fixture; TSM is the
-  deriving project). DOMAIN's When-to-reach guidance already updated (doc-side, ungated).
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-26 — **maintain right-sizing shipped: MAINTAIN M16** (change:
+  `maintain-right-sizing`): the dated report now ends with a REQUIRED accounting slot —
+  prune/archive candidates (or explicit "none found") + one-line net reference-tier delta,
+  making the add:remove ratchet visible per run. Two proposed halves no-failed and shipped
+  no text (description rewording; forced prune pass) — status-noted in the spec. Record:
+  `docs/2026-07-26-right-sizing-red-green.md`.
 - 2026-07-26 — **B4 portfolio DOMAIN shipped: SETUP B4′ + MAINTAIN M15** (change:
   `b4-portfolio-domain`; probe → user Option A → RED/GREEN on the new ReefStack container
   fixture). Container root = router + optional thin portfolio DOMAIN (cross-repo truth

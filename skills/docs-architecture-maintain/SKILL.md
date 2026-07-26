@@ -77,6 +77,14 @@ record loses the why/when.
   hand-off dies with the chat — the doc system is the bug tracker; `whats-next` sweeps both
   homes.)*
 
+## The report — accounting
+- **M16.** The dated maintain report **ends with a REQUIRED accounting slot**: the
+  prune/archive candidates found this sweep — or the explicit line "prune candidates: none
+  found" — and a one-line **net reference-tier delta** (what the run added to reference
+  docs vs removed or struck). Silence is not a legal value for either element. *(Graduate
+  always finds another truth to lift; the cut side and the ratchet must be visible every
+  run.)*
+
 ## Coverage
 - **M10.** **REQUIRED:** reuse the fan-out from **docs-architecture-audit** — independent
   workers, structured flags, merge + dedup, **loop-until-dry**. *(One pass finds a different
@@ -100,7 +108,8 @@ record loses the why/when.
 3. **Adjudicate** per item (graduate / keep / archive / prune-only).
 4. **Apply**: promote → reference doc; disposition the source (M5–M7); **persist code-bug
    flags (M13)**; **portfolio-level graduates per M15**; update the router if a doc moved.
-   Re-verify: nothing duplicated, no why/when lost.
+   Re-verify: nothing duplicated, no why/when lost; **the report closes with the M16
+   accounting slot**.
 
 Full rationale + RED/GREEN provenance:
 https://github.com/Apoplectic1/YetAnotherSkillsRepo/blob/main/docs/docs-architecture-design.md
