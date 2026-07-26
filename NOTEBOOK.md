@@ -5,6 +5,21 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-07-26 — **Field feedback: TSM's candid self-assessment of the family (best
+  calibration data to date).** Key measurements from a real consumer: (a) usage stratifies
+  by load path — auto-loaded (CLAUDE.md, memory) ≫ task-shaped (checklists) ≫ opt-in
+  reference prose ("as grep target, not reading" — which is the intended mode, but no
+  more); (b) **add:remove ratio 12:1** — prune (M3/M4) is vestigial in practice, the
+  graduate ratchet caused the very bloat the sweep then diagnosed; (c) cost disproportion —
+  ~2.4M tokens/6 rounds for 12 one-line claims, maybe 5 load-bearing; rules that block
+  expensive re-litigation carry the value and mostly came from incidents, not sweeps;
+  (d) the ARCH split created SUBSYSTEMS prose beside normative openspec/specs — two homes
+  for one truth, unenforced agreement (self-confessed); (e) recommendations adopted into
+  DOMAIN § When-to-reach same day: trigger-don't-schedule, audit>maintain ranking,
+  **shift-left** (the archive-time standing-truth question). Counterpoints kept: first-sweep
+  12:1 is partly maturation; shift-left drains only the change-shaped class — incident
+  truth still needs the backstop. Gated candidates queued in ROADMAP (maintain description
+  wording; prune-teeth).
 - 2026-07-26 — **Field signal #2 for B4 (same TSM maintain run): cross-project glossary
   loop.** The sweep surfaced a cross-ref cycle around glossary content shared across the
   Astronomy constellation — the per-repo convention gives portfolio-level truth no owner, so

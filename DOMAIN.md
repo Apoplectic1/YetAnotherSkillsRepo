@@ -28,9 +28,16 @@ TargetSchedulerManager, Library, XisfFileManager, IntervalScheduler — plus WBP
 ## When to reach for each skill
 - **SETUP** — new/onboarding project; no router; scattered docs. Idempotent (re-run to
   re-converge). Doesn't judge content correctness (AUDIT's job) or write content for you.
-- **AUDIT** — after a refactor/rename; before trusting a doc for a real decision; periodic
-  health pass. Proposes, never auto-applies; one pass ≠ coverage (hence its fan-out).
-- **MAINTAIN** — the journal has accrued findings worth graduating. Pointless with no
+- **AUDIT** — after a refactor/rename; before trusting a doc for a real decision; the
+  sharper of the two sweeps (catches things that are *wrong*; maintain catches things that
+  are *missing* — a softer failure). Proposes, never auto-applies; one pass ≠ coverage.
+- **MAINTAIN** — **triggered, never scheduled** (field-calibrated 2026-07-26): run after
+  ~10 archived changes, after a subsystem rewrite, or when the journal is visibly ahead of
+  the reference tier — not periodically (back-to-back sweeps showed sharply diminishing
+  yield). Prefer **shift-left**: at change-archive time, with full context in hand, ask "is
+  there a standing truth here, and where does it go?" — near-free, and it drains the
+  archive-sweep class before it accrues; maintain then stays the rare backstop for truth
+  that doesn't arrive change-shaped (incidents, NOTEBOOK hardening). Pointless with no
   journal; never graduates into a bloated doc (split first); preserves the why/when.
 - **whats-next** — session planning; "am I seeing everything?". Proposes priority, you own
   the call. Run AUDIT first when doc currency is in doubt — stale docs → stale backlog.

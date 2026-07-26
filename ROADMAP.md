@@ -15,6 +15,13 @@ section closed 2026-07-07 with nothing open.
   NOTEBOOK 2026-07-13; second field signal NOTEBOOK 2026-07-26 (TSM maintain surfaced a
   cross-project glossary cross-ref loop — portfolio truth has no owner under per-repo
   charters). *(Split out 2026-07-17: the fat-router-lean half shipped as SETUP S7 + R26.)*
+- **MAINTAIN right-sizing candidates** (2026-07-26 — gated, from TSM's field feedback,
+  NOTEBOOK same date): (a) skill `description` says "periodic journal-health sweep" —
+  candidate rewording to trigger conditions (~10 archived changes / subsystem rewrite /
+  journal visibly ahead); (b) **prune-teeth / anti-ratchet** — graduate:prune ran 12:1 in
+  the field; candidate rule making prune candidates a first-class sweep output (or a
+  graduation-count budget). Both iron-law gated (RED on a non-derived fixture; TSM is the
+  deriving project). DOMAIN's When-to-reach guidance already updated (doc-side, ungated).
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
