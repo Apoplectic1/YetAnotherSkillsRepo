@@ -43,6 +43,10 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   deployed copy (normally `main`; `--force` exceptions: `RELEASING.md`).
 - Skill tests run against a disposable fixture created on demand (`VERIFICATION.md`); after
   any mutating run, apply its reset contract — `git clean -fd` is mandatory, not optional.
+- **Shift-left graduation:** before `openspec archive`, answer the standing-truth question —
+  "is there a standing truth here, and where does it go?" — and let the answer ride the ship
+  commit (one reference-doc line, or an explicit "not standing yet"). MAINTAIN stays the
+  backstop, not the pipeline (DOMAIN § When to reach).
 - **openspec CLI:** always `openspec archive <name> --yes` (it prompts interactively and dies
   in non-interactive shells) and judge success by **output text, never exit code** (archive
   can exit 0 on a validation abort — don't chain with `&&`). The spec validator wants
