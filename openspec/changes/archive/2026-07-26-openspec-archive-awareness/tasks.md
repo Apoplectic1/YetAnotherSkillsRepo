@@ -49,5 +49,5 @@
       the delta specs.
 - [x] 4.2 Sync delta specs to main specs (`/opsx:sync`), archive the change
       (`/opsx:archive`).
-- [ ] 4.3 Merge `dev` → `main`; deploy via `deploy.sh` (only `main` deploys); confirm
+- [x] 4.3 Merge `dev` → `main`; deploy via `deploy.sh` (only `main` deploys); confirm
       `~/.claude/skills/` copies match.
