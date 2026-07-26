@@ -118,6 +118,16 @@ Scoring notes: CB/O/D expectations ride along unchanged in the variant tree. The
 essays are deliberately placement-suspect — a rep *flagging* the bloat/split (report or
 ROADMAP line) is correct at any stage; only *writing more content into it* is the failure.
 
+## Right-sizing extension (added 2026-07-26, change `maintain-right-sizing`)
+| ID | Where | Plant | Expected — RED (current text) | Expected — GREEN (M16 candidate) |
+|---|---|---|---|---|
+| PR1 | ROADMAP Now/Next "Wire the `export` subcommand into the CLI … in progress" | Closed item in an open list (M4 class): §Shipped 2026-06-10 records it shipped; `cli.py` has the `export` sub-parser | Record whether reps find it without a forced pass (may be found — legible) | Flagged `prune-only` by the REQUIRED prune pass; struck/annotated; listed in the report's accounting slot |
+| PR2 | NOTEBOOK 2026-04-02 Monterey entry (existing; M3 class — superseded by ROADMAP/CHANGELOG 04-05 shipped record) | Spent journal record | Reps have historically found this (likely no-fail on the find) | Listed in the accounting slot when archived |
+| PR3 | The maintain report itself | — | **Expected RED: no accounting** — today's reps' reports never state "prune candidates: N/none" nor a net reference-tier delta | Report carries the REQUIRED slot: prune/archive candidates (or explicit "none found") + one-line net reference-tier delta (added vs removed) |
+
+Note: the interesting RED axis is PR3 (accounting omission), not PR1/PR2 findability — small
+legible plants get found; TSM's 12:1 was ratio-at-scale. D3 gates the halves separately.
+
 ## Must-nots (all reps)
 - N1: no source-code edits (AUDIT R3; SETUP scope).
 - N2: no fixture-master mutation — reps run on their own copy only.

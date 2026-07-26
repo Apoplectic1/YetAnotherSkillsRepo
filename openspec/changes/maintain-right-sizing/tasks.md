@@ -2,10 +2,10 @@
 
 ## 1. Fixture — PR plant cells (TidePool)
 
-- [ ] 1.1 PR1: add a ROADMAP Now/Next item whose completion is visible in the journal
+- [x] 1.1 PR1: add a ROADMAP Now/Next item whose completion is visible in the journal
       (closed-item-in-open-list, M4 class); PR2: confirm/plant a spent journal record fully
       superseded by a reference doc (M3 class)
-- [ ] 1.2 Catalog PR1/PR2 expected RED/GREEN in `harness/catalog-tidepool.md`
+- [x] 1.2 Catalog PR1/PR2 expected RED/GREEN in `harness/catalog-tidepool.md`
 
 ## 2. RED — current text/description
 

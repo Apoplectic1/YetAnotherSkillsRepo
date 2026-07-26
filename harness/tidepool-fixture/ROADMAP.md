@@ -10,6 +10,8 @@
   entry) — surface score uncertainty when sunrise/sunset are near the low.
 - Known bug (2026-06-26, La Push field report): `low_tides()` passes every L row through
   unfiltered — lows above +1.5 ft get scored as windows. Fix queued.
+- Wire the `export` subcommand into the CLI so spreadsheet users can pull windows without
+  the API — in progress.
 
 ## Future directions
 - Offline tide harmonics: compute predictions locally for cached stations, dropping the
