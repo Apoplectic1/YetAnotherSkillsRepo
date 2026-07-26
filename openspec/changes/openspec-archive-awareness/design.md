@@ -47,6 +47,12 @@ disposition: **`cross-ref`-only, and the pointer prose lives in the *reference d
 graduated truth cites the archived design.md as its evidence), never as an edit to the archive.
 `stub` and `archive` are forbidden for this source class.
 
+The rule also carries an **override clause**: a router's generic `openspec/` exclusion note
+does not exempt this source. Without it, every *existing* project's router (written under the
+old blanket wording) could nudge a worker into skipping the archive — and "manually edit N
+routers" is exactly the remembered obligation the skill-rule approach exists to eliminate. One
+sentence in the skill text makes the net deployment-free across old and new projects alike.
+
 *Alternatives rejected:* convention-at-archive-time (requires remembering once, at exactly the
 right moment, forever, per project — a skill rule requires remembering nothing and catches the
 miss on any later sweep); editing the opsx archive skill (tool-generated, `openspec update`
@@ -71,9 +77,11 @@ overwrites it, per-project not portable).
 B1's router-exclusion wording gains a carve-out clause: `openspec/` remains excluded from
 scaffolding, and the router's exclusion note reads approximately "…tooling (`.claude/`,
 `openspec/` — archived `changes/archive/*/design.md` are historical records the maintain sweep
-reads)." Rationale: maintain's scope is defined by its own skill rules, not the router — but a
-router flatly branding `openspec/` "excluded tooling" could nudge a maintain worker into
-skipping a source its skill names. One clause removes the contradiction; splitting B1 or
+reads)." Rationale: maintain's scope is defined by its own skill rules, not the router — and D1's
+override clause already makes the sweep robust against old wording. The setup clause is
+therefore *hygiene*, not protection: routers setup writes or aligns going forward carry
+wording consistent with the convention, and existing routers heal lazily (next setup run or
+any doc pass that touches them) rather than requiring a per-project edit. Splitting B1 or
 touching T1 is over-engineering (see Non-Goals).
 
 ### D4 — land as one change; sequencing is a coherence preference, not a dependency

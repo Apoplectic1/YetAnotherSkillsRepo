@@ -5,8 +5,9 @@
 - [ ] 1.1 Draft maintain edit: new source-class rule in
       `skills/docs-architecture-maintain/SKILL.md` — archived
       `openspec/changes/archive/*/design.md` as a journal source, disposition pinned to
-      `cross-ref`-only (pointer lives in the reference doc; archive never edited). Keep it to
-      one rule; follow `superpowers:writing-skills` conventions.
+      `cross-ref`-only (pointer lives in the reference doc; archive never edited), plus the
+      override clause: a router's generic `openspec/` exclusion does not exempt this source.
+      Keep it to one rule; follow `superpowers:writing-skills` conventions.
 - [ ] 1.2 Draft audit edits in `skills/docs-architecture-audit/SKILL.md`: R14 gains explicit
       `openspec/changes/archive/`; R15 gains the carve-out (decision-consistency only,
       tier-violation flags suppressed, never edited).
@@ -19,7 +20,8 @@
 - [ ] 2.1 Extend the on-demand fixture (`VERIFICATION.md` recipe) with an
       `openspec/changes/archive/<id>/design.md` carrying (a) graduable rationale absent from
       the reference tier and (b) code-coupled facts that have drifted, plus an
-      ARCHITECTURE.md citation into it.
+      ARCHITECTURE.md citation into it. The fixture router keeps the OLD blanket
+      "`openspec/` — excluded, tooling" wording, so the runs exercise the override clause.
 - [ ] 2.2 RED maintain: run current skill text against the fixture — assert the miss (source
       not swept, or a `stub`/`archive` disposition touching the archive). Record verbatim.
 - [ ] 2.3 GREEN maintain: run candidate 1.1 text — assert graduate-with-cross-ref and a
