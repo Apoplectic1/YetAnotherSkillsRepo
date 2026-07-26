@@ -5,7 +5,19 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-26 — **superpowers plugin retired; writing-skills conventions vendored** → single
+- 2026-07-26 — **Field finding: code-bug flags have no persistence path (MAINTAIN-on-TSM).**
+  A MAINTAIN run on TSM (separate session) surfaced code bugs; MAINTAIN's schema
+  (graduate/keep/archive/prune-only) has no in-schema channel for them — AUDIT's
+  `flag-code-bug` (R4/R7) exists but is "handed off", with nothing mandating the flags land
+  on disk, so a run's bug findings die with the chat unless the user manually saves them.
+  Decision (user, 2026-07-26): **persistence rule** — adjudication/apply MUST land surviving
+  `flag-code-bug` flags in the *target project's* tiers (one line each in ROADMAP § Open +
+  full evidence in a dated `docs/YYYY-MM-DD-<skill>-report.md`; whats-next already sweeps
+  both), plus MAINTAIN gains a mirror of R4/R7 so bug observations are in-schema. The doc
+  system itself becomes the bug tracker; no fix-round orchestration inside the skills
+  (honesty posture). Gate: field evidence only so far → synthetic RED→GREEN on a non-derived
+  fixture before text ships (TidePool needs a journal-claim-vs-buggy-code plant — new plant
+  class, not derived from TSM specifics). → single
   source: DOMAIN.md § Authoring conventions (v6.2.0 frozen digest). Unique notes: deployed
   skills never referenced superpowers → zero runtime impact; historical superpowers mentions
   in dated docs / opsx archive left as record.
