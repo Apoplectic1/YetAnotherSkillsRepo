@@ -559,6 +559,25 @@ SKILL.md 488→568, AUDIT 1070→1118 words — within precedent. Caveat:
 1 rep/arm (not 2) — the RED failures were legible in the reps' own rationale, but a replicate
 pass is the cheap upgrade if field behavior wobbles.
 
+**Code-bug persistence — 2026-07-26 (field RED → synthetic RED→GREEN on TidePool + CB plant
+class; opsx change `code-bug-persistence`; AUDIT R27 + MAINTAIN M12/M13).** Field origin: a
+MAINTAIN run on TSM surfaced real code bugs; MAINTAIN had no in-schema channel and AUDIT's
+`flag-code-bug` "hand-off" had no disk representation — adjudicated-real findings died with
+the chat. Synthetic RED (CB1–CB4 plants: journal-contract-vs-code timeout regression,
+no-contract drift control, persistence + dedup cells): both arms reproduced — reps *found*
+the bugs (AUDIT discipline flawless) and lost them to ephemeral prose; failure class
+omits-an-element → REQUIRED-slot form. Shipped: **R27**/**M13** — surviving report-only
+flags persist to the *target project's* tiers before the run ends (dated
+`docs/YYYY-MM-DD-<skill>-report.md` + deduplicated ROADMAP open-lines; deferred adjudication
+→ single pointer line; the doc system is the bug tracker, `whats-next` sweeps both homes);
+**M12** — report-only channel with R7-mirror cardinal-sin protection. Two GREEN-round
+refactors, both from observed wobbles: design-time values in archived change records are
+never contracts (v1 flagged archived-design drift), and corroboration strengthens but never
+substitutes for guarantee language — dated records agreeing on an old value are history
+(v2 flagged a two-historical-records TTL mismatch). Final wording micro-tested 2/2. No
+fix-round orchestration — fixing stays dev/diagnose work (honesty posture). Full scorecard:
+`docs/2026-07-26-code-bug-persistence-red-green.md`.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

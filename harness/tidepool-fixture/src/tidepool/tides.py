@@ -22,7 +22,7 @@ def fetch_predictions(station_id: str, begin_date: str, end_date: str) -> list[d
         "interval": "hilo",
         "format": "json",
     }
-    resp = requests.get(API_URL, params=params, timeout=30)
+    resp = requests.get(API_URL, params=params)
     resp.raise_for_status()
     return resp.json()["predictions"]
 

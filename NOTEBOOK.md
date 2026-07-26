@@ -5,19 +5,22 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-26 — **Field finding: code-bug flags have no persistence path (MAINTAIN-on-TSM).**
-  A MAINTAIN run on TSM (separate session) surfaced code bugs; MAINTAIN's schema
-  (graduate/keep/archive/prune-only) has no in-schema channel for them — AUDIT's
-  `flag-code-bug` (R4/R7) exists but is "handed off", with nothing mandating the flags land
-  on disk, so a run's bug findings die with the chat unless the user manually saves them.
-  Decision (user, 2026-07-26): **persistence rule** — adjudication/apply MUST land surviving
-  `flag-code-bug` flags in the *target project's* tiers (one line each in ROADMAP § Open +
-  full evidence in a dated `docs/YYYY-MM-DD-<skill>-report.md`; whats-next already sweeps
-  both), plus MAINTAIN gains a mirror of R4/R7 so bug observations are in-schema. The doc
-  system itself becomes the bug tracker; no fix-round orchestration inside the skills
-  (honesty posture). Gate: field evidence only so far → synthetic RED→GREEN on a non-derived
-  fixture before text ships (TidePool needs a journal-claim-vs-buggy-code plant — new plant
-  class, not derived from TSM specifics). → single
+- 2026-07-26 — **Candidate severity heuristic (from a TSM-session exchange, ungated):**
+  fail-closed→fail-soft contract violations (doc guarantees "hard 0"/abort, code ships a
+  ramp/fallback) deserve top severity — graceful degradation converts a loud, fixable
+  violation into plausible wrong answers (rhymes with the user's global fail-fast rule).
+  Companion insight: a test suite often inherits the code's misconception (TidePool tests
+  check the low instant because the code does; TSM's SyncMarksTests keyed by Id because
+  TsInboundDiff did) — green tests measure code-fixture agreement, not contract conformance,
+  which is the argument for docs-vs-code audit as a separate pass. No RED evidence yet that
+  reps *misrank* these; iron-law gate before any severity-rule text ships. TidePool's
+  daylight two-defect decomposition (catalog annotation, same date) is the worked example.
+- 2026-07-26 — **Field finding → shipped same day: code-bug flags had no persistence path
+  (MAINTAIN-on-TSM).** Full decision + RED/GREEN record:
+  `docs/2026-07-26-code-bug-persistence-red-green.md` (+ design-doc provenance entry);
+  shipped as AUDIT R27 + MAINTAIN M12/M13. Unique note: the TSM run's own findings were
+  saved manually in that session — this repo's fix is forward-looking only.
+- 2026-07-26 — **superpowers plugin retired; writing-skills conventions vendored** → single
   source: DOMAIN.md § Authoring conventions (v6.2.0 frozen digest). Unique notes: deployed
   skills never referenced superpowers → zero runtime impact; historical superpowers mentions
   in dated docs / opsx archive left as record.

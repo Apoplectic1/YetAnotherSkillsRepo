@@ -22,10 +22,12 @@ A 3-tier doc model (journal · reference · cold-rationale) + 4 skills, built in
    WBPP Phase 1.) RED/GREEN-validated.
 2. **AUDIT** (`docs-architecture-audit`) — placement (vs charter) + currency (vs live code)
    via a structured-schema fan-out + cross-ref pass + loop-until-dry; evidence-carrying
-   flags → adjudicate → fix. (Generalizes WBPP Phase 2.) RED/GREEN-validated.
+   flags → adjudicate → fix; report-only flags persist to the target's tiers (R27).
+   (Generalizes WBPP Phase 2.) RED/GREEN-validated.
 3. **MAINTAIN** (`docs-architecture-maintain`) — graduate journal → reference +
    prune-the-source (preserve the why/when); also sources archived openspec design docs
-   (M11: first-class, `cross-ref`-only, archive never edited); reuses AUDIT's fan-out.
+   (M11: first-class, `cross-ref`-only, archive never edited) and carries a report-only
+   code-bug channel with persistence (M12/M13); reuses AUDIT's fan-out.
    (Generalizes WBPP graduate/prune.) RED/GREEN-validated.
 4. **TRIAGE** (`whats-next`) — sweep every backlog source → categorized/prioritized backlog +
    coverage manifest + accepted-constraints list; live-vs-accepted crux; reuses AUDIT's

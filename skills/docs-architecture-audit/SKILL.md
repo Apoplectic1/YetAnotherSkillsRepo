@@ -20,6 +20,12 @@ capable agent already does well, so the rules below force what one pass can't gi
   are reports, not fixes.)*
 - **R4.** Report-only actions are exactly `flag-code-bug` and `revisit-plan`: handed off (to the
   dev/diagnose flow and `whats-next`), never auto-applied.
+- **R27.** Surviving report-only flags are **persisted to the target project's own tiers
+  before the run ends** — full flags + evidence in a dated `docs/YYYY-MM-DD-audit-report.md`,
+  plus one line per adjudicated-surviving finding in the ROADMAP's open/backlog list,
+  deduplicated against lines already there; adjudication deferred → a single open-list line
+  pointing at the report. *(A hand-off that lives only in the chat dies with it — the doc
+  system is the bug tracker; `whats-next` sweeps both homes.)*
 
 ## Currency — claim vs code
 - **R5.** Classify modality first. **Descriptive** = how the system *is* (present tense;
@@ -103,7 +109,8 @@ capable agent already does well, so the rules below force what one pass can't gi
    (R23).
 4. **Adjudicate**: present the merged list; the user **approves / amends / defers** each flag's
    proposed action.
-5. **Apply** approved doc fixes; re-verify. Report-only flags are handed off, never applied (R4).
+5. **Apply** approved doc fixes; re-verify. Report-only flags are never applied to docs —
+   **persist them (R27)**, then hand off (R4).
 
 ## Flag schema — every flag, every worker
 ```

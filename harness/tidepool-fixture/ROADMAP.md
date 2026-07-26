@@ -8,6 +8,8 @@
 - The planner currently ships with 12 curated NOAA stations (`src/tidepool/stations.py`).
 - Next: confidence intervals on the window score (design sketch in NOTEBOOK, 2026-06-30
   entry) — surface score uncertainty when sunrise/sunset are near the low.
+- Known bug (2026-06-26, La Push field report): `low_tides()` passes every L row through
+  unfiltered — lows above +1.5 ft get scored as windows. Fix queued.
 
 ## Future directions
 - Offline tide harmonics: compute predictions locally for cached stations, dropping the

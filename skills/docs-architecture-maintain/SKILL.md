@@ -42,6 +42,22 @@ record loses the why/when.
   archived file is an immutable change record — never stub, trim, or relocate it. *(Shipped
   rationale concentrates there and nothing else ever reads the archive.)*
 
+## Code bugs — a report-only channel
+- **M12.** A journal claim with **contract force** — guarantee language: must / always /
+  never / aborts-on-X — that current code *violates* → a report-only **`flag-code-bug`**
+  (claim + `file:line`) *alongside* the entry's normal classification; the **code is the
+  suspect** — never stale, demote, or archive the entry because code disagrees. Corroboration
+  (a test, another doc) strengthens a flag, **never substitutes** for guarantee language —
+  dated records agreeing on an old value are history, not a contract, and design-time values
+  in archived change records (M11 class) are never contracts. Plain drift: classify normally,
+  no flag. *(MAINTAIN never edits code.)*
+- **M13.** Surviving `flag-code-bug` flags **persist to the target project's own tiers before
+  the run ends** — full evidence in a dated `docs/YYYY-MM-DD-maintain-report.md`, plus one
+  deduplicated line per adjudicated-surviving bug in the ROADMAP's open/backlog list;
+  adjudication deferred → a single open-list line pointing at the report. *(A chat-only
+  hand-off dies with the chat — the doc system is the bug tracker; `whats-next` sweeps both
+  homes.)*
+
 ## Coverage
 - **M10.** **REQUIRED:** reuse the fan-out from **docs-architecture-audit** — independent
   workers, structured flags, merge + dedup, **loop-until-dry**. *(One pass finds a different
@@ -55,6 +71,7 @@ record loses the why/when.
 - disposition:   stub | cross-ref | archive        ← REQUIRED for every graduate
 - standing-claim: the durable truth being promoted (for graduate)
 - evidence:      why it's standing (recurs / decided / already-cited) — or why keep
+- code-bug:      optional report-only `flag-code-bug` (M12) — contract claim + `file:line`
 - action:        one line
 ```
 
@@ -62,8 +79,9 @@ record loses the why/when.
 1. **Fan out** graduation workers over the journal (M10) → schema'd flags.
 2. **Merge + dedup + loop until dry.**
 3. **Adjudicate** per item (graduate / keep / archive / prune-only).
-4. **Apply**: promote → reference doc; disposition the source (M5–M7); update the router if a
-   doc moved. Re-verify: nothing duplicated, no why/when lost.
+4. **Apply**: promote → reference doc; disposition the source (M5–M7); **persist code-bug
+   flags (M13)**; update the router if a doc moved. Re-verify: nothing duplicated, no
+   why/when lost.
 
 Full rationale + RED/GREEN provenance:
 https://github.com/Apoplectic1/YetAnotherSkillsRepo/blob/main/docs/docs-architecture-design.md

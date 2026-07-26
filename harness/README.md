@@ -13,7 +13,9 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   daylight-contract violation, Gulf-coast plan contradiction, Atlantic-pilot cross-record
   conflict, CLI-smoke install gap). Provenance + scoring expectations:
   `docs/2026-07-13-round3-red-green-results.md`. Extended 2026-07-26 with a planted
-  `openspec/changes/archive/` (O1–O4 in the catalog) for the archive-awareness runs.
+  `openspec/changes/archive/` (O1–O4 in the catalog) for the archive-awareness runs, and
+  again 2026-07-26 with the code-bug plants (CB1–CB4: journal-contract-vs-code regression,
+  no-contract drift control, persistence/dedup cells) for the code-bug-persistence runs.
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.

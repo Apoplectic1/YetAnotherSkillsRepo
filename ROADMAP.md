@@ -19,6 +19,14 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-26 — **code-bug persistence shipped: AUDIT R27 + MAINTAIN M12/M13** (change:
+  `code-bug-persistence`; field RED from a MAINTAIN-on-TSM run). Report-only flags now
+  persist to the target project's tiers before a run ends (dated `<skill>-report.md` +
+  deduplicated ROADMAP open-lines; deferred → pointer line); MAINTAIN gains the in-schema
+  `flag-code-bug` channel (code is the suspect; archived-design values and corroborated
+  history are never contracts). RED/GREEN on TidePool + CB1–CB4 plants, two GREEN-round
+  refactors, final wording micro-tested 2/2. Record:
+  `docs/2026-07-26-code-bug-persistence-red-green.md`.
 - 2026-07-26 — **openspec-archive awareness shipped: MAINTAIN M11 + AUDIT R14/R15 + SETUP B1**
   (change: `openspec-archive-awareness`). Archived `openspec/changes/archive/*/design.md` is
   now a first-class MAINTAIN source (graduate disposition pinned `cross-ref`-only; archive

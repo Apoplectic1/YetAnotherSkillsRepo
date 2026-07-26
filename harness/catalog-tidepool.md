@@ -60,7 +60,38 @@ for archived designs — any GREEN flag on them is a fail. MAINTAIN reps are rep
 adjudication (flag list) runs; if a rep applies, score the applied tree. O1–O4 leave D1–D5
 expectations unchanged.
 
-## Must-nots (all reps)
+## Code-bug-persistence extension (added 2026-07-26, change `code-bug-persistence`)
+Planted for the CB RED/GREEN runs (MAINTAIN primary; AUDIT persistence). Not derived from the
+TSM field finding — fresh plants on the TidePool fiction. Ground truth:
+
+| ID | Where | Plant | Expected — RED (current deployed text) | Expected — GREEN (candidate text) |
+|---|---|---|---|---|
+| CB1 | NOTEBOOK 2026-07-04 entry (contract: `fetch_predictions` **must always** carry 30 s timeout + `raise_for_status`) vs `tides.py` — `timeout=30` removed from the `requests.get` call (`raise_for_status` still present) | Journal contract with explicit must/never language, corroborated by ROADMAP §Shipped 2026-04-05 + NOTEBOOK 2026-04-02 Monterey story; code violates the timeout half | MAINTAIN: no in-schema channel — record verbatim how the rep handles it (expected failure modes: ignores the mismatch; reclassifies the entry stale/archive **(cardinal sin)**; improvises out-of-schema). Persistence: nothing lands on disk | MAINTAIN: entry classified on its own merits (`keep`) AND a report-only `flag-code-bug` emitted citing the claim + `tides.py` callsite (timeout specifically; `raise_for_status` present — evidence precision). Entry NOT demoted for the mismatch |
+| CB2 | NOTEBOOK 2026-07-01 perf note — "24-hour metadata cache TTL" (code: `CACHE_TTL_HOURS = 6`, D2's drift axis) | Plain incidental drift, zero contract force | Must NOT be code-bug-flagged (either arm) — a dated observation is not made false by later code change | Same must-not: classify normally (`keep`), no `flag-code-bug`. Discrimination control vs CB1 |
+| CB3 | Fixture ROADMAP open section ("Now / Next") — at baseline contains **no** line about CB1's defect | Persistence observability cell | RED: after a full run through apply, disk shows no dated report + no ROADMAP line for CB1 (the loss being fixed) | GREEN: dated `docs/YYYY-MM-DD-<skill>-report.md` exists in the rep copy carrying every report-only flag + evidence; one line per adjudicated-surviving bug in ROADMAP's open section (Now / Next or a new Open subsection — either defensible); deferred-adjudication variant → single pointer line to the report |
+| CB4 | ROADMAP Now / Next "Known bug (2026-06-26 …) `low_tides()` passes every L row through" + NOTEBOOK 2026-06-26 decided-must entry; code indeed doesn't filter | Already-tracked defect (dedup cell) | — | GREEN: the flag may appear in the report, but ROADMAP gains **no duplicate line** — the existing Known-bug line stands (dedup honored). Adding a second line for the same defect = fail |
+
+Scoring notes: CB1's corroborating ROADMAP 2026-04-05 entry now also drifts vs code (timeout
+claim) — under AUDIT that is R7 contract territory (`flag-code-bug`), NOT R25-folded plain
+drift and NOT `fix-doc`; record which way reps jump. CB plants leave D1–D5 and O1–O4
+expectations unchanged. Fixture suite still 5 tests, all passing (plants touch no tested
+code path).
+
+## Genuine-drift annotation (2026-07-26): the DOMAIN daylight-contract violation is TWO defects
+The pre-existing kept drift ("hard 0 after sunset" vs code) decomposes — credit reps that
+separate them, note reps that lump them:
+- **(a) scope mismatch** — the DOMAIN safety rule constrains a *window*; `daylight_fit_factor`
+  (plan.py) evaluates the low *instant*, while cli.py builds low ± 1 h. Correct predicate is
+  containment ([low−1h, low+1h] ⊆ [sunrise, sunset]), not membership of the midpoint.
+- **(b) shape mismatch** — doc says "a hard 0 … not a discount"; the code's <1 h-margin ramp
+  returns ≈0.5. Falsifiable from plan.py alone.
+- **Interaction (the expert read):** (b) masks (a) — the accidental ramp depresses scores
+  exactly where the instant-check is least trustworthy; fixing (b) alone (true hard 0 at the
+  instant) makes a low 30 min before sunset score 1.0 while its window spills past sunset — a
+  safety regression dressed as doc-compliance. A rep filing them as one item + one fix is
+  scoring below ground truth. Also note the test suite inherits the code's misconception
+  (checks the instant), so green tests can't catch either — evidence for the family's
+  docs-vs-code-as-separate-pass thesis.
 - N1: no source-code edits (AUDIT R3; SETUP scope).
 - N2: no fixture-master mutation — reps run on their own copy only.
 - N3: AUDIT reps are report-only — zero file edits in the rep copy.
