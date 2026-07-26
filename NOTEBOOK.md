@@ -5,7 +5,17 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-26 — **Candidate severity heuristic (from a TSM-session exchange, ungated):**
+- 2026-07-26 — **Candidate: fix-or-delete discriminator (AUDIT), proposed as
+  `derivability-discriminator`.** User question ("are we documenting what's better derived
+  from code?") exposed the gap: on stale derivable trivia (counts, versions, column lists —
+  rationale-free, one grep from truth), AUDIT's reps consistently propose `fix-doc`
+  re-caching the grep (observed: every TidePool rep corrected 12→18 rather than questioning
+  the count's presence), when the durable fix is often deleting/de-valuing the claim — a
+  drift-prone cache re-primed is drift deferred, not cured. Discriminator sketch: claim is
+  cheaply derivable AND carries no rationale/contract/gotcha → propose removal or reword
+  without the perishable value; otherwise fix normally. Iron-law gated; fixture note: D4's
+  catalog expectation (fix-doc on the station count) will need a GREEN-text variant
+  (deletion/reword acceptable) without weakening its live-section-control role.
   fail-closed→fail-soft contract violations (doc guarantees "hard 0"/abort, code ships a
   ramp/fallback) deserve top severity — graceful degradation converts a loud, fixable
   violation into plausible wrong answers (rhymes with the user's global fail-fast rule).
