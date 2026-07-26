@@ -45,9 +45,9 @@
 
 ## 4. Verify, sync, ship
 
-- [ ] 4.1 `openspec validate --change openspec-archive-awareness`; run `/opsx:verify` against
+- [x] 4.1 `openspec validate --change openspec-archive-awareness`; run `/opsx:verify` against
       the delta specs.
-- [ ] 4.2 Sync delta specs to main specs (`/opsx:sync`), archive the change
+- [x] 4.2 Sync delta specs to main specs (`/opsx:sync`), archive the change
       (`/opsx:archive`).
 - [ ] 4.3 Merge `dev` → `main`; deploy via `deploy.sh` (only `main` deploys); confirm
       `~/.claude/skills/` copies match.
