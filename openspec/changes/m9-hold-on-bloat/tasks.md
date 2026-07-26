@@ -13,17 +13,17 @@
 
 ## 2. RED — current deployed text (two shapes, per fat-router scale lesson)
 
-- [ ] 2.1 2 prompt-only scenario probes (t3 precedent): maintain rep mid-sweep, graduate
+- [x] 2.1 2 prompt-only scenario probes (t3 precedent): maintain rep mid-sweep, graduate
       classified, target stated as ~38 KB and split-worthy — observe the apply plan
       (expected: stuff-then-ask or stuff-silently; capture verbatim)
-- [ ] 2.2 1 on-disk rep on the fat-ARCH TidePool copy end-to-end (expected: writes into the
+- [x] 2.2 1 on-disk rep on the fat-ARCH TidePool copy end-to-end (expected: writes into the
       fat doc; disk-verified); reset contract after
-- [ ] 2.3 Classify failure form (expected: knows-rule-skips → prohibition + red-flag, plus
+- [x] 2.3 Classify failure form (expected: knows-rule-skips → prohibition + red-flag, plus
       M14 positive hold-recipe); both shapes clean → no-failure gate, stop
 
 ## 3. Candidate text
 
-- [ ] 3.1 Harden M9 in place (red-flag: stuff-then-ask is the failure, not compliance) +
+- [x] 3.1 Harden M9 in place (red-flag: stuff-then-ask is the failure, not compliance) +
       draft M14 (hold → M13-report entry + one ROADMAP split-job line → split as its own
       job → promote into split homes); word delta ≤ ~90
 
