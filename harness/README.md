@@ -19,6 +19,11 @@ must never be audited, graduated, or edited as if they were this repo's docs.
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.
+- `reefstack-fixture/` + `catalog-reefstack.md` — portfolio *container* fixture (added
+  2026-07-26 for `b4-portfolio-domain`): fictional reef-tank automation portfolio — root
+  router with planted cross-repo contract prose, three routered sub-projects, an owned
+  contract (`PulseMonitor/SCHEMA.md`), a planted mutual-pointer glossary loop, and a
+  portfolio-level journal truth. Same copy/baseline/reset recipe.
 
 ## Using the fixture (per test run)
 1. Copy `tidepool-fixture/` to a scratch location (session scratchpad), one copy per rep.

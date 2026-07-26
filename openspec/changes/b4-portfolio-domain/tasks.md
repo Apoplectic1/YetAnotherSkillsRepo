@@ -2,13 +2,13 @@
 
 ## 1. Fixture — synthetic portfolio container (new family; non-derived)
 
-- [ ] 1.1 Build a small fictional portfolio fixture under `harness/` (e.g. "ReefStack"):
+- [x] 1.1 Build a small fictional portfolio fixture under `harness/` (e.g. "ReefStack"):
       container root with hand-built router carrying cross-repo contract/glossary prose
       (the S7 bait), 2–3 sub-projects with routers + minimal doc sets, a shared glossary
       term used by two sub-projects, one cross-store name collision, one contract owned by
       a single sub-project, and a planted mutual-pointer glossary loop between two
       sub-projects
-- [ ] 1.2 Catalog cells + expected RED/GREEN per skill (SETUP container run; MAINTAIN
+- [x] 1.2 Catalog cells + expected RED/GREEN per skill (SETUP container run; MAINTAIN
       sweep in a sub-project hitting the shared-term graduate); note poisoned sources
       (Astronomy container, TSM)
 
