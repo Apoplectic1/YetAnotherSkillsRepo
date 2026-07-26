@@ -9,15 +9,11 @@ section closed 2026-07-07 with nothing open.
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
   (shipped 2026-07-17); assign the next free number when it ships.
-- **B4 amendment — decision pending** (probe ✅ run 2026-07-26,
-  `docs/2026-07-26-b4-portfolio-probe.md`): B4's core held (2/2 no portfolio set, B3 clean)
-  but the S7↔B4 collision reproduced with divergent resolutions (mechanics → root ROADMAP
-  vs kept-in-router as "gotcha") — portfolio truth has no sanctioned home; same root cause
-  as the TSM glossary loop. Three options on the table (A: thin portfolio DOMAIN +
-  owner-project rule + one-way pointers — recommended; B: owner-rule only; C: pin status
-  quo). User adjudicates, then SETUP B4 amendment ships via RED/GREEN on a synthetic
-  container fixture (the Astronomy container is now deriving evidence — poisoned).
-  History: refined NOTEBOOK 2026-07-13; field signals ×2 2026-07-26.
+- **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
+  2026-07-26): in their own sessions — (a) Astronomy container: create the portfolio
+  `DOMAIN.md` (cross-repo truth only), relocate the router's Data-flow-hubs detail per
+  B4′/S7, keep readings-style owned contracts pointed down; (b) TSM + siblings: resolve
+  the glossary loop to one-way pointers against the new portfolio DOMAIN.
 - **MAINTAIN right-sizing candidates** (2026-07-26 — gated, from TSM's field feedback,
   NOTEBOOK same date): (a) skill `description` says "periodic journal-health sweep" —
   candidate rewording to trigger conditions (~10 archived changes / subsystem rewrite /
@@ -31,6 +27,12 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-26 — **B4 portfolio DOMAIN shipped: SETUP B4′ + MAINTAIN M15** (change:
+  `b4-portfolio-domain`; probe → user Option A → RED/GREEN on the new ReefStack container
+  fixture). Container root = router + optional thin portfolio DOMAIN (cross-repo truth
+  only) + optional thin status ROADMAP; owner rule; one-way pointers; M15
+  portfolio-graduate targeting with flag-and-ask on M13 rails. Records:
+  `docs/2026-07-26-b4-portfolio-probe.md`, `docs/2026-07-26-b4-red-green.md`.
 - 2026-07-26 — **batch 2 shipped: AUDIT R28 + MAINTAIN M9′/M14** (changes:
   `derivability-discriminator`, `m9-hold-on-bloat`). R28: stale derivable rationale-free
   values get deletion-led fix proposals (stop re-caching greps). M9 hardened (apply-time

@@ -14,32 +14,32 @@
 
 ## 2. RED — current deployed text
 
-- [ ] 2.1 SETUP plan-only reps at the fixture container (2): expect the probe divergence
+- [x] 2.1 SETUP plan-only reps at the fixture container (2): expect the probe divergence
       to reproduce (cross-repo prose → ROADMAP or kept-as-gotcha; no sanctioned home)
-- [ ] 2.2 MAINTAIN rep in a sub-project with the shared-term graduate: expect improvised
+- [x] 2.2 MAINTAIN rep in a sub-project with the shared-term graduate: expect improvised
       cross-repo pointer or hedge (capture verbatim)
-- [ ] 2.3 Classify failure forms; no-failure → status-note per gate
+- [x] 2.3 Classify failure forms; no-failure → status-note per gate
 
 ## 3. Candidate text
 
-- [ ] 3.1 SETUP B4 amended in place (+ owner-project rule + one-way pointers + S7
+- [x] 3.1 SETUP B4 amended in place (+ owner-project rule + one-way pointers + S7
       container destination); MAINTAIN M15 (portfolio targeting + flag-and-ask); word
       deltas ≤ ~100 combined
 
 ## 4. GREEN
 
-- [ ] 4.1 SETUP reps: prose → portfolio DOMAIN (created thin, chartered); no extra set;
+- [x] 4.1 SETUP reps: prose → portfolio DOMAIN (created thin, chartered); no extra set;
       single-project control run produces no portfolio DOMAIN
-- [ ] 4.2 MAINTAIN rep: shared-term graduate targets portfolio DOMAIN / flag-and-ask when
+- [x] 4.2 MAINTAIN rep: shared-term graduate targets portfolio DOMAIN / flag-and-ask when
       absent; planted loop resolved to one-way, never mutual
-- [ ] 4.3 Reset contract after mutating reps
+- [x] 4.3 Reset contract after mutating reps
 
 ## 5. Ship
 
-- [ ] 5.1 Apply B4′ + M15 on dev
-- [ ] 5.2 Dated RED/GREEN record + design-doc provenance + ROADMAP shipped line + NOTEBOOK
+- [x] 5.1 Apply B4′ + M15 on dev
+- [x] 5.2 Dated RED/GREEN record + design-doc provenance + ROADMAP shipped line + NOTEBOOK
       dispositions (B4 item, glossary-loop interim discipline)
-- [ ] 5.3 Archive (--yes, judge by output text); merge dev → main; deploy.sh; push
+- [x] 5.3 Archive (--yes, judge by output text); merge dev → main; deploy.sh; push
 - [ ] 5.4 Consumer adoption (separate sessions, after deploy): create the Astronomy
       container's portfolio DOMAIN.md (Data-flow-hubs relocation), resolve the TSM
       glossary loop to one-way pointers

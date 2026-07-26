@@ -91,9 +91,17 @@ projects.)*
   router, and report *"run this skill from `<sub-dir>` to govern it as its own unit."* *(Not a
   submodule/vendoring call — that's the user's separate decision.)*
 - **B4.** A **container root** (the invocation dir holds no first-party project content — only
-  sub-projects + tooling/exclusions) gets the **router only**: a `CLAUDE.md` chartered as a
-  router with flag-and-skip routing to each sub-project + the exclusions — **not** the full
-  enforced set. *(Per-project docs are the truth; a portfolio-level set is noise.)*
+  sub-projects + tooling/exclusions) gets the **router plus at most two thin portfolio
+  docs**, never the rest of the enforced set: an optional **portfolio `DOMAIN.md`**,
+  chartered *cross-repo truth only* (shared glossary terms, cross-store disambiguations,
+  cross-repo contracts by pointer), created when such truth exists — e.g. surfaced by the
+  S7 lean — never by default; and an optional thin status/sequencing `ROADMAP.md`.
+  **Owner rule:** what one project's code defines lives in that project's docs — the
+  portfolio DOMAIN points *down* by name, sub-projects point *up* for shared terms,
+  **never mutual**. *(Ownerless truth improvised into routers, status docs, or sibling
+  pointers is how cross-repo loops form; per-project docs remain the truth for everything
+  owned.)* Leaning a container router routes cross-repo reference prose here — not into
+  ROADMAP, not kept as router prose (a one-line disambiguation gotcha may stay).
 - **B5.** **Design-heavy / code-light:** a large standalone design doc **is the project's
   DESIGN slot** — keep it whole: charter it, route it by name, and scaffold the rest of the
   enforced set charter'd-thin pointing into it ("mechanics live in `<doc>` §N until code

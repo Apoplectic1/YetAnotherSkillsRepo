@@ -20,15 +20,12 @@ worker-model benchmark).
   12:1 is partly maturation; shift-left drains only the change-shaped class — incident
   truth still needs the backstop. Gated candidates queued in ROADMAP (maintain description
   wording; prune-teeth).
-- 2026-07-26 — **Field signal #2 for B4 (same TSM maintain run): cross-project glossary
-  loop.** The sweep surfaced a cross-ref cycle around glossary content shared across the
-  Astronomy constellation — the per-repo convention gives portfolio-level truth no owner, so
-  each repo's locally-correct "single-source it there, point up" produces A→B and B→A with
-  nobody holding the content. Interim discipline (pre-B4): ownership follows the code that
-  defines the term (shared concepts → Library; scheduler terms → TSM); pointers one-way
-  only; MAINTAIN must flag-and-ask on cross-project ownership, never improvise cross-repo
-  pointers (rule candidate, gated). Bumps the B4 portfolio probe — now hit in the wild
-  twice. Specific loop details pending from the TSM session.
+- 2026-07-26 — **Field signal #2 for B4 (TSM glossary loop) → shipped same day** as SETUP
+  B4′ + MAINTAIN M15 (change `b4-portfolio-domain`) — full trail: probe record
+  `docs/2026-07-26-b4-portfolio-probe.md` → user Option A → RED/GREEN record
+  `docs/2026-07-26-b4-red-green.md`. Unique note: specific TSM loop details still pending
+  from that session; its resolution to one-way pointers is queued consumer adoption
+  (ROADMAP Open).
 - 2026-07-26 — **Field RED (TSM maintain run): M9 stuff-then-ask → shipped same day** as
   M9′ (apply-time check) + M14 (hold procedure) — full record:
   `docs/2026-07-26-batch2-red-green.md` (+ design-doc batch-2 provenance entry). Unique

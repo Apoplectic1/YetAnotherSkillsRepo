@@ -594,6 +594,22 @@ mention); probes also caught the unpinned-hold non-determinism M14 pins. Full sc
 `docs/2026-07-26-batch2-red-green.md`; fixture: `harness/tidepool-fixture-variants/fat-arch/`
 + DV/FA catalog cells.
 
+**B4 portfolio DOMAIN — 2026-07-26 (probe → decision → RED/GREEN; opsx change
+`b4-portfolio-domain`; SETUP B4′ + MAINTAIN M15).** Origin: two same-day field signals —
+TSM's maintain surfaced a cross-project glossary cross-ref loop, and the observational B4
+probe at the real Astronomy container reproduced the S7↔B4 collision (cross-repo contract
+prose with no sanctioned home). User adjudicated Option A: container root = router + at
+most two thin portfolio docs (optional `DOMAIN.md` chartered *cross-repo truth only*;
+optional thin status ROADMAP), owner rule, one-way pointers. RED on the new ReefStack
+fixture: 3 resolutions across 4 container reps under old text — including both fixture
+reps creating a root DOMAIN while *openly declaring it a B4 exception* (a rule
+contradiction: the correct action was criminalized); maintain rep stuffed the portfolio
+truth into the container router and half-broke the planted loop. GREEN 5/5: sanctioned
+DOMAIN with owner rule 2/2, single-project control clean (no over-fire), maintain hold on
+M13 rails with container byte-untouched, PL2 targets the DOMAIN when present. Records:
+`docs/2026-07-26-b4-portfolio-probe.md`, `docs/2026-07-26-b4-red-green.md`; fixture
+`harness/reefstack-fixture/` + `catalog-reefstack.md`.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

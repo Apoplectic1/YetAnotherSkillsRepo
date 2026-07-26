@@ -51,6 +51,16 @@ record loses the why/when.
   archived file is an immutable change record — never stub, trim, or relocate it. *(Shipped
   rationale concentrates there and nothing else ever reads the archive.)*
 
+## Portfolio truth
+- **M15.** A **portfolio-level** graduate (the truth spans repos, or no doc in this repo's
+  charter set can own it) targets the **container's portfolio `DOMAIN.md`** where one
+  exists (pointers one-way per the setup convention; M9/M14 apply). None exists →
+  **flag-and-ask** — record it in the dated maintain report with its portfolio-level
+  classification and add one ROADMAP open-line for the user's placement decision; **never
+  improvise the placement** into the container router, a sibling repo's docs, or a new
+  cross-repo pointer. *(Improvised placement is how ownerless loops form and container
+  routers fatten.)*
+
 ## Code bugs — a report-only channel
 - **M12.** A journal claim with **contract force** — guarantee language: must / always /
   never / aborts-on-X — that current code *violates* → a report-only **`flag-code-bug`**
@@ -89,8 +99,8 @@ record loses the why/when.
 2. **Merge + dedup + loop until dry.**
 3. **Adjudicate** per item (graduate / keep / archive / prune-only).
 4. **Apply**: promote → reference doc; disposition the source (M5–M7); **persist code-bug
-   flags (M13)**; update the router if a doc moved. Re-verify: nothing duplicated, no
-   why/when lost.
+   flags (M13)**; **portfolio-level graduates per M15**; update the router if a doc moved.
+   Re-verify: nothing duplicated, no why/when lost.
 
 Full rationale + RED/GREEN provenance:
 https://github.com/Apoplectic1/YetAnotherSkillsRepo/blob/main/docs/docs-architecture-design.md
