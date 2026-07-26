@@ -5,21 +5,15 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
-- 2026-07-26 — **superpowers plugin retired; writing-skills conventions vendored.** The only
-  load-bearing dependency was `superpowers:writing-skills` (authoring conventions — the
-  testing half was long since absorbed as VERIFICATION.md's RED/GREEN harness). Digest of
-  v6.2.0 now lives in DOMAIN.md § Authoring conventions; citations repointed (router
-  CLAUDE.md, design doc). Deployed skills never referenced superpowers → zero runtime
-  impact. Digest is a frozen snapshot — upstream updates no longer flow; historical
-  superpowers mentions in dated docs / opsx archive left as record.
-- 2026-07-26 — **Openspec-archive RED failure mode: non-determinism, not absence.** The RED
-  maintain rep *found* the planted archive rationale but hedged it as "conditional — user
-  call … arguably outside this sweep", citing the router's blanket `openspec/` exclusion —
-  and used `stub` with two different meanings in one output (trim-the-source vs
-  leave-untouched). Unpinned scope + unpinned vocabulary is the failure; a rule that pins
-  both (M11) is the fix. Also: TidePool fixture extended with `openspec/changes/archive/`
-  plants (catalog O1–O4) — reusable for future archive-related rules, but any rule *derived
-  from* these plants poisons them (non-derived rule stands).
+- 2026-07-26 — **superpowers plugin retired; writing-skills conventions vendored** → single
+  source: DOMAIN.md § Authoring conventions (v6.2.0 frozen digest). Unique notes: deployed
+  skills never referenced superpowers → zero runtime impact; historical superpowers mentions
+  in dated docs / opsx archive left as record.
+- 2026-07-26 — **Openspec-archive RED failure mode: non-determinism, not absence** → full
+  provenance: design doc § Openspec-archive awareness (M11 pins scope + disposition
+  vocabulary). Unique note: TidePool fixture now carries `openspec/changes/archive/` plants
+  (catalog O1–O4) — reusable for future archive-related rules, but any rule *derived from*
+  these plants poisons them (non-derived rule stands).
 - 2026-07-20 — **Repo relocated to `E:\Projects\AI\Skills\doc-architecture`** (was
   `E:\Projects\AI\Skills` root). deploy.sh needed no change (self-locates via `dirname "$0"`);
   skill footers unaffected (GitHub URL, remote unchanged). Updated the live absolute paths:
@@ -98,15 +92,10 @@ worker-model benchmark).
   non-interactive shell ("User force closed the prompt", exit 1 — *after* printing
   "Task status: ✓ Complete"). Run `openspec archive <name> --yes`; keep judging by output
   text, never exit code.
-- 2026-07-10 — **AUDIT worker-death hardening** (field RED: TSM's `tsm-docs-audit` run,
-  `wf_ed9d6885-ddb` — a Round-1 section worker (ROADMAP.md 73-260) died on an API
-  `server_error` mid-response; the script's `filter(Boolean)` absorbed the null: no retry, no
-  named gap). Synthetic RED on a non-derived fixture split 1/2 — the omission is
-  non-deterministic, text ships. Wrinkle worth keeping: hand-rolled JSON parsing is what
-  *organically* prompts retry thinking; the real `schema` API moves validation to the tool
-  layer, leaving `agent()→null` as the sole failure surface — exactly the path forgotten in
-  the field. GREEN 2/2 (retry-once keyed on null/throw; coverage note naming dead spans +
-  what covered them). Skill: step 1 retry-once, step 3 coverage note, one mistakes bullet.
+- 2026-07-10 — **AUDIT worker-death hardening** → full provenance (field workflow ID, dead
+  span, JSON-parsing-vs-schema-API mechanism, GREEN 2/2 detail): design doc § AUDIT
+  worker-death hardening — 2026-07-10. Shipped: step 1 retry-once, step 3 coverage note, one
+  mistakes bullet.
 - 2026-07-10 — **first self-audit** (AUDIT on this repo: 4 rounds, 16 workers,
   Sonnet→Opus→Fable; 36 findings, zero code-contract violations). Lessons: (a)
   **running-commentary tense is the dominant staleness class** (17 of 18 design-doc flags) —

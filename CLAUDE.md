@@ -21,6 +21,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - `NOTEBOOK.md` — running lab notebook (small findings).
 - `docs/YYYY-MM-DD-<slug>.md` — substantial records; find by convention (glob `docs/*.md` +
   grep), not an enumerated list. Companion data in `docs/audit-benchmark/`.
+- `docs/archive/` — spent dated records (executed plans, superseded drafts) moved out of the
+  live journal by MAINTAIN; same find-by-convention rule.
 
 ## Excluded from the doc set
 - `README.md` — public GitHub-facing distribution artifact (marketing copy, not a reference doc).
@@ -41,3 +43,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   deployed copy (normally `main`; `--force` exceptions: `RELEASING.md`).
 - Skill tests run against a disposable fixture created on demand (`VERIFICATION.md`); after
   any mutating run, apply its reset contract — `git clean -fd` is mandatory, not optional.
+- **openspec CLI:** always `openspec archive <name> --yes` (it prompts interactively and dies
+  in non-interactive shells) and judge success by **output text, never exit code** (archive
+  can exit 0 on a validation abort — don't chain with `&&`). The spec validator wants
+  SHALL/MUST on a requirement's **lead line**, and only validates files a change touches.
+  (Field origins: NOTEBOOK 2026-07-07/10.)

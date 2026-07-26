@@ -58,6 +58,9 @@ regression anywhere in the ecological run; evidence of strictly-added value at t
   citations were treated as systemically unverifiable rather than per-entry defects (correct).
 
 ## Field findings → candidate skill adjustments (each needs RED→GREEN before any text ships)
+*(Status, annotated by the 2026-07-26 MAINTAIN sweep: items 1–3 shipped/resolved — 1 →
+fat-router-lean S7+R26 2026-07-17; 2 → R21 hardened clause, shipped 2026-07-13; 3 → resolved
+by the CHANGELOG convention + R25/A2′, shipped 2026-07-13. Item 4 remains open.)*
 1. **Fat-router lean is a shared gap, not a regression.** Both skill generations scaffold and
    route but leave an existing oversized CLAUDE.md fat (old: 24→26 KB; hybrid: net-flat). The
    enforced-set table says "kept thin"; no rule compels moving glossary/contract prose down on

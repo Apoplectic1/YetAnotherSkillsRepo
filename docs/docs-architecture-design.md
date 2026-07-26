@@ -490,6 +490,37 @@ from null = dead) and a coverage-note section naming dead spans with their fallb
 (one pre-computed a `coveredBy` string per worker class; one refused to count a
 round-with-deaths as dry). AUDIT SKILL.md 1287→1382 words — within precedent.
 
+**Hybrid-rulebook rewrite — family-wide, 2026-07-11→13 (RED/GREEN arms 1–2 + TP ecological +
+round-3 delta; opsx change `apply-hybrid-rewrite`).** Form decision 2026-07-11: hybrid rulebook
+— numbered rule IDs, each carrying a one-clause why — over the house-narrative form; rules that
+carry their rationale resist an executing agent rationalizing around a bare rule (RED evidence:
+the "archived-verbatim-is-safe" rationalization), and the numbered form matches the dominant
+external agent-skill convention (drafts + form options: `docs/archive/2026-07-11-*.md`).
+Validation: arm 1 AUDIT+SETUP GREEN 2/2 (FermCtl), arm 2 MAINTAIN+whats-next GREEN 2/2
+(TrailKit) — family GREEN 8/8 (`docs/2026-07-12-hybrid-red-green-arm{1,2}-results.md`); TP
+ecological replay convergent with the old skills' real output + 3 hybrid-only improvements,
+zero regressions (`docs/2026-07-12-tp-ecological-run.md`); round 3 re-validated the
+CHANGELOG-convention delta — AUDIT R25 GREEN 2/2, SETUP A2′ GREEN 2/2, R21's hardened
+why-clause shipped on field evidence + zero cost despite a null probe delta
+(`docs/2026-07-13-round3-red-green-results.md`). Shipped 2026-07-13: all four SKILL.md replaced
+(−21% words, zero rule drops, portable GitHub-URL footers). Rule-ID governance adopted with the
+rewrite: IDs are append-only — convention + rationale in DOMAIN.md § Authoring conventions.
+
+**Fat-router-lean — 2026-07-17 (RED→GREEN; opsx change `fat-router-lean`; SETUP S7 + AUDIT
+R26).** Field origin: the TP ecological run — both skill generations scaffolded around a 24 KB
+router but left its glossary/contract weight in place, and AUDIT never placement-flagged the
+router itself (`docs/2026-07-12-tp-ecological-run.md`, finding 1). RED reproduced **only at
+scale**: small synthetic 0/3 (reps leaned unprompted / flagged under R10+R12), real 24 KB TP
+router 2/2 — both reps *saw* the fat, then read B2 "coexist, never clobber" as forbidding the
+trim (a rule collision, not inattention) and grew the router 24→26 KB. Shipped: **S7** — lean
+the router on encounter via an S1 move with an explicit B2 carve-out; trigger is a content test
+(reference content vs routing/gotchas), not a size threshold — the ~40 KB perf line is the
+*why*; **R26** — the router is placement-audited, one structural flag per off-charter block,
+currency judged orthogonally (R26 suppresses only placement flags — router fat is
+reference-tier, unlike journal-tier R25). GREEN 4/4 disk-verified content-preserving
+(TP router 24 → 3.5/4.3 KB, every block to its charter home). Ground truth:
+`harness/catalog-fat-router.md`; full scorecard: NOTEBOOK 2026-07-13/17.
+
 **Openspec-archive awareness — 2026-07-26 (RED→GREEN on the TidePool fixture, extended with a
 planted `openspec/changes/archive/`; opsx change `openspec-archive-awareness`).** Motivating gap
 (from this repo's own opsx workflow, so TidePool stays a non-derived fixture): archived

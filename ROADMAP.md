@@ -39,6 +39,11 @@ section closed 2026-07-07 with nothing open.
   candidates (rule IDs, −21% words, portable GitHub-URL footers); SETUP A2′ + AUDIT
   R25/R14/R21 encode shipped-history→`CHANGELOG.md`; deployed + pushed. Validation:
   `docs/2026-07-13-round3-red-green-results.md`. TidePool fixture promoted to `harness/`.
+- 2026-07-11 — **README Agent-Skills portability shipped** (change:
+  `openspec/changes/archive/2026-07-11-readme-portability/design.md`): README reframed as
+  standard Agent Skills (agentskills.io), plus a "Beyond Claude Code" usage-notes section —
+  marquee adopters, worker-model/fan-out degradation caveats, CLAUDE.md-vs-AGENTS.md
+  adaptation note. *(Digest line added by the 2026-07-26 MAINTAIN sweep — the ship predates it.)*
 - 2026-07-10 — **GitHub mirror renamed** `docs-architecture` → `YetAnotherSkillsRepo`
   (redirects live); README reframed as skills home (flagship: docs-architecture family);
   `github-distribution` spec Purpose filled + URL updated; RELEASING's stale "No remote

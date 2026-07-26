@@ -8,7 +8,8 @@ design doc: `docs/docs-architecture-design.md`.
 ## Layout
 - `skills/<name>/SKILL.md` — one directory per skill; the SKILL.md *is* the product.
 - `docs/` — journal (dated records) + the canonical design doc + benchmark data
-  (`docs/audit-benchmark/` — scripts, sweeps, raw workflow outputs behind the 2026-06-29 note).
+  (`docs/audit-benchmark/` — scripts, sweeps, raw workflow outputs behind the 2026-06-29 note);
+  spent dated records move to `docs/archive/` (MAINTAIN's archive disposition).
 - `deploy.sh` — copies `skills/*/` → `~/.claude/skills/`, marker-stamps each copy, prunes
   family-stale deployed dirs (see `RELEASING.md`).
 - `openspec/`, `.claude/` — tooling, excluded from the doc set (exception: archived

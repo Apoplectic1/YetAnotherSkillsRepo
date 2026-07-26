@@ -86,3 +86,7 @@ scenario runs. This repo's implementation of the law **is** the harness: `VERIFI
 
 ### Repo mechanics
 - LF line endings (enforced via `.gitattributes`).
+- **Rule IDs are append-only** (decided 2026-07-12): never renumber or shift existing SKILL.md
+  rule IDs (S/B/T/A/R/M/W…) — journal docs, ROADMAP shipped entries, and other skills cite
+  rules by ID. A new rule takes a fresh appended ID even when placed thematically among older
+  ones (held since: R25, R26, M11).
