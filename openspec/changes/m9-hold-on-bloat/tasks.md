@@ -29,16 +29,16 @@
 
 ## 4. GREEN
 
-- [ ] 4.1 Micro-variants: FA1 scenario → hold + report + ROADMAP line, zero writes to fat
+- [x] 4.1 Micro-variants: FA1 scenario → hold + report + ROADMAP line, zero writes to fat
       doc; FA2 → applies normally (over-holding control)
-- [ ] 4.2 1 full on-disk GREEN rep on the fat-ARCH copy: disk-verify fat doc byte-identical,
+- [x] 4.2 1 full on-disk GREEN rep on the fat-ARCH copy: disk-verify fat doc byte-identical,
       report carries held graduations, ROADMAP has exactly one split-job line, healthy
       target received its promotion; reset contract
 
 ## 5. Ship (joint with derivability-discriminator)
 
-- [ ] 5.1 Apply M9/M14 text on dev (alongside R28)
-- [ ] 5.2 Dated RED/GREEN record (shared doc for the batch) + design-doc provenance +
+- [x] 5.1 Apply M9/M14 text on dev (alongside R28)
+- [x] 5.2 Dated RED/GREEN record (shared doc for the batch) + design-doc provenance +
       ROADMAP shipped line + NOTEBOOK field-entry dispositions
-- [ ] 5.3 Archive both changes (--yes, judge by output text); merge dev → main; deploy.sh;
+- [x] 5.3 Archive both changes (--yes, judge by output text); merge dev → main; deploy.sh;
       push

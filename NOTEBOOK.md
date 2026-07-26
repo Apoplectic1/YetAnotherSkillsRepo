@@ -29,15 +29,12 @@ worker-model benchmark).
   only; MAINTAIN must flag-and-ask on cross-project ownership, never improvise cross-repo
   pointers (rule candidate, gated). Bumps the B4 portfolio probe — now hit in the wild
   twice. Specific loop details pending from the TSM session.
-- 2026-07-26 — **Field RED (TSM maintain run): M9 stuff-then-ask.** The rep graduated into
-  a 37.6→38.6 KB ARCHITECTURE.md three times in one sweep, *then* asked "split it?" — knew
-  the rule (quoted "split before you stuff" in its own closing) and inverted M9's required
-  order under finish-the-graduate pressure. Failure class: knows-rule-skips-under-pressure →
-  fix form is prohibition + rationalization red-flags (DOMAIN table), unlike this week's
-  REQUIRED-slot fixes. Target behavior sketch: bloated target → HOLD its graduations
-  (record in the M13 report + a ROADMAP line naming the pending split job), split is a
-  separately-adjudicated job, promotions land in the split homes. Gate: RED→GREEN on a
-  fat-reference-doc fixture variant (fat-router family precedent; new plant class).
+- 2026-07-26 — **Field RED (TSM maintain run): M9 stuff-then-ask → shipped same day** as
+  M9′ (apply-time check) + M14 (hold procedure) — full record:
+  `docs/2026-07-26-batch2-red-green.md` (+ design-doc batch-2 provenance entry). Unique
+  note: synthetic RED classified the mechanism as a *noticing* failure, not
+  knows-rule-skips — the framed probes passed while the on-disk rep stuffed silently
+  (fat-router scale lesson, second confirmation).
 - 2026-07-26 — **Field finding (same TSM run): a "dry" round from an overloaded worker is
   not evidence.** Worker holding 16 records skimmed (found 2); re-partitioning the same set
   four ways found 2 more; the dedicated dry-check emptied at round 3 while a critic worker
@@ -45,16 +42,11 @@ worker-model benchmark).
   partition size stays small enough to force depth — candidate: partition-size cap or
   re-partition-before-dry clause. Natural batch-mate for the AUDIT scaled-coverage backlog
   item (both touch round/coverage mechanics). Ungated; needs synthetic RED.
-  `derivability-discriminator`.** User question ("are we documenting what's better derived
-  from code?") exposed the gap: on stale derivable trivia (counts, versions, column lists —
-  rationale-free, one grep from truth), AUDIT's reps consistently propose `fix-doc`
-  re-caching the grep (observed: every TidePool rep corrected 12→18 rather than questioning
-  the count's presence), when the durable fix is often deleting/de-valuing the claim — a
-  drift-prone cache re-primed is drift deferred, not cured. Discriminator sketch: claim is
-  cheaply derivable AND carries no rationale/contract/gotcha → propose removal or reword
-  without the perishable value; otherwise fix normally. Iron-law gated; fixture note: D4's
-  catalog expectation (fix-doc on the station count) will need a GREEN-text variant
-  (deletion/reword acceptable) without weakening its live-section-control role.
+- 2026-07-26 — **Candidate: fix-or-delete discriminator → shipped same day as AUDIT R28** —
+  full record: `docs/2026-07-26-batch2-red-green.md` (+ design-doc batch-2 provenance
+  entry). Origin: user design question "are we documenting what's better derived from
+  code?"; RED baseline 4/4 re-cache of the D4 station count.
+- 2026-07-26 — **Candidate severity heuristic (from a TSM-session exchange, ungated):**
   fail-closed→fail-soft contract violations (doc guarantees "hard 0"/abort, code ships a
   ramp/fallback) deserve top severity — graceful degradation converts a loud, fixable
   violation into plausible wrong answers (rhymes with the user's global fail-fast rule).

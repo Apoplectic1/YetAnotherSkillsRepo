@@ -578,6 +578,22 @@ substitutes for guarantee language — dated records agreeing on an old value ar
 fix-round orchestration — fixing stays dev/diagnose work (honesty posture). Full scorecard:
 `docs/2026-07-26-code-bug-persistence-red-green.md`.
 
+**Batch 2 — derivability discriminator + hold-on-bloat, 2026-07-26 (two changes, one
+validation session; opsx `derivability-discriminator` + `m9-hold-on-bloat`).** Origins: a
+user design question ("are we documenting what's better derived from code?") and the same
+day's TSM field RED (three graduations into a 38 KB ARCHITECTURE, split asked after — plus
+the maintain-vestigial-prune critique). Shipped: AUDIT **R28** — stale cheaply-derivable
+rationale-free values get a deletion-led fix proposal, not a re-cached grep (RED 4/4
+re-cache; GREEN de-valued on disk, no over-fire on rationale-bearing or contract values);
+MAINTAIN **M9** hardened in place — apply-time content test, stuff-then-ask/never-noticing
+named as the violation — plus **M14**, the hold procedure (report entry + one deduplicated
+ROADMAP split-job line; split runs as its own job; held promotions land in split homes).
+M9's RED repeated the fat-router scale lesson precisely: framed probes 0/2 but on-disk 1/1
+stuff-silently on a generated 25.7 KB fat-ARCH fixture (25,734→26,859 B, zero split
+mention); probes also caught the unpinned-hold non-determinism M14 pins. Full scorecard:
+`docs/2026-07-26-batch2-red-green.md`; fixture: `harness/tidepool-fixture-variants/fat-arch/`
++ DV/FA catalog cells.
+
 ## SETUP-skill spec (Phase 3 design — grounded in target projects)
 
 Grounded 2026-06-28 in a survey of the projects the skills will first run on (sibling C#/.NET

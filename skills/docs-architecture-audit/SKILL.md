@@ -42,6 +42,13 @@ capable agent already does well, so the rules below force what one pass can't gi
   already satisfied by code → `graduate` (an ordinary doc edit once adjudicated: move to
   "Recently shipped" / archive the plan). Plan contradicted by current structure →
   `revisit-plan`. *(Don't edit intent.)*
+- **R28.** `fix-doc` on a stale value that is **cheaply derivable** (one grep re-derives it —
+  a count, a version, an enumerated list) **and rationale-free** (no why, guarantee, or
+  gotcha attached) → the proposed fix **leads with removing or de-valuing the claim** (keep
+  the durable statement — "a curated station registry", not "12 stations"), with the
+  value-update as the stated alternative. A value carrying rationale, contract force (R7),
+  or gotcha weight gets a normal fix. *(Re-caching a rationale-free grep is drift deferred,
+  not cured; only the fix-shape changes — flag, evidence, adjudication unchanged.)*
 
 ## Placement — section vs charter
 - **R10.** Off-charter section → `move-to <doc>`, or `cross-ref+delete`. *(Single-source every

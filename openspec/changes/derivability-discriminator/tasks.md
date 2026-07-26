@@ -24,14 +24,14 @@
 
 ## 4. GREEN + micro-variants
 
-- [ ] 4.1 Micro-variants first (fresh-context, schema-forced): DV2 → deletion-led proposal;
+- [x] 4.1 Micro-variants first (fresh-context, schema-forced): DV2 → deletion-led proposal;
       DV1 → no deletion proposal; R7-contract value → untouched by R28
-- [ ] 4.2 1 full GREEN AUDIT rep: D4 flagged with deletion-led fix, DV1 safe, R25/R14/R27
+- [x] 4.2 1 full GREEN AUDIT rep: D4 flagged with deletion-led fix, DV1 safe, R25/R14/R27
       regressions clean; disk-verify; reset contract
 
 ## 5. Ship
 
-- [ ] 5.1 Apply R28 to skills/docs-architecture-audit/SKILL.md on dev
-- [ ] 5.2 Dated RED/GREEN record + design-doc provenance entry + ROADMAP shipped line +
+- [x] 5.1 Apply R28 to skills/docs-architecture-audit/SKILL.md on dev
+- [x] 5.2 Dated RED/GREEN record + design-doc provenance entry + ROADMAP shipped line +
       NOTEBOOK candidate-entry disposition
-- [ ] 5.3 Archive change (--yes, judge by output text); merge dev → main; deploy.sh; push
+- [x] 5.3 Archive change (--yes, judge by output text); merge dev → main; deploy.sh; push

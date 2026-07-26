@@ -31,8 +31,17 @@ record loses the why/when.
 - **M8.** **Never delete the why/when** — a dated entry records *when and why* a decision was
   made; stub or archive it, never erase. *(The two failure modes: graduate-without-prune →
   duplication; prune-by-deletion → lost why.)*
-- **M9.** Don't over-graduate — and never graduate into an already-bloated reference doc:
-  an oversized target is a **setup/audit split job first**, not more content.
+- **M9.** Don't over-graduate — and **check every graduate's target at apply time** (content
+  test: is the doc already dominated by content a split would relocate?). Never promote into
+  an already-bloated reference doc — an oversized target is a **setup/audit split job
+  first**, not more content; applying the promotion and flagging the split afterward — or
+  never noticing — is the violation, not compliance. Bloated → hold (M14).
+- **M14.** A graduate whose target is bloated is **held, not applied**: record it in the
+  dated maintain report (standing-claim + target + disposition — M13 rails) and add **one**
+  ROADMAP open-line naming the pending split job (deduplicated across holds); the split runs
+  as its own adjudicated job, then held promotions land in the split homes. Healthy targets
+  in the same sweep apply normally. *(The report keeps the why (M8); the ROADMAP line keeps
+  it tracked — `whats-next` sweeps both homes.)*
 
 ## Sources — one class beyond the dated journal
 - **M11.** Archived openspec design docs (`openspec/changes/archive/*/design.md`) are a

@@ -28,6 +28,12 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-07-26 — **batch 2 shipped: AUDIT R28 + MAINTAIN M9′/M14** (changes:
+  `derivability-discriminator`, `m9-hold-on-bloat`). R28: stale derivable rationale-free
+  values get deletion-led fix proposals (stop re-caching greps). M9 hardened (apply-time
+  content test; stuff-then-ask is the violation) + M14 hold procedure (report + one
+  ROADMAP split-job line; promotions land post-split). RED/GREEN on TidePool DV/FA cells +
+  generated fat-ARCH variant; record: `docs/2026-07-26-batch2-red-green.md`.
 - 2026-07-26 — **code-bug persistence shipped: AUDIT R27 + MAINTAIN M12/M13** (change:
   `code-bug-persistence`; field RED from a MAINTAIN-on-TSM run). Report-only flags now
   persist to the target project's tiers before a run ends (dated `<skill>-report.md` +
