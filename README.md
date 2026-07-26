@@ -1,6 +1,6 @@
 # YetAnotherSkillsRepo
 
-Claude Code skills, RED/GREEN-tested before they ship. Flagship: the **docs-architecture** family — skills that set up, audit, and maintain AI-navigable project documentation.
+Claude Code skills, each validated against a test harness before it ships. Flagship: the **docs-architecture** family — skills that set up, audit, and maintain AI-navigable project documentation.
 
 Your docs become the agent's persistent memory: a thin always-loaded router (`CLAUDE.md`), a small set of charter'd reference docs, and an append-only journal — kept honest by audits that treat the code as ground truth.
 
@@ -29,11 +29,10 @@ Then, in any project, ask Claude Code to **"set up this project's docs"** — th
 
 ## Why docs-architecture?
 
-- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: the router always loads, and everything else is one hop away by charter. The router is a thin map — one line per doc saying what lives there — so the whole doc set stays reachable at near-zero standing context cost, and those one-liners double as the charters the audit judges placement against. Thinness is enforced from both sides: setup moves reference content it finds embedded in the router (glossary, contracts, mechanics) down to the charter'd docs, and the audit placement-flags anything reference-shaped that creeps back in.
-- **Docs written for humans drift silently.** Nothing forces them back to the truth until someone trusts a stale claim. The audit treats code as ground truth and requires evidence on every flag — a `file:line` citation or the literal `unverifiable → ask user` — and never guesses stale.
-- **One careful read is not an audit.** In baseline testing, a single careful pass surfaced only about half the real issues ([benchmark](docs/2026-06-29-audit-model-benchmark.md)). The audit skill fans out per-section workers plus replicate rounds and loops until a round finds nothing new — then switches worker model, because one model's "done" is that model's ceiling, not the truth.
-- **Docs-vs-code disagreement runs both ways.** When a doc asserts a guarantee (must / always / never) and the code violates it, the audit flags the *code* as the suspect — a `file:line`-cited bug report handed to your dev flow — rather than quietly rewriting the doc to match broken behavior. Doc audits that only ever "fix the doc" encode bugs into the spec.
-- **Skill text is tested, not vibed.** Every rule shipped RED→GREEN: watch an unguided agent fail, write the minimal text that fixes it, watch it comply ([design + provenance](docs/docs-architecture-design.md)).
+- **AI agents are stateless.** Without a deliberate doc layer they re-read, re-grep, and re-derive what they knew yesterday, every session. These skills make the docs the memory: a thin always-loaded router maps the doc set — one line per doc saying what lives there — so everything is one hop away at near-zero standing context cost.
+- **Docs written for humans drift silently.** Nothing forces them back to the truth until someone trusts a stale claim. The audit treats code as ground truth and requires evidence on every flag — a `file:line` citation or an explicit "unverifiable, ask the user" — and never guesses stale.
+- **One careful read is not an audit.** A single careful pass finds only about half the real issues. The audit fans out multiple workers over every section and keeps going until a round finds nothing new.
+- **Disagreement runs both ways.** When a doc asserts a guarantee (must / always / never) and the code violates it, the audit reports the *code* as the suspect — filed into your project's own backlog — rather than quietly rewriting the doc to match broken behavior.
 
 ## Updating
 
@@ -64,9 +63,7 @@ The skills are standard [Agent Skills](https://agentskills.io) — an open forma
 
 ## Repo layout
 
-`skills/` is the product; everything else — `docs/`, `NOTEBOOK.md`, `openspec/` — is the open lab notebook: the RED/GREEN baselines, benchmarks, and design records behind every rule in the skill text (each skill footer links the canonical design doc by its public GitHub URL; in this repo the evidence lives under `docs/`). The repo documents itself with the same convention the skills enforce.
-
-The `openspec/` change records are planned with [OpenSpec](https://github.com/Fission-AI/OpenSpec) — spec-driven change workflows for AI coding, and the README whose shape this one borrows. Recommended.
+**`skills/` is the product — installing it is all you need.** Everything else is the development workshop behind it and can be ignored by users: `docs/` holds the design records and test evidence behind every rule in the skill text, and `harness/` holds *fictional* fixture projects with deliberately planted defects (test targets for the skills — not templates or examples to copy). `openspec/` holds change-planning records, made with [OpenSpec](https://github.com/Fission-AI/OpenSpec) — recommended, and the README whose shape this one borrows.
 
 ## License
 

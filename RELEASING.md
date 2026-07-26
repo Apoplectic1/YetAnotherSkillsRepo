@@ -30,3 +30,13 @@ branch for live dogfooding: `./deploy.sh --force` (loud warning).
 `docs-architecture` the same day — GitHub redirects the old name). Distribution only, not a
 change of source-of-truth (local repo is canonical). Publish = `git push origin main`;
 `dev` never pushes. Deploy (local install) and push (public mirror) are independent steps.
+
+**README audience rule (user, 2026-07-26):** `README.md` is the public storefront —
+potential-user-focused only (what the skills do, install, usage caveats, portability).
+Development/testing minutiae — fixtures, RED/GREEN mechanics, benchmark figures, internal
+doc links — stay out, except the one Repo-layout paragraph that labels `docs/` + `harness/`
+as the workshop and marks fixture projects (e.g. TidePool) as *fictional test targets, not
+templates* (they're publicly visible in the tree, so one labeled line beats silence).
+Counterpart constraint: `skills/*/SKILL.md` text is the agent-facing product — never
+simplified for human browsing (every wording is RED/GREEN-gated; the README table is the
+human-facing preview layer).
