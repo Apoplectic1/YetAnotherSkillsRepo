@@ -9,12 +9,15 @@ section closed 2026-07-07 with nothing open.
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
   (shipped 2026-07-17); assign the next free number when it ships.
-- **B4 portfolio probe** (2026-07-13, **bumped 2026-07-26** — hit in the wild twice): B4
-  portfolio-DOMAIN amendment — cheap observational SETUP probe at the Astronomy container
-  first (expected router-only per B4; old projects get B3 flag-and-skip lines). Refined in
-  NOTEBOOK 2026-07-13; second field signal NOTEBOOK 2026-07-26 (TSM maintain surfaced a
-  cross-project glossary cross-ref loop — portfolio truth has no owner under per-repo
-  charters). *(Split out 2026-07-17: the fat-router-lean half shipped as SETUP S7 + R26.)*
+- **B4 amendment — decision pending** (probe ✅ run 2026-07-26,
+  `docs/2026-07-26-b4-portfolio-probe.md`): B4's core held (2/2 no portfolio set, B3 clean)
+  but the S7↔B4 collision reproduced with divergent resolutions (mechanics → root ROADMAP
+  vs kept-in-router as "gotcha") — portfolio truth has no sanctioned home; same root cause
+  as the TSM glossary loop. Three options on the table (A: thin portfolio DOMAIN +
+  owner-project rule + one-way pointers — recommended; B: owner-rule only; C: pin status
+  quo). User adjudicates, then SETUP B4 amendment ships via RED/GREEN on a synthetic
+  container fixture (the Astronomy container is now deriving evidence — poisoned).
+  History: refined NOTEBOOK 2026-07-13; field signals ×2 2026-07-26.
 - **MAINTAIN right-sizing candidates** (2026-07-26 — gated, from TSM's field feedback,
   NOTEBOOK same date): (a) skill `description` says "periodic journal-health sweep" —
   candidate rewording to trigger conditions (~10 archived changes / subsystem rewrite /
