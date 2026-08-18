@@ -43,7 +43,7 @@ rename — leave unless they do.
   ecological testing; the ecological run mutated only a container *copy*, never this tree.
   Stays untracked in the Skills repo (nested `.git`; user declined a gitignore entry).
   Restore contract: `git reset --hard 9034e6f && git clean -fd` **run inside that directory**.
-- **Real TargetPlanner** (`E:\Projects\VisualStudio\Astronomy\TargetPlanner`, `dev`, last
+- **Real TargetPlanner** (`E:\Projects\Astronomy\TargetPlanner`, `dev`, last
   commit `f3b19bc` 2026-07-07 = old-skill audit output): **working tree deliberately dirty,
   decision pending** — uncommitted layer written by Cowork via the bridge during the user's
   adjudication walk-through: 20 approved doc fixes (CLAUDE ×3, ARCHITECTURE ×9, README ×4,

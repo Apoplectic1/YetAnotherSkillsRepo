@@ -138,7 +138,7 @@ worker-model benchmark).
   — portfolio-shared DOMAIN.md at a container root (user's Astronomy-portfolio glossary
   idea): collides with shipped B4 ("router only; portfolio-level set is noise"), so it's a
   rule change with a single-sourcing design question (per-project DOMAIN.md cross-refs up?).
-  Cheap probe first: run SETUP at `E:\Projects\VisualStudio\Astronomy` and observe (expected:
+  Cheap probe first: run SETUP at `E:\Projects\Astronomy` and observe (expected:
   router-only per B4; old non-portfolio projects get B3 flag-and-skip lines — not a blocker).
 - 2026-07-10 — **openspec archive prompts interactively** (third CLI gotcha, joins the
   2026-07-07 pair): `archive` asks "Proceed with spec updates?" and dies in a

@@ -1,7 +1,7 @@
 # 2026-07-26 — B4 portfolio probe (Astronomy container, observational)
 
 **Charter:** dated record of the B4 probe — 2 read-only SETUP reps (plan-only, Explore
-agents, Sonnet-high) against the real `E:\Projects\VisualStudio\Astronomy` container.
+agents, Sonnet-high) against the real `E:\Projects\Astronomy` container.
 Nothing applied; the container was not modified. Run `wf_b7f6a8da-f22`. Context: B4
 amendment backlog item (NOTEBOOK 2026-07-13) + two same-day field signals (TSM glossary
 cross-ref loop; this probe).
