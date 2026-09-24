@@ -60,6 +60,15 @@ for archived designs — any GREEN flag on them is a fail. MAINTAIN reps are rep
 adjudication (flag list) runs; if a rep applies, score the applied tree. O1–O4 leave D1–D5
 expectations unchanged.
 
+## OpenSpec tooling baseline (added 2026-09-24)
+The master now carries the generated OpenSpec tooling: `.claude/commands/opsx/` (12
+commands), `.claude/skills/openspec-*/` (12 skills), `openspec/config.yaml` (`schema:
+spec-driven`) and `openspec/specs/.gitkeep`, from `openspec init --tools claude` at CLI
+1.13.2. The machine-wide opsx sync keeps it at the installed CLI version. These files are
+not plants and carry no expected disposition. Runs scored before this date used a tree
+without them, where `openspec/` was a bare archive; O1 to O4 expectations are unchanged, but
+their surrounding openspec root is now a configured one.
+
 ## Code-bug-persistence extension (added 2026-07-26, change `code-bug-persistence`)
 Planted for the CB RED/GREEN runs (MAINTAIN primary; AUDIT persistence). Not derived from the
 TSM field finding — fresh plants on the TidePool fiction. Ground truth:

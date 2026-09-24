@@ -16,6 +16,9 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   `openspec/changes/archive/` (O1–O4 in the catalog) for the archive-awareness runs, and
   again 2026-07-26 with the code-bug plants (CB1–CB4: journal-contract-vs-code regression,
   no-contract drift control, persistence/dedup cells) for the code-bug-persistence runs.
+  Since 2026-09-24 it also carries the generated OpenSpec tooling (`.claude/` opsx set,
+  `openspec/config.yaml`), kept current by the machine-wide opsx sync; not a plant (catalog:
+  OpenSpec tooling baseline).
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.
