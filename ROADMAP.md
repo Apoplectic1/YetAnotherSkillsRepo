@@ -5,6 +5,11 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
+- **Ancestor-router conventions** (2026-09-24, from the HDL tree's ATML audit): make the AUDIT
+  sweep check a repository against its ancestor routers' conventions, not only its own
+  charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
+  audited in every repository beneath it. Seen there: a rule moved between umbrellas left
+  the repositories that cite it pointing at a router that no longer carries it.
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
