@@ -46,7 +46,12 @@ section closed 2026-07-07 with nothing open.
   HDL-side umbrellas were inverted; the root and Astronomy still carry `/*/`, and the root's
   list must also name its foreign areas (WSL disks, sync metadata). A manifest that enumerates
   files (the ATML lab kit) is a consumer the rollover must update. SETUP should create an
-  umbrella's ignore file by name, never by wildcard.
+  umbrella's ignore file by name, never by wildcard. **The index** (added the same day, backfilled in all seven overflow directories):
+  `<JOURNAL>/INDEX.md`, one section per rolled file (date span, size), one line per entry (date,
+  title); the rolled files are frozen, so the index is regenerated at each rollover without
+  changing its existing lines. The same property gives MAINTAIN a watermark: a sweep records
+  the last rolled file it covered and the next reads only the live file and newer rollovers.
+  The scripts: `docs/2026-09-26 - journal-rollover/` (`rollover.py`, `journal_index.py`).
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
