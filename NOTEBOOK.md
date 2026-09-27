@@ -5,6 +5,14 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-09-26: **Two more openspec CLI gotchas (1.13.2), from six spec-cleanup changes on the
+  HDL tree.** (a) A MODIFIED requirement block is refused at validate and at archive when it
+  drops a scenario name the main spec still carries, and a renamed scenario is a drop
+  (`specs-apply.js:387`, `validator.js:642`); the way through is to rename the heading in the
+  main spec directly, as a Purpose is edited, and carry the new name in the delta. (b) A
+  change with no spec delta at all (a Purpose reworded) fails validate with "no deltas";
+  the CLI's own marker `skip_specs: true` in the change's `.openspec.yaml` lets it validate
+  (with an INFO line) and archive. Both now in the router's openspec gotcha.
 - 2026-09-26: **Field feedback from the HDL tree: a maintain sweep after a release, the
   journal rollover piloted, the always-on chain measured.** The sweep (the ATML umbrella's
   `docs/2026-09-26 - maintain-report.md`): 14 sweep workers over six journals and 69 archived

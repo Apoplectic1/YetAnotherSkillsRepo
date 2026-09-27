@@ -51,4 +51,8 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   in non-interactive shells) and judge success by **output text, never exit code** (archive
   can exit 0 on a validation abort — don't chain with `&&`). The spec validator wants
   SHALL/MUST on a requirement's **lead line**, and only validates files a change touches.
-  (Field origins: NOTEBOOK 2026-07-07/10.)
+  A MODIFIED block may not drop a scenario name the main spec still has, and a rename
+  counts as a drop: rename the `#### Scenario:` heading directly in the main spec and
+  carry the new name in the delta. A change with no delta (a Purpose edit, prose only)
+  needs `skip_specs: true` in its `.openspec.yaml` or validate refuses it with "no
+  deltas". (Field origins: NOTEBOOK 2026-07-07/10, 2026-09-26.)
