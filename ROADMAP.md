@@ -30,8 +30,23 @@ section closed 2026-07-07 with nothing open.
   never to NOTEBOOK entries, which move by date, not by judgment. Touches SETUP (the layout
   and the charter line), MAINTAIN (M3, M14, the rollover as a sweep step or its own trigger),
   AUDIT (R14's journal set includes the directory), `whats-next` (open items across the live
-  file only). First consumers: the ATML umbrella, the Arty (halted: its whole NOTEBOOK may
-  roll at once), HlsLibrary.
+  file only). **Piloted and applied 2026-09-26** across the HDL tree (the ATML umbrella's
+  NOTEBOOK entry of that day records it): seven journals past 40 KB rolled (the ATML
+  umbrella's, the Arty's, HlsLibrary's, the KR260's, EthernetLibrary's and TxnContractLibrary's
+  NOTEBOOKs, the Arty's CHANGELOG), by a script that moves entries byte for byte and checks it.
+  Findings for the change: (a) and (b) hold; whole days stay in one file so a date names one
+  file; the live file is cut to half the budget (about 20 KB) so it does not roll again the
+  next day; a newest-first CHANGELOG rolls from its oldest end; an undated `##` section (an
+  Open threads list) stays live after the charter; a carried open thread gets an "Open threads
+  (carried at a rollover)" section. **A prerequisite:** an umbrella over repositories that
+  ignores `/*/` silently drops the overflow directory (and a kit copied from what is committed
+  loses it); the owner's rule is that a directory created in a repository is tracked, so such
+  an umbrella ignores its nested repositories by name, each reason on its own line (git reads a
+  comment only on a line of its own; a trailing one makes the pattern literal). The three
+  HDL-side umbrellas were inverted; the root and Astronomy still carry `/*/`, and the root's
+  list must also name its foreign areas (WSL disks, sync metadata). A manifest that enumerates
+  files (the ATML lab kit) is a consumer the rollover must update. SETUP should create an
+  umbrella's ignore file by name, never by wildcard.
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
