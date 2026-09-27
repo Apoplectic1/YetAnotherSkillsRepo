@@ -16,3 +16,4 @@ wraps them; until then they are the record of what ran.
 Verified by replaying `rollover.py` on the pre-rollover versions of HlsLibrary's NOTEBOOK and
 the Arty's CHANGELOG (newest first): the rolled bodies and the live file came out identical to
 the pilot's commits.
+- `gen_big_journal.py`: generates the `big-journal` fixture variant (seeded) for the RED/GREEN runs.

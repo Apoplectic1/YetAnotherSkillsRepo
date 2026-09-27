@@ -29,11 +29,11 @@ projects.)*
 | `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin — enforced by S7) |
 | `ARCHITECTURE.md` | subsystem mechanics (how it works) |
 | `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
-| `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings) |
+| `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings); past its budget its oldest days roll into `NOTEBOOK/` (T1) |
 | `VERIFICATION.md` | how to verify a change — *even if* just "= `dotnet test` / `npm test`, CI at X" |
 | `DOMAIN.md` | the human/strategy home (science / conventions / site-process / UI rules) |
-| `docs/` | journal: `YYYY-MM-DD-<slug>.md` per-topic dated records |
-| `CHANGELOG.md` | **conditional** — shipped-history journal (append-only, dated, newest first); create when history accrues |
+| `docs/` | journal: per-topic dated records, `YYYY-MM-DD-<slug>.md` by default or the pattern the router's journal line states (B2) |
+| `CHANGELOG.md` | **conditional** — shipped-history journal (append-only, dated, newest first); create when history accrues; rolls into `CHANGELOG/` like NOTEBOOK |
 | `README.md`, `RELEASING.md` | **conditional** — public entry point; project that ships |
 
 - **S5.** **Charter-guard:** every file opens with a one-line charter (purpose / when to read).
@@ -57,7 +57,11 @@ projects.)*
 
 ## Tiers & routing — teach these in CLAUDE.md
 - **T1.** **journal** (dated capture) = `docs/YYYY-MM-DD-*.md` + `NOTEBOOK.md` +
-  `CHANGELOG.md`. Three-way split: small finding from doing the work → NOTEBOOK; **shipped
+  `CHANGELOG.md`, plus their **overflow directories** (`NOTEBOOK/`, `CHANGELOG/`): when a
+  journal passes its budget (40 KB by default), its oldest whole days roll into a directory
+  named for the file, one frozen file per period named by its first date, with an
+  `INDEX.md` listing every rolled entry (the maintain skill's job, its M17; entries keep
+  their text). Three-way split: small finding from doing the work → NOTEBOOK; **shipped
   unit → CHANGELOG**; substantial standalone record → `docs/`.
 - **T2.** **reference** (current truth) = ARCHITECTURE / ROADMAP / DOMAIN / VERIFICATION —
   edited in place.
@@ -65,7 +69,9 @@ projects.)*
   reasoning → a dated `docs/` note + a one-line reference back. Extract only when lengthy AND
   cold AND evergreen (not code-coupled).
 - **T4.** The router names reference docs **by name**; the journal **by convention**
-  (`glob docs/*.md` + grep) — never an enumerated, growing list.
+  (`glob docs/*.md` + grep) — never an enumerated, growing list. The journal line states
+  the dated-record pattern and that a dated citation ("NOTEBOOK 2026-01-22") resolves by
+  grep over the journal and its overflow directory.
 
 ## archive/ and the changelog — do not blur
 - **A1.** `archive/` = **archival-only**: not-current-design-relevant, deletable (git is the
@@ -84,8 +90,10 @@ projects.)*
   (`changes/archive/*/design.md`) as historical records the **maintain** sweep reads (still
   never scaffolded into, and never an authoring target for the T1 journal split).
 - **B2.** **Coexist, never clobber:** augment an existing setup — don't overwrite a present
-  `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the convention (no spaces;
-  align casing).
+  `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the **project's stated**
+  dated-record pattern (the router's journal line; the default is `YYYY-MM-DD-<slug>.md`),
+  align casing; never impose the default over a pattern the project states *(a rename
+  breaks every citation of the file: S1's restructure-never-destroy reaches names)*.
 - **B3.** A **sub-project** (nested tree with its own router / own `.git`) is its own
   governance unit: **flag-and-skip** — leave its docs alone, note it excluded in the root
   router, and report *"run this skill from `<sub-dir>` to govern it as its own unit."* *(Not a
@@ -108,10 +116,17 @@ projects.)*
   lands"). Its content graduates into ARCHITECTURE/ROADMAP as code arrives (a later MAINTAIN
   job). Never split, relocate, or archive it. *("Distributed then archived verbatim" still
   destroys the single living home.)*
+- **B6.** A **container root's `.gitignore` names each nested repository** (`/alpha/`), each
+  reason on its own line, and **never wildcards the root's directories** (`/*/` plus
+  exceptions): a wildcard silently drops any new directory (an overflow directory first),
+  and a kit copied from what is committed ships without it. On encounter a wildcard is a
+  safety flag, rewritten by name in the run (content-preserving: the same directories stay
+  out; git reads a comment only on a line of its own, a trailing one makes the pattern
+  literal). *(Found the first time a journal rolled over under such a file.)*
 
 ## Procedure
 1. **Survey** the tree: existing docs, the exclusions (B1), sub-projects (B3), and the
-   container-root / design-slot shapes (B4, B5).
+   container-root / design-slot shapes (B4 to B6).
 2. **Create/align** the enforced set, charter-guarded (S5, S6).
 3. **Write `CLAUDE.md`** as the router (T4; exclusions noted; load-bearing gotchas only).
 4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.

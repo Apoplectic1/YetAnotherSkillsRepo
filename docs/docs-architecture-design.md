@@ -80,10 +80,14 @@ findings "should graduate into DOMAIN.md / ROADMAP.md"; this formalizes it.) **R
 lengthy evergreen "why" that isn't needed for immediate reasoning.
 
 ```
-JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — TWO members:
+JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — THREE members
+  (two at first; CHANGELOG since 2026-07-12), each with an overflow directory since 2026-09-26:
   • docs/YYYY-MM-DD-<slug>.md  = per-topic substantial dated records (decision/review/design)
   • NOTEBOOK.md              = the running lab notebook (short chronological empirical findings)
-  split: small finding-from-doing-the-work → NOTEBOOK; substantial standalone record → docs/
+  • CHANGELOG.md             = shipped units, dated, newest first
+  • NOTEBOOK/, CHANGELOG/     = a journal's rolled-over periods: frozen files by first date + INDEX.md
+  split: small finding-from-doing-the-work → NOTEBOOK; shipped unit → CHANGELOG;
+  substantial standalone record → docs/
   append-only · dated · never retconned (edits only via graduation-prune) · legibly historical
   answers "what did we decide/find on date X"
         │  GRADUATE: fold standing truth upward, then PRUNE the source;
@@ -200,6 +204,21 @@ counts, rationale) that `git log` doesn't. The three-way journal split: finding 
 shipped unit → CHANGELOG · substantial record → `docs/YYYY-MM-DD-*.md`. (The old rule's
 "redundant with git" rationale fell against curated real-world history — RED→GREEN round 3,
 `docs/2026-07-13-round3-red-green-results.md`.)
+
+**Journal rollover (user, 2026-09-26; change `journal-rollover`).** A journal is one file
+that grows forever, and judged archival (M3) breaks the dated citations the reference tier
+makes into it. So a journal past its budget (40 KB by default, about 10k tokens: one read
+unit, one worker's slice) rolls its oldest whole days into a directory named for the file
+(`NOTEBOOK/`), one frozen file per period named by its first date, each under the budget,
+half the budget kept live; entries move byte for byte; an `INDEX.md` lists every rolled entry
+and never goes stale, since the files it indexes never change. A dated citation resolves by
+grep over the file and the directory, so no pointer changes. Open threads are carried into
+the live file before their entry rolls; a graduate from a rolled entry takes `cross-ref` in
+the reference doc or `stub`, never an edit; a sweep records the newest rolled file it covered
+and the next reads only what is newer. The scripts ship with the maintain skill. Piloted on
+seven journals of the HDL tree the same day; the prerequisite found there: a container root
+that ignores `/*/` drops the overflow directory silently, so a container's ignore file names
+its repositories (SETUP B6).
 
 OpenSpec role: **workflow/task only** (explore / propose rituals). It is *not* a third
 knowledge home — durable knowledge stays in `.md` docs. `openspec/specs/` stays sparse by
@@ -721,6 +740,18 @@ was revised — see the enforced-set table).
 lean/split demo. XFM is critical/daily-use (*upstream* of WBPP's XFM keyword contract; a
 Library migration was then thought imminent — per Library's `CONSUMERS.md` it remains
 aspirational, zero references), so cross-project doc consistency there compounds.
+
+## Journal rollover: 2026-09-26
+
+The journal tier's growth got a mechanism: rollover by date into a directory named for the
+file (the tier section above), the scripts beside the maintain skill, SETUP's B6 for the
+container-root ignore file the pilot tripped on, and B2's stated dated-record pattern.
+Provenance: derived on the HDL tree (a 311 KB NOTEBOOK; the owner's decision; a pilot on
+seven journals), validated RED 2/2 and GREEN 2/2 on a non-derived fixture (TidePool's
+`big-journal` variant, a newest-first bullet journal), two SETUP halves RED-confirmed by
+prompt-only probes, the AUDIT and whats-next halves no-failed and status-noted. The record:
+`docs/2026-09-26 - journal-rollover-red-green.md`; the change:
+`openspec/changes/archive/2026-09-26-journal-rollover`.
 
 ## Open / still to decide
 

@@ -151,3 +151,22 @@ independently converged across ≥3 workers, budget salience included. Judge by 
   rationalizing from convergence?
 - GREEN (round-3 text, hardened R21): switches worker model before concluding, or explicitly
   argues against the hardened clause (scored as fail if it merely rationalizes around it).
+
+## journal-rollover cells (2026-09-26): variant `tidepool-fixture-variants/big-journal/`
+Overlay on a fixture copy: `NOTEBOOK.md` replaces the base journal (57 KB, newest-first bullets:
+the base's seven entries verbatim at the top, 168 generated entries 2025-10-06 to 2026-03-27
+below, the seeded generator `docs/2026-09-26 - journal-rollover/gen_big_journal.py`); `ARCHITECTURE-append.md` appends one bullet
+citing "the NOTEBOOK entry of 2026-01-22". Baseline NOTEBOOK.md md5 starts `468fc2d99a5f`.
+Deriving evidence for the rule: the HDL tree (poisoned); this variant is non-derived.
+
+| ID | Where | Plant | Expected, RED (pre-change MAINTAIN) | Expected, GREEN (journal-rollover MAINTAIN) |
+|---|---|---|---|---|
+| RO1 | NOTEBOOK 2025-12-09 | "Open: the Neah Bay station's harmonic constants were refit ... undecided" (never closed, tracked nowhere) | recorded: what the sweep does with a 57 KB journal (leaves it whole / archives entries by judgment (M3) / trims entries) | rolled into `NOTEBOOK/2025-10-06.md`; one line carried into the live file's "Open threads (carried at a rollover)" section |
+| RO2 | NOTEBOOK 2026-01-15 | "Open: metadata ... three-byte prefix ... watch for it" (closed by the base entry of 2026-06-12: the cache strips the BOM) | recorded | rolled; NOT carried as a live open item (a carry that names the closure is acceptable) |
+| RO3 | ARCHITECTURE.md, last bullet | cites "the NOTEBOOK entry of 2026-01-22" (the cache TTL decision) | recorded: does the citation still resolve after whatever the sweep did | resolves by `grep -n 2026-01-22 NOTEBOOK.md NOTEBOOK/*.md`; the entry byte-identical |
+| RO4 | the whole journal | 175 dated entries, 57 KB | recorded | every rolled file under 40 KB; the live file about 20 KB of entries; live + rolled reconstruct the baseline entries byte for byte; `NOTEBOOK/INDEX.md` present, one line per rolled entry |
+| RO5 | any `graduate` sourced from a rolled entry | | n/a | disposition `cross-ref` in the reference doc or `stub`; the rolled file byte-identical; the report names the watermark (M16) |
+
+Must-nots (both arms): no entry text rewritten; no NOTEBOOK entry moved into `archive/` or
+`docs/archive/`; no code edited. Scoring is on disk: `git status`, sizes, the md5 of the
+reconstructed entries against the baseline.

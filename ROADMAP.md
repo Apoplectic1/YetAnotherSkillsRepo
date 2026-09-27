@@ -10,48 +10,6 @@ section closed 2026-07-07 with nothing open.
   charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
   audited in every repository beneath it. Seen there: a rule moved between umbrellas left
   the repositories that cite it pointing at a router that no longer carries it.
-- **Journal rollover and the overflow directory** (2026-09-26, from the HDL tree's ATML maintain
-  sweep; the owner chose chronological rollover and the subdirectory). The journals outgrow one
-  file: the ATML umbrella's NOTEBOOK reached 138 KB in 20 days, the Arty's 311 KB in 33, and a
-  sweep needed three workers for one file. Decided: a journal rolls over chronologically, and
-  its closed periods live in a directory named for the file (`NOTEBOOK/` beside
-  `NOTEBOOK.md`), so rollover files never clutter the root; `NOTEBOOK.md` stays the live file
-  every router, charter and skill names. Proposed, to settle in the change: (a) the trigger is
-  size, not the calendar (the live file past a budget, about 40 KB, rolls whole closed entries
-  out oldest first; a busy month here is 300 KB, too big for one file); (b) a rollover file is
-  named by the first date it holds (`NOTEBOOK/2026-09-06.md`, up to the next file's date), so a
-  dated citation ("NOTEBOOK 2026-09-16") resolves by one grep over `NOTEBOOK.md NOTEBOOK/` and
-  no pointer changes; (c) open threads never roll out (an entry with a live item stays, or the
-  item is carried into the live file's open list first, so `whats-next` still finds it);
-  (d) one rule for every overflow: a file's overflow lives in a directory of its own name, a
-  journal split by date (NOTEBOOK, CHANGELOG), a bloated reference doc split by topic with the
-  parent as its index (`ARCHITECTURE/`), which gives MAINTAIN's M14 split job its target
-  shape; (e) MAINTAIN's M3 archive disposition then applies to dated `docs/` records only,
-  never to NOTEBOOK entries, which move by date, not by judgment. Touches SETUP (the layout
-  and the charter line), MAINTAIN (M3, M14, the rollover as a sweep step or its own trigger),
-  AUDIT (R14's journal set includes the directory), `whats-next` (open items across the live
-  file only). **Piloted and applied 2026-09-26** across the HDL tree (the ATML umbrella's
-  NOTEBOOK entry of that day records it): seven journals past 40 KB rolled (the ATML
-  umbrella's, the Arty's, HlsLibrary's, the KR260's, EthernetLibrary's and TxnContractLibrary's
-  NOTEBOOKs, the Arty's CHANGELOG), by a script that moves entries byte for byte and checks it.
-  Findings for the change: (a) and (b) hold; whole days stay in one file so a date names one
-  file; the live file is cut to half the budget (about 20 KB) so it does not roll again the
-  next day; a newest-first CHANGELOG rolls from its oldest end; an undated `##` section (an
-  Open threads list) stays live after the charter; a carried open thread gets an "Open threads
-  (carried at a rollover)" section. **A prerequisite:** an umbrella over repositories that
-  ignores `/*/` silently drops the overflow directory (and a kit copied from what is committed
-  loses it); the owner's rule is that a directory created in a repository is tracked, so such
-  an umbrella ignores its nested repositories by name, each reason on its own line (git reads a
-  comment only on a line of its own; a trailing one makes the pattern literal). The three
-  HDL-side umbrellas were inverted; the root and Astronomy still carry `/*/`, and the root's
-  list must also name its foreign areas (WSL disks, sync metadata). A manifest that enumerates
-  files (the ATML lab kit) is a consumer the rollover must update. SETUP should create an
-  umbrella's ignore file by name, never by wildcard. **The index** (added the same day, backfilled in all seven overflow directories):
-  `<JOURNAL>/INDEX.md`, one section per rolled file (date span, size), one line per entry (date,
-  title); the rolled files are frozen, so the index is regenerated at each rollover without
-  changing its existing lines. The same property gives MAINTAIN a watermark: a sweep records
-  the last rolled file it covered and the next reads only the live file and newer rollovers.
-  The scripts: `docs/2026-09-26 - journal-rollover/` (`rollover.py`, `journal_index.py`).
 - **Always-on budget** (2026-09-26, queued after journal rollover; the owner's question:
   the 40 KB gate is brute force, is there a better way?). Measured that day (NOTEBOOK
   2026-09-26): a session under the HDL tree loads 52 to 79 KB of routers before its first
@@ -116,6 +74,15 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-09-26 — **journal rollover shipped: MAINTAIN M17 to M19 + SETUP B2/B6/T1/T4** (change:
+  `journal-rollover`; piloted on seven HDL journals the same day, then RED/GREEN on the new
+  `big-journal` TidePool variant). A journal past 40 KB rolls its oldest whole days into a
+  directory named for the file, one frozen file per period by first date, `INDEX.md`,
+  entries byte for byte, open threads carried first, a watermark for the next sweep; the
+  scripts ship with the maintain skill. A container root's ignore file names its
+  repositories (a wildcard dropped the directory silently); dated-record names follow the
+  project's stated pattern. AUDIT and whats-next halves no-failed, status-noted. Record:
+  `docs/2026-09-26 - journal-rollover-red-green.md`.
 - 2026-07-26 — **maintain right-sizing shipped: MAINTAIN M16** (change:
   `maintain-right-sizing`): the dated report now ends with a REQUIRED accounting slot —
   prune/archive candidates (or explicit "none found") + one-line net reference-tier delta,

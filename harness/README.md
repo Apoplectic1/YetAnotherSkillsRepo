@@ -19,6 +19,10 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   Since 2026-09-24 it also carries the generated OpenSpec tooling (`.claude/` opsx set,
   `openspec/config.yaml`), kept current by the machine-wide opsx sync; not a plant (catalog:
   OpenSpec tooling baseline).
+- `tidepool-fixture-variants/big-journal/` (2026-09-26, `journal-rollover`): a 57 KB
+  newest-first bullet NOTEBOOK (the base's entries verbatim above 168 generated ones) and an
+  ARCHITECTURE citation into an old entry; overlay it on a fixture copy, then baseline. Cells
+  RO1 to RO5 in the catalog; `fat-arch/` is the earlier variant (`m9-hold-on-bloat`).
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.

@@ -51,7 +51,7 @@ Audit workers default to **Sonnet at high effort** — benchmarked at per-pass p
 
 ### Conventions assumed
 
-The skills assume the convention they enforce: a `CLAUDE.md` router plus charter'd reference docs — run setup first and it creates them. The journal (dated notes, `NOTEBOOK.md`) is append-only and never currency-audited. Audits are router-anchored: what the router doesn't name is out of scope.
+The skills assume the convention they enforce: a `CLAUDE.md` router plus charter'd reference docs — run setup first and it creates them. The journal (dated notes, `NOTEBOOK.md`) is append-only and never currency-audited; a journal that outgrows one file rolls its oldest days into a directory beside it (`NOTEBOOK/`), indexed, every entry kept as written. Audits are router-anchored: what the router doesn't name is out of scope.
 
 ### Safety properties
 
