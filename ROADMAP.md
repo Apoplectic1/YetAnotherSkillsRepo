@@ -10,6 +10,28 @@ section closed 2026-07-07 with nothing open.
   charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
   audited in every repository beneath it. Seen there: a rule moved between umbrellas left
   the repositories that cite it pointing at a router that no longer carries it.
+- **Journal rollover and the overflow directory** (2026-09-26, from the HDL tree's ATML maintain
+  sweep; the owner chose chronological rollover and the subdirectory). The journals outgrow one
+  file: the ATML umbrella's NOTEBOOK reached 138 KB in 20 days, the Arty's 311 KB in 33, and a
+  sweep needed three workers for one file. Decided: a journal rolls over chronologically, and
+  its closed periods live in a directory named for the file (`NOTEBOOK/` beside
+  `NOTEBOOK.md`), so rollover files never clutter the root; `NOTEBOOK.md` stays the live file
+  every router, charter and skill names. Proposed, to settle in the change: (a) the trigger is
+  size, not the calendar (the live file past a budget, about 40 KB, rolls whole closed entries
+  out oldest first; a busy month here is 300 KB, too big for one file); (b) a rollover file is
+  named by the first date it holds (`NOTEBOOK/2026-09-06.md`, up to the next file's date), so a
+  dated citation ("NOTEBOOK 2026-09-16") resolves by one grep over `NOTEBOOK.md NOTEBOOK/` and
+  no pointer changes; (c) open threads never roll out (an entry with a live item stays, or the
+  item is carried into the live file's open list first, so `whats-next` still finds it);
+  (d) one rule for every overflow: a file's overflow lives in a directory of its own name, a
+  journal split by date (NOTEBOOK, CHANGELOG), a bloated reference doc split by topic with the
+  parent as its index (`ARCHITECTURE/`), which gives MAINTAIN's M14 split job its target
+  shape; (e) MAINTAIN's M3 archive disposition then applies to dated `docs/` records only,
+  never to NOTEBOOK entries, which move by date, not by judgment. Touches SETUP (the layout
+  and the charter line), MAINTAIN (M3, M14, the rollover as a sweep step or its own trigger),
+  AUDIT (R14's journal set includes the directory), `whats-next` (open items across the live
+  file only). First consumers: the ATML umbrella, the Arty (halted: its whole NOTEBOOK may
+  roll at once), HlsLibrary.
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
