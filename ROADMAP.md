@@ -52,6 +52,55 @@ section closed 2026-07-07 with nothing open.
   changing its existing lines. The same property gives MAINTAIN a watermark: a sweep records
   the last rolled file it covered and the next reads only the live file and newer rollovers.
   The scripts: `docs/2026-09-26 - journal-rollover/` (`rollover.py`, `journal_index.py`).
+- **Always-on budget** (2026-09-26, queued after journal rollover; the owner's question:
+  the 40 KB gate is brute force, is there a better way?). Measured that day (NOTEBOOK
+  2026-09-26): a session under the HDL tree loads 52 to 79 KB of routers before its first
+  question (the owner's global file 22.5 KB, then three to four ancestor routers), and no rule
+  counts the chain: the 40 KB line is the harness's per-file warning, about 10k tokens, about
+  5 percent of a 200k window, the right budget at the wrong scope. The cost model: context
+  room (linear in tokens), interference (scales with the count of directives the session does
+  not need, not with bytes; an activity's gotcha misapplied elsewhere) and staleness (scales
+  with volatility). The rule: an item is always-on only if it passes breadth (every session
+  launched here needs it) and stability (it changes less often than the audit cadence); S7's
+  content test gains that scope half (12.8 KB of HLS synthesis gotchas pass S7 today and fail
+  breadth). Failed items go on demand behind a one-line always-on trigger: a skill whose body
+  loads on invocation (the owner's rule 17 pattern; an activity's gotcha pack as a skill), or a
+  path-scoped rule file if the harness has them (verify first); reference docs are read by
+  section (topic-named headings, `grep -n "^## "` then the span). The tripwire: one number on
+  the chain in tokens (the global file, every ancestor router, the memory index), its threshold
+  derived from the accepted share of the window, measured per launch directory by a script and
+  reported by AUDIT as a coverage row; the number detects, the test decides. Touches SETUP
+  (S7's scope half, the trigger-line pattern), AUDIT (R26 gains the scope test, the chain row),
+  the design doc (the cost model). Pilot: HlsLibrary's router (32.6 KB: element maps to the
+  class READMEs that already hold them, gotchas to a skill, about 9 KB left), the ATML
+  umbrella's DOMAIN (40 KB, four headings) for section reads, then the Arty's 27 KB router.
+  Non-derived RED/GREEN: TidePool's fat-router variant plus a fat-chain container variant.
+- **The split job's owner** (2026-09-26): M9 and M14 hold promotions "until the split,
+  setup/audit territory", and no skill describes the split; three HDL docs past 40 KB hold ten
+  promotions (the ATML umbrella's `docs/2026-09-26 - maintain-report.md`). Candidate: the
+  overflow rule's other half, a bloated reference doc split by topic into a directory named for
+  it (`ARCHITECTURE/`), the parent left as the index with one line per part. Unpiloted: pilot
+  the Arty's ARCHITECTURE (72 KB, a halted board, low risk), then codify the procedure in SETUP
+  with MAINTAIN's M14 naming the shape. Sequenced after always-on budget: a split is worth it
+  only where section reads are not enough.
+- **Release-close currency lens** (2026-09-26): after a milestone the reference tier goes stale
+  in predictable phrases ("waits for", "not yet", "until", "today", a version, a count). The HDL
+  sweep's best worker was one such lens over the reference tier, 188k tokens for 13
+  corrections, against about 2.6M for the full sweep (NOTEBOOK 2026-09-26). A named cheap
+  mode: that lens plus AUDIT's cross-reference pass, run at release close, shift-left for
+  currency as the family already shifts graduation left. Owner to decide: an AUDIT scoped mode
+  (with the scaled-coverage item below) or a MAINTAIN round-2 lens. RED on TidePool with
+  post-release phrasing plants.
+- **Scope precedence; router-named specs** (2026-09-26): (a) R14 excludes `docs/` wholesale
+  while R13 puts a router-named leaf in scope, and a project that keeps undated reference docs
+  in `docs/` (the HDL tree's toolchain record, where a pointer check found stale pointers) has
+  both apply: state that R13 wins. (b) `openspec/specs` is workflow-only by the design doc, but
+  a project whose routers cite its specs by name as its rules has them as reference tier; the
+  HDL sweep's spec lens found 12 false SHALL claims no default sweep reaches. Class:
+  router-named specs are reference-tier for AUDIT's currency pass, never edited by it (a spec
+  changes through a change), the finding a flag naming the cleanup change. (c) The family's
+  `YYYY-MM-DD-<slug>` and B2's normalization collide with the owner's global rule
+  (`YYYY-MM-DD - name`): folded into journal-rollover as the project's stated pattern.
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause

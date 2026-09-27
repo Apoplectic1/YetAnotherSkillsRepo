@@ -5,6 +5,34 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-09-26: **Field feedback from the HDL tree: a maintain sweep after a release, the
+  journal rollover piloted, the always-on chain measured.** The sweep (the ATML umbrella's
+  `docs/2026-09-26 - maintain-report.md`): 14 sweep workers over six journals and 69 archived
+  design records in three rounds, about 2.6M subagent tokens (round 1, nine slice workers,
+  1.76M; round 2, three lenses, 0.48M; round 3, two lenses, 0.39M), then six apply workers,
+  0.77M; about 120 items applied across six repositories, ten promotions held on targets past
+  40 KB. The three candidates the ROADMAP had named were all already graduated (shift-left
+  working). The yield came from elsewhere: one 188k-token lens for stale values in the
+  reference tier found 13 corrections ("waits for", "not yet", a version, a count: the
+  phrases a release leaves behind), a class that is AUDIT's currency pass, not graduation; a
+  round-3 lens over the openspec main specs found 12 false SHALL claims (a contract library's
+  specs three versions behind) that no default sweep reaches, since the family treats specs as
+  workflow-only while that tree's routers cite them by name as its rules. Every worker was one
+  model (Opus, the owner's choice), so the dry round is one model's ceiling (R21). The apply
+  phase needed hand-written per-repository briefs (verify first, style rules, no code): the
+  family has a flag schema and no apply schema. Journals: the biggest was 311 KB (three
+  workers for one file); the same day the owner chose chronological rollover into a
+  directory named for the file, piloted across seven journals (ROADMAP, "Journal rollover and
+  the overflow directory"), and one journal met on the way is a newest-first bullet list
+  (TidePool's, the fixture's), so the rollover must accept both entry forms. Always-on chain
+  measured (bytes): the owner's global file 22.5 KB, the portfolio root 4.6, the HDL umbrella
+  12.1, the ATML umbrella 12.7, the Arty 27.3, the KR260 3.5, HlsLibrary 32.6, the contract
+  library 16.5; a session loads 52 to 79 KB before its first question. HlsLibrary's router:
+  gotchas 12.8 KB and element register maps 9.9 KB of 32.6; two routers enumerate their
+  `docs/` with a paragraph per record (3.5 KB and 2.8 KB, growing per record, T4). The
+  owner's `YYYY-MM-DD - name` rule (global, 2026-09-06) collides with the family's hyphen
+  form and B2's normalization. Followed up in ROADMAP: always-on budget, the split job's
+  owner, the release-close currency lens, scope precedence and router-named specs.
 - 2026-07-26 — **Field feedback: TSM's candid self-assessment of the family (best
   calibration data to date).** Key measurements from a real consumer: (a) usage stratifies
   by load path — auto-loaded (CLAUDE.md, memory) ≫ task-shaped (checklists) ≫ opt-in
