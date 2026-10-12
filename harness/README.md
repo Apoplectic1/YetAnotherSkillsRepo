@@ -23,6 +23,12 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   newest-first bullet NOTEBOOK (the base's entries verbatim above 168 generated ones) and an
   ARCHITECTURE citation into an old entry; overlay it on a fixture copy, then baseline. Cells
   RO1 to RO5 in the catalog; `fat-arch/` is the earlier variant (`m9-hold-on-bloat`).
+- `tidepool-fixture-variants/fat-topics/` (2026-10-12, `reference-doc-split`): a 40 KB
+  ARCHITECTURE of eighteen true-to-code mechanics topics, the split's target; `fat-arch/`
+  (rationale bloat) is its control, which must extract, never split. Cells SD1 to SD5 in the
+  catalog. `split-fixture/index.expected.md` is what the setup skill's `split_doc.py` must
+  leave as the index when applied to that doc with `--today 2026-10-12` (the parts are the
+  doc's own sections and reconstruct it byte for byte).
 - `tidepool-fixture-variants/fat-gotchas/` (2026-10-12, `always-on-budget`): the router with a
   10 KB pack of true, `tides.py`-only gotchas beside its three load-bearing ones: content
   passes, breadth fails. Cells ST1 to ST3 in the catalog. Its container twin is

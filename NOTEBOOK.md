@@ -5,6 +5,19 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **A tool the rule names is read as part of the rule** (change
+  `reference-doc-split`; record `docs/2026-10-12 - reference-doc-split-red-green.md`). Every
+  GREEN rep ran `split_doc.py`'s dry run before planning and reasoned from its output: the
+  split reps from the parts and the sixteen citations it listed, the control rep from its
+  refusal ("under budget, nothing to split") as the rule's own answer. The same held for
+  `chain_budget.py` in the morning's audit reps. A mechanical script beside a SKILL.md does
+  more than save the operator typing: it makes the rule's threshold and its exceptions
+  executable, so a rep cannot misjudge them. Two smaller findings. The fat-topics fixture
+  needed three cuts to pass 40 KB (17, 30, 38, 40.3): true-to-code mechanics prose about a
+  9 KB package is dense, and the honest fixture ended 0.3 KB over the line, which one rep
+  noticed. And the RED reps' strongest argument against a split, "it would break every
+  internal § cross-reference" (S1, B2), is the objection the heading-keeps-its-text mechanism
+  exists for; the dry run's citation list made GREEN's reps say so in the plan.
 - 2026-10-12: **The harness already has three facts the family had been guessing at**
   (change `always-on-budget`; record `docs/2026-10-12 - always-on-budget-red-green.md`).
   Checked against the Claude Code docs on 2026-10-12: (a) `.claude/rules/<name>.md` with

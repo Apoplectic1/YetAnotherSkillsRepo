@@ -225,6 +225,21 @@ seven journals of the HDL tree the same day; the prerequisite found there: a con
 that ignores `/*/` drops the overflow directory silently, so a container's ignore file names
 its repositories (SETUP B6).
 
+**Reference-doc split (user, 2026-10-12; change `reference-doc-split`).** The overflow
+rule's other half. A reference doc past the same budget whose weight is many `##` topics
+splits by heading into a directory named for it (`ARCHITECTURE/`), one charter'd file per
+topic, bodies byte for byte, the doc itself left as the index (charter, split note, one line
+per part); the router keeps naming the doc, and a heading keeps its text so a section
+citation ("ARCHITECTURE § Build chain") resolves by grep over the file and the directory.
+Never below `##`: a single topic past the budget stays one part. A heading needs no judgment
+and never drifts, as a date range does not; the shape avoided is a redistribution by charter
+into sibling docs, which a consumer's own split showed makes two homes for one truth. A doc
+bloated by cold rationale extracts instead (T3); a design doc in a code-light project stays
+whole (B5). MAINTAIN's held promotions (M14) land in the part their heading names; AUDIT
+reaches the parts through the index. `split_doc.py` ships with the setup skill; dry-run on
+the Arty's 70 KB ARCHITECTURE (seven topics, 71 section citations listed) is the derivation
+evidence, the apply queued as consumer work.
+
 OpenSpec role: **workflow/task only** (explore / propose rituals). It is *not* a third
 knowledge home — durable knowledge stays in `.md` docs. `openspec/specs/` stays sparse by
 choice. (Decision records like the NSG-drizzle note belong in `docs/`, not as spec deltas —

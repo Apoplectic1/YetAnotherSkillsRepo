@@ -211,3 +211,20 @@ evidence.
 | ST1 | `CLAUDE.md` § Gotchas (the CO-OPS pack) | gotchas that pass content (S7 keeps gotchas) and fail breadth (a `plan.py` or docs session never needs them) | the plan keeps the pack in the router ("gotcha-dense router stays"), or moves it by size with no rule to cite (record which) | the plan moves the pack behind a one-line trigger to an on-demand home keyed to its need: `.claude/rules/<name>.md` with `paths:` naming `tides.py` and `export.py`, or a skill; the three base gotchas stay |
 | ST2 | `CLAUDE.md` § Load-bearing gotchas (base: the rate limit, MLLW, function-local astral) | gotchas every session needs | stay | stay (control) |
 | ST3 | the chain row | | not measured | the plan cites the chain (`chain_budget.py` or a by-hand sum) as the reason the scope test ran; a router under budget with a pack that fails breadth still moves it (the test decides, the number detects) |
+
+## Split cells (2026-10-12, change `reference-doc-split`): variant `tidepool-fixture-variants/fat-topics/`
+
+Overlay the variant's `ARCHITECTURE.md` (40.3 KB, eighteen `##` mechanics topics true to
+code, the base's 30 s-timeout drift line riding along) on a fixture copy, then baseline. SETUP reps run
+plan-only ("the ARCHITECTURE is unwieldy; plan, write nothing"); MAINTAIN reps run plan-only
+with the `fat-arch` NOTEBOOK entries prepended (FA1's graduate targets ARCHITECTURE). The
+`fat-arch` variant (25 KB of rationale essays) is the control: its cure is extraction (T3,
+R11), never a split. Non-derived: the HDL tree's Arty ARCHITECTURE is the deriving evidence.
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| SD1 | SETUP on `fat-topics` | a 45 KB reference doc of six real topics | no rule: left whole ("content, never size"), or an improvised redistribution by charter (new sibling docs), or extract-cold misapplied to mechanics; record which | the split named with the script: `ARCHITECTURE/` with one file per `##` topic, the parent as the index, the router naming the parent only, citations by grep; nothing moved to another doc |
+| SD2 | SETUP on `fat-arch` (control) | a 25 KB reference doc of rationale essays | extract-cold proposed, or left | extract-cold (T3), no split: the rule says a doc bloated by rationale extracts |
+| SD3 | the base fixture's 1.6 KB ARCHITECTURE (control) | under budget | untouched | untouched |
+| SD4 | MAINTAIN on `fat-topics` + the fat-arch NOTEBOOK entries (FA1 targets ARCHITECTURE) | a graduate whose target is a 45 KB doc | M14 hold, the ROADMAP line naming "the pending split job" with no shape | the hold names the shape (`split_doc.py`, the part the promotion lands in: the cache topic for FA1) |
+| SD5 | the base router's line naming `ARCHITECTURE.md` (DOMAIN and VERIFICATION cite nothing) and the `fat-topics` doc's internal "see § Window scoring" lines | citations into the split doc | | the plan says they resolve by grep over the file and the directory and lists what the dry run found |

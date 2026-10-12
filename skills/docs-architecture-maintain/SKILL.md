@@ -36,13 +36,14 @@ record loses the why/when.
 - **M9.** Don't over-graduate — and **check every graduate's target at apply time** (content
   test: is the doc already dominated by content a split would relocate?). Never promote into
   an already-bloated reference doc — an oversized target is a **setup/audit split job
-  first**, not more content; applying the promotion and flagging the split afterward — or
-  never noticing — is the violation, not compliance. Bloated → hold (M14).
+  first** (SETUP's T5: `split_doc.py`, by `##` topic into a directory named for the doc, the
+  doc left as the index), not more content; applying the promotion and flagging the split
+  afterward (or never noticing) is the violation, not compliance. Bloated → hold (M14).
 - **M14.** A graduate whose target is bloated is **held, not applied**: record it in the
   dated maintain report (standing-claim + target + disposition — M13 rails) and add **one**
-  ROADMAP open-line naming the pending split job (deduplicated across holds); the split runs
-  as its own adjudicated job, then held promotions land in the split homes. Healthy targets
-  in the same sweep apply normally. *(The report keeps the why (M8); the ROADMAP line keeps
+  ROADMAP open-line naming the pending split job (deduplicated across holds) and its shape
+  (T5); the split runs as its own adjudicated job, then each held promotion lands in the
+  part whose heading it belongs under. Healthy targets in the same sweep apply normally. *(The report keeps the why (M8); the ROADMAP line keeps
   it tracked — `whats-next` sweeps both homes.)*
 
 ## The journal's size: roll over by date, never by judgment

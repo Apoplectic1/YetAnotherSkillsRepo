@@ -13,15 +13,11 @@ section closed 2026-07-07 with nothing open.
   26.6 KB, 346-line router. `python ~/.claude/skills/docs-architecture-audit/chain_budget.py
   <dir>` before and after; the HDL chain is 83 KB, 2.1x the budget, today. The owner's global
   file (26.7 KB, 187 lines) is a third of every chain on the machine and the owner's own call.
-- **The split job's owner** (2026-09-26): M9 and M14 hold promotions "until the split,
-  setup/audit territory", and no skill describes the split; three HDL docs past 40 KB hold ten
-  promotions (the ATML umbrella's `docs/2026-09-26 - maintain-report.md`). Candidate: the
-  overflow rule's other half, a bloated reference doc split by topic into a directory named for
-  it (`ARCHITECTURE/`), the parent left as the index with one line per part. Unpiloted: pilot
-  the Arty's ARCHITECTURE (72 KB, a halted board, low risk), then codify the procedure in SETUP
-  with MAINTAIN's M14 naming the shape. Unblocked 2026-10-12 (always-on budget shipped: S8
-  and R30 make a reference-doc section read by heading the on-demand home for prose); a
-  split is worth it only where section reads are not enough.
+  In the same sessions, the Arty's ARCHITECTURE (70.4 KB, seven topics) splits with
+  `python ~/.claude/skills/docs-architecture-setup/split_doc.py ARCHITECTURE.md` (dry run
+  first: it lists 71 section citations to check; the apply on a scratch copy reconstructed
+  the doc byte for byte, 2026-10-12), after which the ATML umbrella's ten held promotions can
+  land in their parts.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions — (a) Astronomy container: create the portfolio
   `DOMAIN.md` (cross-repo truth only), relocate the router's Data-flow-hubs detail per
@@ -33,6 +29,18 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
+  (change: `reference-doc-split`; the Open item "The split job's owner"). The overflow rule's
+  other half: each `##` section moves byte for byte into a directory named for the doc, one
+  charter'd file per topic named by its heading; the doc stays as the index (charter, split
+  note, one line per part); the router keeps naming the doc; a heading keeps its text so a
+  section citation resolves by grep over the file and the directory, the dry run listing
+  every citation to check. Never below `##`; rationale bloat extracts (T3); a design doc in a
+  code-light project stays whole (B5). MAINTAIN's M9 and M14 name the shape and the landing
+  part; AUDIT's R12 reaches the parts through the index. RED 2/2 kept a 40 KB doc whole ("no
+  rule"), the MAINTAIN hold shapeless; GREEN 4/4 through a Workflow at Sonnet/high. Derived
+  on the Arty's 70 KB ARCHITECTURE (dry run, scratch apply byte-exact); its apply queued
+  above. Record: `docs/2026-10-12 - reference-doc-split-red-green.md`.
 - 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**
   (change: `always-on-budget`; the Open item of 2026-09-26). An item loads at launch only if
   it passes breadth (every session launched there needs it) and stability (it changes less

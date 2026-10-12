@@ -91,7 +91,9 @@ capable agent already does well, so the rules below force what one pass can't gi
   40 KB router of true gotchas is S7-clean and costs every session both.)*
 
 ## Scope
-- **R12.** In-scope = what the `CLAUDE.md` router names, ∪ the canonical reference set.
+- **R12.** In-scope = what the `CLAUDE.md` router names, ∪ the canonical reference set, ∪
+  the parts a split reference doc's index names (`ARCHITECTURE/<topic>.md`, SETUP's T5:
+  each the same tier and charter as its index).
 - **R13.** Default-exclude *unrouted* files in vendored trees (`vendor/`, `third_party/`, forked
   upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`), and tooling (`.claude/`,
   `openspec/`). A router-named leaf inside them *is* in scope. A router-named spec under
@@ -118,7 +120,9 @@ capable agent already does well, so the rules below force what one pass can't gi
   runs one round and says so.
 - **R19.** Fan out **per-section** workers (forces depth everywhere; whole-doc replicates skim),
   plus **one cross-reference pass** over inbound referrers — routers, other docs, source/UI
-  files — for rename-orphans and dangling links.
+  files, for rename-orphans and dangling links; a section citation ("ARCHITECTURE § Build
+  chain") resolves in the doc or in its split directory, as a dated citation does in the
+  journal's.
 - **R20.** **Loop until dry**: run rounds until one adds nothing new. *(Even three replicate
   passes each missed real flags; ground truth ran ~30% larger than any single run.)*
 - **R21.** A dry round is *that model's* ceiling, not truth — **switch worker model** before

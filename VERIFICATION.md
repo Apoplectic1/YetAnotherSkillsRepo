@@ -42,6 +42,10 @@ diff old against new: no entry line may change (2026-10-12, `rolled-index-titled
 The audit skill's `chain_budget.py` has the same shape: `harness/chain-fixture/gen_chain_fixture.py`
 writes a tree with exact sizes into scratch, and the script's output for its leaf must match
 `harness/chain-fixture/chain.expected.txt` byte for byte (2026-10-12, `always-on-budget`).
+The setup skill's `split_doc.py`, applied with `--today 2026-10-12` to a scratch copy of
+`harness/tidepool-fixture-variants/fat-topics/ARCHITECTURE.md`, must leave
+`harness/split-fixture/index.expected.md` as the index, and its parts' bodies after the
+preamble must reconstruct the doc byte for byte (2026-10-12, `reference-doc-split`).
 
 For tests the standing fixture can't serve (derivation caveat, or a different project
 shape), create one on demand: copy a **pristine, skills-unmodified** project —

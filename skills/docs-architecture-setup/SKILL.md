@@ -95,6 +95,20 @@ projects.)*
   (`glob docs/*.md` + grep) — never an enumerated, growing list. The journal line states
   the dated-record pattern and that a dated citation ("NOTEBOOK 2026-01-22") resolves by
   grep over the journal and its overflow directory.
+- **T5.** **A reference doc past its budget splits by topic, never by judgment.** When a
+  reference doc passes the budget (40 KB, one read unit) and its weight is many `##` topics,
+  `python split_doc.py <doc>` (beside this SKILL.md; a dry run first) moves each `##`
+  section, byte for byte, into a directory named for the doc (`ARCHITECTURE/`), one
+  charter'd file per topic named by its heading, and leaves the doc as the **index**: its
+  charter, a split note, one line per part. The router keeps naming the doc; a heading keeps
+  its text, so a section citation ("ARCHITECTURE § Build chain") resolves by
+  `grep -n "<heading>" ARCHITECTURE.md ARCHITECTURE/*.md`, as a dated citation does for the
+  journal; the dry run lists every such citation for the operator to check before
+  `--apply`. Never below `##`: a single topic past the budget stays one part. Not this rule:
+  a doc heavy with cold rationale **extracts** (T3), and a design doc in a code-light project
+  **stays whole** (B5). *(The journal rule's other half: a heading needs no judgment and
+  never drifts, as a date range does not. A redistribution by charter into sibling docs
+  makes two homes for one truth, the shape a consumer's own split produced.)*
 
 ## archive/ and the changelog — do not blur
 - **A1.** `archive/` = **archival-only**: not-current-design-relevant, deletable (git is the
