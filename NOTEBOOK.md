@@ -5,6 +5,22 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The HDL pilot: three real repositories through the deployed SETUP skill, and
+  eight findings in common** (record `docs/2026-10-12 - hdl-pilot.md`). Plan-only reps on
+  HlsLibrary, ArtyZ7 and the AtmlBoards umbrella, Sonnet/high through a Workflow (320k
+  tokens). What held: T5 on the Arty's ARCHITECTURE (applied the same day, seven parts,
+  byte-exact; the first field apply of the rule), `chain_budget.py`'s row on every repo, the
+  reps running both scripts' dry runs unprompted. What failed, on all three: the budget a
+  unit cannot meet (11.1k tokens of global file and ancestors before the project's router
+  counts; S8 has no instruction for it); a rule file keyed to files never fires for a
+  command-only session and cannot reach a sibling repository, while B1 forbids the skill S8
+  offers; S1 against S8 on a block a reference doc already holds. And the container-root
+  breadth clause recorded as no-failure in the morning failed in the afternoon: a rep
+  believed a board session never loads the umbrella router. Two changes queued
+  (`s8-field-fixes`, `split-doc-field-fixes`); the three router leans wait on them. The
+  lesson the day keeps teaching: a rule derived from a tree and GREEN'd on a 10-file
+  fixture meets its real cases only in the tree, and a plan-only rep there costs 100k
+  tokens against a wrong lean's cost of a repository's router.
 - 2026-10-12: **T5 on this repo's own design doc: the first real split, and a naming rule it
   met.** `docs/docs-architecture-design.md` was 65.6 KB in thirteen `##` topics, one of them
   ("The phased arc", 34 KB, nineteen dated provenance blocks) journal-shaped; `split_doc.py`

@@ -5,6 +5,21 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
+- **s8-field-fixes** (2026-10-12, from the HDL pilot; change scaffolded, proposal written):
+  the budget a unit cannot meet (report the ancestors' and the owner's shares, test what the
+  project controls); the homes' load triggers (a rule file on a file's touch, a skill on
+  invocation, a section on a read; an activity with neither keeps a one-line guard); B1 lets
+  S8 write a skill; a block a reference doc or an ancestor already holds is cross-ref'd and
+  deleted, never moved (S1); an ancestor loads in every session beneath it (the container-root
+  breadth clause, failed in the field); the stability cadence; B4 for an umbrella with
+  first-party content; a row for a project's own reference docs outside the set. RED/GREEN
+  on non-derived fixtures. The HDL router leans wait on it.
+- **split-doc-field-fixes** (2026-10-12, from the HDL pilot; change scaffolded, proposal
+  written): the script refuses a journal, keeps its citation scan inside the repository and
+  out of child repositories, lists relative paths and "this file" phrasing inside the parts,
+  warns on a dated heading; T5's two edge cases (a doc that crosses the budget by the run's
+  own moves; a single `##` part past the budget). The umbrella's DOMAIN and ROADMAP splits
+  wait on it.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
@@ -13,11 +28,12 @@ section closed 2026-07-07 with nothing open.
   26.6 KB, 346-line router. `python ~/.claude/skills/docs-architecture-audit/chain_budget.py
   <dir>` before and after; the HDL chain is 83 KB, 2.1x the budget, today. The owner's global
   file (26.7 KB, 187 lines) is a third of every chain on the machine and the owner's own call.
-  In the same sessions, the Arty's ARCHITECTURE (70.4 KB, seven topics) splits with
-  `python ~/.claude/skills/docs-architecture-setup/split_doc.py ARCHITECTURE.md` (dry run
-  first: it lists every section citation to check; the apply on a scratch copy reconstructed
-  the doc byte for byte, 2026-10-12), after which the ATML umbrella's ten held promotions can
-  land in their parts.
+  The Arty's ARCHITECTURE split landed 2026-10-12 (seven parts, byte-exact, the first field
+  apply of T5), so the ATML umbrella's ten held promotions have parts to land in (a MAINTAIN
+  apply from an HDL session). The three routers' leans (HlsLibrary 39.9 KB, the Arty's
+  26.6 KB, the umbrella's 12.9 KB) and the umbrella's DOMAIN and ROADMAP splits were planned
+  by SETUP reps the same day and wait on `s8-field-fixes` and `split-doc-field-fixes`; the
+  plans are in the pilot record.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions. (a) Astronomy container: done (the portfolio
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found
