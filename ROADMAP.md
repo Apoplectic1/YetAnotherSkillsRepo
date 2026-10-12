@@ -5,11 +5,6 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **Ancestor-router conventions** (2026-09-24, from the HDL tree's ATML audit): make the AUDIT
-  sweep check a repository against its ancestor routers' conventions, not only its own
-  charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
-  audited in every repository beneath it. Seen there: a rule moved between umbrellas left
-  the repositories that cite it pointing at a router that no longer carries it.
 - **Always-on budget** (2026-09-26, queued after journal rollover; the owner's question:
   the 40 KB gate is brute force, is there a better way?). Measured that day (NOTEBOOK
   2026-09-26): a session under the HDL tree loads 52 to 79 KB of routers before its first
@@ -49,16 +44,6 @@ section closed 2026-07-07 with nothing open.
   currency as the family already shifts graduation left. Owner to decide: an AUDIT scoped mode
   (with the scaled-coverage item below) or a MAINTAIN round-2 lens. RED on TidePool with
   post-release phrasing plants.
-- **Scope precedence; router-named specs** (2026-09-26): (a) R14 excludes `docs/` wholesale
-  while R13 puts a router-named leaf in scope, and a project that keeps undated reference docs
-  in `docs/` (the HDL tree's toolchain record, where a pointer check found stale pointers) has
-  both apply: state that R13 wins. (b) `openspec/specs` is workflow-only by the design doc, but
-  a project whose routers cite its specs by name as its rules has them as reference tier; the
-  HDL sweep's spec lens found 12 false SHALL claims no default sweep reaches. Class:
-  router-named specs are reference-tier for AUDIT's currency pass, never edited by it (a spec
-  changes through a change), the finding a flag naming the cleanup change. (c) The family's
-  `YYYY-MM-DD-<slug>` and B2's normalization collide with the owner's global rule
-  (`YYYY-MM-DD - name`): folded into journal-rollover as the project's stated pattern.
 - **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
   low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
   informal "field R26" alias is stale — R26 was taken by the router-placement clause
@@ -74,6 +59,16 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-10-12: **AUDIT scope from the routers: `spec-change` shipped, two halves status-noted**
+  (change: `audit-scope-from-routers`; the Open items "Ancestor-router conventions" and
+  "Scope precedence; router-named specs", whose sub-bullet (c) journal-rollover had already
+  shipped). A router-named spec is currency-audited and never edited, its stale claim the
+  third report-only action `spec-change` naming the correcting change (R4, R13, the schema;
+  RED 2/2 failed as `flag-code-bug`, GREEN 2/2). The router setting the tier over R14's
+  `docs/` exclusion, and ancestor routers as convention sources (cited and uncited), no-failed
+  6/6 single-agent reps on the new reefstack `audit-scope` variant: spec requirements with
+  status notes, the candidate text held in the design record (the owner's call: status notes
+  only). Record: `docs/2026-10-12 - audit-scope-red-green.md`.
 - 2026-10-12: **the rolled-journal index lists bold-lead entries under a bare date heading**
   (change: `rolled-index-titled-entries`; from EP7314600's maintain sweep, whose
   `NOTEBOOK/INDEX.md` named none of its about 30 entries; the owner chose this over a

@@ -25,3 +25,34 @@ the deriving evidence and are poisoned for validating this rule.
 - No source edits; no fixture-master mutation (reps on copies; plan-only reps are read-only).
 - SETUP plan-only reps: WRITE NOTHING (S2 review framing).
 - MAINTAIN reps: M8 discipline on the PL1 entry regardless of placement outcome.
+
+## Variant `audit-scope` (2026-10-12, change `audit-scope-from-routers`)
+
+Overlay `reefstack-fixture-variants/audit-scope/` on a fixture copy (its files replace or add
+to the base), then baseline. AUDIT reps run from `ReefDash/` (AR cells) or `PulseMonitor/`
+(SP, SS cells); the root `CLAUDE.md` is the ancestor router. Non-derived: the HDL tree's ATML
+audit is the deriving evidence and is poisoned for these rules.
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| AR1 | `ReefDash/CLAUDE.md` gotcha "Alert palette rule (root `CLAUDE.md` § Conventions)" | Upward pointer to a rule the ancestor does not carry | Root not read, pointer unresolved, no flag | Dangling-reference flag naming the ancestor section |
+| AR2 | Root § Conventions "UTC everywhere" vs `ReefDash/src/feed.py` `stamp()` (`datetime.now()`), and ARCHITECTURE § Feed rows "local receive time" | Repo code violating an ancestor convention; the repo doc agreeing with the code | Doc matches code, no flag (R6) | `flag-code-bug` citing the root line and `feed.py`; the doc not "fixed" toward the code |
+| AR3 | `ReefDash/ARCHITECTURE.md` § Settings | Restates the root's "Settings are TOML" rule, unattributed | Kept, or `move-to DOMAIN` (R10) | `cross-ref+delete` (the rule loads as an ancestor) |
+| AR4 | `ReefDash/CLAUDE.md` gotcha "Timestamps follow the portfolio's UTC rule" | A one-line pointer up to a rule the ancestor does carry (control) | No flag | No flag |
+| SP1 | `PulseMonitor/docs/2026-07-01 - probe-wiring.md`, routed by the router as current truth | Dated name, reference role; ph/par channels swapped against `src/probes.py` | Excluded under R14 (`docs/`), no flag | Currency `fix-doc` (code wins) |
+| SP2 | `PulseMonitor/docs/2026-06-15 - wiring-bringup.md` | Dated record not routed as reference, the old channel map (control) | No flag | No flag |
+| SS1 | `PulseMonitor/openspec/specs/poll-loop/spec.md` "every 5 seconds", named by the router as a rule | A router-named spec with a false SHALL; `src/poll.py` and SCHEMA say 10 s | Excluded (tooling / workflow-only), or `fix-doc` in place | Currency flag, action `spec-change` (report-only), the spec untouched |
+| SS2 | `PulseMonitor/openspec/specs/alert-webhook/spec.md` | A spec the router does not name, unbuilt feature (control) | No flag | No flag |
+
+Neutral (neither credit nor fail): flags on the base fixture's planted root `Data contracts`
+block (PC1) or on PulseMonitor's `config.db` against the TOML rule.
+
+Added after the first RED pass (2026-10-12): the ReefDash router's own upward pointers (AR1,
+AR4) led every rep into the root, so AR1 to AR4 cannot show whether an *uncited* ancestor
+convention is audited, which is the field case (a rule for every repository beneath, cited by
+none of them). AUDIT reps for these run from `DoseKeeper/`, whose router never points up.
+
+| ID | Where | Plant | Expected RED | Expected GREEN |
+|---|---|---|---|---|
+| AR5 | Root "UTC everywhere" vs `DoseKeeper/src/doselog.py` `log_dose()` (`datetime.now()`), and ARCHITECTURE § Dose log "local wall-clock time" | Uncited ancestor convention violated by repo code; the repo doc agreeing | Root not read; doc matches code, no flag | `flag-code-bug` citing the root line and `doselog.py` |
+| AR6 | Root "Settings are TOML" vs `DoseKeeper/settings.json` and ARCHITECTURE § Settings | Uncited ancestor convention violated by the repo's settings file; the doc agreeing | No flag | `flag-code-bug` (or the convention named in a flag) citing the root line |

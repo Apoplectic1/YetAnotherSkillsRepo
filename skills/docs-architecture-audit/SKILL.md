@@ -18,8 +18,9 @@ capable agent already does well, so the rules below force what one pass can't gi
 - **R2.** Judge by content, not filename. *(A name only prioritizes what to read first.)*
 - **R3.** Edit **documentation only** — never source, first-party or vendored. *(Code findings
   are reports, not fixes.)*
-- **R4.** Report-only actions are exactly `flag-code-bug` and `revisit-plan`: handed off (to the
-  dev/diagnose flow and `whats-next`), never auto-applied.
+- **R4.** Report-only actions are exactly `flag-code-bug`, `revisit-plan` and `spec-change`:
+  handed off (to the dev/diagnose flow, `whats-next`, and the project's change workflow),
+  never auto-applied.
 - **R27.** Surviving report-only flags are **persisted to the target project's own tiers
   before the run ends** — full flags + evidence in a dated `docs/YYYY-MM-DD-audit-report.md`,
   plus one line per adjudicated-surviving finding in the ROADMAP's open/backlog list,
@@ -72,7 +73,11 @@ capable agent already does well, so the rules below force what one pass can't gi
 - **R12.** In-scope = what the `CLAUDE.md` router names, ∪ the canonical reference set.
 - **R13.** Default-exclude *unrouted* files in vendored trees (`vendor/`, `third_party/`, forked
   upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`), and tooling (`.claude/`,
-  `openspec/`). A router-named leaf inside them *is* in scope.
+  `openspec/`). A router-named leaf inside them *is* in scope. A router-named spec (cited as
+  the project's rules) is currency-audited but never edited: a claim it makes that the code,
+  the router and the reference docs agree is wrong → `spec-change`, naming the change that
+  would correct it; R7's code-is-suspect holds only while the spec stands uncontradicted.
+  *(A spec changes only through a change; a stale SHALL is not a code bug.)*
 - **R14.** Never currency-audit the journal (`docs/`, `NOTEBOOK.md`, `CHANGELOG.md`) or
   archives (`archive/`, `openspec/changes/archive/`). *(Append-only, legibly historical.)*
 - **R15.** Cold-rationale docs a reference doc cites: follow the citation and run a
@@ -128,7 +133,7 @@ capable agent already does well, so the rules below force what one pass can't gi
 - finding:   what's wrong, or the off-charter target home
 - evidence:  file:line / symbol   OR   "unverifiable → ask user"
 - severity:  high | medium | low
-- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | extract-cold | revisit-plan | flag-code-bug | keep
+- action:    fix-doc | move-to <doc> | cross-ref+delete | graduate | extract-cold | revisit-plan | flag-code-bug | spec-change | keep
 ```
 
 Full rationale + RED/GREEN provenance:

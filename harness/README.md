@@ -35,6 +35,12 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   router with planted cross-repo contract prose, three routered sub-projects, an owned
   contract (`PulseMonitor/SCHEMA.md`), a planted mutual-pointer glossary loop, and a
   portfolio-level journal truth. Same copy/baseline/reset recipe.
+- `reefstack-fixture-variants/audit-scope/` (2026-10-12, `audit-scope-from-routers`): an
+  overlay on the reefstack copy for AUDIT scope cells: root conventions for every repo
+  beneath (cited by ReefDash's router, uncited by DoseKeeper's), violated in code; a dangling
+  upward pointer; a restated rule; a router-routed dated `docs/` reference doc with drift
+  beside an unrouted dated record; a router-named spec with a false SHALL beside an unnamed
+  one. Cells AR1 to AR6, SP1, SP2, SS1, SS2 in `catalog-reefstack.md`.
 
 ## Using the fixture (per test run)
 1. Copy `tidepool-fixture/` to a scratch location (session scratchpad), one copy per rep.

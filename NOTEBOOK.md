@@ -5,6 +5,20 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **A fixture for an unprompted behavior needs a target that gives no prompt**
+  (change `audit-scope-from-routers`, the AUDIT scope RED/GREEN; record `docs/2026-10-12 -
+  audit-scope-red-green.md`). The ancestor-router cells first ran on ReefDash, whose router
+  points up to the root twice, and every rep read the root; that proves nothing about an
+  uncited umbrella rule, the field case. Two more cells on DoseKeeper (router never points
+  up) passed the same way, the reps reading the parent "as an ancestor, auto-loaded"
+  unprompted, so the half no-failed honestly. Second finding: when six reps each list the
+  same "the skill does not say" line while behaving right, that is the no-failure pattern,
+  not a RED; the gate held (status notes) at the owner's call. Third: the spec half failed
+  for want of an *action*, not scope. Both PulseMonitor reps put the router-named spec in
+  scope under R13 and still filed the stale SHALL as `flag-code-bug` because R7 names the
+  code as suspect and the schema had nowhere else to put it. Single-agent reps at about 75k
+  tokens each (eight reps, 0.7M) were enough for scope rules, which a single reader either
+  applies or not; the fan-out machinery would have tested nothing more here.
 - 2026-10-12: **The rolled index's bold-lead rule had to be narrowed to a bare date heading**
   (change `rolled-index-titled-entries`). The first cut indexed a bold-lead top-level bullet
   under any dated heading; regenerating the six HDL rolled indexes caught it before GREEN:
