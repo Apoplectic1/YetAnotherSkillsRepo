@@ -5,6 +5,24 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
+- **The rolled-journal index lists every entry's title, so it reads as a router** (2026-10-12,
+  from EP7314600's maintain sweep; the owner chose fix 1). `journal_index.py` takes a title only
+  from a dated line (`## YYYY-MM-DD title`, `- YYYY-MM-DD title`). A journal that writes a bare
+  date heading with its entries as bold-lead bullets beneath it (`## 2026-10-04`, then
+  `- **E24: the P6 addition closed.** ...`) gets one line per rolled day, the date alone:
+  EP7314600's `NOTEBOOK/INDEX.md` names none of the about 30 entries in its two rolled files
+  (43 KB), so a reader greps blind. The fix: under a dated heading, each top-level bullet whose
+  text starts with a bold run is an entry, its bold run the title as written (truncated at
+  `TITLE_MAX` as today), indented under the day; the existing dated-heading and dated-bullet
+  forms unchanged. A general pattern (an entry titled under a dated heading), not one
+  journal's habit, so the docstring, SKILL.md M17's "date and title" wording and SETUP's T1 say
+  it. Mechanical and byte-exact, so regenerating the index still takes no judgment and leaves
+  every existing line as it was. RED first: a fixture journal in that form, indexed by today's
+  script (date-only lines), then GREEN; check that `rollover.py`'s entry detection is unchanged
+  (it splits by date, not by bullet). Then redeploy (`deploy.sh`) and, in EP7314600, regenerate
+  `NOTEBOOK/INDEX.md` for its two rolled files (the rolled files stay byte for byte). Not
+  chosen: a hand-written summary line per rolled file (judgment per rollover, can miss an
+  entry); combining both stays open if the titles alone read poorly.
 - **Ancestor-router conventions** (2026-09-24, from the HDL tree's ATML audit): make the AUDIT
   sweep check a repository against its ancestor routers' conventions, not only its own
   charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
