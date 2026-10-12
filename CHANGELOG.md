@@ -5,6 +5,14 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit,
+  stale lines listed, dated headings warned** (change: `split-doc-field-fixes`; from the HDL
+  pilot's findings 5 and 8). The script refuses a doc whose `##` headings are dates (a journal
+  rolls, T1), keeps its citation scan out of sub-projects and child repositories, lists per part
+  the lines a move one directory down leaves stale (relative paths, "this file"), warns on a
+  dated heading, prints UTF-8. T5 names the operator's steps around them. The same-run split
+  and the single-part case were RED 2/2 no failure on the new `near-budget` variant and are
+  status-noted. Record: `docs/2026-10-12 - split-doc-field-fixes-red-green.md`.
 - 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
   (change: `reference-doc-split`; the Open item "The split job's owner"). The overflow rule's
   other half: each `##` section moves byte for byte into a directory named for the doc, one

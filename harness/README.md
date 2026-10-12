@@ -78,3 +78,12 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   no network/astral needed). `.gitignore` here covers `__pycache__` — the round-3 lesson.
 - FermCtl (AUDIT-general) and TrailKit (SETUP-general) fixtures from arms 1–2 died with the
   Cowork container; recreate from the arm-1/arm-2 results docs' Method sections if needed.
+- `tidepool-fixture-variants/near-budget/` (2026-10-12, `split-doc-field-fixes`): a 38 KB
+  ARCHITECTURE and a router carrying a 4 KB mechanics block S7 moves into it, so the run's
+  own move pushes the doc past the budget. Cells NB1 to NB4 in the catalog;
+  `split-fixture/dryrun.expected.txt` is the dry run's output on the fat-topics doc (its
+  dated heading flagged, its stale lines listed).
+- `tidepool-fixture-variants/s8-field/` (2026-10-12, `s8-field-fixes`): `build_variant.py`
+  composes a router past 200 lines with the four shapes the HDL pilot found S8 silent on
+  (a command-keyed block, sibling-repository gotchas, a duplicated module map, a State
+  block), a ROADMAP halt and a halted graduate. Cells SF1 to SF6, SM1, CR1 in the catalog.

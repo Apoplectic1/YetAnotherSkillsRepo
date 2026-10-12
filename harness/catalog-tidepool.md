@@ -228,3 +228,38 @@ R11), never a split. Non-derived: the HDL tree's Arty ARCHITECTURE is the derivi
 | SD3 | the base fixture's 1.6 KB ARCHITECTURE (control) | under budget | untouched | untouched |
 | SD4 | MAINTAIN on `fat-topics` + the fat-arch NOTEBOOK entries (FA1 targets ARCHITECTURE) | a graduate whose target is a 40 KB doc | M14 hold, the ROADMAP line naming "the pending split job" with no shape | the hold names the shape (`split_doc.py`, the part the promotion lands in: the cache topic for FA1) |
 | SD5 | the base router's line naming `ARCHITECTURE.md` (DOMAIN and VERIFICATION cite nothing) and the `fat-topics` doc's internal "see § Window scoring" lines | citations into the split doc | | the plan says they resolve by grep over the file and the directory and lists what the dry run found |
+
+## Near-budget cells (2026-10-12, change `split-doc-field-fixes`): variant `tidepool-fixture-variants/near-budget/`
+
+Overlay the variant's `ARCHITECTURE.md` (38.0 KB, sixteen topics: fat-topics minus three) and
+`CLAUDE.md` (the base router plus a 4 KB "How a plan run moves data" block of pure mechanics
+that S7 moves to ARCHITECTURE) on a fixture copy, then baseline. SETUP reps run plan-only
+("the router feels heavy; plan, write nothing").
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| NB1 | the router's mechanics block | reference content in the router (S7) | moved to ARCHITECTURE | moved to ARCHITECTURE |
+| NB2 | ARCHITECTURE after the move: 38 + 4 = 42 KB | the run's own move pushes a doc past the budget | the plan leaves the 42 KB doc whole (T5 was judged on the 38 KB doc before the move), or does not notice | the plan splits it in the same run, after the move lands (T5's same-run sentence), with the script's dry run cited |
+| NB3 | the fat-topics `## State (2026-07-10)` part and the `../` lines | a dated heading; relative paths inside a part | script-level: the dry run flags the dated heading and lists the stale lines (`dryrun.expected.txt`) | the same |
+| NB4 | a heading journal | the script refuses to split a journal | script-level: "a journal rolls over" | the same |
+
+## S8 field cells (2026-10-12, change `s8-field-fixes`): variant `tidepool-fixture-variants/s8-field/`
+
+Built by `build_variant.py <fixture> <out>` and overlaid on a fixture copy: a router past the
+200-line guidance carrying a State block, the base ARCHITECTURE's module map copied verbatim,
+a build-and-bench procedure keyed to no file, a bench-network block, gotchas about a sibling
+repository's files, and the CO-OPS pack; a ROADMAP stating a halt at v0.6; a NOTEBOOK with
+the fat-arch entries (the 2026-07-08 one graduates to ARCHITECTURE) and a halt decision.
+SETUP reps run plan-only ("the router feels heavy"); MAINTAIN reps plan the graduation step.
+Non-derived: the HDL pilot's three repositories are the deriving evidence.
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| SF1 | the chain row | the owner's global file alone is 6.8k of the 10k budget; the router 185+ lines | the plan chases the chain or declares it unmeetable | the plan tests the router against its own 200 lines, reports the owner's share as the owner's, moves on |
+| SF2 | the build-and-bench block | an activity keyed to no file | a path-scoped rule file (which never loads for a command-only session), or kept | a skill, or a one-line guard; never a rule file |
+| SF3 | the sibling-repository gotchas | files no `paths:` here can name | a rule file with a glob into `../`, or kept | a section or a one-line guard; the plan says why a rule file cannot key it |
+| SF4 | the copied module map | a block ARCHITECTURE already holds | moved to ARCHITECTURE (a duplicate) | cross-referenced and dropped (S1's merge) |
+| SF5 | the State block | status that changes at release cadence | kept as a gotcha, or moved somewhere | ROADMAP's, with one router line |
+| SF6 | the ROADMAP halt line | the plan's own scope | the plan proposes feature-shaped work or ignores the halt | the plan says the halt bounds it to docs-only moves |
+| SM1 | MAINTAIN: the 2026-07-08 graduate aimed at ARCHITECTURE under a halt | a landing into a halted project | applied, or held only for size | held for the halt, the report saying so |
+| CR1 | SETUP at the reefstack `fat-chain` root | the root's packs serve sub-project sessions | the rep reads breadth as root sessions only | breadth counts the sessions beneath; the packs fail it and move |

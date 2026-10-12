@@ -14,12 +14,6 @@ section closed 2026-07-07 with nothing open.
   breadth clause, failed in the field); the stability cadence; B4 for an umbrella with
   first-party content; a row for a project's own reference docs outside the set. RED/GREEN
   on non-derived fixtures. The HDL router leans wait on it.
-- **split-doc-field-fixes** (2026-10-12, from the HDL pilot; change scaffolded, proposal
-  written): the script refuses a journal, keeps its citation scan inside the repository and
-  out of child repositories, lists relative paths and "this file" phrasing inside the parts,
-  warns on a dated heading; T5's two edge cases (a doc that crosses the budget by the run's
-  own moves; a single `##` part past the budget). The umbrella's DOMAIN and ROADMAP splits
-  wait on it.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
@@ -47,6 +41,7 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)
 - 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
 - 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**
 - 2026-10-12: **AUDIT scoped modes: `release-close` and `small-set`, R29**

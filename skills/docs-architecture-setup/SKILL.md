@@ -104,9 +104,12 @@ projects.)*
   its text, so a section citation ("ARCHITECTURE § Build chain") resolves by
   `grep -n "<heading>" ARCHITECTURE.md ARCHITECTURE/*.md`, as a dated citation does for the
   journal; the dry run lists every such citation for the operator to check before
-  `--apply`. Never below `##`: a single topic past the budget stays one part. Not this rule:
-  a doc heavy with cold rationale **extracts** (T3), and a design doc in a code-light project
-  **stays whole** (B5). *(The journal rule's other half: a heading needs no judgment and
+  `--apply`. Never below `##`: a single topic past the budget stays one part. The dry run
+  also lists the lines a move one directory down leaves stale (relative paths, "this file"),
+  to fix after the apply, and warns on a dated heading (the part's filename follows it). Not
+  this rule: a doc heavy with cold rationale **extracts** (T3), a design doc in a code-light
+  project **stays whole** (B5), and a journal never splits by topic (it rolls, T1; the
+  script refuses it). *(The journal rule's other half: a heading needs no judgment and
   never drifts, as a date range does not. A redistribution by charter into sibling docs
   makes two homes for one truth, the shape a consumer's own split produced.)*
 

@@ -1,19 +1,25 @@
 """Split a reference doc past its budget by topic: each `## ` section becomes one file in a
 directory named for the doc, and the doc itself becomes the index.
 
-python split_doc.py <repo>/<DOC>.md [--apply] [--budget-kb 40]
+python split_doc.py <repo>/<DOC>.md [--apply] [--budget-kb 40] [--today YYYY-MM-DD]
 
 The doc's title line and preamble (its charter, everything before the first `## `) stay in
 the index, followed by a split note and one line per part: the heading as written, the part's
 file and size, its first sentence. Each part file carries a one-line title naming its parent,
 a note, then the section byte for byte, its `## ` heading included, so a section citation
-("ARCHITECTURE § Build chain") resolves by grep over the file and the directory. The router
-keeps naming the parent only. A section is never split below `## `: a single topic past the
-budget stays one part. Refused: a doc under budget, a doc with no `## ` sections, an existing
-directory (a split is never rewritten). The dry run lists the parts and every section
-citation it can find in the repo's Markdown, for the operator to check; `--apply` writes the
-parts, rewrites the index, and checks that the parts and the preamble reconstruct the
-original byte for byte.
+("ARCHITECTURE § Build chain", or an unambiguous short form of the heading) resolves by grep
+over the file and the directory. The router keeps naming the parent only. A section is never
+split below `## `: a single topic past the budget stays one part, reported as such.
+
+Refused: a doc under budget; a doc with no `## ` sections; a journal (dated `## ` headings or
+dated top-level bullets: a journal rolls over by date with rollover.py, it never splits by
+topic); an existing directory (a split is never rewritten). The dry run lists the parts, every
+section citation it finds in the repository's own Markdown (child repositories and
+sub-projects with their own router are skipped), the lines inside each part that a move one
+directory down leaves stale (relative paths, "this file"), and any heading carrying a date (the
+part's filename follows the heading, and a dated heading is edited in place); `--apply`
+writes the parts, rewrites the index, and checks that the preamble and the parts reconstruct
+the original byte for byte. `--today` fixes the date in the notes, for a byte-exact check.
 """
 import datetime
 import os
@@ -21,6 +27,10 @@ import re
 import sys
 
 HEAD = re.compile(r'(?m)^## (.+)$')
+DATE = r'\d{4}-\d{2}-\d{2}'
+DATED_HEAD = re.compile(r'(?m)^## ' + DATE)
+DATED_BULLET = re.compile(r'(?m)^- \**' + DATE)
+STALE = re.compile(r'\.\./|\bthis file\b|\bbeside this file\b|\]\(\./|\]\((?!https?://|#|/)[^)]*\.md')
 
 
 def slug(heading, taken):
@@ -68,13 +78,24 @@ def parse(text):
     return preamble, sections
 
 
+def is_journal(text, sections):
+    dated_heads = len(DATED_HEAD.findall(text))
+    dated_bullets = len(DATED_BULLET.findall(text))
+    return (dated_heads and dated_heads * 2 >= len(sections)) or dated_bullets >= 3
+
+
 def citations(repo, stem, exclude_dir):
-    """Lines in the repo's Markdown that cite the doc by section ("STEM § ...", "STEM.md § ...")."""
+    """Lines in the repository's own Markdown that cite the doc by section; child repositories
+    and sub-projects (a directory with its own CLAUDE.md or .git) are skipped."""
     pat = re.compile(r'\b' + re.escape(stem) + r'(?:\.md)?(?:\'s)?\s*(?:§|section|§)', re.I)
     own = re.compile(r'§|§')  # inside the doc itself, a bare "see § Topic" crosses parts after the split
     out = []
     for dirpath, dirs, files in os.walk(repo):
-        dirs[:] = [d for d in dirs if d not in ('.git', 'node_modules', '_gsdata_') and os.path.join(dirpath, d) != exclude_dir]
+        dirs[:] = [d for d in dirs
+                   if d not in ('.git', 'node_modules', '_gsdata_')
+                   and os.path.join(dirpath, d) != exclude_dir
+                   and not os.path.exists(os.path.join(dirpath, d, 'CLAUDE.md'))
+                   and not os.path.exists(os.path.join(dirpath, d, '.git'))]
         for f in files:
             if not f.endswith('.md'):
                 continue
@@ -83,10 +104,14 @@ def citations(repo, stem, exclude_dir):
             try:
                 for i, line in enumerate(open(p, encoding='utf-8', newline='').read().split('\n'), 1):
                     if pat.search(line) or (here and own.search(line)):
-                        out.append((os.path.relpath(p, repo), i, line.strip()))
+                        out.append((os.path.relpath(p, repo).replace(os.sep, '/'), i, line.strip()))
             except (OSError, UnicodeDecodeError):
                 continue
     return out
+
+
+def stale_lines(section):
+    return [(i, l.strip()) for i, l in enumerate(section.split('\n'), 1) if STALE.search(l)]
 
 
 def main(argv):
@@ -112,21 +137,33 @@ def main(argv):
     if os.path.exists(odir):
         sys.exit(f'{stem}/ exists: a split is never rewritten')
     preamble, sections = parse(text)
+    if is_journal(text, sections):
+        sys.exit(f'{fname} is a journal (dated entries): a journal rolls over by date with rollover.py, it never splits by topic')
     taken = set()
     parts = [(h, s, slug(h, taken)) for h, s in sections]
 
     print(f'{fname}: {size / 1024:.1f} KB, {len(parts)} topics (budget {budget // 1024} KB)')
     for h, s, sl in parts:
         kb = len(s.encode('utf-8')) / 1024
-        flag = '  [this part alone is past the budget: it stays one part]' if kb * 1024 > budget else ''
-        print(f'  {kb:5.1f} KB  {stem}/{sl}.md  "{h}"{flag}')
+        flags = ''
+        if kb * 1024 > budget:
+            flags += '  [this part alone is past the budget: it stays one part; the author\'s `###` headings are the lever]'
+        if re.search(DATE, h):
+            flags += '  [dated heading: the part\'s filename follows it, and an edit in place renames the part]'
+        print(f'  {kb:5.1f} KB  {stem}/{sl}.md  "{h}"{flags}')
     print(f'  {len(preamble.encode()) / 1024:5.1f} KB  preamble kept in the index')
     cites = citations(repo, stem, odir)
-    print(f'section citations in the repo\'s Markdown: {len(cites)} (each resolves by grep after the split; check they name a heading as written)')
+    print(f'section citations in this repository\'s Markdown: {len(cites)} (each resolves by grep after the split; check they name a heading as written or an unambiguous short form)')
     for p, i, line in cites[:40]:
         print(f'  {p}:{i}: {line[:110]}')
     if len(cites) > 40:
         print(f'  ... {len(cites) - 40} more')
+    stale = [(sl, i, l) for h, s, sl in parts for i, l in stale_lines(s)]
+    print(f'lines a move one directory down leaves stale (relative paths, "this file"): {len(stale)} (fix after the apply)')
+    for sl, i, l in stale[:40]:
+        print(f'  {stem}/{sl}.md:{i}: {l[:110]}')
+    if len(stale) > 40:
+        print(f'  ... {len(stale) - 40} more')
     if not apply:
         print('  dry run: --apply writes the parts and the index')
         return
@@ -140,7 +177,8 @@ def main(argv):
         open(os.path.join(odir, sl + '.md'), 'w', encoding='utf-8', newline='').write(head + s)
     note = (f"Split (since {today}): past {budget // 1024} KB this doc's `##` topics live in `{stem}/`, one\n"
             f"file per topic named by its heading, and this file is the index. A section citation\n"
-            f"(\"{stem} § <heading>\") resolves by `grep -n \"<heading>\" {fname} {stem}/*.md`.\n\n"
+            f"(\"{stem} § <heading>\", or an unambiguous short form of the heading) resolves by\n"
+            f"`grep -n \"<heading>\" {fname} {stem}/*.md`.\n\n"
             f"## Parts\n\n")
     index = preamble.rstrip('\n') + '\n\n' + note
     for h, s, sl in parts:

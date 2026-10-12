@@ -7,7 +7,8 @@ OpenSpec designs (`openspec/changes/archive/*/design.md`); this file says what t
 
 Split (since 2026-10-12): past 40 KB this doc's `##` topics live in `ARCHITECTURE/`, one
 file per topic named by its heading, and this file is the index. A section citation
-("ARCHITECTURE § <heading>") resolves by `grep -n "<heading>" ARCHITECTURE.md ARCHITECTURE/*.md`.
+("ARCHITECTURE § <heading>", or an unambiguous short form of the heading) resolves by
+`grep -n "<heading>" ARCHITECTURE.md ARCHITECTURE/*.md`.
 
 ## Parts
 
@@ -28,4 +29,5 @@ file per topic named by its heading, and this file is the index. A section citat
 - **Adding a station: what changes where** (`ARCHITECTURE/adding-a-station-what-changes-where.md`, 1.5 KB): Admitting a station is a code change in one place and a checklist in the dated record.
 - **The `tides` subcommand and the raw listing** (`ARCHITECTURE/the-tides-subcommand-and-the-raw-listing.md`, 1.2 KB): `tidepool tides <station_id> [--days N]` (default 7) is the client with no planner behind
 - **Public names and their callers** (`ARCHITECTURE/public-names-and-their-callers.md`, 2.0 KB): Every public name in the package, where it is defined and who calls it; a name with no
+- **State (2026-07-10)** (`ARCHITECTURE/state.md`, 0.4 KB): Version 0.6.0 is the current release; the export subcommand shipped 2026-06-10 and the
 - **Data flow and invariants** (`ARCHITECTURE/data-flow-and-invariants.md`, 1.9 KB): Invariants that hold across the modules, each enforced where it says:

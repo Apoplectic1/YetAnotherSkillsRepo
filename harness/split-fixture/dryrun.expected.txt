@@ -1,0 +1,44 @@
+ARCHITECTURE.md: 40.7 KB, 19 topics (budget 40 KB)
+    1.2 KB  ARCHITECTURE/module-map.md  "Module map (`src/tidepool/`)"
+    3.3 KB  ARCHITECTURE/station-registry-and-the-metadata-cache.md  "Station registry and the metadata cache (`stations.py`)"
+    2.7 KB  ARCHITECTURE/the-co-ops-client.md  "The CO-OPS client (`tides.py`)"
+    3.4 KB  ARCHITECTURE/window-scoring.md  "Window scoring (`plan.py`)"
+    1.5 KB  ARCHITECTURE/csv-export.md  "CSV export (`export.py`)"
+    2.2 KB  ARCHITECTURE/the-cli.md  "The CLI (`cli.py`)"
+    3.1 KB  ARCHITECTURE/time-zones-and-the-day-boundary.md  "Time, zones and the day boundary"
+    2.8 KB  ARCHITECTURE/errors-and-exit-paths.md  "Errors and exit paths"
+    2.7 KB  ARCHITECTURE/testing-and-the-pure-core.md  "Testing and the pure core"
+    2.3 KB  ARCHITECTURE/packaging-configuration-and-paths.md  "Packaging, configuration and paths"
+    1.8 KB  ARCHITECTURE/requests-and-the-network-budget.md  "Requests and the network budget"
+    2.4 KB  ARCHITECTURE/the-window-dict-nine-keys-and-their-contract.md  "The window dict: nine keys and their contract"
+    2.7 KB  ARCHITECTURE/worked-scoring-examples.md  "Worked scoring examples"
+    1.1 KB  ARCHITECTURE/the-stations-subcommand-and-the-registry-listing.md  "The `stations` subcommand and the registry listing"
+    1.5 KB  ARCHITECTURE/adding-a-station-what-changes-where.md  "Adding a station: what changes where"
+    1.2 KB  ARCHITECTURE/the-tides-subcommand-and-the-raw-listing.md  "The `tides` subcommand and the raw listing"
+    2.0 KB  ARCHITECTURE/public-names-and-their-callers.md  "Public names and their callers"
+    0.4 KB  ARCHITECTURE/state.md  "State (2026-07-10)"  [dated heading: the part's filename follows it, and an edit in place renames the part]
+    1.9 KB  ARCHITECTURE/data-flow-and-invariants.md  "Data flow and invariants"
+    0.4 KB  preamble kept in the index
+section citations in this repository's Markdown: 16 (each resolves by grep after the split; check they name a heading as written or an unambiguous short form)
+  ARCHITECTURE.md:23: me". Each topic below describes one of them in the order the data flows (see § Data flow and
+  ARCHITECTURE.md:43: the `stations` subcommand, which sorts the dict by name for display (see § The CLI).
+  ARCHITECTURE.md:62: cache directory is empty and the client (see § The CO-OPS client) fetches predictions with
+  ARCHITECTURE.md:69: metadata record the cache would hold (see § Window scoring for the conversion and its
+  ARCHITECTURE.md:87: | `begin_date`, `end_date` | the arguments | the CLI passes `today` and `+N` (see § The CLI) |
+  ARCHITECTURE.md:106: § Window scoring); the La Push field report's request for a height cut in `low_tides()`
+  ARCHITECTURE.md:167: zone offset, the limit § Station registry and the metadata cache notes.
+  ARCHITECTURE.md:183: The row values are whatever `_windows()` built (see § The CLI): the date as ISO, the three
+  ARCHITECTURE.md:192: Nothing else is written anywhere; the design constraint in § Data flow and invariants is
+  ARCHITECTURE.md:214: and the station's coordinates, converted to naive local as § Window scoring describes; gets
+  ARCHITECTURE.md:242: metadata record the cache will hold (see § Station registry and the metadata cache); until
+  ARCHITECTURE.md:307: diagnostics, and § Testing and the pure core says what the offline checks can tell before a
+  ARCHITECTURE.md:474: sunrise. This is the case § Window scoring notes: the daylight factor is a weighted term,
+  ARCHITECTURE.md:538: a candidate station's datum and hi/lo availability before adding it (see § Adding a station:
+  ARCHITECTURE.md:540: (`KeyError: 'predictions'`, see § Errors and exit paths) rather than as a registry miss.
+  ARCHITECTURE.md:610: directory has no writer until the refresh script lands (§ Station registry and the
+lines a move one directory down leaves stale (relative paths, "this file"): 4 (fix after the apply)
+  ARCHITECTURE/testing-and-the-pure-core.md:33: does not belong in this file and there is no second file for it yet (the scoring-regression
+  ARCHITECTURE/state.md:4: moon-phase factor 2026-06-24 (the shipped history is in this file's sibling `../ROADMAP.md`
+  ARCHITECTURE/state.md:5: until a CHANGELOG exists). The station refresh script is in progress; nothing in this file
+  ARCHITECTURE/state.md:6: describes it yet. The archived designs beside this file (`../openspec/changes/archive/`)
+  dry run: --apply writes the parts and the index

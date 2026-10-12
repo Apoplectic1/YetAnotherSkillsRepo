@@ -578,6 +578,14 @@ import neither `requests` nor `astral` at module level, which is what lets the t
 import them bare. A new public name is added to this table in the same change that adds
 it; a name that leaves the table leaves the code.
 
+## State (2026-07-10)
+
+Version 0.6.0 is the current release; the export subcommand shipped 2026-06-10 and the
+moon-phase factor 2026-06-24 (the shipped history is in this file's sibling `../ROADMAP.md`
+until a CHANGELOG exists). The station refresh script is in progress; nothing in this file
+describes it yet. The archived designs beside this file (`../openspec/changes/archive/`)
+hold the rationale for the weights and the registry curation.
+
 ## Data flow and invariants
 
 ```
