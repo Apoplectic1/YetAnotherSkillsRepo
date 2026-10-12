@@ -29,8 +29,9 @@ section closed 2026-07-07 with nothing open.
   <dir>` before and after; the HDL chain is 83 KB, 2.1x the budget, today. The owner's global
   file (26.7 KB, 187 lines) is a third of every chain on the machine and the owner's own call.
   The Arty's ARCHITECTURE split landed 2026-10-12 (seven parts, byte-exact, the first field
-  apply of T5), so the ATML umbrella's ten held promotions have parts to land in (a MAINTAIN
-  apply from an HDL session). The three routers' leans (HlsLibrary 39.9 KB, the Arty's
+  apply of T5; docs only). The ATML umbrella's ten held promotions stay held: they are Arty
+  work, and the Arty is halted at contract v5 with no further work until an unhalt (its
+  ROADMAP; the 2026-09-26 maintain report sequences the landings after it). The three routers' leans (HlsLibrary 39.9 KB, the Arty's
   26.6 KB, the umbrella's 12.9 KB) and the umbrella's DOMAIN and ROADMAP splits were planned
   by SETUP reps the same day and wait on `s8-field-fixes` and `split-doc-field-fixes`; the
   plans are in the pilot record.

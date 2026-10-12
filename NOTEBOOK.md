@@ -20,7 +20,14 @@ existing example: the 2026-06-29 audit worker-model benchmark).
   (`s8-field-fixes`, `split-doc-field-fixes`); the three router leans wait on them. The
   lesson the day keeps teaching: a rule derived from a tree and GREEN'd on a 10-file
   fixture meets its real cases only in the tree, and a plan-only rep there costs 100k
-  tokens against a wrong lean's cost of a repository's router.
+  tokens against a wrong lean's cost of a repository's router. A correction the owner made
+  the same hour: the Arty is halted at contract v5 and takes no further work, so the ten
+  promotions held against its ARCHITECTURE stay held after the split (the 2026-09-26
+  maintain report sequences them after an unhalt); the split itself, docs-only and
+  byte-exact, stays (the owner's call). Two of the tree's own records disagreed on whether
+  the split waits for the unhalt, and I surfaced neither before applying: a halt rule is a
+  convention of the kind R29's candidate text was written for, and a plan rep working below
+  the umbrella should have read it as a contract.
 - 2026-10-12: **T5 on this repo's own design doc: the first real split, and a naming rule it
   met.** `docs/docs-architecture-design.md` was 65.6 KB in thirteen `##` topics, one of them
   ("The phased arc", 34 KB, nineteen dated provenance blocks) journal-shaped; `split_doc.py`
