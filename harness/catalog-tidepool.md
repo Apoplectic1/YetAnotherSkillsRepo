@@ -239,7 +239,7 @@ that S7 moves to ARCHITECTURE) on a fixture copy, then baseline. SETUP reps run 
 | ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
 |---|---|---|---|---|
 | NB1 | the router's mechanics block | reference content in the router (S7) | moved to ARCHITECTURE | moved to ARCHITECTURE |
-| NB2 | ARCHITECTURE after the move: 38 + 4 = 42 KB | the run's own move pushes a doc past the budget | the plan leaves the 42 KB doc whole (T5 was judged on the 38 KB doc before the move), or does not notice | the plan splits it in the same run, after the move lands (T5's same-run sentence), with the script's dry run cited |
+| NB2 | ARCHITECTURE after the move: 38 + 4 = 42 KB | the run's own move pushes a doc past the budget | the plan leaves the 42 KB doc whole (T5 was judged on the 38 KB doc before the move), or does not notice | the plan splits it in the same run, after the move lands (T5's same-run sentence), with the script's dry run cited. Caveat (2026-10-12, the `setup-tools-first` regression): the block restates the doc's own topics, so a rep may merge it by fact, add 0.3 KB and stay under budget, and the cell does not fire; a block the doc does not cover would make it bite |
 | NB3 | the fat-topics `## State (2026-07-10)` part and the `../` lines | a dated heading; relative paths inside a part | script-level: the dry run flags the dated heading and lists the stale lines (`dryrun.expected.txt`) | the same |
 | NB4 | a heading journal | the script refuses to split a journal | script-level: "a journal rolls over" | the same |
 

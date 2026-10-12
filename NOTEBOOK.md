@@ -5,6 +5,25 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The first trim: SETUP to 10.4 KB from 14.6 with `survey.py` beside it, and
+  the regression found nothing to restore** (record
+  `docs/2026-10-12 - setup-tools-first-regression.md`). Five plan-only reps, one per fixture
+  family, 355k tokens: the same plans the 14.6 KB text produced in the morning (the s8-field
+  rep's plan is the sf3 plan to the block). What changed in the reps' behavior was the
+  survey: every one quoted it and planned from its lines, and two said what it "does not
+  detect" (a mutual pointer, an unverified citation), which is the line between detection
+  and judgment made visible. Three things worth keeping. The measurement first: italic
+  rationale was 10 percent of each skill; the weight was prose restating scripts and shape
+  rules told to a reader, so "strip the rationale" would have bought a tenth and "tools
+  first" bought a third with the judgment intact. Second, a fixture caveat: the near-budget
+  rep merged the router's mechanics block by fact into the 37 KB ARCHITECTURE (one fact
+  missing, 0.3 KB) and stayed under budget, so the same-run split cell did not fire; the
+  block restates the doc's topics, and a block the doc does not cover would make it bite.
+  Third, a rep's idea: a gotcha a test can enforce ("a test pinning `datum=MLLW`") has no
+  home among a rule file, a skill and a section; a test is the cheapest always-on guard
+  there is, and S8's homes do not name it. The leak check held its usual shape: one rep
+  worried about the owner's em-dash rule, which no fixture states. Next: AUDIT (`scope.py`)
+  and MAINTAIN (`report_check.py`), the same gate.
 - 2026-10-12: **S8's field fixes RED/GREEN'd: three clauses earned text, five did not, and
   the halt's terms decide a held landing** (record `docs/2026-10-12 - s8-field-fixes-red-green.md`).
   The per-file budget (RED 3/3: every rep chased a chain the owner's 6.8k-token global file

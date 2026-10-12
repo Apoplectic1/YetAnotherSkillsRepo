@@ -48,7 +48,10 @@ The setup skill's `split_doc.py`, applied with `--today 2026-10-12` to a scratch
 preamble must reconstruct the doc byte for byte (2026-10-12, `reference-doc-split`); its dry
 run on that doc, run from the doc's directory, must print `harness/split-fixture/dryrun.expected.txt`
 (the dated heading flagged, the stale lines listed), and pointed at a doc whose `##` headings
-are dates it must refuse (2026-10-12, `split-doc-field-fixes`).
+are dates it must refuse (2026-10-12, `split-doc-field-fixes`). Its `survey.py`, run on
+baselined copies (the harness recipe) of the base TidePool, the reefstack root and the
+`s8-field` variant with `--root <copy> --global none --memory none`, must print
+`harness/survey-fixture/<name>.expected.txt` byte for byte (2026-10-12, `setup-tools-first`).
 
 For tests the standing fixture can't serve (derivation caveat, or a different project
 shape), create one on demand: copy a **pristine, skills-unmodified** project —

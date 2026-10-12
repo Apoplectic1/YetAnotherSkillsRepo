@@ -5,6 +5,15 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
+- **Tools over prose, AUDIT and MAINTAIN** (2026-10-12, after `setup-tools-first`; the
+  owner's direction: remove the bloat, favor tools over prose): `scope.py` beside AUDIT (the
+  in-scope set from the router: the named docs, a split index's parts, the router-named
+  specs, the exclusions it skips, the sub-projects it flags; R12, R13, R16 as lines), then
+  R30, R18 to R24 and R29 to their actions; `report_check.py` beside MAINTAIN (M16's three
+  required lines, the ROADMAP lines M13 and M14 require), then M17 and M9/M14 to their
+  actions. Each its own change, each gated by a representative regression GREEN (one
+  plan-only or report-only rep per fixture family), the trimmed text claiming nothing new.
+  Target about half of today's 13.4 KB and 10.7 KB.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
@@ -36,13 +45,11 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change `setup-tools-first`; 14.6 KB to 10.4 KB; a regression GREEN, five families, every cell that fired held)
 - 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
 - 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)
 - 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
 - 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**
-- 2026-10-12: **AUDIT scoped modes: `release-close` and `small-set`, R29**
-- 2026-10-12: **AUDIT scope from the routers: `spec-change` shipped, two halves status-noted**
-- 2026-10-12: **the rolled-journal index lists bold-lead entries under a bare date heading**
 
 The full history, every shipped unit as a dated entry, is `CHANGELOG.md` (newest
 first).

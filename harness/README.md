@@ -89,3 +89,7 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   block), a ROADMAP halt and a halted graduate. Cells SF1 to SF6, SM1, SM2 (the variant with
   the fat-topics ARCHITECTURE in place of the base one: a held promotion under the halt),
   CR1 in the catalog.
+- `survey-fixture/` (2026-10-12, `setup-tools-first`): `survey.py`'s expected output on
+  baselined copies of the base TidePool, the reefstack root and the `s8-field` variant
+  (`--root <copy> --global none --memory none`), byte-exact; the baseline commit is what
+  makes "git: clean tree" true.

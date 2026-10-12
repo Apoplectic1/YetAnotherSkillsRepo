@@ -10,7 +10,9 @@ design doc: `docs/docs-architecture-design.md`.
   `docs-architecture-maintain/` also carries `rollover.py` and `journal_index.py` (the
   journal rollover, M17), deployed with it; `docs-architecture-audit/` carries
   `chain_budget.py` (the always-on chain, R30) and `docs-architecture-setup/` carries
-  `split_doc.py` (the reference-doc split, T5); the pilot's copies under
+  `split_doc.py` (the reference-doc split, T5) and `survey.py` (the survey step: one line
+  per finding with the rule it keys; it runs `chain_budget.py` from beside the audit skill,
+  so the two deploy side by side); the pilot's copies under
   `docs/2026-09-26 - journal-rollover/` are the frozen record of the first run.
 - `docs/` — journal (dated records) + the canonical design doc (its index, with the parts in
   `docs/docs-architecture-design/`) + benchmark data

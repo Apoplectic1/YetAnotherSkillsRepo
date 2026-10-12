@@ -1,0 +1,36 @@
+docs-architecture-setup survey (budget 40 KB per doc, 200 lines per always-on file; a line ending in -> <rule> is a finding)
+
+shape
+  container root: no manifest, no reference docs and no source within two levels outside its 3 sub-projects -> B4 (the router plus at most a portfolio DOMAIN and a thin ROADMAP)
+  sub-project DoseKeeper/ (own CLAUDE.md) -> B3 flag-and-skip
+  sub-project PulseMonitor/ (own CLAUDE.md) -> B3 flag-and-skip
+  sub-project ReefDash/ (own CLAUDE.md) -> B3 flag-and-skip
+
+the set
+  CLAUDE.md           1.8 KB   no charter line ("This directory is a container holding the independent repos of the reef-tank aut...") -> S5
+  ARCHITECTURE.md              absent (B4: not at a container root)
+  ROADMAP.md          0.6 KB   charter: "Charter: thin portfolio status board — current thrust + per-repo state. Volatile..."
+  NOTEBOOK.md                  absent (B4: not at a container root)
+  VERIFICATION.md              absent (B4: not at a container root)
+  DOMAIN.md                    absent (B4: not at a container root)
+  CHANGELOG.md                 absent (conditional)
+  README.md                    absent (conditional)
+  RELEASING.md                 absent (conditional)
+  docs/                        absent (B4: not at a container root)
+
+the router
+  CLAUDE.md 34 lines, 1.8 KB
+  names: ROADMAP.md
+  dated-record pattern not stated -> T4
+  the chain (chain_budget.py): total 1.8 KB, 469 tokens: within budget
+    this project's part 469; ancestors 0; the owner's global 0; memory index 0
+    files over their own line (200 lines, each leaned from its own place): none
+
+the journal
+  none
+
+reference docs
+  ROADMAP.md 0.6 KB, 0 `##` topics
+
+the tree
+  git: clean tree

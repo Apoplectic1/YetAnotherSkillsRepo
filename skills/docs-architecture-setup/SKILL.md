@@ -6,183 +6,139 @@ description: Use when bootstrapping or standardizing a project's documentation f
 # Docs-architecture setup
 
 Bootstrap a project so an agent navigates it the same way as every other: one always-loaded
-`CLAUDE.md` **router** pointing to a canonical, **charter-guarded** doc set. Carry the set as a
-rule — never infer it from sibling repos. *(A sibling may not exist; inference drifts between
-projects.)*
+`CLAUDE.md` **router** pointing to a canonical, **charter-guarded** doc set. The set is a rule,
+never inferred from sibling repos. `python survey.py <dir>` (beside this SKILL.md) reports the
+tree against the rules below, one line per finding with the rule it keys; the plan acts on its
+lines, and on the tests only a reader can make (S5's honesty, S7's content, S8's scope).
 
-## Safety — restructure, never destroy (highest priority)
+## Safety (highest priority)
 - **S1.** Consolidating = **merge** (drop nothing); moving history = **move**, not delete;
-  renames preserve content. Unsure whether something is still needed → move it to `archive/`,
-  never delete.
-- **S2.** Apply on a **clean git tree** (commit first) and **present the diff for review before
-  committing**. *(Every change stays recoverable.)*
+  a rename keeps content. Unsure whether something is still needed: `archive/`, never delete.
+- **S2.** Apply on a **clean git tree** (commit first) and **present the diff for review
+  before committing**.
 - **S3.** Not a git repo? **Create the net first**: `git init` + commit the originals (or
-  snapshot them to `archive/pre-setup/`) *before* any restructuring — never merge-and-delete on
-  an unversioned tree. A pure-scaffold run (new files only) may proceed, noting the tree is
-  unversioned.
-- **S4.** A large/diverse project (many existing docs) deserves extra care: survey fully before
-  touching anything; prefer several small reviewed applies over one big one.
+  snapshot them to `archive/pre-setup/`) before any restructuring. A pure scaffold (new files
+  only) may proceed, noting the tree is unversioned.
+- **S4.** A large or diverse project: survey fully before touching anything; several small
+  reviewed applies over one big one.
 
-## The enforced set — create every file, charter-guarded
+## The enforced set: every file, charter-guarded
 | File | Role |
 |---|---|
-| `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin: enforced by S7 and S8) |
+| `CLAUDE.md` | always-loaded **router** + the gotchas every session needs (S7, S8) |
 | `ARCHITECTURE.md` | subsystem mechanics (how it works) |
-| `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
-| `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings); past its budget its oldest days roll into `NOTEBOOK/` (T1) |
-| `VERIFICATION.md` | how to verify a change — *even if* just "= `dotnet test` / `npm test`, CI at X" |
-| `DOMAIN.md` | the human/strategy home (science / conventions / site-process / UI rules) |
-| `docs/` | journal: per-topic dated records, `YYYY-MM-DD-<slug>.md` by default or the pattern the router's journal line states (B2) |
-| `CHANGELOG.md` | **conditional** — shipped-history journal (append-only, dated, newest first); create when history accrues; rolls into `CHANGELOG/` like NOTEBOOK |
-| `README.md`, `RELEASING.md` | **conditional** — public entry point; project that ships |
+| `ROADMAP.md` | forward-looking design + a short Recently-shipped digest |
+| `NOTEBOOK.md` | running **lab notebook** (dated findings); rolls into `NOTEBOOK/` past its budget (T1) |
+| `VERIFICATION.md` | how to verify a change, even if just "= `dotnet test`, CI at X" |
+| `DOMAIN.md` | the human/strategy home (science, conventions, site process, UI rules) |
+| `docs/` | journal: dated records, `YYYY-MM-DD-<slug>.md` or the pattern the router states (B2) |
+| `CHANGELOG.md` | **conditional**: shipped history (append-only, dated, newest first), created when history accrues; rolls like NOTEBOOK |
+| `README.md`, `RELEASING.md` | **conditional**: public entry point; a project that ships |
 
-- **S5.** **Charter-guard:** every file opens with a one-line charter (purpose / when to read).
-  A thin file states an honest status ("verification = the test suite"; "no subsystems yet") —
-  **never blank**. *(Charter'd-thin is legible and a ready home; blank is noise. NOTEBOOK and
-  VERIFICATION are the two files unguided runs reliably omit — create them.)*
-- **S6.** The domain doc is **always named `DOMAIN.md`** — do not elicit a content-specific
-  name; do not rename an existing `DOMAIN.md`. Whatever the content *is*, it lives there; when
-  absent, create it charter'd-thin. Never skip it.
+- **S5.** **Charter-guard:** every file opens with a one-line charter (purpose, when to read).
+  A thin file states an honest status ("verification = the test suite"; "no subsystems yet"),
+  **never blank**. NOTEBOOK and VERIFICATION are the two files runs omit: create them.
+- **S6.** The domain doc is **always named `DOMAIN.md`**: never elicit a content-specific
+  name, never rename an existing one; whatever the content is lives there; absent, create it
+  charter'd-thin.
 - **S7.** **Lean an encountered fat router in this run:** reference content inside
-  `CLAUDE.md` — glossary, contract/API prose, conventions, subsystem mechanics: anything
-  that is neither routing nor a load-bearing gotcha — **moves now** to its charter home
-  (glossary / authoring conventions → `DOMAIN.md`; mechanics / contracts →
-  `ARCHITECTURE.md`), as an S1 content-preserving move with a router pointer where needed;
-  name each move in the run report. The trigger is **content, never size** — a gotcha-dense
-  router stays, a small glossary still moves. A hybrid block **splits**: the gotcha line
-  stays in the router, the reference body moves. B2's "never clobber" forbids overwriting an
-  existing setup, **not** relocating its off-charter weight — "noted as a follow-up" is the
-  job left undone. *(Unguided runs leave a 24 KB router fat and grow it; oversized routers
-  load every conversation and degrade the harness — the why, never the trigger.)*
-- **S8.** **Always-on is a scope, not a size.** An item earns a place in a file that loads
-  at launch (the router, an ancestor router, a `.claude/rules/` file without `paths:`) only
-  if it passes **breadth** (every session launched here needs it) and **stability** (it
-  changes less often than a release). S7's content test decides *where* a
-  thing lives; this test decides *whether it loads every time*, and it is the test of what
-  "load-bearing" means: a guard every session needs is load-bearing; a guard only one
-  activity needs is that activity's, however sharp, and goes with its pack. A block or a
-  line that fails **moves now** behind a one-line always-on trigger, to the home its need
-  is keyed to, each with its own load trigger: a **path-scoped rule file**
-  (`.claude/rules/<name>.md`, `paths:` in its frontmatter) loads when a matching file is
-  read, written or edited, so it fits a need keyed to files in this repository and nothing
-  else (a session that only runs a command touches no file, and a glob cannot name a sibling
-  repository's files); a **skill** (`.claude/skills/<name>/SKILL.md`, which B1 lets this
-  rule write) loads its body on invocation, so it fits a need keyed to an activity (a build,
-  a bench run, a release step); a reference-doc **section** read by heading (`grep -n
-  "^## "`, then the span) fits prose. A guard with no file and no activity to key to keeps
-  one line in the router. The trigger line names the home and when to reach for it, and the
-  router names every rule file and skill it writes (so an audit reads them). **The budget
-  is per file**: every file that loads at launch has 200 lines (the harness's own guidance:
-  about 20 KB, about 5k tokens); `chain_budget.py` beside the audit skill marks each file
-  over it and reports the chain a session loads against 5 percent of the window (about 10k
-  tokens, met when every level meets its own), with the ancestors' and the owner's shares
-  reported for their own leans and never chased from below. **The number detects, the test
-  decides**: a router under its line still moves a block that fails. *(A
-  gotcha-dense router passes S7 and still costs every session room and interference: a
-  directive misapplied where it does not belong scales with the count of directives the
-  session never needed. A 40 KB router of true toolchain gotchas and element maps,
-  S7-clean, loads in full for a session that edits a README; under a 27 KB global file and
-  two umbrella routers, no unit's chain meets the line, and only its own file is its to
-  lean.)*
+  `CLAUDE.md` (glossary, contract/API prose, conventions, subsystem mechanics: anything
+  neither routing nor a load-bearing gotcha) **moves now** to its charter home (glossary and
+  authoring conventions to `DOMAIN.md`; mechanics and contracts to `ARCHITECTURE.md`) as an
+  S1 move with a router pointer where needed, each move named in the run report. The trigger
+  is **content, never size**: a gotcha-dense router stays, a small glossary still moves; a
+  hybrid block splits (the gotcha line stays, the body moves). B2 forbids overwriting an
+  existing setup, not relocating its off-charter weight: "noted as a follow-up" is the job
+  left undone.
+- **S8.** **Always-on is a scope, not a size.** An item loads at launch (the router, an
+  ancestor router, a `.claude/rules/` file without `paths:`) only if it passes **breadth**
+  (every session launched here needs it) and **stability** (it changes less often than a
+  release); that test is what "load-bearing" means. S7 decides *where* a thing lives; this
+  decides *whether it loads every time*. A block or line that fails **moves now** behind one
+  always-on trigger line, to the home its need is keyed to: files in this repository → a
+  **path-scoped rule file** (`.claude/rules/<name>.md` with `paths:`; it loads on a matching
+  file's first touch, so never for a command-only session and never for a sibling
+  repository's files); an activity (a build, a bench run, a release step) → a **skill**
+  (`.claude/skills/<name>/SKILL.md`, loaded on invocation; B1 allows it); prose → a
+  reference-doc **section** read by heading; keyed to neither → one router line. The trigger
+  line names the home and when to reach for it; the router names every rule file and skill it
+  writes. **The budget is per file, 200 lines:** the survey's chain row (`chain_budget.py`)
+  marks each file over its own line and reports the ancestors' and the owner's shares as
+  theirs, never chased from below. **The number detects, the test decides:** a router under
+  its line still moves a block that fails.
 
-## Tiers & routing — teach these in CLAUDE.md
+## Tiers & routing: teach these in CLAUDE.md
 - **T1.** **journal** (dated capture) = `docs/YYYY-MM-DD-*.md` + `NOTEBOOK.md` +
-  `CHANGELOG.md`, plus their **overflow directories** (`NOTEBOOK/`, `CHANGELOG/`): when a
-  journal passes its budget (40 KB by default), its oldest whole days roll into a directory
-  named for the file, one frozen file per period named by its first date, with an
-  `INDEX.md` listing every rolled entry by date and title, a bold-lead bullet under a bare
-  date heading counting as an entry (the maintain skill's job, its M17; entries keep their
-  text). Three-way split: small finding from doing the work → NOTEBOOK; **shipped
-  unit → CHANGELOG**; substantial standalone record → `docs/`.
-- **T2.** **reference** (current truth) = ARCHITECTURE / ROADMAP / DOMAIN / VERIFICATION —
+  `CHANGELOG.md`. Past its budget (40 KB) a journal's oldest whole days roll by date into a
+  directory named for it (`NOTEBOOK/`, `CHANGELOG/`; the maintain skill's `rollover.py`,
+  with an `INDEX.md`). Three-way split: a small finding from the work → NOTEBOOK; a
+  **shipped unit → CHANGELOG**; a substantial standalone record → `docs/`.
+- **T2.** **reference** (current truth) = ARCHITECTURE / ROADMAP / DOMAIN / VERIFICATION,
   edited in place.
-- **T3.** **cold-rationale** (optional) = lengthy *evergreen* "why" not needed for immediate
-  reasoning → a dated `docs/` note + a one-line reference back. Extract only when lengthy AND
-  cold AND evergreen (not code-coupled).
-- **T4.** The router names reference docs **by name**; the journal **by convention**
-  (`glob docs/*.md` + grep) — never an enumerated, growing list. The journal line states
-  the dated-record pattern and that a dated citation ("NOTEBOOK 2026-01-22") resolves by
-  grep over the journal and its overflow directory.
-- **T5.** **A reference doc past its budget splits by topic, never by judgment.** When a
-  reference doc passes the budget (40 KB, one read unit) and its weight is many `##` topics,
-  `python split_doc.py <doc>` (beside this SKILL.md; a dry run first) moves each `##`
-  section, byte for byte, into a directory named for the doc (`ARCHITECTURE/`), one
-  charter'd file per topic named by its heading, and leaves the doc as the **index**: its
-  charter, a split note, one line per part. The router keeps naming the doc; a heading keeps
-  its text, so a section citation ("ARCHITECTURE § Build chain") resolves by
-  `grep -n "<heading>" ARCHITECTURE.md ARCHITECTURE/*.md`, as a dated citation does for the
-  journal; the dry run lists every such citation for the operator to check before
-  `--apply`. Never below `##`: a single topic past the budget stays one part. The dry run
-  also lists the lines a move one directory down leaves stale (relative paths, "this file"),
-  to fix after the apply, and warns on a dated heading (the part's filename follows it);
-  after a part is edited, `--reindex` rewrites the index's Parts list (sizes, first
-  sentences) in the index's order, bodies untouched. Not this rule: a doc heavy with cold
-  rationale **extracts** (T3), a design doc in a code-light
-  project **stays whole** (B5), and a journal never splits by topic (it rolls, T1; the
-  script refuses it). *(The journal rule's other half: a heading needs no judgment and
-  never drifts, as a date range does not. A redistribution by charter into sibling docs
-  makes two homes for one truth, the shape a consumer's own split produced.)*
+- **T3.** **cold rationale** (optional) = lengthy, cold *and* evergreen "why" → a dated
+  `docs/` note + a one-line reference back; all three or it stays put.
+- **T4.** The router names reference docs **by name** and the journal **by convention**
+  (`glob docs/*.md` + grep), never an enumerated list; its journal line states the
+  dated-record pattern and that a dated citation ("NOTEBOOK 2026-01-22") or a section
+  citation ("ARCHITECTURE § Build chain") resolves by grep over the file and its directory.
+- **T5.** **A reference doc past its budget splits by topic, never by judgment:** the survey
+  marks one (40 KB, many `##` topics), and a run's own moves can push one past it; `python
+  split_doc.py <doc>` (beside this SKILL.md; a dry run first, then `--apply`; `--reindex`
+  after a part is edited) moves each `##` section
+  byte for byte into a directory named for the doc, one charter'd file per topic, the doc
+  left as the index; the router keeps naming the doc. Never below `##`. Not this rule: cold
+  rationale extracts (T3), a design slot stays whole (B5), a journal rolls (T1; the script
+  refuses it).
 
-## archive/ and the changelog — do not blur
-- **A1.** `archive/` = **archival-only**: not-current-design-relevant, deletable (git is the
-  backstop). Routing test: *"still current-design-relevant?"* No → `archive/` (or just let git
-  hold it); yes → it stays live.
-- **A2.** **Shipped history lives in `CHANGELOG.md`** (journal tier: append-only, dated,
-  newest first); `ROADMAP.md` keeps a short Recently-shipped **digest + pointer**; never a
-  long history embedded in ROADMAP; never shipped history in `archive/`. Git remains the
-  commit-level backstop. Relocating an embedded history = **move**, content-preserving (S1).
+## archive/ and the changelog
+- **A1.** `archive/` is **archival-only**: not current-design-relevant, deletable (git is
+  the backstop). Still current? It stays live.
+- **A2.** **Shipped history lives in `CHANGELOG.md`**; `ROADMAP.md` keeps a short
+  Recently-shipped **digest + pointer**, never a long history, and `archive/` never holds
+  shipped history. Relocating an embedded history is an S1 move.
 
-## Boundaries
-- **B1.** **Hard scope-exclusions — never scaffold into:** vendored trees (`vendor/`,
-  `third_party/`, forked upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`),
-  tooling (`.claude/`, `openspec/`). Their own READMEs are not this project's docs; `CLAUDE.md`
-  notes them excluded — for `openspec/`, the note marks archived design docs
-  (`changes/archive/*/design.md`) as historical records the **maintain** sweep reads (still
-  never scaffolded into, and never an authoring target for the T1 journal split). The only
-  things written under `.claude/` are what S8 moves a block to, a path-scoped rule file or a
+## Boundaries (the survey names the shape; the rule is the action)
+- **B1.** **Never scaffold into** vendored trees (`vendor/`, `third_party/`, forked
+  upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`) or tooling (`.claude/`,
+  `openspec/`); their READMEs are not this project's docs. The router notes them excluded
+  and marks archived openspec design docs (`changes/archive/*/design.md`) as records the
+  **maintain** sweep reads. Under `.claude/` only what S8 moves there, a rule file or a
   skill, each named by the router.
-- **B2.** **Coexist, never clobber:** augment an existing setup — don't overwrite a present
-  `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the **project's stated**
+- **B2.** **Coexist, never clobber:** augment an existing setup, never overwrite a present
+  `CLAUDE.md`, `openspec/` or `.claude/`. Normalize filenames to the **project's stated**
   dated-record pattern (the router's journal line; the default is `YYYY-MM-DD-<slug>.md`),
-  align casing; never impose the default over a pattern the project states *(a rename
-  breaks every citation of the file: S1's restructure-never-destroy reaches names)*.
-- **B3.** A **sub-project** (nested tree with its own router / own `.git`) is its own
-  governance unit: **flag-and-skip** — leave its docs alone, note it excluded in the root
-  router, and report *"run this skill from `<sub-dir>` to govern it as its own unit."* *(Not a
-  submodule/vendoring call — that's the user's separate decision.)*
-- **B4.** A **container root** (the invocation dir holds no first-party project content — only
-  sub-projects + tooling/exclusions) gets the **router plus at most two thin portfolio
-  docs**, never the rest of the enforced set: an optional **portfolio `DOMAIN.md`**,
-  chartered *cross-repo truth only* (shared glossary terms, cross-store disambiguations,
-  cross-repo contracts by pointer), created when such truth exists — e.g. surfaced by the
-  S7 lean — never by default; and an optional thin status/sequencing `ROADMAP.md`.
-  **Owner rule:** what one project's code defines lives in that project's docs — the
-  portfolio DOMAIN points *down* by name, sub-projects point *up* for shared terms,
-  **never mutual**. *(Ownerless truth improvised into routers, status docs, or sibling
-  pointers is how cross-repo loops form; per-project docs remain the truth for everything
-  owned.)* Leaning a container router routes cross-repo reference prose here — not into
-  ROADMAP, not kept as router prose (a one-line disambiguation gotcha may stay).
-- **B5.** **Design-heavy / code-light:** a large standalone design doc **is the project's
-  DESIGN slot** — keep it whole: charter it, route it by name, and scaffold the rest of the
-  enforced set charter'd-thin pointing into it ("mechanics live in `<doc>` §N until code
-  lands"). Its content graduates into ARCHITECTURE/ROADMAP as code arrives (a later MAINTAIN
-  job). Never split, relocate, or archive it. *("Distributed then archived verbatim" still
-  destroys the single living home.)*
-- **B6.** A **container root's `.gitignore` names each nested repository** (`/alpha/`), each
-  reason on its own line, and **never wildcards the root's directories** (`/*/` plus
-  exceptions): a wildcard silently drops any new directory (an overflow directory first),
-  and a kit copied from what is committed ships without it. On encounter a wildcard is a
-  safety flag, rewritten by name in the run (content-preserving: the same directories stay
-  out; git reads a comment only on a line of its own, a trailing one makes the pattern
-  literal). *(Found the first time a journal rolled over under such a file.)*
+  align casing; never impose the default over a pattern the project states (a rename breaks
+  every citation of the file: S1 reaches names).
+- **B3.** A **sub-project** (its own router or `.git`) is its own unit: **flag-and-skip**,
+  note it excluded in the root router, report "run this skill from `<sub-dir>`". Not a
+  submodule or vendoring call.
+- **B4.** A **container root** (no first-party content: sub-projects and tooling only) gets
+  the **router plus at most two thin portfolio docs**, never the rest of the set: a portfolio
+  `DOMAIN.md` chartered *cross-repo truth only* (shared terms, cross-store disambiguations,
+  cross-repo contracts by pointer), created when such truth exists (the S7 lean surfaces it),
+  never by default; and a thin status `ROADMAP.md`. **Owner rule:** what one project's code
+  defines lives in that project's docs; the portfolio DOMAIN points *down* by name,
+  sub-projects point *up*, **never mutual**. Leaning a container router sends cross-repo
+  reference prose here, not to ROADMAP and not kept as router prose (a one-line
+  disambiguation gotcha may stay).
+- **B5.** **Design-heavy, code-light:** a large standalone design doc **is the project's
+  DESIGN slot**. Keep it whole: charter it, route it by name, scaffold the rest
+  charter'd-thin pointing into it ("mechanics live in `<doc>` §N until code lands"); it
+  graduates into ARCHITECTURE/ROADMAP as code arrives (a later MAINTAIN job). Never split,
+  relocate or archive it.
+- **B6.** A container root's `.gitignore` **names each nested repository** (`/alpha/`, a
+  reason per line), never a wildcard (`/*/` plus exceptions), which silently drops a new
+  directory. On encounter, rewrite by name in the run (the same directories stay out; a
+  comment only on a line of its own).
 
 ## Procedure
-1. **Survey** the tree: existing docs, the exclusions (B1), sub-projects (B3), and the
-   container-root / design-slot shapes (B4 to B6).
+1. `python survey.py <dir>`: the shapes (B3 to B6), the set and each charter, what the
+   router names and notes, the chain row, journals and reference docs past budget, embedded
+   history, the ignore file, the git state. Act on its lines; the content tests are yours.
 2. **Create/align** the enforced set, charter-guarded (S5, S6).
-3. **Write `CLAUDE.md`** as the router (T4; exclusions noted; load-bearing gotchas only,
-   those every session needs: S8).
-4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.
+3. **Write `CLAUDE.md`** as the router (T4; exclusions noted; the gotchas every session
+   needs: S8).
+4. **Don't force content**: thin-but-charter'd is correct for a new or sparse project.
 
 Full rationale + RED/GREEN provenance:
 https://github.com/Apoplectic1/YetAnotherSkillsRepo/blob/main/docs/docs-architecture-design.md

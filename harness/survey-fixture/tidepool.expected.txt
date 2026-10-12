@@ -1,0 +1,40 @@
+docs-architecture-setup survey (budget 40 KB per doc, 200 lines per always-on file; a line ending in -> <rule> is a finding)
+
+shape
+  a project: 7 source files within two levels, manifest pyproject.toml
+
+the set
+  CLAUDE.md           1.1 KB   charter: "Charter / router. Plan tidepooling trips around low-tide windows: NOAA CO-OPS"
+  ARCHITECTURE.md     1.6 KB   charter: "Charter: module mechanics and data flow. How the system works today."
+  ROADMAP.md          3.4 KB   charter: "Charter: forward-looking design + shipped history. Read before starting new work..."
+  NOTEBOOK.md         1.7 KB   charter: "Charter: running chronological findings from doing the work. Append-only."
+  VERIFICATION.md     0.3 KB   charter: "Charter: how to verify a change."
+  DOMAIN.md           0.9 KB   charter: "Charter: the human/domain home — tidepooling knowledge the code encodes."
+  CHANGELOG.md                 absent (conditional)
+  README.md                    absent (conditional)
+  RELEASING.md                 absent (conditional)
+  docs/                        present
+
+the router
+  CLAUDE.md 24 lines, 1.1 KB
+  names: ARCHITECTURE.md, ROADMAP.md, NOTEBOOK.md, VERIFICATION.md, DOMAIN.md
+  dated-record pattern stated: `YYYY-MM-DD-<slug>.md`
+  exclusions present: .claude/, openspec/; noted in the router: openspec; not noted: .claude -> B1
+  skills under .claude/skills/: 12 (openspec-apply-change, openspec-archive-change, openspec-bulk-archive-change, openspec-continue-change, openspec-explore, openspec-ff-change, ...)
+  the chain (chain_budget.py): total 1.1 KB, 293 tokens: within budget
+    this project's part 293; ancestors 0; the owner's global 0; memory index 0
+    files over their own line (200 lines, each leaned from its own place): none
+
+the journal
+  NOTEBOOK.md 1.7 KB, 7 dated bullets, newest first
+  docs/: 1 records: `YYYY-MM-DD - <name>.md` 0, `YYYY-MM-DD-<slug>.md` 1, undated 0
+
+reference docs
+  ARCHITECTURE.md 1.6 KB, 3 `##` topics
+  ROADMAP.md 3.4 KB, 3 `##` topics
+  DOMAIN.md 0.9 KB, 3 `##` topics
+  VERIFICATION.md 0.3 KB, 0 `##` topics
+  ROADMAP.md "Shipped history": 9 dated entries -> A2 (CHANGELOG.md; a five-line digest stays)
+
+the tree
+  git: clean tree

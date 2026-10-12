@@ -5,6 +5,20 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change:
+  `setup-tools-first`; the owner's direction after the day's eight changes: remove the
+  bloat, favor tools over prose). The survey prints one line per finding with the rule it
+  keys (the shapes, the set and its charters, the router's names, exclusions and chain row,
+  journals and reference docs past budget, a stale split index, embedded history, the
+  ignore file over nested repositories, the `docs/` naming forms, the git state) and
+  changes nothing; the rules became their actions plus one boundary, a script's behavior
+  left to the script, rationale to the design doc: 14.6 KB, 188 lines to 10.4 KB, 143 lines.
+  The gate is a regression GREEN, not a RED: five plan-only reps, one per fixture family
+  (the base TidePool, the reefstack root, `near-budget`, `s8-field`, the `fat-chain` root);
+  every cell that fired held, NB2 not exercised (the rep merged the block by fact and stayed
+  under budget). The survey's output is byte-exact on three baselined fixture copies
+  (`harness/survey-fixture/`). AUDIT and MAINTAIN follow (ROADMAP). Record:
+  `docs/2026-10-12 - setup-tools-first-regression.md`.
 - 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill**
   (change: `s8-field-fixes`; from the HDL pilot's findings 1 to 4, 6 and 7). Every file that
   loads at launch has 200 lines, the harness's own guidance; the chain's 5 percent is met
