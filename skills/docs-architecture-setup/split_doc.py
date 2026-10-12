@@ -92,7 +92,7 @@ def citations(repo, stem, exclude_dir):
 def main(argv):
     if len(argv) < 2:
         sys.exit(__doc__)
-    sys.stdout.reconfigure(errors='replace', newline='\n')
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace', newline='\n')  # the citation list carries the section mark
     path = os.path.abspath(argv[1])
     apply = '--apply' in argv
     budget = 40 * 1024
