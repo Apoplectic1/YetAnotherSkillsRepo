@@ -10,3 +10,4 @@ Always-on chain for mid/leaf (window 200000 tokens, budget 5% = 10000 tokens; to
    84.5          21632  total: over budget by 11632 tokens (2.2x)
                       this project's part 10496; ancestors 4224; the owner's global 6912; memory index 0
                       largest: mid/leaf/CLAUDE.md 40.0 KB (this project); global.md 27.0 KB (the owner's global file); mid/CLAUDE.md 12.0 KB (ancestor)
+                      files over their own line (200 lines, each leaned from its own place): global.md (the owner's global file); mid/leaf/CLAUDE.md (this project)

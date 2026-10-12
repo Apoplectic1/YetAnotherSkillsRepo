@@ -77,9 +77,11 @@ capable agent already does well, so the rules below force what one pass can't gi
   against the budget (5 percent of the window, about 10k tokens, unless the router states
   its own share) and the harness's 200-line guidance. The **coverage note carries the chain
   row**: the total and the verdict, the largest items, this project's part apart from the
-  ancestors' and the owner's. Then each block of this router and of its always-on rule
+  ancestors' and the owner's, and each file against its own line (200 lines, the harness's
+  guidance, about 5k tokens: the budget a unit can act on; the chain's 5 percent is met
+  when every level meets its own). Then each block of this router and of its always-on rule
   files meets the scope test: **breadth** (every session launched here needs it) and
-  **stability** (it changes less often than the audit cadence); a failing block → **one
+  **stability** (it changes less often than a release); a failing block → **one
   placement flag** → `move-to <on-demand home>`: a path-scoped rule file
   (`.claude/rules/<name>.md` with `paths:`, loaded when a matching file is touched) for a
   file-keyed need, a skill (its body loads on invocation) for an activity-keyed need, a

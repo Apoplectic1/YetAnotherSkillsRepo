@@ -60,3 +60,13 @@ wanting in the same places on all three repositories:
 The HDL router leans wait on this change; the Arty's ARCHITECTURE split did not. Gated on
 RED/GREEN on non-derived fixtures: the HDL tree derived every finding and is poisoned for
 them.
+
+## Outcome (2026-10-12)
+
+RED on the `s8-field` variant and the reefstack `fat-chain` root failed the budget (3/3),
+the command-keyed block (3/3) and the sibling's files (1/2); those ship, with B1's skill and
+the stability wording. The duplicate rule, the status block, the halt bound, breadth beneath
+a container root and the held-under-halt clause were no-failure and are status notes; B4 and
+the enforced-set row wait for a cell. The `dup-router` variant was not built: the duplicate
+case is a cell of the `s8-field` variant. Record:
+`docs/2026-10-12 - s8-field-fixes-red-green.md`.

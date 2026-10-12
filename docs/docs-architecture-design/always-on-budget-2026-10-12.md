@@ -37,3 +37,27 @@ under R26's carve-out. GREEN in the record:
 `docs/2026-10-12 - always-on-budget-red-green.md`; the change:
 `openspec/changes/archive/2026-10-12-always-on-budget`.
 
+**Field fixes (the HDL pilot, the same afternoon; change `s8-field-fixes`).** Three real
+repositories through the deployed skill showed the rule's first form wanting in the same
+places. The budget became per file: every file that loads at launch has 200 lines (the
+harness's own guidance, about 5k tokens), the number a unit can act on; the chain's 5 percent
+stays the row's tripwire, met when every level meets its own, and the ancestors' and the
+owner's shares are reported for their own leans, never chased from below (the owner's global
+file alone is 6.8k tokens on this machine, so no unit's chain met the old line). The homes
+carry their load triggers: a rule file loads on a matching file's first touch (so it fits
+files in this repository and nothing else: a command-only session touches no file, and a
+glob cannot name a sibling's), a skill on invocation (an activity: a build, a bench run), a
+section on a read; a guard keyed to neither keeps one router line; B1 lets S8 write the
+skill; stability reads "changes less often than a release". RED 3/3 on the budget and the
+command-keyed block, 1/2 on the sibling's files; GREEN 2/2 on each. Five more clauses the
+pilot drafted were no-failure on the fixtures and are status notes in the specs, not text:
+a block a reference doc already holds is dropped with a cross-reference (S1's merge), a
+status block is ROADMAP's, a halt bounds a lean to documentation, breadth at a container
+root counts the sessions beneath it (the pilot's AtmlBoards rep misread this; the fixture
+rep did not), and a held promotion under a halt follows the halt's terms (a halt that admits
+documentation admits the docs landing, which the MAINTAIN rep read unprompted; a clause
+holding every promotion until the halt lifts would have been wrong there). An umbrella with
+first-party content (B4) and a project's reference docs outside the set wait for a cell. The
+record: `docs/2026-10-12 - hdl-pilot.md` and
+`docs/2026-10-12 - s8-field-fixes-red-green.md`.
+

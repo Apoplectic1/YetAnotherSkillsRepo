@@ -2,6 +2,7 @@
 directory named for the doc, and the doc itself becomes the index.
 
 python split_doc.py <repo>/<DOC>.md [--apply] [--budget-kb 40] [--today YYYY-MM-DD]
+python split_doc.py <repo>/<DOC>.md --reindex      (after a part is edited: the Parts list rewritten)
 
 The doc's title line and preamble (its charter, everything before the first `## `) stay in
 the index, followed by a split note and one line per part: the heading as written, the part's
@@ -131,6 +132,28 @@ def main(argv):
         today = argv[argv.index('--today') + 1]
 
     text = open(path, encoding='utf-8', newline='').read()
+    if '--reindex' in argv:  # a part was edited: rewrite the index's Parts list from the directory, bodies untouched
+        if not os.path.isdir(odir):
+            sys.exit(f'{stem}/ does not exist: nothing to reindex')
+        i = text.find('\n## Parts\n')
+        if i < 0:
+            sys.exit(f'{fname} carries no "## Parts" list: not a split index')
+        listed = re.findall(r'\(`' + re.escape(stem) + r'/([^`]+)`', text[i:])  # the index's own order
+        present = [f for f in os.listdir(odir) if f.endswith('.md')]
+        order = [f for f in listed if f in present] + sorted(f for f in present if f not in listed)
+        index = text[:i + 1] + '## Parts\n\n'
+        for f in order:
+            part = open(os.path.join(odir, f), encoding='utf-8', newline='').read()
+            m = HEAD.search(part)
+            body = part[m.start():] if m else part
+            kb = len(body.encode('utf-8')) / 1024
+            fs = first_sentence(body)
+            index += f"- **{m.group(1) if m else f}** (`{stem}/{f}`, {kb:.1f} KB)" + (f": {fs}" if fs else '') + '\n'
+        open(path, 'w', encoding='utf-8', newline='').write(index)
+        gone = [f for f in listed if f not in present]
+        print(f'  reindexed: {fname} lists {len(order)} parts in the index\'s order'
+              + (f'; dropped from the list, no longer in {stem}/: {", ".join(gone)}' if gone else ''))
+        return
     size = len(text.encode('utf-8'))
     if size <= budget:
         sys.exit(f'{fname}: under budget ({size // 1024} KB of {budget // 1024}), nothing to split')

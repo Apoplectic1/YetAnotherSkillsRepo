@@ -5,6 +5,21 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill**
+  (change: `s8-field-fixes`; from the HDL pilot's findings 1 to 4, 6 and 7). Every file that
+  loads at launch has 200 lines, the harness's own guidance; the chain's 5 percent is met
+  when every level meets its own, the ancestors' and the owner's shares reported, never
+  chased from below. A rule file loads on a matching file's first touch (files in this
+  repository and nothing else), a skill on invocation (an activity), a section on a read; a
+  guard keyed to neither keeps one router line; B1 lets S8 write the skill; the router names
+  what S8 writes; stability reads "changes less often than a release". AUDIT R30's row
+  carries each file against its own line; `chain_budget.py` lists the files over it;
+  `split_doc.py --reindex` refreshes a split index after a part is edited. RED 3/3, 3/3 and
+  1/2 on the TidePool `s8-field` variant and the reefstack `fat-chain` root; GREEN 2/2. Five
+  clauses no-failure and status-noted (the duplicate rule, a status block to ROADMAP, the
+  halt bound, breadth beneath a container root, a held promotion under a halt: the halt's
+  terms decide); B4 for an umbrella with first-party content and the other-docs row wait
+  for a cell. Record: `docs/2026-10-12 - s8-field-fixes-red-green.md`.
 - 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit,
   stale lines listed, dated headings warned** (change: `split-doc-field-fixes`; from the HDL
   pilot's findings 5 and 8). The script refuses a doc whose `##` headings are dates (a journal

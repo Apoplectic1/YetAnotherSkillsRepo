@@ -5,15 +5,6 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **s8-field-fixes** (2026-10-12, from the HDL pilot; change scaffolded, proposal written):
-  the budget a unit cannot meet (report the ancestors' and the owner's shares, test what the
-  project controls); the homes' load triggers (a rule file on a file's touch, a skill on
-  invocation, a section on a read; an activity with neither keeps a one-line guard); B1 lets
-  S8 write a skill; a block a reference doc or an ancestor already holds is cross-ref'd and
-  deleted, never moved (S1); an ancestor loads in every session beneath it (the container-root
-  breadth clause, failed in the field); the stability cadence; B4 for an umbrella with
-  first-party content; a row for a project's own reference docs outside the set. RED/GREEN
-  on non-derived fixtures. The HDL router leans wait on it.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
@@ -25,10 +16,14 @@ section closed 2026-07-07 with nothing open.
   The Arty's ARCHITECTURE split landed 2026-10-12 (seven parts, byte-exact, the first field
   apply of T5; docs only). The ATML umbrella's ten held promotions stay held: they are Arty
   work, and the Arty is halted at contract v5 with no further work until an unhalt (its
-  ROADMAP; the 2026-09-26 maintain report sequences the landings after it). The three routers' leans (HlsLibrary 39.9 KB, the Arty's
-  26.6 KB, the umbrella's 12.9 KB) and the umbrella's DOMAIN and ROADMAP splits were planned
-  by SETUP reps the same day and wait on `s8-field-fixes` and `split-doc-field-fixes`; the
-  plans are in the pilot record.
+  ROADMAP; the 2026-09-26 maintain report sequences the landings after it). The three
+  routers' leans (HlsLibrary 39.9 KB, the Arty's 26.6 KB, the umbrella's 12.9 KB) and the
+  umbrella's DOMAIN and ROADMAP splits were planned by SETUP reps the same day; the two
+  changes they waited on (`s8-field-fixes`, `split-doc-field-fixes`) shipped that evening,
+  so they run next, from HDL sessions against the deployed text, each repository from its
+  own, re-planned (the per-file line and the homes' triggers change each lean's shape; the
+  plans in the pilot record are the starting point). The Arty's lean, docs and `.claude/`
+  only, is the owner's call under the halt, as the split was.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions. (a) Astronomy container: done (the portfolio
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found
@@ -41,6 +36,7 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
 - 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)
 - 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
 - 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**

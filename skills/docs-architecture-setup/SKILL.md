@@ -57,25 +57,33 @@ projects.)*
 - **S8.** **Always-on is a scope, not a size.** An item earns a place in a file that loads
   at launch (the router, an ancestor router, a `.claude/rules/` file without `paths:`) only
   if it passes **breadth** (every session launched here needs it) and **stability** (it
-  changes less often than the audit cadence). S7's content test decides *where* a thing
-  lives; this test decides *whether it loads every time*, and it is the test of what
+  changes less often than a release). S7's content test decides *where* a
+  thing lives; this test decides *whether it loads every time*, and it is the test of what
   "load-bearing" means: a guard every session needs is load-bearing; a guard only one
   activity needs is that activity's, however sharp, and goes with its pack. A block or a
-  line that fails (an activity's gotcha pack, a toolchain's, an element map a reference doc
-  already holds) **moves now** behind a one-line always-on trigger, to the home its need is
-  keyed to: a **path-scoped
-  rule file** (`.claude/rules/<name>.md`, `paths:` in its frontmatter; the harness loads it
-  when a matching file is read, written or edited) for a need keyed to files; a **skill**
-  (its body loads on invocation) for a need keyed to an activity; a reference-doc
-  **section** read by heading (`grep -n "^## "`, then the span) for prose. The trigger line
-  names the home and when to reach for it, and the router names the rule file (so an audit
-  reads it). The chain a session loads is measured by `chain_budget.py` beside the audit
-  skill, against 5 percent of the window (about 10k tokens) unless the router states its
-  own share; **the number detects, the test decides**: a router under budget still moves a
-  block that fails. *(A gotcha-dense router passes S7 and still costs every session room
-  and interference: a directive misapplied where it does not belong scales with the count
-  of directives the session never needed. A 40 KB router of true toolchain gotchas and
-  element maps, S7-clean, loads in full for a session that edits a README.)*
+  line that fails **moves now** behind a one-line always-on trigger, to the home its need
+  is keyed to, each with its own load trigger: a **path-scoped rule file**
+  (`.claude/rules/<name>.md`, `paths:` in its frontmatter) loads when a matching file is
+  read, written or edited, so it fits a need keyed to files in this repository and nothing
+  else (a session that only runs a command touches no file, and a glob cannot name a sibling
+  repository's files); a **skill** (`.claude/skills/<name>/SKILL.md`, which B1 lets this
+  rule write) loads its body on invocation, so it fits a need keyed to an activity (a build,
+  a bench run, a release step); a reference-doc **section** read by heading (`grep -n
+  "^## "`, then the span) fits prose. A guard with no file and no activity to key to keeps
+  one line in the router. The trigger line names the home and when to reach for it, and the
+  router names every rule file and skill it writes (so an audit reads them). **The budget
+  is per file**: every file that loads at launch has 200 lines (the harness's own guidance:
+  about 20 KB, about 5k tokens); `chain_budget.py` beside the audit skill marks each file
+  over it and reports the chain a session loads against 5 percent of the window (about 10k
+  tokens, met when every level meets its own), with the ancestors' and the owner's shares
+  reported for their own leans and never chased from below. **The number detects, the test
+  decides**: a router under its line still moves a block that fails. *(A
+  gotcha-dense router passes S7 and still costs every session room and interference: a
+  directive misapplied where it does not belong scales with the count of directives the
+  session never needed. A 40 KB router of true toolchain gotchas and element maps,
+  S7-clean, loads in full for a session that edits a README; under a 27 KB global file and
+  two umbrella routers, no unit's chain meets the line, and only its own file is its to
+  lean.)*
 
 ## Tiers & routing — teach these in CLAUDE.md
 - **T1.** **journal** (dated capture) = `docs/YYYY-MM-DD-*.md` + `NOTEBOOK.md` +
@@ -106,8 +114,10 @@ projects.)*
   journal; the dry run lists every such citation for the operator to check before
   `--apply`. Never below `##`: a single topic past the budget stays one part. The dry run
   also lists the lines a move one directory down leaves stale (relative paths, "this file"),
-  to fix after the apply, and warns on a dated heading (the part's filename follows it). Not
-  this rule: a doc heavy with cold rationale **extracts** (T3), a design doc in a code-light
+  to fix after the apply, and warns on a dated heading (the part's filename follows it);
+  after a part is edited, `--reindex` rewrites the index's Parts list (sizes, first
+  sentences) in the index's order, bodies untouched. Not this rule: a doc heavy with cold
+  rationale **extracts** (T3), a design doc in a code-light
   project **stays whole** (B5), and a journal never splits by topic (it rolls, T1; the
   script refuses it). *(The journal rule's other half: a heading needs no judgment and
   never drifts, as a date range does not. A redistribution by charter into sibling docs
@@ -128,9 +138,9 @@ projects.)*
   tooling (`.claude/`, `openspec/`). Their own READMEs are not this project's docs; `CLAUDE.md`
   notes them excluded — for `openspec/`, the note marks archived design docs
   (`changes/archive/*/design.md`) as historical records the **maintain** sweep reads (still
-  never scaffolded into, and never an authoring target for the T1 journal split). The one
-  thing written under `.claude/` is a path-scoped rule file S8 moves a block to, which the
-  router then names.
+  never scaffolded into, and never an authoring target for the T1 journal split). The only
+  things written under `.claude/` are what S8 moves a block to, a path-scoped rule file or a
+  skill, each named by the router.
 - **B2.** **Coexist, never clobber:** augment an existing setup — don't overwrite a present
   `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the **project's stated**
   dated-record pattern (the router's journal line; the default is `YYYY-MM-DD-<slug>.md`),

@@ -135,7 +135,7 @@ def main(argv):
                "the owner's global file": 'global', "the owner's global rule": 'global',
                'memory index': 'memory'}[role]
         totals[key] += t
-        sizes.append((b, show(p), role))
+        sizes.append((b, show(p), role, lines))
     if not chain:
         print('   (nothing: no instruction file loads here)')
     print()
@@ -146,7 +146,10 @@ def main(argv):
           f"the owner's global {totals['global']}; memory index {totals['memory']}")
     if sizes:
         top = sorted(sizes, reverse=True)[:3]
-        print(f"{'':22}largest: " + '; '.join(f'{s} {b / 1024:.1f} KB ({r})' for b, s, r in top))
+        print(f"{'':22}largest: " + '; '.join(f'{s} {b / 1024:.1f} KB ({r})' for b, s, r, _ in top))
+        over = [(s, r) for _, s, r, ln in sizes if ln > LINE_GUIDANCE]
+        print(f"{'':22}files over their own line ({LINE_GUIDANCE} lines, each leaned from its own place): "
+              + ('; '.join(f'{s} ({r})' for s, r in over) if over else 'none'))
 
 
 if __name__ == '__main__':

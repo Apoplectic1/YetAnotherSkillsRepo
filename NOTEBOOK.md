@@ -5,6 +5,23 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **S8's field fixes RED/GREEN'd: three clauses earned text, five did not, and
+  the halt's terms decide a held landing** (record `docs/2026-10-12 - s8-field-fixes-red-green.md`).
+  The per-file budget (RED 3/3: every rep chased a chain the owner's 6.8k-token global file
+  had already spent), the homes' load triggers with B1's skill (RED 3/3: two of three wrote
+  a rule file that never fires for a command-only session) and the sibling's files (RED 1/2:
+  a glob into `../`) all GREEN 2/2. The duplicate, the status block, the halt bound and
+  container-root breadth were no-failure again on fixtures built to carry them: the Sonnet
+  reps read S1, ROADMAP's charter and the halt without being told, which is the iron law
+  doing its job (the pilot's AtmlBoards misreading stays the one field counterexample). The
+  MAINTAIN cell taught the most: a held promotion under a halt that admits documentation
+  lands after the split, and the rep said so unprompted; the clause I had drafted from the
+  Arty ("stays held until the halt lifts") would have been wrong there, because the Arty's
+  halt is on all work and the fixture's is not. A halt is a contract with terms, not a flag;
+  the rule that would have caught my own miss that afternoon is "read the halt", which the
+  reps already do. `split_doc.py --reindex` came out of editing this repo's own design-doc
+  part twice in a day: the index's sizes went stale each time, and the index is the file the
+  deployed footers land on. Seven reps, 582k tokens.
 - 2026-10-12: **The HDL pilot: three real repositories through the deployed SETUP skill, and
   eight findings in common** (record `docs/2026-10-12 - hdl-pilot.md`). Plan-only reps on
   HlsLibrary, ArtyZ7 and the AtmlBoards umbrella, Sonnet/high through a Workflow (320k

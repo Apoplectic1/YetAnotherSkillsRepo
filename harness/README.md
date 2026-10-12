@@ -86,4 +86,6 @@ must never be audited, graduated, or edited as if they were this repo's docs.
 - `tidepool-fixture-variants/s8-field/` (2026-10-12, `s8-field-fixes`): `build_variant.py`
   composes a router past 200 lines with the four shapes the HDL pilot found S8 silent on
   (a command-keyed block, sibling-repository gotchas, a duplicated module map, a State
-  block), a ROADMAP halt and a halted graduate. Cells SF1 to SF6, SM1, CR1 in the catalog.
+  block), a ROADMAP halt and a halted graduate. Cells SF1 to SF6, SM1, SM2 (the variant with
+  the fat-topics ARCHITECTURE in place of the base one: a held promotion under the halt),
+  CR1 in the catalog.
