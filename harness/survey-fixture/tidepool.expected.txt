@@ -20,6 +20,7 @@ the router
   names: ARCHITECTURE.md, ROADMAP.md, NOTEBOOK.md, VERIFICATION.md, DOMAIN.md
   dated-record pattern stated: `YYYY-MM-DD-<slug>.md`
   exclusions present: .claude/, openspec/; noted in the router: openspec; not noted: .claude -> B1
+  archived openspec design docs marked as records the maintain sweep reads: no -> B1
   skills under .claude/skills/: 12 (openspec-apply-change, openspec-archive-change, openspec-bulk-archive-change, openspec-continue-change, openspec-explore, openspec-ff-change, ...)
   the chain (chain_budget.py): total 1.1 KB, 293 tokens: within budget
     this project's part 293; ancestors 0; the owner's global 0; memory index 0

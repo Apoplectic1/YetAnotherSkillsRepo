@@ -27,7 +27,7 @@ MANIFESTS = ['pyproject.toml', 'setup.py', 'setup.cfg', 'package.json', 'Cargo.t
              'Makefile', 'build.gradle', 'pom.xml', 'Directory.Build.props']
 MANIFEST_EXT = {'.sln', '.csproj', '.vcxproj', '.fsproj', '.xpr'}
 LINE_GUIDANCE = 200
-DATED_HEAD = re.compile(r'^##+ +\**(\d{4}-\d{2}-\d{2})', re.M)
+DATED_HEAD = re.compile(r'^##+ +[^\n]*?(\d{4}-\d{2}-\d{2})', re.M)  # a date anywhere in the heading (a release-form `## v2.0.0.0, 2020-01-31` counts)
 DATED_BULLET = re.compile(r'^- +\**(\d{4}-\d{2}-\d{2})', re.M)
 
 
@@ -160,7 +160,8 @@ def set_report(d, shape, say):
     if os.path.isdir(docs):
         say(f'  {"docs/":16} {"":>9}   present' + (' -> B4 (a container root keeps no journal)' if container else ''))
     else:
-        say(f'  {"docs/":16} {"":>9}   ' + (absent_set if shape != 'project' else 'missing -> S5 (the journal\'s dated records)'))
+        say(f'  {"docs/":16} {"":>9}   ' + (absent_set if shape != 'project'
+                                             else 'missing -> S5 (the journal\'s dated records; git tracks no empty directory, so it is created on first use and the router states the pattern)'))
     for f in sorted(x for x in os.listdir(d) if x.endswith('.md') and x not in SET + CONDITIONAL
                     and os.path.isfile(os.path.join(d, x))):
         b = os.path.getsize(os.path.join(d, f))
@@ -187,6 +188,9 @@ def router_report(d, text, present, say):
         unnoted = [x for x in excl if x not in text]
         say(f'  exclusions present: {", ".join(x + "/" for x in excl)}; noted in the router: {", ".join(noted) or "none"}'
             + (f'; not noted: {", ".join(unnoted)} -> B1' if unnoted else ''))
+    if os.path.isdir(os.path.join(d, 'openspec', 'changes', 'archive')):
+        marked = 'changes/archive' in text or 'design.md' in text
+        say('  archived openspec design docs marked as records the maintain sweep reads: ' + ('yes' if marked else 'no -> B1'))
     rules_dir = os.path.join(d, '.claude', 'rules')
     if os.path.isdir(rules_dir):
         for f in sorted(x for x in os.listdir(rules_dir) if x.endswith('.md')):
@@ -287,8 +291,11 @@ def reference_report(d, budget, say):
                 nxt = re.search(r'^## ', t[m.end():], re.M)
                 sec = t[m.end(): m.end() + nxt.start()] if nxt else t[m.end():]
                 n = len(DATED_HEAD.findall(sec)) + len(DATED_BULLET.findall(sec))
+                inline = len(re.findall(r'\b\d{4}-\d{2}-\d{2}\b', sec))
                 say(f'  ROADMAP.md "{m.group(1)}": {n} dated entries'
-                    + (' -> A2 (CHANGELOG.md; a five-line digest stays)' if n > 5 else ''))
+                    + (f', {inline} dates inline in prose' if n == 0 and inline else '')
+                    + (' -> A2 (CHANGELOG.md; a five-line digest stays)' if n > 5
+                       else ' -> A2 if the prose is a history (a digest keeps five lines)' if n == 0 and inline > 5 else ''))
 
 
 def ignore_report(d, subs, shape, say):

@@ -24,14 +24,6 @@ section closed 2026-07-07 with nothing open.
   HDL router's and the owner's global file's own leans (the chains stay at 1.2x to 1.3x,
   all of it theirs), and the umbrella's `ROADMAP/next-in-order.md` at 49.7 KB until its
   items carry `###` headings.
-- **Next field test: EP7314600** (`F:\EMCORE\EP7314600\2026-10-02\EP7314600`, the
-  owner's suggestion 2026-10-12; SENSITIVE: nothing leaves the machine). The first look
-  with the three scripts: a conformant set (every doc charter'd and named), VERIFICATION
-  at 42.1 KB (T5), NOTEBOOK at 38.9 KB (a roll is close), an empty CHANGELOG with no dated
-  entries, and 20 unresolved paths that are mostly one convention (the docs write paths
-  relative to `Libero/EP7314600/`), which the scope seed should state once rather than
-  list; a rolled NOTEBOOK with no maintain report yet (the first sweep starts the
-  watermark). Plan reps for SETUP, AUDIT and MAINTAIN, then the applies the owner picks.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions. (a) Astronomy container: done (the portfolio
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found
@@ -44,11 +36,11 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-10-12: **Field fixes from the EP7314600 run: the scripts, not the text** (no change; three plan reps on a sensitive repository and the applies there; the scope seed states a convention once; twelve fixture outputs byte-exact on fresh copies)
 - 2026-10-12: **Tools over prose, MAINTAIN: `sweep.py`, and the text to its actions** (change `maintain-tools-first`; 10.7 KB to 8.7 KB; a regression GREEN, five families, nothing restored; the family 38.7 KB to 29.3 KB over the day)
 - 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change `audit-tools-first`; 13.4 KB to 10.2 KB; a regression GREEN, five families, one clause restored and re-run to a pass: R29's cheap-run mapping)
 - 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change `setup-tools-first`; 14.6 KB to 10.4 KB; a regression GREEN, five families, every cell that fired held)
 - 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
-- 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)
 
 The full history, every shipped unit as a dated entry, is `CHANGELOG.md` (newest
 first).

@@ -5,6 +5,26 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The second field run of the day, on a sensitive repository: the
+  scripts' defects outnumber the text's** (record
+  `docs/2026-10-12 - ep7314600-field-run.md`; the project's findings stay in its tree).
+  Three plan-only reps, each quoting its script first, none chasing the owner's share;
+  the applies landed there in five commits. What the run taught: (1) the seed's false
+  positives were one convention, twenty paths written relative to the design tool's
+  project directory, and the seed now says so once (three or more under one base) and
+  names the base for fewer instead of guessing a rename; (2) a split's own template
+  text, `DOC § <heading>` and the parts' head line, reads as a citation to a citation
+  scanner: a scanner has to know the artifacts the family writes; (3) a project places
+  its reports where its own rules say (home-only under `NOTEBOOK/` when `docs/`
+  travels), and a script that reads one directory reported a first sweep where there
+  had been three; (4) CRLF worktrees: anchors miss, heads mismatch bodies, and the fix
+  is to read normalized and write the doc's own ending; (5) an apply script with `;`
+  between its steps commits a partial apply when an anchor misses: all-`&&`, and skip
+  an edit already present so a re-run is safe; (6) the questions the skill leaves open
+  were the owner's: a second sweep on the same day with nothing newer, T5's parts count
+  against a project's planned split, an activity whose body already lives in a section.
+  The text changed nowhere; every fix was a script's, which is what the morning's trims
+  bought: a defect in a script is a regenerated fixture line, not a RED/GREEN round.
 - 2026-10-12: **The HDL leans applied with the trimmed SETUP: two real routers, one
   tool defect, and the first lean whose reps chased nothing** (record
   `docs/2026-10-12 - hdl-leans.md`). HlsLibrary's router 39.9 KB to 5.1 with its set

@@ -28,7 +28,7 @@ NUMBER = r'(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve
 DATED_HEAD = re.compile(r'^##+ +\**(\d{4}-\d{2}-\d{2})', re.M)
 DATED_BULLET = re.compile(r'^- +\**(\d{4}-\d{2}-\d{2})', re.M)
 TOKEN = re.compile(r'`([^`\n]+)`')
-SECTION = re.compile(r'(root )?(?:`([^`]+\.md)`|\b([A-Z][A-Za-z_-]{2,})(?:\.md)?) § ([^,.;:)\n`]+)')
+SECTION = re.compile(r'(root )?(?:`([^`]+\.md)`|\b([A-Z][A-Za-z_-]{2,})(?:\.md)?) § ([^,.;:)\n`"”]+)')
 VERSION = re.compile(r'\bv\d+\.\d+|\b\d+\.\d+\.\d+\b|\b(?:release|version)\b', re.I)
 COUNT = re.compile(r'\b' + NUMBER + r'\s+(?:[a-z-]{3,}\s+){0,2}[a-z]{3,}s\b', re.I)
 
@@ -49,7 +49,8 @@ def is_pathlike(tok):
     dated = re.match(r'(?:[\w./-]+/)?\d{4}-\d{2}-\d{2} - [^/]+\.\w+$', tok)  # the spaced dated form, `docs/YYYY-MM-DD - name.md`
     if (' ' in tok and not dated) or any(c in tok for c in '<>*{}|$?…') or '...' in tok \
             or tok.startswith(('http://', 'https://', '--', '-')) or re.match(r'[\w.-]+\.(com|org|net|io|dev)/', tok) \
-            or (tok.startswith('.') and tok.count('.') == 1 and '/' not in tok):  # a bare extension, `.cs`
+            or re.match(r'[A-Za-z]:[/\\]', tok) \
+            or (tok.startswith('.') and tok.count('.') == 1 and '/' not in tok):  # a drive path (a tool's install), a bare extension `.cs`
         return False
     return '/' in tok or tok.lower().endswith(EXT)
 
@@ -82,12 +83,12 @@ def subprojects(d):
 
 def tree_index(d, depth=None):
     """Basename -> relative paths (files, and directories as 'name/'), for the rename-orphan check; .git and
-    generated trees skipped, sub-projects included (a router may name a sub-project's file)."""
+    generated trees skipped, sub-projects and .claude/ included (a router names a sub-project's file, a rule file)."""
     index = {}
     for cur, dirs, files in os.walk(d):
         if depth is not None and cur != d and rel(cur, d).count('/') + 1 >= depth:
             dirs[:] = []
-        dirs[:] = [x for x in dirs if not x.startswith('.') and x not in EXCLUDED]
+        dirs[:] = [x for x in dirs if x == '.claude' or (not x.startswith('.') and x not in EXCLUDED)]
         for x in dirs:
             index.setdefault(x + '/', []).append(rel(os.path.join(cur, x), d) + '/')
         for f in files:
@@ -153,6 +154,11 @@ def main(argv):
             if r not in named_files:
                 named_files.append(r)
         elif os.path.isdir(p):
+            m = re.fullmatch(r'openspec/specs/([^/]+)/?', rel(p, d) + ('/' if t.endswith('/') else ''))
+            if m and os.path.isfile(os.path.join(p, 'spec.md')):  # a spec named by its directory
+                s = f'openspec/specs/{m.group(1)}/spec.md'
+                if s not in named_specs:
+                    named_specs.append(s)
             continue
         elif re.fullmatch(r'[a-z0-9][a-z0-9-]*', t) and os.path.isfile(os.path.join(d, 'openspec', 'specs', t, 'spec.md')):
             s = f'openspec/specs/{t}/spec.md'
@@ -271,8 +277,11 @@ def main(argv):
                 nxt = re.search(r'^## ', t[m.end():], re.M)
                 sec = t[m.end(): m.end() + nxt.start()] if nxt else t[m.end():]
                 n = len(DATED_HEAD.findall(sec)) + len(DATED_BULLET.findall(sec))
+                inline = len(re.findall(r'\b\d{4}-\d{2}-\d{2}\b', sec))
                 say(f'  ROADMAP.md "{m.group(1)}": {n} dated entries'
-                    + (' -> R25 (one structural flag, move-to CHANGELOG.md; the entries are journal-tier)' if n > 5 else ''))
+                    + (f', {inline} dates inline in prose' if n == 0 and inline else '')
+                    + (' -> R25 (one structural flag, move-to CHANGELOG.md; the entries are journal-tier)' if n > 5
+                       else ' -> R25 if the prose is a history (a digest keeps five lines)' if n == 0 and inline > 5 else ''))
     for f in reference:
         b = os.path.getsize(os.path.join(d, f))
         if b > 40 * 1024 and f not in parts:
@@ -286,6 +295,7 @@ def main(argv):
     resolved = 0
     anc = ancestors(d, root_)
     sibling_index = None
+    found = []  # (file, line, token, occurrences, elsewhere, near): printed after the conventions are known
     for f in scope_docs:
         text = read(os.path.join(d, f))
         base = os.path.dirname(os.path.join(d, f))
@@ -305,23 +315,18 @@ def main(argv):
                 continue
             n, _ = line_of(text, t)
             elsewhere = [p for p in index.get(name, []) if p != t]
-            if elsewhere:
-                say(f'  {f}:{n} `{t}`: not at that path; {name} is at {", ".join(elsewhere[:2])} -> R19 (a rename-orphan?)')
-                continue
-            if anc:
+            near = []
+            at_root = root_ and os.path.normcase(os.path.abspath(root_)) == os.path.normcase(os.path.abspath(d))
+            above = anc[0] if anc else (None if at_root else os.path.dirname(d))
+            if not elsewhere and above:  # a sibling's file: under the nearest ancestor router, or beside this repository
                 if sibling_index is None:
-                    sibling_index = tree_index(anc[0], depth=3)
-                near = [rel(os.path.join(anc[0], p), d) for p in sibling_index.get(name, [])]
-                if near:
-                    say(f'  {f}:{n} `{t}`: not in this tree; under the ancestor at {", ".join(near[:2])} -> R19 (a sibling\'s file)')
-                    continue
-            say(f'  {f}:{n} `{t}`: not in the tree -> R19')
-        for i in range(len(out) - 1, n0 - 1, -1):  # the first occurrence is listed; the count rides on it
-            m = re.match(r'  ' + re.escape(f) + r':\d+ `([^`]+)`', out[i])
-            if m and seen.get(m.group(1), 0) > 1 and 'more occurrence' not in out[i]:
-                out[i] += f' ({seen[m.group(1)] - 1} more occurrence{"s" if seen[m.group(1)] > 2 else ""})'
+                    sibling_index = tree_index(above, depth=3)
+                near = [rel(os.path.join(above, p), d) for p in sibling_index.get(name, [])]
+            found.append((f, n, t, seen, elsewhere, near))
         for m in SECTION.finditer(text):
             is_root, doc, heading = bool(m.group(1)), m.group(2) or (m.group(3) + '.md'), m.group(4).strip()
+            if '<' in heading:  # a template ("DOC § <heading>"), not a citation
+                continue
             targets = []
             if doc == 'CLAUDE.md' and (is_root or f != 'CLAUDE.md' and not router):
                 targets = [os.path.join(a, 'CLAUDE.md') for a in anc]
@@ -336,6 +341,34 @@ def main(argv):
             n, _ = line_of(text, m.group(0))
             where = ', '.join(rel(tg, d) for tg in targets if os.path.isfile(tg)) or f'{doc} (absent)'
             say(f'  {f}:{n} "{doc} § {heading}": no such heading in {where} -> R19')
+    # A convention: three or more paths that resolve under one directory are written relative to it.
+    prefixes = {}
+    for f, n, t, seen, elsewhere, near in found:
+        tail = t.lstrip('./')
+        for p in elsewhere:
+            if p.endswith('/' + tail):
+                prefixes.setdefault(p[:len(p) - len(tail)], set()).add(t)
+    conventions = {pre: toks for pre, toks in prefixes.items() if len(toks) >= 3}
+    for pre, toks in sorted(conventions.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        say(f'  {len(toks)} paths written relative to `{pre}` resolve under it: the docs\' convention, not orphans '
+            f'(the workers read them so; the first: `{sorted(toks)[0]}`)')
+    for f, n, t, seen, elsewhere, near in found:
+        if any(t in toks for toks in conventions.values()):
+            continue
+        more = f' ({seen[t] - 1} more occurrence{"s" if seen[t] > 2 else ""})' if seen[t] > 1 else ''
+        name = os.path.basename(t.rstrip('/')) + ('/' if t.endswith('/') else '')
+        tail = t.lstrip('./')
+        under = [p[:len(p) - len(tail)] for p in elsewhere if p.endswith('/' + tail)]
+        if under:
+            say(f'  {f}:{n} `{t}`: written relative to `{under[0]}`, resolves under it -> R19 (name the base, or write it '
+                f'from the root){more}')
+        elif elsewhere:
+            say(f'  {f}:{n} `{t}`: not at that path; {name} is at {", ".join(elsewhere[:3])} -> R19 (a rename-orphan?){more}')
+        elif near:
+            say(f'  {f}:{n} `{t}`: not in this tree; {"under the ancestor" if anc else "beside this repository"} at '
+                f'{", ".join(near[:2])} -> R19 (a sibling\'s file){more}')
+        else:
+            say(f'  {f}:{n} `{t}`: not in the tree -> R19{more}')
     if len(out) == n0:
         say('  none')
     say(f'  ({resolved} paths and section citations resolve)')

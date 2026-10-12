@@ -5,6 +5,22 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **Field fixes from the EP7314600 run: the scripts, not the text** (no change;
+  record `docs/2026-10-12 - ep7314600-field-run.md`). Three plan-only reps on a sensitive
+  repository (nothing of it leaves the machine; its findings stay in its tree) and the
+  applies there: VERIFICATION split by topic, the router 168 lines to 146 with two rule
+  files, the audit's 25 flags persisted for adjudication. The reps and the applies found
+  the scripts' defects, fixed the same evening: `scope.py` states a convention once (three
+  or more paths written relative to one base) and names the base for fewer, indexes
+  `.claude/` so a rule file resolves, reads a spec named by its directory, skips a split's
+  template citations and a drive path, and looks beside a repository with no ancestor
+  router; `sweep.py` finds reports under `NOTEBOOK/maintain/`, reads the last watermark
+  line, and lists router-named documents outside the set as targets without a budget
+  rule; `survey.py` reads a date anywhere in a heading, prints B1's archive marker, counts
+  a digest's inline dates, and says what to do when `docs/` would be empty;
+  `split_doc.py` keeps a CRLF doc's endings and finds the prose citation form. Twelve
+  fixture outputs regenerated and byte-exact on fresh copies
+  (`harness/{survey,scope,sweep}-fixture/`); the split checks re-run on LF and CRLF copies.
 - 2026-10-12: **`split_doc.py` numbers a stale line as the part's line** (no change: a
   script fix from the HDL field run, `docs/2026-10-12 - hdl-leans.md`). The dry run's
   stale-line numbers omitted the six-line preamble each part opens with, so an operator

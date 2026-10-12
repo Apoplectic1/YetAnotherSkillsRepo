@@ -46,20 +46,27 @@ def dated(text):
 
 
 def reports(d):
-    """Maintain reports under docs/, newest name last."""
-    docs = os.path.join(d, 'docs')
-    if not os.path.isdir(docs):
-        return []
-    return sorted(f'docs/{x}' for x in os.listdir(docs) if 'maintain-report' in x and x.endswith('.md'))
+    """Maintain reports, newest name last: a Markdown file whose name says maintain and report, under docs/,
+    docs/maintain/, NOTEBOOK/ or NOTEBOOK/maintain/ (a project that keeps docs/ for what travels files them
+    under the journal)."""
+    out = []
+    for sub in ('docs', os.path.join('docs', 'maintain'), 'NOTEBOOK', os.path.join('NOTEBOOK', 'maintain')):
+        p = os.path.join(d, sub)
+        if os.path.isdir(p):
+            out += [rel(os.path.join(p, x), d) for x in os.listdir(p)
+                    if x.endswith('.md') and 'maintain' in x.lower() and 'report' in x.lower()]
+    return sorted(out, key=lambda r: os.path.basename(r))
 
 
 def field(text, *keys):
-    """The first line carrying every key (case-insensitive), stripped, or ''."""
+    """The last line carrying every key (case-insensitive), stripped, or '': the accounting slot ends a
+    report, so the last mention is the slot's, not the scope's."""
+    hit = ''
     for line in text.split('\n'):
         low = line.lower()
         if all(k in low for k in keys):
-            return line.strip()
-    return ''
+            hit = line.strip()
+    return hit
 
 
 NEGATED = re.compile(r'\bnone\b|: no\b|\bnothing\b|\bno [a-z-]+ (?:is|are|was|were)\b', re.I)
@@ -135,7 +142,8 @@ def sources(d, budget, say):
             f'{count(t, r"\bheld\b")} lines saying held; {count(t, r"flag-code-bug")} lines naming flag-code-bug'
             + (f'; {len(last) - 1} earlier' if len(last) > 1 else ''))
     else:
-        say('  none under docs/: the first sweep (every rolled file is a slice; the report starts the watermark, M16)')
+        say('  none (docs/, docs/maintain/, NOTEBOOK/, NOTEBOOK/maintain/): the first sweep '
+            '(every rolled file is a slice; the report starts the watermark, M16)')
     say('')
     say('the targets (where a graduate lands)')
     for r in TARGETS:
@@ -156,6 +164,19 @@ def sources(d, budget, say):
         elif b > budget // 2:
             line += f'; past half the budget: the M9 content test decides (held if dominated by content a split would relocate)'
         say(line)
+    rp = os.path.join(d, 'CLAUDE.md')
+    if os.path.isfile(rp):  # the reference docs the router names outside the set (an HTML document has no budget rule)
+        others = []
+        for tok in re.findall(r'`([^`\n]+)`', read(rp)):
+            if not tok.lower().endswith(('.md', '.html')) or any(c in tok for c in '<>*{}'):
+                continue
+            p = os.path.normpath(os.path.join(d, tok))
+            r_ = rel(p, d)
+            if os.path.isfile(p) and r_ not in TARGETS + JOURNALS + ['CLAUDE.md', 'README.md', 'RELEASING.md'] and r_ not in others:
+                others.append(r_)
+        if others:
+            say('  router-named documents outside the set (no budget rule for an HTML document; the M9 content test is the reader\'s): '
+                + ', '.join(f'{o} ({kb(os.path.getsize(os.path.join(d, o)))})' for o in others))
     up = os.path.dirname(d)
     pd = os.path.join(up, 'DOMAIN.md')
     if os.path.isfile(os.path.join(up, 'CLAUDE.md')):

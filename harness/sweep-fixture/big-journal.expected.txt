@@ -6,7 +6,7 @@ the journal (the live files)
   openspec/changes/archive/: 2 design docs -> M11 (a first-class source; cross-ref only, never edited)
 
 the last report
-  none under docs/: the first sweep (every rolled file is a slice; the report starts the watermark, M16)
+  none (docs/, docs/maintain/, NOTEBOOK/, NOTEBOOK/maintain/): the first sweep (every rolled file is a slice; the report starts the watermark, M16)
 
 the targets (where a graduate lands)
   ARCHITECTURE.md     1.7 KB   3 `##` topics
