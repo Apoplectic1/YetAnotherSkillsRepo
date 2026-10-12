@@ -26,7 +26,7 @@ projects.)*
 ## The enforced set — create every file, charter-guarded
 | File | Role |
 |---|---|
-| `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin — enforced by S7) |
+| `CLAUDE.md` | always-loaded **router** + load-bearing gotchas (kept thin: enforced by S7 and S8) |
 | `ARCHITECTURE.md` | subsystem mechanics (how it works) |
 | `ROADMAP.md` | forward-looking design + a short "Recently shipped" digest |
 | `NOTEBOOK.md` | running **lab notebook** (chronological empirical findings); past its budget its oldest days roll into `NOTEBOOK/` (T1) |
@@ -54,6 +54,28 @@ projects.)*
   existing setup, **not** relocating its off-charter weight — "noted as a follow-up" is the
   job left undone. *(Unguided runs leave a 24 KB router fat and grow it; oversized routers
   load every conversation and degrade the harness — the why, never the trigger.)*
+- **S8.** **Always-on is a scope, not a size.** An item earns a place in a file that loads
+  at launch (the router, an ancestor router, a `.claude/rules/` file without `paths:`) only
+  if it passes **breadth** (every session launched here needs it) and **stability** (it
+  changes less often than the audit cadence). S7's content test decides *where* a thing
+  lives; this test decides *whether it loads every time*, and it is the test of what
+  "load-bearing" means: a guard every session needs is load-bearing; a guard only one
+  activity needs is that activity's, however sharp, and goes with its pack. A block or a
+  line that fails (an activity's gotcha pack, a toolchain's, an element map a reference doc
+  already holds) **moves now** behind a one-line always-on trigger, to the home its need is
+  keyed to: a **path-scoped
+  rule file** (`.claude/rules/<name>.md`, `paths:` in its frontmatter; the harness loads it
+  when a matching file is read, written or edited) for a need keyed to files; a **skill**
+  (its body loads on invocation) for a need keyed to an activity; a reference-doc
+  **section** read by heading (`grep -n "^## "`, then the span) for prose. The trigger line
+  names the home and when to reach for it, and the router names the rule file (so an audit
+  reads it). The chain a session loads is measured by `chain_budget.py` beside the audit
+  skill, against 5 percent of the window (about 10k tokens) unless the router states its
+  own share; **the number detects, the test decides**: a router under budget still moves a
+  block that fails. *(A gotcha-dense router passes S7 and still costs every session room
+  and interference: a directive misapplied where it does not belong scales with the count
+  of directives the session never needed. A 40 KB router of true toolchain gotchas and
+  element maps, S7-clean, loads in full for a session that edits a README.)*
 
 ## Tiers & routing — teach these in CLAUDE.md
 - **T1.** **journal** (dated capture) = `docs/YYYY-MM-DD-*.md` + `NOTEBOOK.md` +
@@ -89,7 +111,9 @@ projects.)*
   tooling (`.claude/`, `openspec/`). Their own READMEs are not this project's docs; `CLAUDE.md`
   notes them excluded — for `openspec/`, the note marks archived design docs
   (`changes/archive/*/design.md`) as historical records the **maintain** sweep reads (still
-  never scaffolded into, and never an authoring target for the T1 journal split).
+  never scaffolded into, and never an authoring target for the T1 journal split). The one
+  thing written under `.claude/` is a path-scoped rule file S8 moves a block to, which the
+  router then names.
 - **B2.** **Coexist, never clobber:** augment an existing setup — don't overwrite a present
   `CLAUDE.md` / `openspec/` / `.claude/`. Normalize filenames to the **project's stated**
   dated-record pattern (the router's journal line; the default is `YYYY-MM-DD-<slug>.md`),
@@ -129,7 +153,8 @@ projects.)*
 1. **Survey** the tree: existing docs, the exclusions (B1), sub-projects (B3), and the
    container-root / design-slot shapes (B4 to B6).
 2. **Create/align** the enforced set, charter-guarded (S5, S6).
-3. **Write `CLAUDE.md`** as the router (T4; exclusions noted; load-bearing gotchas only).
+3. **Write `CLAUDE.md`** as the router (T4; exclusions noted; load-bearing gotchas only,
+   those every session needs: S8).
 4. **Don't force content** — thin-but-charter'd is correct for a new/sparse project.
 
 Full rationale + RED/GREEN provenance:

@@ -56,3 +56,21 @@ none of them). AUDIT reps for these run from `DoseKeeper/`, whose router never p
 |---|---|---|---|---|
 | AR5 | Root "UTC everywhere" vs `DoseKeeper/src/doselog.py` `log_dose()` (`datetime.now()`), and ARCHITECTURE § Dose log "local wall-clock time" | Uncited ancestor convention violated by repo code; the repo doc agreeing | Root not read; doc matches code, no flag | `flag-code-bug` citing the root line and `doselog.py` |
 | AR6 | Root "Settings are TOML" vs `DoseKeeper/settings.json` and ARCHITECTURE § Settings | Uncited ancestor convention violated by the repo's settings file; the doc agreeing | No flag | `flag-code-bug` (or the convention named in a flag) citing the root line |
+
+## Variant `fat-chain` (2026-10-12, change `always-on-budget`)
+
+Overlay `reefstack-fixture-variants/fat-chain/CLAUDE.md` over the root router of a fixture
+copy, then baseline. The root carries, beside the base's planted `Data contracts` (PC1), two
+new blocks: a 12 KB probe-calibration gotcha pack (24 gotchas, every one a true gotcha, every
+one PulseMonitor-only: it passes S7's content test and fails breadth) and a 3 KB portfolio
+vocabulary (R26 reference content, the B4 home is the portfolio DOMAIN). AUDIT reps run from
+`ReefDash/` (the chain cells) and from the root (the scope cells). Non-derived: the HDL tree's
+HlsLibrary router is the deriving evidence and is poisoned for this rule.
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| CH1 | AUDIT from `ReefDash/` | the chain (the owner's real global file, the fat root, ReefDash's thin router) over the 5 percent budget | no chain measured; the root is R16's "its own audit", no row, at most an aside | the coverage note carries the chain row (`chain_budget.py`): total, over budget, the root's pack named as the largest item and routed to the root's own audit; no flag on ReefDash's own router (it passes breadth) |
+| CH2 | AUDIT from `ReefDash/` | ReefDash's own router: three gotchas every ReefDash session needs | no flag | no flag (control: thin and in budget) |
+| SC1 | AUDIT from the root | the two sub-project gotcha packs in the root router (probe calibration, PulseMonitor-only, 12 KB; pump bring-up, DoseKeeper-only, 5 KB) | R26: gotchas are never flagged; both stay | one placement flag per block: fails breadth, `move-to` an on-demand home with a trigger line: the sub-project's own router if every session there needs it, else a `.claude/rules/<name>.md` with `paths:` for its files, else a skill |
+| SC2 | AUDIT from the root | the vocabulary block | R26 placement flag `move-to` the portfolio DOMAIN (B4 home) | the same (control: content, not scope) |
+| SC3 | AUDIT from the root | the base's thin routing table and `scripts/` line | no flag | no flag (control: passes breadth) |

@@ -196,3 +196,18 @@ only". Non-derived: the HDL sweep is the deriving evidence and is poisoned for t
 
 Neutral: the base fixture's planted drifts (D1 to D5, CB1 to CB4, PR1) surfacing in a
 release-close rep are neither credit nor fail; the lens is scored on RL and RC only.
+
+## Scope-test cells (2026-10-12, change `always-on-budget`): variant `tidepool-fixture-variants/fat-gotchas/`
+
+Overlay the variant's `CLAUDE.md` on a fixture copy, then baseline. The router's three
+load-bearing gotchas (base text) are joined by a 10 KB pack of 22 CO-OPS client and exporter
+gotchas: every one a true gotcha, every one about `tides.py` and `export.py` work. SETUP reps
+run plan-only ("plan the lean, write nothing"; S2's review framing); prompt: "Set up this
+project's docs; the router feels heavy." Non-derived: HlsLibrary's router is the deriving
+evidence.
+
+| ID | Where | Plant | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|
+| ST1 | `CLAUDE.md` § Gotchas (the CO-OPS pack) | gotchas that pass content (S7 keeps gotchas) and fail breadth (a `plan.py` or docs session never needs them) | the plan keeps the pack in the router ("gotcha-dense router stays"), or moves it by size with no rule to cite (record which) | the plan moves the pack behind a one-line trigger to an on-demand home keyed to its need: `.claude/rules/<name>.md` with `paths:` naming `tides.py` and `export.py`, or a skill; the three base gotchas stay |
+| ST2 | `CLAUDE.md` § Load-bearing gotchas (base: the rate limit, MLLW, function-local astral) | gotchas every session needs | stay | stay (control) |
+| ST3 | the chain row | | not measured | the plan cites the chain (`chain_budget.py` or a by-hand sum) as the reason the scope test ran; a router under budget with a pack that fails breadth still moves it (the test decides, the number detects) |

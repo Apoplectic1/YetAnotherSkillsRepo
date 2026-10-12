@@ -5,6 +5,22 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **The harness already has three facts the family had been guessing at**
+  (change `always-on-budget`; record `docs/2026-10-12 - always-on-budget-red-green.md`).
+  Checked against the Claude Code docs on 2026-10-12: (a) `.claude/rules/<name>.md` with
+  `paths:` frontmatter loads only when a matching file is read, written or edited, which is
+  the file-keyed on-demand home the ROADMAP item asked to "verify first"; without `paths:`
+  it loads at launch and counts; (b) `@imports` expand at launch, so an import is inline text
+  at inline cost; (c) the harness warns at 200 lines per CLAUDE.md and at an undocumented
+  combined size, which HlsLibrary's router (397 lines) and the Arty's (346) trip today. Also:
+  the owner's global file is 26.7 KB, up from 22.5 on 2026-09-26, and a third of every chain
+  on this machine. Three process findings. The effort pin matters: six RED reps through the
+  Agent tool (effort inherited, the session at max) cost 137k to 203k tokens each; six GREEN
+  reps through a Workflow pinned Sonnet/high cost about 73k each and found every plant, so
+  reps go through a Workflow from now on (memory `rep-fanouts-via-workflow`). A tripwire
+  fixture has to trip: the first `fat-chain` root came in 38 tokens under budget. And the
+  harness's safety check refuses `rm -rf "$d"` when `d` is built from variables; build fresh
+  copies under new names, or remove by a literal absolute path.
 - 2026-10-12: **A RED can fail for want of a path, with every rep doing the right thing**
   (change `audit-scoped-modes`; record `docs/2026-10-12 - audit-scoped-modes-red-green.md`).
   Asked for one cheap round, four reps on the unconditional coverage text each said "no

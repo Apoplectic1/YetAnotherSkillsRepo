@@ -5,37 +5,23 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **Always-on budget** (2026-09-26, queued after journal rollover; the owner's question:
-  the 40 KB gate is brute force, is there a better way?). Measured that day (NOTEBOOK
-  2026-09-26): a session under the HDL tree loads 52 to 79 KB of routers before its first
-  question (the owner's global file 22.5 KB, then three to four ancestor routers), and no rule
-  counts the chain: the 40 KB line is the harness's per-file warning, about 10k tokens, about
-  5 percent of a 200k window, the right budget at the wrong scope. The cost model: context
-  room (linear in tokens), interference (scales with the count of directives the session does
-  not need, not with bytes; an activity's gotcha misapplied elsewhere) and staleness (scales
-  with volatility). The rule: an item is always-on only if it passes breadth (every session
-  launched here needs it) and stability (it changes less often than the audit cadence); S7's
-  content test gains that scope half (12.8 KB of HLS synthesis gotchas pass S7 today and fail
-  breadth). Failed items go on demand behind a one-line always-on trigger: a skill whose body
-  loads on invocation (the owner's rule 17 pattern; an activity's gotcha pack as a skill), or a
-  path-scoped rule file if the harness has them (verify first); reference docs are read by
-  section (topic-named headings, `grep -n "^## "` then the span). The tripwire: one number on
-  the chain in tokens (the global file, every ancestor router, the memory index), its threshold
-  derived from the accepted share of the window, measured per launch directory by a script and
-  reported by AUDIT as a coverage row; the number detects, the test decides. Touches SETUP
-  (S7's scope half, the trigger-line pattern), AUDIT (R26 gains the scope test, the chain row),
-  the design doc (the cost model). Pilot: HlsLibrary's router (32.6 KB: element maps to the
-  class READMEs that already hold them, gotchas to a skill, about 9 KB left), the ATML
-  umbrella's DOMAIN (40 KB, four headings) for section reads, then the Arty's 27 KB router.
-  Non-derived RED/GREEN: TidePool's fat-router variant plus a fat-chain container variant.
+- **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
+  from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
+  the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
+  synthesis gotchas to a path-scoped rule file on the HLS sources or a skill, about 9 KB
+  left), the ATML umbrella's DOMAIN (40 KB, four headings) read by section, then the Arty's
+  26.6 KB, 346-line router. `python ~/.claude/skills/docs-architecture-audit/chain_budget.py
+  <dir>` before and after; the HDL chain is 83 KB, 2.1x the budget, today. The owner's global
+  file (26.7 KB, 187 lines) is a third of every chain on the machine and the owner's own call.
 - **The split job's owner** (2026-09-26): M9 and M14 hold promotions "until the split,
   setup/audit territory", and no skill describes the split; three HDL docs past 40 KB hold ten
   promotions (the ATML umbrella's `docs/2026-09-26 - maintain-report.md`). Candidate: the
   overflow rule's other half, a bloated reference doc split by topic into a directory named for
   it (`ARCHITECTURE/`), the parent left as the index with one line per part. Unpiloted: pilot
   the Arty's ARCHITECTURE (72 KB, a halted board, low risk), then codify the procedure in SETUP
-  with MAINTAIN's M14 naming the shape. Sequenced after always-on budget: a split is worth it
-  only where section reads are not enough.
+  with MAINTAIN's M14 naming the shape. Unblocked 2026-10-12 (always-on budget shipped: S8
+  and R30 make a reference-doc section read by heading the on-demand home for prose); a
+  split is worth it only where section reads are not enough.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions — (a) Astronomy container: create the portfolio
   `DOMAIN.md` (cross-repo truth only), relocate the router's Data-flow-hubs detail per
@@ -47,6 +33,21 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**
+  (change: `always-on-budget`; the Open item of 2026-09-26). An item loads at launch only if
+  it passes breadth (every session launched there needs it) and stability (it changes less
+  often than the audit cadence); that test is what "load-bearing" means. A failing block goes
+  behind a one-line trigger to the home its need is keyed to: a path-scoped rule file
+  (`.claude/rules/<name>.md` with `paths:`, verified against the harness docs), a skill, or a
+  reference-doc section read by heading. `chain_budget.py` beside the audit skill measures
+  the chain a session loads (the owner's global file, every ancestor, the router, always-on
+  rules, the memory index) against 5 percent of the window, marks files over the harness's
+  200-line guidance, subtotals the project's part; AUDIT's coverage note carries the row, an
+  ancestor is reported never flagged below it; R26's carve-out holds on the content axis
+  only. RED 6/6 (TidePool `fat-gotchas`, reefstack `fat-chain`): an invented criterion, an
+  invisible ancestor, a shielded pack. GREEN 6/6 through a Workflow at Sonnet/high, half the
+  cost of RED. The HDL pilot queued above. Record:
+  `docs/2026-10-12 - always-on-budget-red-green.md`.
 - 2026-10-12: **AUDIT scoped modes: `release-close` and `small-set`, R29** (change:
   `audit-scoped-modes`; the Open items "Release-close currency lens" and "AUDIT
   scaled-coverage mode", the owner's call to ship them as one rule). The user invokes a mode,

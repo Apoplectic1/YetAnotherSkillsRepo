@@ -23,6 +23,15 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   newest-first bullet NOTEBOOK (the base's entries verbatim above 168 generated ones) and an
   ARCHITECTURE citation into an old entry; overlay it on a fixture copy, then baseline. Cells
   RO1 to RO5 in the catalog; `fat-arch/` is the earlier variant (`m9-hold-on-bloat`).
+- `tidepool-fixture-variants/fat-gotchas/` (2026-10-12, `always-on-budget`): the router with a
+  10 KB pack of true, `tides.py`-only gotchas beside its three load-bearing ones: content
+  passes, breadth fails. Cells ST1 to ST3 in the catalog. Its container twin is
+  `reefstack-fixture-variants/fat-chain/` (a root router carrying one sub-project's gotcha
+  pack and a glossary; cells CH1, CH2, SC1 to SC3 in `catalog-reefstack.md`).
+- `chain-fixture/` (2026-10-12, `always-on-budget`): `gen_chain_fixture.py` writes a
+  three-level tree of instruction files with exact sizes into a scratch directory, and
+  `chain.expected.txt` is what the audit skill's `chain_budget.py` must print for its leaf
+  (`--root . --global global.md --memory none`), byte for byte. A script-level check.
 - `tidepool-fixture-variants/release-lens/` (2026-10-12, `audit-scoped-modes`): the four
   reference docs with post-release phrasings the code has moved past ("waits for", "not
   yet", "until", "today", a version, a count) beside three where the wait is real; overlay

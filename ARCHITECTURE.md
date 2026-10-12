@@ -8,7 +8,8 @@ design doc: `docs/docs-architecture-design.md`.
 ## Layout
 - `skills/<name>/SKILL.md` — one directory per skill; the SKILL.md *is* the product.
   `docs-architecture-maintain/` also carries `rollover.py` and `journal_index.py` (the
-  journal rollover, M17), deployed with it; the pilot's copies under
+  journal rollover, M17), deployed with it, and `docs-architecture-audit/` carries
+  `chain_budget.py` (the always-on chain, R30); the pilot's copies under
   `docs/2026-09-26 - journal-rollover/` are the frozen record of the first run.
 - `docs/` — journal (dated records) + the canonical design doc + benchmark data
   (`docs/audit-benchmark/` — scripts, sweeps, raw workflow outputs behind the 2026-06-29 note);

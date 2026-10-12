@@ -64,17 +64,38 @@ capable agent already does well, so the rules below force what one pass can't gi
 - **R26.** The `CLAUDE.md` router is **itself placement-audited**: reference content embedded
   in it (glossary, contract/API prose, conventions, subsystem mechanics — anything neither
   routing nor a load-bearing gotcha) → **one structural flag per block** → `move-to <charter
-  home>`. Never per-fact *placement* flags, and never flag routing lines or gotchas,
-  regardless of router size. Currency flags on stale claims inside the block remain
-  legitimate — unlike R25's journal-tier entries, router-embedded reference content is
-  reference-tier; the two axes stay judged separately.
+  home>`. Never per-fact *placement* flags, and never flag routing lines or gotchas on the
+  content axis, regardless of router size (a gotcha block still meets R30's scope test).
+  Currency flags on stale claims inside the block remain legitimate: unlike R25's
+  journal-tier entries, router-embedded reference content is reference-tier; the two axes
+  stay judged separately.
+- **R30.** **The always-on chain is measured, and every router block passes breadth and
+  stability.** At the start of the run, `python chain_budget.py <launch dir>` (beside this
+  SKILL.md) reports what a session launched here loads before its first question: the
+  owner's global file, every ancestor router, this router, the always-on rule files
+  (`.claude/rules/` without `paths:`), the memory index; bytes, lines and estimated tokens,
+  against the budget (5 percent of the window, about 10k tokens, unless the router states
+  its own share) and the harness's 200-line guidance. The **coverage note carries the chain
+  row**: the total and the verdict, the largest items, this project's part apart from the
+  ancestors' and the owner's. Then each block of this router and of its always-on rule
+  files meets the scope test: **breadth** (every session launched here needs it) and
+  **stability** (it changes less often than the audit cadence); a failing block → **one
+  placement flag** → `move-to <on-demand home>`: a path-scoped rule file
+  (`.claude/rules/<name>.md` with `paths:`, loaded when a matching file is touched) for a
+  file-keyed need, a skill (its body loads on invocation) for an activity-keyed need, a
+  reference-doc section read by heading for prose; a one-line trigger stays in the router.
+  An ancestor's weight is reported in the row and never flagged here (it is its own
+  audit's); the owner's global file is reported as the owner's. **The number detects, the
+  test decides**: a router under budget still flags a block that fails. *(Context room is
+  linear in tokens; interference scales with the directives a session does not need; a
+  40 KB router of true gotchas is S7-clean and costs every session both.)*
 
 ## Scope
 - **R12.** In-scope = what the `CLAUDE.md` router names, ∪ the canonical reference set.
 - **R13.** Default-exclude *unrouted* files in vendored trees (`vendor/`, `third_party/`, forked
   upstreams), generated output (`bin/`, `obj/`, `dist/`, `target/`), and tooling (`.claude/`,
-  `openspec/`). A router-named leaf inside them *is* in scope. A router-named spec (cited as
-  the project's rules) is currency-audited but never edited: a claim it makes that the code,
+  `openspec/`). A router-named leaf inside them *is* in scope. A router-named spec under
+  `openspec/specs/` (cited as the project's rules) is currency-audited but never edited: a claim it makes that the code,
   the router and the reference docs agree is wrong → `spec-change`, naming the change that
   would correct it; R7's code-is-suspect holds only while the spec stands uncontradicted.
   *(A spec changes only through a change; a stale SHALL is not a code bug.)*
@@ -126,14 +147,14 @@ capable agent already does well, so the rules below force what one pass can't gi
   did not do.)*
 
 ## Procedure
-1. Fan out per-section workers + the cross-reference pass (R19, R22); collect schema'd flags.
-   In `release-close` mode (R29) the workers are the lens over the reference tier plus the
-   cross-reference pass.
+1. Measure the chain (`chain_budget.py`, R30). Fan out per-section workers + the
+   cross-reference pass (R19, R22); collect schema'd flags. In `release-close` mode (R29)
+   the workers are the lens over the reference tier plus the cross-reference pass.
 2. Merge + dedup — same location + claim = one flag; log anything dropped.
 3. Loop until dry, then diversify the worker model (R20 to R21); in a scoped mode (R29), stop
-   after the one round instead. End with a **coverage note** in the adjudication report: any
-   span whose worker died after retry, and what covered it instead (R23); in a scoped mode,
-   the mode's name and what a full run would have added.
+   after the one round instead. End with a **coverage note** in the adjudication report: the
+   chain row (R30); any span whose worker died after retry, and what covered it instead
+   (R23); in a scoped mode, the mode's name and what a full run would have added.
 4. **Adjudicate**: present the merged list; the user **approves / amends / defers** each flag's
    proposed action.
 5. **Apply** approved doc fixes; re-verify. Report-only flags are never applied to docs —
