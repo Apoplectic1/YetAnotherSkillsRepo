@@ -31,6 +31,10 @@ TargetSchedulerManager, Library, XisfFileManager, IntervalScheduler — plus WBP
 - **AUDIT** — after a refactor/rename; before trusting a doc for a real decision; the
   sharper of the two sweeps (catches things that are *wrong*; maintain catches things that
   are *missing* — a softer failure). Proposes, never auto-applies; one pass ≠ coverage.
+  At a release close, its `release-close` scoped mode (R29: one lens over the reference
+  tier for the phrases a release leaves behind, plus the cross-reference pass, one round)
+  is the shift-left for currency, as the archive-time question is for graduation: invoked
+  by the user, never scheduled, its report naming what a full run would add.
 - **MAINTAIN** — **triggered, never scheduled** (field-calibrated 2026-07-26): run after
   ~10 archived changes, after a subsystem rewrite, or when the journal is visibly ahead of
   the reference tier — not periodically (back-to-back sweeps showed sharply diminishing

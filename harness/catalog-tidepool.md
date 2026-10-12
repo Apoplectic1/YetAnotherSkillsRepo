@@ -170,3 +170,29 @@ Deriving evidence for the rule: the HDL tree (poisoned); this variant is non-der
 Must-nots (both arms): no entry text rewritten; no NOTEBOOK entry moved into `archive/` or
 `docs/archive/`; no code edited. Scoring is on disk: `git status`, sizes, the md5 of the
 reconstructed entries against the baseline.
+
+## Scoped-modes cells (2026-10-12, change `audit-scoped-modes`): variant `tidepool-fixture-variants/release-lens/`
+
+Overlay the variant's four reference docs on a fixture copy (ROADMAP, NOTEBOOK, code, specs
+unchanged), then baseline. Cells RL1 to RL6 are post-release phrasings in the reference tier
+that the code has moved past; RC1 to RC3 are the same phrasings where the wait is real. The
+`release-close` RED and GREEN reps run here with the prompt "a release just closed, run the
+audit cheaply"; the `small-set` reps run on the plain fixture (its D1 to D5) with "one round
+only". Non-derived: the HDL sweep is the deriving evidence and is poisoned for these rules.
+
+| ID | Where | Plant | Code truth | Expected RED (current text) | Expected GREEN (candidate) |
+|---|---|---|---|---|---|
+| RL1 | `CLAUDE.md` charter, "currently v0.5 (the 0.6 release waits for the station refresh script)" | a version and a wait | `pyproject.toml` version 0.6.0 | found if the rep reads the router | currency `fix-doc` |
+| RL2 | `CLAUDE.md` gotcha, "`astral` is not yet a declared dependency (pending the 0.6 release)" | "not yet", "pending" | `pyproject.toml` dependencies include `astral>=3.2` | found or not | currency `fix-doc` |
+| RL3 | `ARCHITECTURE.md` module map, `plan.py`: "two weighted factors today (0.6, 0.4); the moon-phase factor is not yet wired in" | "today", "not yet" | `plan.py` three weights 0.5/0.3/0.2 | found | currency `fix-doc` |
+| RL4 | `ARCHITECTURE.md` module map, `export.py`: "seven columns; the station-name and moon-phase columns wait for the export rewrite" | "wait for", a count | `export.py` `CSV_COLUMNS` has nine, both present | found | currency `fix-doc` (R28 shape allowed) |
+| RL5 | `VERIFICATION.md`, "Until the `export` subcommand lands, CSV output is verified from a REPL" | "until" | `cli.py` has the `export` subcommand | found | currency `fix-doc` |
+| RL6 | `DOMAIN.md` East vs West, "East-coast stations are not yet in the registry; the pilot is pending" | "not yet", "pending" | `stations.py` holds four Atlantic stations | found | currency `fix-doc` |
+| RC1 | `ROADMAP.md` Now/Next, "Next: confidence intervals on the window score" (base text) | prescriptive, unbuilt | no such code | no flag (R9) | no flag |
+| RC2 | `DOMAIN.md` Safety, "future NDBC factor" (base text) | a real future | no buoy code | no flag | no flag |
+| RC3 | `ARCHITECTURE.md` Design constraints, "Offline harmonics wait for a local source of harmonic constants" | a real wait | nothing in `src/` computes offline | no flag | no flag |
+| SM1 | the plain fixture, prompt "one round only" | the run's plan | D1 to D5 as cataloged | the text has no sanctioned one-round run: the rep runs the loop and the model switch anyway, refuses, or improvises an unsanctioned stop (record which, verbatim) | the `small-set` mode by name: one per-section round plus cross-ref at the R22 tier, D4 and D1 to D3 found, the coverage note naming the mode and what a full run would add |
+| SM2 | the `release-lens` copy, prompt "a release just closed, run the audit cheaply" | the run's plan | RL1 to RL6 | same three outcomes, record which; RL hits counted either way | the `release-close` mode by name: the lens plus cross-ref, one round, RL1 to RL6 found, RC1 to RC3 held, the coverage note naming the mode |
+
+Neutral: the base fixture's planted drifts (D1 to D5, CB1 to CB4, PR1) surfacing in a
+release-close rep are neither credit nor fail; the lens is scored on RL and RC only.

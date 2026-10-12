@@ -93,7 +93,8 @@ capable agent already does well, so the rules below force what one pass can't gi
 
 ## Coverage — why this skill exists
 - **R18.** Never trust one careful pass — or any fixed N of them. *(Each finds a different
-  ~half.)*
+  ~half.)* The one sanctioned exception: a **scoped mode** the user invokes (R29), which
+  runs one round and says so.
 - **R19.** Fan out **per-section** workers (forces depth everywhere; whole-doc replicates skim),
   plus **one cross-reference pass** over inbound referrers — routers, other docs, source/UI
   files — for rename-orphans and dangling links.
@@ -112,13 +113,27 @@ capable agent already does well, so the rules below force what one pass can't gi
   gap beats false completeness.)*
 - **R24.** Every worker returns flags **in the schema below**. *(Prose doesn't merge across a
   fan-out.)*
+- **R29.** **Scoped modes: invoked by the user, never chosen by the run.** The user names
+  one, or asks for one round or a cheap run and the run names which fits and says so.
+  `release-close`: one lens over the reference tier for the phrases a release leaves behind
+  ("waits for", "not yet", "until", "today", "currently", "pending", "in progress", a
+  version, a count), plus the R19 cross-reference pass. `small-set`: one per-section round
+  plus the cross-reference pass, for a doc set that is small and low-drift. Either mode: one
+  round at the R22 default tier, no loop, no model switch, every other rule intact; the
+  coverage note names the mode and what a full run would have added (the further rounds, the
+  model switch). Without a mode named, "audit" means the full loop. *(A user-set cost
+  tradeoff, not an empirical ceiling: the mode buys a cheap check whose report says what it
+  did not do.)*
 
 ## Procedure
 1. Fan out per-section workers + the cross-reference pass (R19, R22); collect schema'd flags.
+   In `release-close` mode (R29) the workers are the lens over the reference tier plus the
+   cross-reference pass.
 2. Merge + dedup — same location + claim = one flag; log anything dropped.
-3. Loop until dry, then diversify the worker model (R20–R21). End with a **coverage note** in
-   the adjudication report: any span whose worker died after retry, and what covered it instead
-   (R23).
+3. Loop until dry, then diversify the worker model (R20 to R21); in a scoped mode (R29), stop
+   after the one round instead. End with a **coverage note** in the adjudication report: any
+   span whose worker died after retry, and what covered it instead (R23); in a scoped mode,
+   the mode's name and what a full run would have added.
 4. **Adjudicate**: present the merged list; the user **approves / amends / defers** each flag's
    proposed action.
 5. **Apply** approved doc fixes; re-verify. Report-only flags are never applied to docs —

@@ -5,6 +5,20 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **A RED can fail for want of a path, with every rep doing the right thing**
+  (change `audit-scoped-modes`; record `docs/2026-10-12 - audit-scoped-modes-red-green.md`).
+  Asked for one cheap round, four reps on the unconditional coverage text each said "no
+  sanctioned way", ran the round anyway and disclosed the gap by extending R23 on their own
+  judgment. That is a failure of the text (no shape, no sanction) rather than of behavior,
+  the opposite of the morning's ancestor-router cells (right behavior, silent text, no
+  failure): the difference is that here the reps had to break a rule to serve the user and
+  said so. Two operational lessons. (a) `openspec new change` scaffolds into whichever
+  openspec root is nearest the shell's working directory, and the Bash tool's directory
+  persists across calls: one `cd` into the fixture earlier in the session put the change
+  scaffold inside `harness/tidepool-fixture/`, and four RED copies carried it; always `cd`
+  to the repo root in the same command, or pass absolute paths. (b) A single-agent rep
+  cannot show a lens's cost saving: it reads everything whether lensed or not; the saving
+  is in the fan-out, so a cost claim needs a real fan-out run or stays unclaimed.
 - 2026-10-12: **A fixture for an unprompted behavior needs a target that gives no prompt**
   (change `audit-scope-from-routers`, the AUDIT scope RED/GREEN; record `docs/2026-10-12 -
   audit-scope-red-green.md`). The ancestor-router cells first ran on ReefDash, whose router

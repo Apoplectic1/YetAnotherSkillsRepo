@@ -358,6 +358,15 @@ loss unless its cost is the consumer's scarce resource; Haiku skipped sections a
 and *iteration doesn't fix discipline*. Mirrored into the AUDIT skill (fan-out step 1, loop-until-dry
 step 3, a "Common mistakes" bullet) 2026-06-29.
 
+**Addendum 2026-10-12 (change `audit-scoped-modes`): the loop's one sanctioned exception.** The
+mandate above stands as the meaning of "audit". R29 adds two scoped modes the user invokes and
+the run never chooses: `release-close` (one lens over the reference tier for the phrases a
+release leaves behind, plus the cross-reference pass) and `small-set` (one per-section round
+plus the cross-reference pass). One round at the R22 tier, no loop, no model switch, the
+coverage note naming the mode and what a full run would have added. A user-set cost tradeoff,
+not an empirical ceiling: RED 4/4 showed the unconditional text left a user's "one round" with
+no sanctioned path, every rep improvising the disclosure the mode now prescribes.
+
 **MAINTAIN — built & validated (RED/GREEN, 2026-06-28).** Authored as `docs-architecture-maintain`,
 **lean** — it *reuses* AUDIT's fan-out machinery and adds graduation-specific flag types + the
 **prune/preserve-why linchpin** (a REQUIRED `disposition: stub | cross-ref | archive` field on every

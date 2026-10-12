@@ -36,18 +36,6 @@ section closed 2026-07-07 with nothing open.
   the Arty's ARCHITECTURE (72 KB, a halted board, low risk), then codify the procedure in SETUP
   with MAINTAIN's M14 naming the shape. Sequenced after always-on budget: a split is worth it
   only where section reads are not enough.
-- **Release-close currency lens** (2026-09-26): after a milestone the reference tier goes stale
-  in predictable phrases ("waits for", "not yet", "until", "today", a version, a count). The HDL
-  sweep's best worker was one such lens over the reference tier, 188k tokens for 13
-  corrections, against about 2.6M for the full sweep (NOTEBOOK 2026-09-26). A named cheap
-  mode: that lens plus AUDIT's cross-reference pass, run at release close, shift-left for
-  currency as the family already shifts graduation left. Owner to decide: an AUDIT scoped mode
-  (with the scaled-coverage item below) or a MAINTAIN round-2 lens. RED on TidePool with
-  post-release phrasing plants.
-- **AUDIT scaled-coverage mode** (2026-07-17 — gated, GREEN-only): one-round mode for small /
-  low-drift doc sets. Refined shape, companion edits, and gate in NOTEBOOK 2026-07-17. Its
-  informal "field R26" alias is stale — R26 was taken by the router-placement clause
-  (shipped 2026-07-17); assign the next free number when it ships.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions — (a) Astronomy container: create the portfolio
   `DOMAIN.md` (cross-repo truth only), relocate the router's Data-flow-hubs detail per
@@ -59,6 +47,18 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-10-12: **AUDIT scoped modes: `release-close` and `small-set`, R29** (change:
+  `audit-scoped-modes`; the Open items "Release-close currency lens" and "AUDIT
+  scaled-coverage mode", the owner's call to ship them as one rule). The user invokes a mode,
+  by name or by asking for one round or a cheap run; the run names which fits and says so.
+  `release-close`: one lens over the reference tier for the phrases a release leaves behind,
+  plus the cross-reference pass. `small-set`: one per-section round plus the cross-reference
+  pass. One round at the R22 tier, no loop, no model switch; the coverage note names the mode
+  and what a full run would have added. RED 4/4: the unconditional text left "one round" with
+  no sanctioned path, every rep improvising the disclosure; GREEN 4/4 on the new TidePool
+  `release-lens` variant (RL 6/6, controls held) and the plain fixture. DOMAIN § When to
+  reach names the release-close mode as the shift-left for currency. Record:
+  `docs/2026-10-12 - audit-scoped-modes-red-green.md`.
 - 2026-10-12: **AUDIT scope from the routers: `spec-change` shipped, two halves status-noted**
   (change: `audit-scope-from-routers`; the Open items "Ancestor-router conventions" and
   "Scope precedence; router-named specs", whose sub-bullet (c) journal-rollover had already

@@ -23,6 +23,10 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   newest-first bullet NOTEBOOK (the base's entries verbatim above 168 generated ones) and an
   ARCHITECTURE citation into an old entry; overlay it on a fixture copy, then baseline. Cells
   RO1 to RO5 in the catalog; `fat-arch/` is the earlier variant (`m9-hold-on-bloat`).
+- `tidepool-fixture-variants/release-lens/` (2026-10-12, `audit-scoped-modes`): the four
+  reference docs with post-release phrasings the code has moved past ("waits for", "not
+  yet", "until", "today", a version, a count) beside three where the wait is real; overlay
+  on a fixture copy, then baseline. Cells RL1 to RL6, RC1 to RC3, SM1, SM2 in the catalog.
 - `journal-index-fixture/` (2026-10-12, `rolled-index-titled-entries`): one rolled TidePool
   NOTEBOOK file in the bare-date form (`## 2026-10-01` over bold-lead bullets) and the
   `INDEX.expected.md` the maintain skill's `journal_index.py` must reproduce byte for byte
