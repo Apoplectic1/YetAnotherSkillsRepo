@@ -60,6 +60,7 @@ def measure(path, cpt):
 
 
 def main(argv):
+    sys.stdout.reconfigure(newline='\n')  # LF on every platform, so a redirected run matches the fixture
     args = argv[1:]
 
     def opt(name, default):
