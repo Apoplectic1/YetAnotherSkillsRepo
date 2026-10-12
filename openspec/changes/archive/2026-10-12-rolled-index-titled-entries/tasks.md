@@ -17,4 +17,4 @@
 
 ## 5. Ship
 - [x] 5.1 `openspec validate rolled-index-titled-entries --strict`; archive with `--yes`, judged by output text; `main` fast-forwarded; `deploy.sh`
-- [ ] 5.2 EP7314600: regenerate `NOTEBOOK/INDEX.md` with the deployed script (from a session there)
+- [x] 5.2 EP7314600: regenerate `NOTEBOOK/INDEX.md` with the deployed script (done from here on the F: working copy, commit f720250 there: 43 titled lines, nothing else changed)

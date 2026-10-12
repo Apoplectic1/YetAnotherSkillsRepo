@@ -18,8 +18,13 @@ worker-model benchmark).
   passed. Adjacent: the six HDL `INDEX.md` headers still carry the pilot script's blockquote
   (the em-dash clause, `grep -n "^## <date>"`), not the shipped script's; the next rollover
   there rewrites those header lines and no entry line. Not standing; noted so the diff is
-  not read as drift. EP7314600's regeneration waits on a session in that tree (the auto-mode
-  classifier refused to list the L3Harris folder from here).
+  not read as drift. The six HDL indexes were then regenerated and committed, which showed
+  that the three 2026-10-01 rollovers (the R4 sessions) ran a copy of the script dividing
+  by 1000 for the KB figure, not the shipped 1024. EP7314600's index was regenerated from
+  here too (43 titled lines): the live project is the F: working copy
+  (`F:\EMCORE\EP7314600\2026-10-02\EP7314600`), not the E: repo under L3Harris, which has
+  no doc set; the other session's path came from `~/.claude/projects/` (the session folder
+  is named for its cwd), after Glob and the auto-mode classifier both came up empty on E:.
 - 2026-09-26: **Two more openspec CLI gotchas (1.13.2), from six spec-cleanup changes on the
   HDL tree.** (a) A MODIFIED requirement block is refused at validate and at archive when it
   drops a scenario name the main spec still carries, and a renamed scenario is a drop
