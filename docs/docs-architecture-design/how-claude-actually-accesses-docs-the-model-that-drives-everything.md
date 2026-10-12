@@ -6,12 +6,13 @@
 
 ## How Claude actually accesses docs — the model that drives everything
 
-**Only three files auto-load into context each session** (verified from this session's
-start-up context block):
+**A chain of files auto-loads into context each session** (three when this was first
+written; measured as the chain since 2026-10-12, § Always-on budget):
 
 - `~/.claude/CLAUDE.md` — global cross-project rules (genuinely global; does **not** move into
   the repo).
-- `<project>/CLAUDE.md` — project orientation + gotchas. **The router.**
+- every ancestor directory's `CLAUDE.md`, root down, then `<project>/CLAUDE.md`: project
+  orientation + gotchas. **The router.** Plus any `.claude/rules/` file without `paths:`.
 - `<memory>/MEMORY.md` — auto-memory; harness-fixed path, cannot be relocated into the tree.
   (In the WBPP survey session this was a ~1.3 KB delegating stub with no content worth
   moving; per-project contents vary — this repo's is a standing-findings index.)
@@ -26,7 +27,7 @@ The agent's four access primitives and their costs:
 
 | Primitive | Cost | Gives |
 |---|---|---|
-| Auto-load (CLAUDE.md, MEMORY.md) | paid **every session** | always-on context — must stay small + high-value |
+| Auto-load (the chain: global file, ancestor routers, CLAUDE.md, MEMORY.md) | paid **every session** | always-on context: must stay small + high-value |
 | `Glob docs/*.md` | ~free | the **filename list** — a live table of contents *if names self-describe* |
 | `Grep` across docs | ~free | content search — file+line for a keyword without reading |
 | `Read` w/ offset | cheap if sliced | one section, *if* the agent knows which |

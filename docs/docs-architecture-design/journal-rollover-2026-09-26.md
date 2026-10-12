@@ -7,7 +7,7 @@
 ## Journal rollover: 2026-09-26
 
 The journal tier's growth got a mechanism: rollover by date into a directory named for the
-file (the tier section above), the scripts beside the maintain skill, SETUP's B6 for the
+file (§ The doc tiers: journal · reference · cold rationale), the scripts beside the maintain skill, SETUP's B6 for the
 container-root ignore file the pilot tripped on, and B2's stated dated-record pattern.
 Provenance: derived on the HDL tree (a 311 KB NOTEBOOK; the owner's decision; a pilot on
 seven journals), validated RED 2/2 and GREEN 2/2 on a non-derived fixture (TidePool's

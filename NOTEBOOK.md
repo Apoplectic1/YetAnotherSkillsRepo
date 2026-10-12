@@ -2,8 +2,8 @@
 
 **Charter:** chronological empirical findings from working on the skills — small
 observations that don't warrant a standalone dated note. Newest at the top. Substantial
-records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
-worker-model benchmark).
+records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
+existing example: the 2026-06-29 audit worker-model benchmark).
 
 - 2026-10-12: **T5 on this repo's own design doc: the first real split, and a naming rule it
   met.** `docs/docs-architecture-design.md` was 65.6 KB in thirteen `##` topics, one of them

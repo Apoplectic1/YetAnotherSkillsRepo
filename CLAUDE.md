@@ -6,14 +6,14 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 
 ## Reference docs (current truth — edit in place)
 - `ARCHITECTURE.md` — repo layout, the 4-skill family + its dependency order, dev→deploy pipeline.
-- `ROADMAP.md` — forward plan + Recently-shipped digest (shipped history → `CHANGELOG.md`
-  when it accrues; git backstops commits).
+- `ROADMAP.md`: forward plan + a five-line Recently-shipped digest (the history is
+  `CHANGELOG.md` since 2026-10-12; git backstops commits).
 - `VERIFICATION.md` — RED/GREEN subagent harness, on-demand fixture recipe + reset contract.
 - `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
 - `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
 - `docs/docs-architecture-design.md`: the **canonical design**, full spec, tier model, RED/GREEN
   provenance. Since 2026-10-12 it is the **index** of `docs/docs-architecture-design/` (a T5
-  split, thirteen parts named by their headings; a section citation resolves by grep over the
+  split, one part per `##` heading, named by it; a section citation resolves by grep over the
   file and the directory; the parts are reference, not dated records, so they carry no date
   prefix). Every deployed skill footer links this file **by public GitHub
   URL** (`main`): move or rename it and every shipped footer breaks. (Benchmark figures ride in skill
@@ -22,8 +22,12 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 
 ## Journal (dated capture)
 - `NOTEBOOK.md` — running lab notebook (small findings).
-- `docs/YYYY-MM-DD-<slug>.md` — substantial records; find by convention (glob `docs/*.md` +
-  grep), not an enumerated list. Companion data in `docs/audit-benchmark/`.
+- `docs/YYYY-MM-DD - <name>.md`: substantial records (the dated form new records take since
+  2026-09-06; older ones keep `YYYY-MM-DD-<slug>.md`); find by convention (glob `docs/*.md` +
+  grep), not an enumerated list; a dated citation resolves by grep over the journal and its
+  overflow directories. Companion data in `docs/audit-benchmark/`.
+- `CHANGELOG.md`: shipped history, one dated entry per shipped unit, newest first (moved out
+  of ROADMAP 2026-10-12).
 - `docs/archive/` — spent dated records (executed plans, superseded drafts) moved out of the
   live journal by MAINTAIN; same find-by-convention rule.
 
@@ -50,12 +54,5 @@ skills here, **never** in `~/.claude/` directly (no version control there).
   "is there a standing truth here, and where does it go?" — and let the answer ride the ship
   commit (one reference-doc line, or an explicit "not standing yet"). MAINTAIN stays the
   backstop, not the pipeline (DOMAIN § When to reach).
-- **openspec CLI:** always `openspec archive <name> --yes` (it prompts interactively and dies
-  in non-interactive shells) and judge success by **output text, never exit code** (archive
-  can exit 0 on a validation abort — don't chain with `&&`). The spec validator wants
-  SHALL/MUST on a requirement's **lead line**, and only validates files a change touches.
-  A MODIFIED block may not drop a scenario name the main spec still has, and a rename
-  counts as a drop: rename the `#### Scenario:` heading directly in the main spec and
-  carry the new name in the delta. A change with no delta (a Purpose edit, prose only)
-  needs `skip_specs: true` in its `.openspec.yaml` or validate refuses it with "no
-  deltas". (Field origins: NOTEBOOK 2026-07-07/10, 2026-09-26.)
+- **openspec CLI gotchas** (archive with `--yes`, judge by output text, the validator's
+  rules): `.claude/rules/openspec.md`, which loads when an openspec file is touched (S8).

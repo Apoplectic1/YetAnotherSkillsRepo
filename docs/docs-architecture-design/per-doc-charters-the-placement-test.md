@@ -9,7 +9,7 @@
 A one-line charter per reference doc makes the Phase 2 audit objective (does this section
 match its doc's charter? else move / cross-ref-and-delete). The table is **WBPP's instance**
 (the grounding worked example — charters are per-project; the general roles live in the
-SETUP-skill spec table below):
+table in § SETUP-skill spec):
 
 | Doc | Charter |
 |---|---|

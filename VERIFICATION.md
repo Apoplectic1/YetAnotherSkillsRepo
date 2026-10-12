@@ -37,7 +37,7 @@ copies are still disposable: copy to scratch, `git init`, baseline marker commit
 The maintain skill's scripts get a script-level check, no subagent: `journal_index.py` on a
 scratch copy of `harness/journal-index-fixture/NOTEBOOK/` must reproduce that fixture's
 `INDEX.expected.md` byte for byte, and the sharpest regression for an indexer change is to
-regenerate every existing `INDEX.md` in the portfolio (the HDL tree's six) on copies and
+regenerate every existing `INDEX.md` in the portfolio (the HDL tree's) on copies and
 diff old against new: no entry line may change (2026-10-12, `rolled-index-titled-entries`).
 The audit skill's `chain_budget.py` has the same shape: `harness/chain-fixture/gen_chain_fixture.py`
 writes a tree with exact sizes into scratch, and the script's output for its leaf must match

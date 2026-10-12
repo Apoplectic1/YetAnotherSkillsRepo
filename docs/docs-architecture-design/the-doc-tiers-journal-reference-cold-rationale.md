@@ -14,7 +14,8 @@ lengthy evergreen "why" that isn't needed for immediate reasoning.
 ```
 JOURNAL  (capture; the user's divide-and-conquer instinct — KEEP IT) — THREE members
   (two at first; CHANGELOG since 2026-07-12), each with an overflow directory since 2026-09-26:
-  • docs/YYYY-MM-DD-<slug>.md  = per-topic substantial dated records (decision/review/design)
+  • docs/YYYY-MM-DD - <name>.md = per-topic substantial dated records (decision/review/design;
+                               the project's stated pattern, older files keep the hyphen form)
   • NOTEBOOK.md              = the running lab notebook (short chronological empirical findings)
   • CHANGELOG.md             = shipped units, dated, newest first
   • NOTEBOOK/, CHANGELOG/     = a journal's rolled-over periods: frozen files by first date + INDEX.md

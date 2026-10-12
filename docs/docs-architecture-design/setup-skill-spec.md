@@ -77,7 +77,7 @@ own unit. Cross-boundary references (root↔sub) are kept correct/consistent. Cl
 recursion *from* the root is an acceptable **future** enhancement, but flag-and-skip is the safe
 v1. *(Status 2026-07-06/07: AUDIT had already shipped flag-and-skip; SETUP's side is now encoded
 after RED→GREEN — baseline no-touch held 4/4, but 0/4 gave the run-from-sub-dir redirect, so SETUP
-gained the structural flag-and-skip + redirect line. See the fix-batch behavioral record above.)*
+gained the structural flag-and-skip + redirect line. See the fix-batch behavioral record in § The phased arc.)*
 
 **Coexist, never clobber:** TSM already has `openspec/` + opsx + `.superpowers/sdd/`; TP has
 `.claude/skills/verify-ui`. SETUP augments an existing setup.

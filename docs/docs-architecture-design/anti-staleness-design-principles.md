@@ -14,7 +14,7 @@ Antidotes, in severity order:
    into on-demand reference docs read fresh. (= the "always-on lean," approved.) Since
    2026-10-12 the layer is a scope, not a size: an item stays always-on only if every
    session launched there needs it and it changes less often than the audit cadence; the
-   chain a session loads is measured (the section "Always-on budget" below).
+   chain a session loads is measured (§ Always-on budget: 2026-10-12).
 2. **Single-source every fact; cross-reference, never copy.** Duplication is the #1 drift
    source. Charters enforce one home per fact.
 3. **Make currency legible.** Dated journal files are *good* here (self-evidently snapshots).

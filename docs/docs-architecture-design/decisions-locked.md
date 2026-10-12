@@ -7,7 +7,7 @@
 ## Decisions locked
 
 - CLAUDE.md = router; three-tier (journal → reference · cold rationale, refined from two
-  2026-06-28 — see the tier section above) + graduation/prune workflow adopted.
+  2026-06-28: see § The doc tiers: journal · reference · cold rationale) + graduation/prune workflow adopted.
 - Convention-routing for the journal; enumerate-by-name only the stable reference set; **no
   DOCS.md**. Purpose/use-centric router lines.
 - Always-on lean: agent will propose cuts to CLAUDE.md (volatile detail down, routing +

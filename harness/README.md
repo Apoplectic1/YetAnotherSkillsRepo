@@ -30,7 +30,7 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   leave as the index when applied to that doc with `--today 2026-10-12` (the parts are the
   doc's own sections and reconstruct it byte for byte).
 - `tidepool-fixture-variants/fat-gotchas/` (2026-10-12, `always-on-budget`): the router with a
-  10 KB pack of true, `tides.py`-only gotchas beside its three load-bearing ones: content
+  6.6 KB pack of true, `tides.py`-only gotchas beside its three load-bearing ones: content
   passes, breadth fails. Cells ST1 to ST3 in the catalog. Its container twin is
   `reefstack-fixture-variants/fat-chain/` (a root router carrying one sub-project's gotcha
   pack and a glossary; cells CH1, CH2, SC1 to SC3 in `catalog-reefstack.md`).
