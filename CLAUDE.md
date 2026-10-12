@@ -11,9 +11,12 @@ skills here, **never** in `~/.claude/` directly (no version control there).
 - `VERIFICATION.md` — RED/GREEN subagent harness, on-demand fixture recipe + reset contract.
 - `DOMAIN.md` — consumer portfolio (Astronomy constellation + WBPP) + authoring conventions.
 - `RELEASING.md` — `deploy.sh` mechanics + branch policy (`dev` authoring, only `main` deploys).
-- `docs/docs-architecture-design.md` — **canonical design**: full spec, tier model, RED/GREEN
-  provenance. Every deployed skill footer links this file **by public GitHub URL** (`main`) —
-  move, split, or rename it and every shipped footer breaks. (Benchmark figures ride in skill
+- `docs/docs-architecture-design.md`: the **canonical design**, full spec, tier model, RED/GREEN
+  provenance. Since 2026-10-12 it is the **index** of `docs/docs-architecture-design/` (a T5
+  split, thirteen parts named by their headings; a section citation resolves by grep over the
+  file and the directory; the parts are reference, not dated records, so they carry no date
+  prefix). Every deployed skill footer links this file **by public GitHub
+  URL** (`main`): move or rename it and every shipped footer breaks. (Benchmark figures ride in skill
   text as uncited claims; `docs/2026-06-29-audit-model-benchmark.md` is no longer name-cited
   from skill text.)
 

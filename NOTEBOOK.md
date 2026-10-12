@@ -5,6 +5,19 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **T5 on this repo's own design doc: the first real split, and a naming rule it
+  met.** `docs/docs-architecture-design.md` was 65.6 KB in thirteen `##` topics, one of them
+  ("The phased arc", 34 KB, nineteen dated provenance blocks) journal-shaped; `split_doc.py`
+  made thirteen parts and a 4.6 KB index, the arc one part under budget, the parts
+  reconstructing the committed original byte for byte, the two live section citations (both
+  in this NOTEBOOK) resolving by grep into `the-phased-arc.md`. The deployed footers' URL
+  still lands on the file, now the index, which reads better than 65 KB did. The A2 reading
+  (the dated blocks to a CHANGELOG) was the judgment call T5 exists to skip; it stays open
+  for a later maintain. The naming rule: the owner's global rule dates every new file under
+  `docs/`, and the parts live under `docs/` only because the design doc does; the owner
+  chose heading names (the parts are reference, not records; the grep form and the script
+  depend on them) and the router says so. A split directory under `docs/` is the one shape
+  where T5 and that rule meet; elsewhere reference docs live at the repo root.
 - 2026-10-12: **A tool the rule names is read as part of the rule** (change
   `reference-doc-split`; record `docs/2026-10-12 - reference-doc-split-red-green.md`). Every
   GREEN rep ran `split_doc.py`'s dry run before planning and reasoned from its output: the

@@ -12,7 +12,8 @@ design doc: `docs/docs-architecture-design.md`.
   `chain_budget.py` (the always-on chain, R30) and `docs-architecture-setup/` carries
   `split_doc.py` (the reference-doc split, T5); the pilot's copies under
   `docs/2026-09-26 - journal-rollover/` are the frozen record of the first run.
-- `docs/` — journal (dated records) + the canonical design doc + benchmark data
+- `docs/` — journal (dated records) + the canonical design doc (its index, with the parts in
+  `docs/docs-architecture-design/`) + benchmark data
   (`docs/audit-benchmark/` — scripts, sweeps, raw workflow outputs behind the 2026-06-29 note);
   spent dated records move to `docs/archive/` (MAINTAIN's archive disposition).
 - `deploy.sh` — copies `skills/*/` → `~/.claude/skills/`, marker-stamps each copy, prunes
