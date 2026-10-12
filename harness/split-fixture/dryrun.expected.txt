@@ -36,9 +36,9 @@ section citations in this repository's Markdown: 16 (each resolves by grep after
   ARCHITECTURE.md:538: a candidate station's datum and hi/lo availability before adding it (see § Adding a station:
   ARCHITECTURE.md:540: (`KeyError: 'predictions'`, see § Errors and exit paths) rather than as a registry miss.
   ARCHITECTURE.md:610: directory has no writer until the refresh script lands (§ Station registry and the
-lines a move one directory down leaves stale (relative paths, "this file"): 4 (fix after the apply)
-  ARCHITECTURE/testing-and-the-pure-core.md:33: does not belong in this file and there is no second file for it yet (the scoring-regression
-  ARCHITECTURE/state.md:4: moon-phase factor 2026-06-24 (the shipped history is in this file's sibling `../ROADMAP.md`
-  ARCHITECTURE/state.md:5: until a CHANGELOG exists). The station refresh script is in progress; nothing in this file
-  ARCHITECTURE/state.md:6: describes it yet. The archived designs beside this file (`../openspec/changes/archive/`)
+lines a move one directory down leaves stale (relative paths, "this file"): 4 (fix after the apply; the numbers are the parts' lines)
+  ARCHITECTURE/testing-and-the-pure-core.md:39: does not belong in this file and there is no second file for it yet (the scoring-regression
+  ARCHITECTURE/state.md:10: moon-phase factor 2026-06-24 (the shipped history is in this file's sibling `../ROADMAP.md`
+  ARCHITECTURE/state.md:11: until a CHANGELOG exists). The station refresh script is in progress; nothing in this file
+  ARCHITECTURE/state.md:12: describes it yet. The archived designs beside this file (`../openspec/changes/archive/`)
   dry run: --apply writes the parts and the index

@@ -16,14 +16,22 @@ section closed 2026-07-07 with nothing open.
   The Arty's ARCHITECTURE split landed 2026-10-12 (seven parts, byte-exact, the first field
   apply of T5; docs only). The ATML umbrella's ten held promotions stay held: they are Arty
   work, and the Arty is halted at contract v5 with no further work until an unhalt (its
-  ROADMAP; the 2026-09-26 maintain report sequences the landings after it). The three
-  routers' leans (HlsLibrary 39.9 KB, the Arty's 26.6 KB, the umbrella's 12.9 KB) and the
-  umbrella's DOMAIN and ROADMAP splits were planned by SETUP reps the same day; the two
-  changes they waited on (`s8-field-fixes`, `split-doc-field-fixes`) shipped that evening,
-  so they run next, from HDL sessions against the deployed text, each repository from its
-  own, re-planned (the per-file line and the homes' triggers change each lean's shape; the
-  plans in the pilot record are the starting point). The Arty's lean, docs and `.claude/`
-  only, is the owner's call under the halt, as the split was.
+  ROADMAP; the 2026-09-26 maintain report sequences the landings after it). Applied
+  2026-10-12 with the trimmed text (`docs/2026-10-12 - hdl-leans.md`): HlsLibrary's
+  router 39.9 KB to 5.1 KB with its set scaffolded, the umbrella's 12.8 KB to 7.1 KB with
+  ARCHITECTURE opened, DOMAIN and ROADMAP split and the CHANGELOG rolled. Still open: the
+  Arty's router lean (26.6 KB, 346 lines; deferred under the halt, the owner's call), the
+  HDL router's and the owner's global file's own leans (the chains stay at 1.2x to 1.3x,
+  all of it theirs), and the umbrella's `ROADMAP/next-in-order.md` at 49.7 KB until its
+  items carry `###` headings.
+- **Next field test: EP7314600** (`F:\EMCORE\EP7314600\2026-10-02\EP7314600`, the
+  owner's suggestion 2026-10-12; SENSITIVE: nothing leaves the machine). The first look
+  with the three scripts: a conformant set (every doc charter'd and named), VERIFICATION
+  at 42.1 KB (T5), NOTEBOOK at 38.9 KB (a roll is close), an empty CHANGELOG with no dated
+  entries, and 20 unresolved paths that are mostly one convention (the docs write paths
+  relative to `Libero/EP7314600/`), which the scope seed should state once rather than
+  list; a rolled NOTEBOOK with no maintain report yet (the first sweep starts the
+  watermark). Plan reps for SETUP, AUDIT and MAINTAIN, then the applies the owner picks.
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions. (a) Astronomy container: done (the portfolio
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found

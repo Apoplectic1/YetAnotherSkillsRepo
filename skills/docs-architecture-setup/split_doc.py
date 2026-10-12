@@ -115,6 +115,14 @@ def stale_lines(section):
     return [(i, l.strip()) for i, l in enumerate(section.split('\n'), 1) if STALE.search(l)]
 
 
+def part_head(stem, fname, h, today):
+    """The lines a part opens with before its section text; a stale line's number in the part counts them."""
+    return (f"# {stem}: {h} (part of ../{fname})\n\n"
+            f"> One topic of `../{fname}`, split out on {today} when the file passed its\n"
+            f"> budget; the heading keeps its text, so \"{stem} § {h}\" resolves by grep over\n"
+            f"> the file and `{stem}/`. The index is `../{fname}`.\n\n")
+
+
 def main(argv):
     if len(argv) < 2:
         sys.exit(__doc__)
@@ -181,8 +189,8 @@ def main(argv):
         print(f'  {p}:{i}: {line[:110]}')
     if len(cites) > 40:
         print(f'  ... {len(cites) - 40} more')
-    stale = [(sl, i, l) for h, s, sl in parts for i, l in stale_lines(s)]
-    print(f'lines a move one directory down leaves stale (relative paths, "this file"): {len(stale)} (fix after the apply)')
+    stale = [(sl, i + part_head(stem, fname, h, today).count('\n'), l) for h, s, sl in parts for i, l in stale_lines(s)]
+    print(f'lines a move one directory down leaves stale (relative paths, "this file"): {len(stale)} (fix after the apply; the numbers are the parts\' lines)')
     for sl, i, l in stale[:40]:
         print(f'  {stem}/{sl}.md:{i}: {l[:110]}')
     if len(stale) > 40:
@@ -193,11 +201,7 @@ def main(argv):
 
     os.makedirs(odir)
     for h, s, sl in parts:
-        head = (f"# {stem}: {h} (part of ../{fname})\n\n"
-                f"> One topic of `../{fname}`, split out on {today} when the file passed its\n"
-                f"> budget; the heading keeps its text, so \"{stem} § {h}\" resolves by grep over\n"
-                f"> the file and `{stem}/`. The index is `../{fname}`.\n\n")
-        open(os.path.join(odir, sl + '.md'), 'w', encoding='utf-8', newline='').write(head + s)
+        open(os.path.join(odir, sl + '.md'), 'w', encoding='utf-8', newline='').write(part_head(stem, fname, h, today) + s)
     note = (f"Split (since {today}): past {budget // 1024} KB this doc's `##` topics live in `{stem}/`, one\n"
             f"file per topic named by its heading, and this file is the index. A section citation\n"
             f"(\"{stem} § <heading>\", or an unambiguous short form of the heading) resolves by\n"

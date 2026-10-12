@@ -5,6 +5,13 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **`split_doc.py` numbers a stale line as the part's line** (no change: a
+  script fix from the HDL field run, `docs/2026-10-12 - hdl-leans.md`). The dry run's
+  stale-line numbers omitted the six-line preamble each part opens with, so an operator
+  editing by line number hit the wrong lines; the numbers now count the preamble and the
+  listing says they are the parts' lines; `harness/split-fixture/dryrun.expected.txt`
+  regenerated. The field run itself (HlsLibrary and the ATML umbrella leaned with the
+  trimmed SETUP, nothing restored) is consumer work, recorded, not shipped.
 - 2026-10-12: **Tools over prose, MAINTAIN: `sweep.py`, and the text to its actions**
   (change: `maintain-tools-first`; the last of the three trims). Before the run the sweep
   script prints the live journals against their budget, the rolled files newer than the last

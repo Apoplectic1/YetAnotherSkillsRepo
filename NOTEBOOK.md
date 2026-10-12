@@ -5,6 +5,26 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The HDL leans applied with the trimmed SETUP: two real routers, one
+  tool defect, and the first lean whose reps chased nothing** (record
+  `docs/2026-10-12 - hdl-leans.md`). HlsLibrary's router 39.9 KB to 5.1 with its set
+  scaffolded and 16.7 KB of gotchas behind two rule files and a skill; the ATML
+  umbrella's 12.8 to 7.1 with ARCHITECTURE opened, its DOMAIN and ROADMAP split and its
+  CHANGELOG rolled; the Arty's deferred under the halt. The morning's pilot reps, under
+  the 14.6 KB text, had each chased the chain; the evening's, under 10.4 KB with
+  `survey.py`, named the ancestors' and the owner's shares as theirs in their first
+  paragraph and planned from the survey's lines. What the applies taught: the moves
+  are safest as line ranges sliced by a script with anchors, then a lost-nothing check
+  that greps every old line in the new files (24 and 71 lines not found, every one
+  expected); a table moves whole or not at all; a bullet splits at a sentence boundary
+  or not at all. The tool defect: `split_doc.py`'s dry run numbered the stale lines
+  without the part's six-line preamble, so the operator's first `sed` hit the wrong
+  lines and changed nothing (a line-addressed edit that misses is silent); fixed, the
+  dry run now says the numbers are the parts' lines. A second thing the field showed:
+  the survey's charter detector is a keyword test and says so now in the record, not
+  the code; both reps read past it. EP7314600 is next, the owner's suggestion: its
+  first look found one convention behind twenty seed lines (paths relative to the
+  Libero project directory), which the seed should state once.
 - 2026-10-12: **The third trim closes the family: MAINTAIN to 8.7 KB from 10.7 with
   `sweep.py`, nothing restored** (record `docs/2026-10-12 - maintain-tools-first-regression.md`).
   Five plan-only reps, 446k tokens, the costliest regression of the three: the big journal's
