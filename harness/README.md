@@ -93,3 +93,7 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   baselined copies of the base TidePool, the reefstack root and the `s8-field` variant
   (`--root <copy> --global none --memory none`), byte-exact; the baseline commit is what
   makes "git: clean tree" true.
+- `scope-fixture/` (2026-10-12, `audit-tools-first`): `scope.py`'s expected output on
+  baselined copies of the base TidePool, the `audit-scope` variant from `PulseMonitor/`
+  (`--root` the copy's root, so the ancestor router is found) and the `fat-chain` root,
+  byte-exact.

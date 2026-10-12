@@ -1,0 +1,30 @@
+docs-architecture-audit scope (a line ending in -> <rule> names the rule that governs it)
+
+the router
+  CLAUDE.md 24 lines, 1.1 KB (placement-audited itself: R26, R30)
+
+in scope (R12)
+  ARCHITECTURE.md     1.6 KB   named by the router
+  ROADMAP.md          3.4 KB   named by the router
+  DOMAIN.md           0.9 KB   named by the router
+  VERIFICATION.md     0.3 KB   named by the router
+
+out of scope
+  journal, never currency-audited: NOTEBOOK.md; docs/ (1 unrouted dated records) -> R14
+  archives: openspec/changes/archive/ -> R14
+  excluded trees present: .claude/, openspec/ (unrouted content; a router-named leaf is in) -> R13
+
+cold docs cited from the reference tier (consistency check only) -> R15
+  openspec/changes/archive/2026-06-08-three-factor-scoring/design.md, cited by ARCHITECTURE.md:27 (an archived design: its values are design-time, never a tier violation)
+
+structure
+  ROADMAP.md "Shipped history": 9 dated entries -> R25 (one structural flag, move-to CHANGELOG.md; the entries are journal-tier)
+  the chain (chain_budget.py) -> R30 (the row goes in the coverage note): total 1.1 KB, 293 tokens: within budget
+    this project's part 293; ancestors 0; the owner's global 0; memory index 0
+    files over their own line (200 lines, each leaned from its own place): none
+    largest: CLAUDE.md  (this project) (1.1 KB, 24 lines, 293 tokens)
+
+cross-references that do not resolve (the seed of the R19 pass; code identifiers are the workers')
+  ROADMAP.md:6 `scripts/refresh_stations.py`: not in the tree -> R19
+  ROADMAP.md:61 `cache.py`: not in the tree -> R19
+  (19 paths and section citations resolve)

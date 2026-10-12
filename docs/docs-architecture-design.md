@@ -43,4 +43,4 @@ file per topic named by its heading, and this file is the index. A section citat
 - **Scope from the routers: 2026-10-12** (`docs-architecture-design/scope-from-the-routers-2026-10-12.md`, 1.0 KB): AUDIT's scope follows the routers rather than directories or names: a router-named spec is
 - **Always-on budget: 2026-10-12** (`docs-architecture-design/always-on-budget-2026-10-12.md`, 4.4 KB): The 40 KB gate was the harness's per-file warning applied to one file: the right budget at
 - **Open / still to decide** (`docs-architecture-design/open-still-to-decide.md`, 0.7 KB): *(All three original opens resolved by execution — closed 2026-07-07, resolutions inline.)*
-- **Tools over prose: 2026-10-12** (`docs-architecture-design/tools-over-prose-2026-10-12.md`, 2.1 KB): By the evening of 2026-10-12 the three skills weighed 38.7 KB (9.7k tokens), and the field
+- **Tools over prose: 2026-10-12** (`docs-architecture-design/tools-over-prose-2026-10-12.md`, 2.8 KB): By the evening of 2026-10-12 the three skills weighed 38.7 KB (9.7k tokens), and the field

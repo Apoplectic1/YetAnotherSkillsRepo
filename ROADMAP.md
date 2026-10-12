@@ -5,15 +5,14 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **Tools over prose, AUDIT and MAINTAIN** (2026-10-12, after `setup-tools-first`; the
-  owner's direction: remove the bloat, favor tools over prose): `scope.py` beside AUDIT (the
-  in-scope set from the router: the named docs, a split index's parts, the router-named
-  specs, the exclusions it skips, the sub-projects it flags; R12, R13, R16 as lines), then
-  R30, R18 to R24 and R29 to their actions; `report_check.py` beside MAINTAIN (M16's three
-  required lines, the ROADMAP lines M13 and M14 require), then M17 and M9/M14 to their
-  actions. Each its own change, each gated by a representative regression GREEN (one
-  plan-only or report-only rep per fixture family), the trimmed text claiming nothing new.
-  Target about half of today's 13.4 KB and 10.7 KB.
+- **Tools over prose, MAINTAIN** (2026-10-12, after `setup-tools-first` and
+  `audit-tools-first`; the owner's direction: remove the bloat, favor tools over prose):
+  `report_check.py` beside MAINTAIN (M16's three required lines, the ROADMAP lines M13 and
+  M14 require, a dated report's name), then M17 and M9/M14 to their actions, the rationale
+  out. Its own change, gated by a representative regression GREEN (one report-only rep per
+  fixture family: the base TidePool's CB and PR cells, `fat-arch` FA1 and FA2, `big-journal`
+  RO1 to RO5, the reefstack PL1 and PL2), the trimmed text claiming nothing new. Target
+  about half of today's 10.7 KB.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS
@@ -45,6 +44,7 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change `audit-tools-first`; 13.4 KB to 10.2 KB; a regression GREEN, five families, one clause restored and re-run to a pass: R29's cheap-run mapping)
 - 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change `setup-tools-first`; 14.6 KB to 10.4 KB; a regression GREEN, five families, every cell that fired held)
 - 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
 - 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)

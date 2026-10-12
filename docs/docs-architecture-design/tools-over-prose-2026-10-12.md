@@ -20,8 +20,16 @@ finding with the rule at the end; the text says what to do; mechanism stays only
 acts on it (S8's homes with their load triggers); rationale lives here; provenance in the
 footer's link. SETUP first: `survey.py` (the shapes, the set and its charters, the router's
 names, exclusions and chain row, journals and reference docs past budget, embedded history,
-the ignore file, the git state) and the text to 10.4 KB from 14.6. AUDIT and MAINTAIN follow
-in their own changes (`scope.py`, the in-scope set from the router; `report_check.py`, the
+the ignore file, the git state) and the text to 10.4 KB from 14.6. AUDIT next, the same
+evening: `scope.py` (what is in and out with its rule, the ancestor routers, the cold docs
+the reference tier cites, the structural counts, the chain row with its largest items, and
+the seed of the cross-reference pass: every path and section citation in the in-scope docs
+that does not resolve, a rename-orphan named with where its basename now lives, a sibling's
+file named as the ancestor's; `--lens release` for R29's phrases) and the text to 10.2 KB
+from 13.4. Its regression restored one sentence, R29's "asks for one round or a cheap run
+and the run names which fits": cut as a restatement of the principle before it, it was the
+mapping from a user's words to a mode, and the rep without it ran the full text. A sentence
+that maps an input to an action is action. MAINTAIN follows (`report_check.py`, the
 report's required lines).
 
 The gate changes with the shape: a trim claims nothing new, so it earns no RED; it ships

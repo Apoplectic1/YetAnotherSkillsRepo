@@ -5,6 +5,24 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The second trim, AUDIT to 10.2 KB from 13.4 with `scope.py`, and the first
+  clause a regression restored** (record `docs/2026-10-12 - audit-tools-first-regression.md`).
+  Five report-only reps, 344k tokens, then one re-run. The restored clause is R29's second
+  sentence, "The user names one, or asks for one round or a cheap run and the run names
+  which fits and says so": I had cut it as a restatement of "invoked by the user, never
+  chosen by the run", and the rep asked to "run the audit cheaply" read the principle
+  literally and ran the full text, mode unnamed. The sentence is not rationale; it is the
+  mapping from a user's words to a mode, and a rule's second sentence can be the only place
+  a mapping lives. The lesson for the next trim: a sentence that maps an input to an action
+  is action, however much it resembles the sentence before it. The other finding was the
+  tool's: the PulseMonitor rep overrode `scope.py`, which had listed the router-named
+  `docs/2026-07-01 - probe-wiring.md` as unrouted because the owner's dated form has spaces
+  and a token with spaces was not a path; the rep cited R12 and R2 and audited it, which is
+  the judgment the script exists to spare, and the fix shipped with the change. The seed
+  earned its place on the first run: the real dangling paths in every fixture (`cache.py`,
+  `scripts/refresh_stations.py`, `src/calib.py`, `src/sched.py`) and the sibling's
+  `SCHEMA.md` resolved under the ancestor, with the bare filenames that litter prose no
+  longer listed.
 - 2026-10-12: **The first trim: SETUP to 10.4 KB from 14.6 with `survey.py` beside it, and
   the regression found nothing to restore** (record
   `docs/2026-10-12 - setup-tools-first-regression.md`). Five plan-only reps, one per fixture

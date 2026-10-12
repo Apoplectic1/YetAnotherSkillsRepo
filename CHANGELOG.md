@@ -5,6 +5,24 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change:
+  `audit-tools-first`). The scope script prints what is in and out with its rule (the
+  router's names, the canonical set, a split index's parts, a router-named doc under
+  `docs/`, a router-named spec, a router-named leaf in an excluded tree; the journal,
+  archives, excluded trees, unnamed specs and sub-projects out), the ancestor routers, the
+  cold docs the reference tier cites, the structural counts (R25, a stale split index), the
+  chain row with its largest items, and the seed of the cross-reference pass (every path and
+  section citation that does not resolve, a rename-orphan named with where its basename
+  lives, a sibling's file named as the ancestor's); `--lens release` lists R29's lines. The
+  rules became their actions plus one boundary: 13.4 KB, 182 lines to 10.2 KB, 149 lines.
+  The gate: five report-only reps, one per family (the base TidePool, `audit-scope` from
+  PulseMonitor, the `fat-chain` root and ReefDash beneath it, `release-lens`); every cell
+  held but one: the release-lens rep did not name the mode, because the trim had cut R29's
+  mapping sentence ("asks for one round or a cheap run and the run names which fits");
+  restored whole and re-run, it named `release-close`. The PulseMonitor rep caught the
+  script misreading a spaced dated name; fixed. Byte-exact on three fixture copies
+  (`harness/scope-fixture/`). MAINTAIN follows. Record:
+  `docs/2026-10-12 - audit-tools-first-regression.md`.
 - 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change:
   `setup-tools-first`; the owner's direction after the day's eight changes: remove the
   bloat, favor tools over prose). The survey prints one line per finding with the rule it

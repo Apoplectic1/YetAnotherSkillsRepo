@@ -1,0 +1,28 @@
+docs-architecture-audit scope (a line ending in -> <rule> names the rule that governs it)
+
+the router
+  CLAUDE.md 18 lines, 0.8 KB (placement-audited itself: R26, R30)
+  ancestor router ../CLAUDE.md (2.1 KB): loads in every session here; its weight is its own audit's (R30)
+
+in scope (R12)
+  ARCHITECTURE.md     0.2 KB   named by the router
+  ROADMAP.md          0.1 KB   named by the router
+  SCHEMA.md: named by the router outside the canonical set (line 7: "- `ARCHITECTURE.md` — poll loop + storage mechanics. `SCHEMA.md` — the `readings.db` contract.") -> R12
+  docs/2026-07-01 - probe-wiring.md: a dated doc the router names (line 8: "- `docs/2026-07-01 - probe-wiring.md`: current truth for the probe channel map and wiring;") -> R12 (named: in scope; its role is the line's)
+  openspec/specs/poll-loop/spec.md: a router-named spec: currency-audited, never edited -> R13 (a wrong SHALL is spec-change)
+
+out of scope
+  journal, never currency-audited: NOTEBOOK.md; docs/ (1 unrouted dated records) -> R14
+  excluded trees present: openspec/ (unrouted content; a router-named leaf is in) -> R13
+  specs the router does not name: openspec/specs/alert-webhook/spec.md -> R13 (out)
+
+structure
+  the chain (chain_budget.py) -> R30 (the row goes in the coverage note): total 2.9 KB, 741 tokens: within budget
+    this project's part 192; ancestors 549; the owner's global 0; memory index 0
+    files over their own line (200 lines, each leaned from its own place): none
+    largest: CLAUDE.md  (ancestor) (2.1 KB, 41 lines, 549 tokens)
+    largest: PulseMonitor/CLAUDE.md  (this project) (0.8 KB, 18 lines, 192 tokens)
+
+cross-references that do not resolve (the seed of the R19 pass; code identifiers are the workers')
+  ARCHITECTURE.md:4 `src/calib.py`: not in the tree -> R19
+  (10 paths and section citations resolve)

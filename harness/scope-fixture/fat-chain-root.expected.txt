@@ -1,0 +1,23 @@
+docs-architecture-audit scope (a line ending in -> <rule> names the rule that governs it)
+
+the router
+  CLAUDE.md 206 lines, 15.0 KB (placement-audited itself: R26, R30)
+
+in scope (R12)
+  ROADMAP.md          0.6 KB   named by the router
+
+out of scope
+  sub-project DoseKeeper/ (own CLAUDE.md): flag-and-skip, its own audit -> R16
+  sub-project PulseMonitor/ (own CLAUDE.md): flag-and-skip, its own audit -> R16
+  sub-project ReefDash/ (own CLAUDE.md): flag-and-skip, its own audit -> R16
+
+structure
+  the chain (chain_budget.py) -> R30 (the row goes in the coverage note): total 15.0 KB, 3850 tokens: within budget
+    this project's part 3850; ancestors 0; the owner's global 0; memory index 0
+    files over their own line (200 lines, each leaned from its own place): CLAUDE.md (this project)
+    largest: CLAUDE.md  (this project)  [over 200 lines] (15.0 KB, 206 lines, 3850 tokens)
+
+cross-references that do not resolve (the seed of the R19 pass; code identifiers are the workers')
+  CLAUDE.md:24 `src/calib.py`: not in the tree -> R19
+  CLAUDE.md:24 `calib.py`: not in the tree -> R19 (4 more occurrences)
+  (7 paths and section citations resolve)

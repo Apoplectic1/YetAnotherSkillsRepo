@@ -52,6 +52,10 @@ are dates it must refuse (2026-10-12, `split-doc-field-fixes`). Its `survey.py`,
 baselined copies (the harness recipe) of the base TidePool, the reefstack root and the
 `s8-field` variant with `--root <copy> --global none --memory none`, must print
 `harness/survey-fixture/<name>.expected.txt` byte for byte (2026-10-12, `setup-tools-first`).
+The audit skill's `scope.py`, run the same way on baselined copies of the base TidePool, the
+reefstack `audit-scope` variant from `PulseMonitor/` (`--root` the copy's root) and the
+`fat-chain` root, must print `harness/scope-fixture/<name>.expected.txt` byte for byte
+(2026-10-12, `audit-tools-first`).
 
 For tests the standing fixture can't serve (derivation caveat, or a different project
 shape), create one on demand: copy a **pristine, skills-unmodified** project —
