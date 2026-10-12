@@ -328,10 +328,11 @@ against the root's UTC rule, and `cross-ref+delete` for the restated TOML rule (
 leaving the valid pointer alone (AR4); on DoseKeeper (whose router never points up) both
 reps read the parent "as an ancestor, auto-loaded" unprompted and raised `flag-code-bug` for
 both violated conventions (AR5, AR6). Every rep listed "the skill does not say whether an
-ancestor router counts" among its uncertainties. Per the no-failure gate no R29 was added;
-the candidate text is held in the change's design record. The field case (the ATML audit,
-2026-09-24, a Sonnet fan-out over a 27 KB router) remains the evidence that a real run can
-miss it; if one does again, encode it then.
+ancestor router counts" among its uncertainties. Per the no-failure gate no ancestor-router
+rule was added to the skill; the candidate text (labeled R29 in that change's design record,
+a number the scoped-modes rule has since taken) is held there and takes the next free number
+if it ever ships. The field case (the ATML audit, 2026-09-24, a Sonnet fan-out over a 27 KB
+router) remains the evidence that a real run can miss it; if one does again, encode it then.
 
 #### Scenario: An uncited ancestor convention is checked
 - **WHEN** an ancestor router states a convention for every repository beneath it, the

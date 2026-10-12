@@ -5,12 +5,6 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **Spec wording cleanup** (2026-10-12, from the release-close audit, R27): one small change
-  to reword two spec passages the day's changes made stale: the github-distribution scenario
-  "Design doc stays at its published path" (the doc split on 2026-10-12 at the same path, so
-  the URL held; say "moved or renamed", not "split"), and the audit spec's 2026-10-12 status
-  note "no R29 was added" (R29 now exists as the scoped-modes rule; the note meant the held
-  ancestor-router candidate). Report: `docs/2026-10-12 - audit-report.md`.
 - **Always-on pilot on the HDL tree** (2026-10-12, consumer adoption after `always-on-budget`;
   from HDL sessions, each repository from its own): HlsLibrary's router (39.9 KB, 397 lines:
   the 12.6 KB element maps to the class READMEs that already hold them, the 16.2 KB of HLS

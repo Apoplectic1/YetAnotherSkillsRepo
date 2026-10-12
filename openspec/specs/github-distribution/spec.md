@@ -2,7 +2,9 @@
 
 ## Purpose
 The public GitHub distribution channel for this skills repo (`github.com/Apoplectic1/YetAnotherSkillsRepo`): what the public README must contain, the license, remote/push mechanics, and the consumer update flow. Distribution only — the local repo remains the source of truth.
+
 ## Requirements
+
 ### Requirement: Public README at repo root
 The repo SHALL carry a root `README.md` written purely for public GitHub consumers —
 potential-user-focused only — containing in order: a hero (name + one-liner + one philosophy
@@ -83,6 +85,9 @@ copies are self-contained for public consumers. Skill text SHALL NOT cite eviden
 author-local absolute path, and benchmark figures ride in skill text as uncited claims (the
 benchmark doc is not referenced by name from skill text). Repo-side descriptions of the
 citation form (README lab-notebook line, root CLAUDE.md gotcha) SHALL match this convention.
+Since 2026-10-12 the design doc is the index of a T5 split (`docs/docs-architecture-design/`)
+at the same path, so the URL still resolves; a split keeps the path, a move or a rename does
+not.
 
 #### Scenario: Deployed skill is self-contained
 - **WHEN** a public consumer reads a deployed SKILL.md outside this machine
@@ -90,7 +95,7 @@ citation form (README lab-notebook line, root CLAUDE.md gotcha) SHALL match this
   (no `E:\...` or other author-local paths anywhere in the text)
 
 #### Scenario: Design doc stays at its published path
-- **WHEN** repo maintenance considers moving or splitting `docs/docs-architecture-design.md`
+- **WHEN** repo maintenance considers moving or renaming `docs/docs-architecture-design.md`
 - **THEN** the root CLAUDE.md gotcha blocks it — the published URL in every deployed skill
-  footer must remain valid on `main`
-
+  footer must remain valid on `main`; a T5 split, which leaves the file in place as the
+  index, is allowed
