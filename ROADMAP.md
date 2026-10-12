@@ -49,7 +49,6 @@ section closed 2026-07-07 with nothing open.
 - 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
 - 2026-10-12: **`split_doc.py` field fixes: a journal refused, the scan kept inside the unit, stale lines listed, dated headings warned** (change `split-doc-field-fixes`; T5's same-run and single-part cases status-noted, RED 2/2 no failure)
 - 2026-10-12: **A reference doc past its budget splits by topic: SETUP T5, `split_doc.py`**
-- 2026-10-12: **Always-on is a scope, not a size: SETUP S8, AUDIT R30, `chain_budget.py`**
 
 The full history, every shipped unit as a dated entry, is `CHANGELOG.md` (newest
 first).
