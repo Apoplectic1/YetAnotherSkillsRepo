@@ -5,24 +5,6 @@
 section closed 2026-07-07 with nothing open.
 
 ## Open
-- **The rolled-journal index lists every entry's title, so it reads as a router** (2026-10-12,
-  from EP7314600's maintain sweep; the owner chose fix 1). `journal_index.py` takes a title only
-  from a dated line (`## YYYY-MM-DD title`, `- YYYY-MM-DD title`). A journal that writes a bare
-  date heading with its entries as bold-lead bullets beneath it (`## 2026-10-04`, then
-  `- **E24: the P6 addition closed.** ...`) gets one line per rolled day, the date alone:
-  EP7314600's `NOTEBOOK/INDEX.md` names none of the about 30 entries in its two rolled files
-  (43 KB), so a reader greps blind. The fix: under a dated heading, each top-level bullet whose
-  text starts with a bold run is an entry, its bold run the title as written (truncated at
-  `TITLE_MAX` as today), indented under the day; the existing dated-heading and dated-bullet
-  forms unchanged. A general pattern (an entry titled under a dated heading), not one
-  journal's habit, so the docstring, SKILL.md M17's "date and title" wording and SETUP's T1 say
-  it. Mechanical and byte-exact, so regenerating the index still takes no judgment and leaves
-  every existing line as it was. RED first: a fixture journal in that form, indexed by today's
-  script (date-only lines), then GREEN; check that `rollover.py`'s entry detection is unchanged
-  (it splits by date, not by bullet). Then redeploy (`deploy.sh`) and, in EP7314600, regenerate
-  `NOTEBOOK/INDEX.md` for its two rolled files (the rolled files stay byte for byte). Not
-  chosen: a hand-written summary line per rolled file (judgment per rollover, can miss an
-  entry); combining both stays open if the titles alone read poorly.
 - **Ancestor-router conventions** (2026-09-24, from the HDL tree's ATML audit): make the AUDIT
   sweep check a repository against its ancestor routers' conventions, not only its own
   charter, so an umbrella rule (the HDL tree's Zynq IRQ-wrapper check, its LF rule) is
@@ -92,6 +74,16 @@ section closed 2026-07-07 with nothing open.
   Trigger: onboarding `diagnose`/`graphify`/etc. into this repo.
 
 ## Recently shipped
+- 2026-10-12: **the rolled-journal index lists bold-lead entries under a bare date heading**
+  (change: `rolled-index-titled-entries`; from EP7314600's maintain sweep, whose
+  `NOTEBOOK/INDEX.md` named none of its about 30 entries; the owner chose this over a
+  hand-written summary line per rolled file, and combining both stays open if the titles
+  alone read poorly). `journal_index.py`: under a bare date heading, each top-level bullet
+  opening with a bold run is an entry titled by that run, indented under its day; under a
+  titled heading such a bullet stays body (the HDL notebooks' `- **What:**`). Script-level
+  RED/GREEN on `harness/journal-index-fixture/`; the six HDL indexes regenerate with no
+  entry line changed, Arty's `CHANGELOG/` gaining 33. M17, T1 and the design doc say it.
+  Record: NOTEBOOK 2026-10-12.
 - 2026-09-26 — **journal rollover shipped: MAINTAIN M17 to M19 + SETUP B2/B6/T1/T4** (change:
   `journal-rollover`; piloted on seven HDL journals the same day, then RED/GREEN on the new
   `big-journal` TidePool variant). A journal past 40 KB rolls its oldest whole days into a

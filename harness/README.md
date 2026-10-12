@@ -23,6 +23,10 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   newest-first bullet NOTEBOOK (the base's entries verbatim above 168 generated ones) and an
   ARCHITECTURE citation into an old entry; overlay it on a fixture copy, then baseline. Cells
   RO1 to RO5 in the catalog; `fat-arch/` is the earlier variant (`m9-hold-on-bloat`).
+- `journal-index-fixture/` (2026-10-12, `rolled-index-titled-entries`): one rolled TidePool
+  NOTEBOOK file in the bare-date form (`## 2026-10-01` over bold-lead bullets) and the
+  `INDEX.expected.md` the maintain skill's `journal_index.py` must reproduce byte for byte
+  from a copy of its `NOTEBOOK/`. A script-level check, no subagent run.
 - `catalog-tidepool.md` — the ground-truth catalog (planted items, expected RED/GREEN
   dispositions, must-nots). **Never place a copy inside the fixture tree** and never hand
   its path to a test agent — poisoned-fixture rule.

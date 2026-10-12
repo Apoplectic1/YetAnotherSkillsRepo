@@ -5,6 +5,21 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD-<slug>.md` (existing example: the 2026-06-29 audit
 worker-model benchmark).
 
+- 2026-10-12: **The rolled index's bold-lead rule had to be narrowed to a bare date heading**
+  (change `rolled-index-titled-entries`). The first cut indexed a bold-lead top-level bullet
+  under any dated heading; regenerating the six HDL rolled indexes caught it before GREEN:
+  under a titled heading (`## 2026-09-20 JTAG bring-up`) the notebooks write `- **What:**`,
+  `- **Surprise:**`, `- **Toolchain gotcha:**` as the entry's structure, and Arty's NOTEBOOK
+  alone would have gained 90 such lines. With the rule keyed on a *bare* date heading
+  (nothing after the date), five directories regenerate with every entry line as it was and
+  Arty's `CHANGELOG/` (bare dates over bold-lead shipped units) gains 33 real titles. Lesson:
+  for a mechanical indexer, regenerating every existing index in the portfolio is the
+  cheapest and sharpest regression, and it found a rule error a hand-written fixture had
+  passed. Adjacent: the six HDL `INDEX.md` headers still carry the pilot script's blockquote
+  (the em-dash clause, `grep -n "^## <date>"`), not the shipped script's; the next rollover
+  there rewrites those header lines and no entry line. Not standing; noted so the diff is
+  not read as drift. EP7314600's regeneration waits on a session in that tree (the auto-mode
+  classifier refused to list the L3Harris folder from here).
 - 2026-09-26: **Two more openspec CLI gotchas (1.13.2), from six spec-cleanup changes on the
   HDL tree.** (a) A MODIFIED requirement block is refused at validate and at archive when it
   drops a scenario name the main spec still carries, and a renamed scenario is a drop

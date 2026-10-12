@@ -51,7 +51,9 @@ record loses the why/when.
   slice). The oldest whole days move into a directory named for the file (`NOTEBOOK/`),
   one file per period named by its first date, each under the budget, about half the
   budget left live so it does not roll again the next day; entries move byte for byte and
-  keep their text; `INDEX.md` there lists every rolled entry by date and title. The scripts
+  keep their text; `INDEX.md` there lists every rolled entry by date and title (under a bare
+  date heading, each top-level bullet opening with a bold run is an entry titled by that run,
+  so a journal in that form is indexed by its titles, not by its dates alone). The scripts
   beside this SKILL.md do it: `python rollover.py <journal> [--apply]` (a dry run first),
   which handles `## YYYY-MM-DD` headings and `- YYYY-MM-DD` bullets, newest first or last,
   and refuses anything else (a journal without dated entries is a SETUP finding). A dated

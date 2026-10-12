@@ -60,8 +60,9 @@ projects.)*
   `CHANGELOG.md`, plus their **overflow directories** (`NOTEBOOK/`, `CHANGELOG/`): when a
   journal passes its budget (40 KB by default), its oldest whole days roll into a directory
   named for the file, one frozen file per period named by its first date, with an
-  `INDEX.md` listing every rolled entry (the maintain skill's job, its M17; entries keep
-  their text). Three-way split: small finding from doing the work → NOTEBOOK; **shipped
+  `INDEX.md` listing every rolled entry by date and title, a bold-lead bullet under a bare
+  date heading counting as an entry (the maintain skill's job, its M17; entries keep their
+  text). Three-way split: small finding from doing the work → NOTEBOOK; **shipped
   unit → CHANGELOG**; substantial standalone record → `docs/`.
 - **T2.** **reference** (current truth) = ARCHITECTURE / ROADMAP / DOMAIN / VERIFICATION —
   edited in place.

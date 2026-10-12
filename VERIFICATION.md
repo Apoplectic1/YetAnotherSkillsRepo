@@ -34,6 +34,12 @@ cataloged planted defects + verified genuine drift; ground truth in
 `harness/catalog-tidepool.md`, usage + derivation caveats in `harness/README.md`). Per-run
 copies are still disposable: copy to scratch, `git init`, baseline marker commit.
 
+The maintain skill's scripts get a script-level check, no subagent: `journal_index.py` on a
+scratch copy of `harness/journal-index-fixture/NOTEBOOK/` must reproduce that fixture's
+`INDEX.expected.md` byte for byte, and the sharpest regression for an indexer change is to
+regenerate every existing `INDEX.md` in the portfolio (the HDL tree's six) on copies and
+diff old against new: no entry line may change (2026-10-12, `rolled-index-titled-entries`).
+
 For tests the standing fixture can't serve (derivation caveat, or a different project
 shape), create one on demand: copy a **pristine, skills-unmodified** project —
 close-to-worst-case is best (missing/scattered docs, no router, drift) — to a scratch

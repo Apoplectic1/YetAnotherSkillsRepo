@@ -211,7 +211,9 @@ makes into it. So a journal past its budget (40 KB by default, about 10k tokens:
 unit, one worker's slice) rolls its oldest whole days into a directory named for the file
 (`NOTEBOOK/`), one frozen file per period named by its first date, each under the budget,
 half the budget kept live; entries move byte for byte; an `INDEX.md` lists every rolled entry
-and never goes stale, since the files it indexes never change. A dated citation resolves by
+by date and title (a bold-lead bullet under a bare date heading is an entry titled by its bold
+run, so a journal in that form reads as a router; change `rolled-index-titled-entries`,
+2026-10-12) and never goes stale, since the files it indexes never change. A dated citation resolves by
 grep over the file and the directory, so no pointer changes. Open threads are carried into
 the live file before their entry rolls; a graduate from a rolled entry takes `cross-ref` in
 the reference doc or `stub`, never an edit; a sweep records the newest rolled file it covered
