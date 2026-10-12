@@ -5,6 +5,21 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **The third trim closes the family: MAINTAIN to 8.7 KB from 10.7 with
+  `sweep.py`, nothing restored** (record `docs/2026-10-12 - maintain-tools-first-regression.md`).
+  Five plan-only reps, 446k tokens, the costliest regression of the three: the big journal's
+  175 entries read by one agent, which clustered them into nine graduates with a scratch
+  script of its own. What the day's three regressions say together: 15 families, 16 reps,
+  one sentence restored (R29's mapping), and the trimmed texts produced the morning's plans
+  in every other cell. The tools changed the reps' work more than the trims changed their
+  output: every rep quoted its script and planned from the lines, several asked whether the
+  script's words were binding, and the one defect each script had was found by a rep in its
+  first run (a spaced dated name for `scope.py`, a negated "none" for `sweep.py --check`).
+  The check is new in kind: the first script in the family that reads what the skill wrote
+  rather than what the project holds, and the reps wrote their reports to pass it before a
+  report existed, which is the point of a lint. Closing numbers: 38.7 KB of skill text at
+  the start of the day, 29.3 KB at the end, about 7.3k tokens from 9.7k, four scripts
+  beside three skills.
 - 2026-10-12: **The second trim, AUDIT to 10.2 KB from 13.4 with `scope.py`, and the first
   clause a regression restored** (record `docs/2026-10-12 - audit-tools-first-regression.md`).
   Five report-only reps, 344k tokens, then one re-run. The restored clause is R29's second

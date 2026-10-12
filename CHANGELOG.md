@@ -5,6 +5,20 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **Tools over prose, MAINTAIN: `sweep.py`, and the text to its actions**
+  (change: `maintain-tools-first`; the last of the three trims). Before the run the sweep
+  script prints the live journals against their budget, the rolled files newer than the last
+  report's watermark, the dated records, the archived designs, the targets with their sizes
+  (past the budget: a hold; past half of it: the M9 content test), a portfolio DOMAIN or its
+  absence, the last report and the slices; after the run, `--check` reads the report back
+  and names each required line it lacks (M16's three, the ROADMAP lines M13, M14 and M15
+  require). The rules became their actions plus one boundary: 10.7 KB, 151 lines to 8.7 KB,
+  130 lines. The gate: five plan-only reps (the base TidePool, `fat-arch`, `big-journal`,
+  the reefstack from ReefDash with and without a portfolio DOMAIN), 446k tokens; every cell
+  held, nothing restored. The reps found the check counting "held: none" as a hold; fixed,
+  a third crafted fixture added. Byte-exact on three fixture copies and three crafted
+  reports (`harness/sweep-fixture/`). The family: 29.3 KB of skill text from 38.7 this
+  morning. Record: `docs/2026-10-12 - maintain-tools-first-regression.md`.
 - 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change:
   `audit-tools-first`). The scope script prints what is in and out with its rule (the
   router's names, the canonical set, a split index's parts, a router-named doc under

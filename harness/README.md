@@ -97,3 +97,10 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   baselined copies of the base TidePool, the `audit-scope` variant from `PulseMonitor/`
   (`--root` the copy's root, so the ancestor router is found) and the `fat-chain` root,
   byte-exact.
+- `sweep-fixture/` (2026-10-12, `maintain-tools-first`): `sweep.py`'s expected output in the
+  sources mode on copies of the base TidePool, `big-journal` and `fat-arch` (the variant's
+  two NOTEBOOK entries inserted above the base's, without the append file's own heading
+  line), and in `--check` mode on `checked/`, `unchecked/` and `empty/`, three crafted mini
+  projects holding only a maintain report and a ROADMAP (one carrying every required line,
+  one carrying none, one with nothing to persist and "none" lines that must not count);
+  all three are test content, not fixtures for reps.

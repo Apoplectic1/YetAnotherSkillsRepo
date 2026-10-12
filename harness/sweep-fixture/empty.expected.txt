@@ -1,0 +1,9 @@
+docs-architecture-maintain check of docs/2026-10-12-maintain-report.md (a line ending in -> <rule> names what is missing)
+
+  the name: dated
+  prune/archive candidates: "- prune candidates: none found"
+  net reference-tier delta: "- net reference-tier delta: +1 VERIFICATION bullet, 0 removed"
+  watermark: "- watermark: no rolled files"
+  flag-code-bug in the report: none
+  held promotions: none mentioned
+  portfolio-level graduates: none mentioned

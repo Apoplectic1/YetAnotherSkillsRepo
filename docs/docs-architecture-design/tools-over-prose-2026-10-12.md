@@ -29,8 +29,17 @@ file named as the ancestor's; `--lens release` for R29's phrases) and the text t
 from 13.4. Its regression restored one sentence, R29's "asks for one round or a cheap run
 and the run names which fits": cut as a restatement of the principle before it, it was the
 mapping from a user's words to a mode, and the rep without it ran the full text. A sentence
-that maps an input to an action is action. MAINTAIN follows (`report_check.py`, the
-report's required lines).
+that maps an input to an action is action. MAINTAIN last: `sweep.py` in two modes, the
+sources and budgets before the run (the journals against their budget, the rolled files
+newer than the last report's watermark, the dated records, the archived designs, the targets
+with a half-budget nudge to M9's content test, a portfolio DOMAIN or its absence) and
+`--check` after it, which reads the run's own report back and names each required line it
+lacks (M16's three, the ROADMAP lines M13, M14 and M15 require): the one output reps had
+reliably omitted is now a lint, not a sentence to remember. The text to 8.7 KB from 10.7.
+The family after the three trims: 29.3 KB of skill text from 38.7, about 7.3k tokens from
+9.7k, with four scripts beside the three skills (`survey.py`, `split_doc.py`, `scope.py`
+with `chain_budget.py`, `sweep.py` with `rollover.py` and `journal_index.py`) carrying what a
+reader used to be told to detect.
 
 The gate changes with the shape: a trim claims nothing new, so it earns no RED; it ships
 when the representative cells still pass with the trimmed text (one plan-only rep per

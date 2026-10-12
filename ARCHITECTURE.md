@@ -8,7 +8,8 @@ design doc: `docs/docs-architecture-design.md`.
 ## Layout
 - `skills/<name>/SKILL.md` — one directory per skill; the SKILL.md *is* the product.
   `docs-architecture-maintain/` also carries `rollover.py` and `journal_index.py` (the
-  journal rollover, M17), deployed with it; `docs-architecture-audit/` carries
+  journal rollover, M17) and `sweep.py` (the sweep's sources and budgets before the run, the
+  report read back after it), deployed with it; `docs-architecture-audit/` carries
   `chain_budget.py` (the always-on chain, R30) and `scope.py` (the scope step: what is in
   and out with its rule, the chain row, the structural findings, the cross-reference seed,
   the release-close lens; it runs `chain_budget.py` beside it), and `docs-architecture-setup/` carries

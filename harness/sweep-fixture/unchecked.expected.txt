@@ -1,0 +1,9 @@
+docs-architecture-maintain check of docs/2026-10-12-maintain-report.md (a line ending in -> <rule> names what is missing)
+
+  the name: dated
+  prune/archive candidates: no line -> M16
+  net reference-tier delta: no line -> M16
+  watermark: no line -> M16
+  flag-code-bug in the report: 1 mention(s); ROADMAP lines carrying a code bug or naming the report: 0 -> M13 (one line per surviving bug, or one line pointing at the report)
+  held promotions: 1 line(s) saying held; ROADMAP lines naming a split job (T5, split_doc.py): 0 -> M14 (one open line naming the pending split job and its shape)
+  portfolio-level graduates: none mentioned

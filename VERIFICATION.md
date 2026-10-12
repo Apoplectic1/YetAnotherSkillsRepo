@@ -55,7 +55,11 @@ baselined copies (the harness recipe) of the base TidePool, the reefstack root a
 The audit skill's `scope.py`, run the same way on baselined copies of the base TidePool, the
 reefstack `audit-scope` variant from `PulseMonitor/` (`--root` the copy's root) and the
 `fat-chain` root, must print `harness/scope-fixture/<name>.expected.txt` byte for byte
-(2026-10-12, `audit-tools-first`).
+(2026-10-12, `audit-tools-first`). The maintain skill's `sweep.py` must print
+`harness/sweep-fixture/<name>.expected.txt` byte for byte: the sources mode on copies of the
+base TidePool and the `big-journal` and `fat-arch` variants, and `--check` on the three
+crafted report fixtures there (`checked/`, `unchecked/`, `empty/`) run as the project
+directory (2026-10-12, `maintain-tools-first`).
 
 For tests the standing fixture can't serve (derivation caveat, or a different project
 shape), create one on demand: copy a **pristine, skills-unmodified** project —

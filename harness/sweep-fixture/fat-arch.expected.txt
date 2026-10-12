@@ -1,0 +1,17 @@
+docs-architecture-maintain sweep (budget 40 KB per journal; a line ending in -> <rule> names the rule)
+
+the journal (the live files)
+  NOTEBOOK.md 2.3 KB, 9 dated bullets, newest first
+  docs/: 1 dated records (a spent one archives, M3 and M7; the reports are not sources)
+  openspec/changes/archive/: 2 design docs -> M11 (a first-class source; cross-ref only, never edited)
+
+the last report
+  none under docs/: the first sweep (every rolled file is a slice; the report starts the watermark, M16)
+
+the targets (where a graduate lands)
+  ARCHITECTURE.md    25.1 KB   7 `##` topics; past half the budget: the M9 content test decides (held if dominated by content a split would relocate)
+  ROADMAP.md          3.4 KB   3 `##` topics
+  DOMAIN.md           0.9 KB   3 `##` topics
+  VERIFICATION.md     0.3 KB   0 `##` topics
+
+the slices (M10): NOTEBOOK.md, docs/ (1 records), openspec/changes/archive/ (2 designs)
