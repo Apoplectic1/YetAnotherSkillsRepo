@@ -48,7 +48,10 @@ Deploy stamps each copied skill with a marker and prunes any marker-carrying dep
 
 ### Model selection
 
-Audit workers default to **Sonnet at high effort**, benchmarked at per-pass parity with a frontier model and converging faster. When a model's rounds go dry, switching worker model finds more than running more rounds of the same model. Haiku or medium effort is a cheap first sweep only.
+An audit runs on two kinds of model, and maintain reuses the same fan-out.
+
+- **Workers** read the docs section by section. They default to **Sonnet at high effort**, benchmarked at per-pass parity with a frontier model and converging faster. When a model's rounds go dry, switching worker model finds more than running more rounds of the same model. Haiku or medium effort is a cheap first sweep only.
+- **The orchestrator** is the session you launch the skill from, so its model is the one you pick for that session. It reads less than the workers combined, but every flag passes through it: it merges and deduplicates the workers' flags, weighs each flag's evidence before you see the list, and writes the fixes you approve. Give it a frontier tier (Claude: Opus or above) at high effort or more. It must also be able to spawn parallel subagents and choose their model, which Claude Code does; without that, see [Beyond Claude Code](#beyond-claude-code).
 
 ### Conventions assumed
 
