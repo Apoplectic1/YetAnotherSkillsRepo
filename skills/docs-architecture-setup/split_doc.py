@@ -27,7 +27,7 @@ import os
 import re
 import sys
 
-HEAD = re.compile(r'(?m)^## (.+)$')
+HEAD = re.compile(r'(?m)^## (.+?)\r?$')  # the heading's text without a CRLF doc's carriage return
 DATE = r'\d{4}-\d{2}-\d{2}'
 DATED_HEAD = re.compile(r'(?m)^## ' + DATE)
 DATED_BULLET = re.compile(r'(?m)^- \**' + DATE)
@@ -121,6 +121,12 @@ def stale_lines(section):
     return [(i, l.strip()) for i, l in enumerate(section.split('\n'), 1) if STALE.search(l)]
 
 
+def mixed(t):
+    """A text whose line endings are not one form: a lone carriage return, or CRLF beside a bare LF."""
+    crlf = t.count('\r\n')
+    return t.count('\r') > crlf or 0 < crlf < t.count('\n')
+
+
 def part_head(stem, fname, h, today):
     """The lines a part opens with before its section text; a stale line's number in the part counts them."""
     return (f"# {stem}: {h} (part of ../{fname})\n\n"
@@ -164,6 +170,7 @@ def main(argv):
             kb = len(body.encode('utf-8')) / 1024
             fs = first_sentence(body)
             index += f"- **{m.group(1) if m else f}** (`{stem}/{f}`, {kb:.1f} KB)" + (f": {fs}" if fs else '') + nl
+        assert mixed(text) or not mixed(index), 'the index would mix line endings'
         open(path, 'w', encoding='utf-8', newline='').write(index)
         gone = [f for f in listed if f not in present]
         print(f'  reindexed: {fname} lists {len(order)} parts in the index\'s order'
@@ -219,8 +226,11 @@ def main(argv):
         kb = len(s.encode('utf-8')) / 1024
         fs = first_sentence(s)
         index += f"- **{h}** (`{stem}/{sl}.md`, {kb:.1f} KB)" + (f": {fs}" if fs else '') + nl
-    rebuilt = preamble + ''.join(open(os.path.join(odir, sl + '.md'), encoding='utf-8', newline='').read().split(nl + nl, 2)[2] for _, _, sl in parts)
+    written = [open(os.path.join(odir, sl + '.md'), encoding='utf-8', newline='').read() for _, _, sl in parts]
+    rebuilt = preamble + ''.join(w.split(nl + nl, 2)[2] for w in written)
     assert rebuilt == text, 'the parts would not reconstruct the original byte for byte'
+    assert mixed(text) or not any(mixed(w) for w in written + [index]), \
+        'a part or the index would mix line endings (the doc itself is one form)'
     open(path, 'w', encoding='utf-8', newline='').write(index)
     print(f'  applied: {len(parts)} parts in {stem}/, index {len(index.encode()) / 1024:.1f} KB')
 

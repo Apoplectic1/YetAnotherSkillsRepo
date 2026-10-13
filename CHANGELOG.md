@@ -5,6 +5,16 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-10-12: **`split_doc.py` keeps a CRLF doc's headings clean** (no change: a script fix
+  found by the EP7314600 adjudication, `docs/2026-10-12 - ep7314600-field-run.md`). The
+  heading pattern captured each heading with the CRLF working copy's carriage return and
+  wrote it into every part's title line and note and the index's Parts list, so git took
+  the split's files as binary. The heading is now captured without it, and the apply and
+  the reindex assert that nothing they write mixes line endings when the doc did not.
+  `harness/split-fixture/eol_check.py` is the CRLF check (`VERIFICATION.md`); the entry
+  below claimed a CRLF verification that read a file-type tool's "CRLF line terminators",
+  which it prints when any CRLF is present, and missed this. The LF fixture checks are
+  byte-exact as before.
 - 2026-10-12: **Field fixes from the EP7314600 run: the scripts, not the text** (no change;
   record `docs/2026-10-12 - ep7314600-field-run.md`). Three plan-only reps on a sensitive
   repository (nothing of it leaves the machine; its findings stay in its tree) and the

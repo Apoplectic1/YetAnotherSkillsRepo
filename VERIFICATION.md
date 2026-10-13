@@ -48,7 +48,11 @@ The setup skill's `split_doc.py`, applied with `--today 2026-10-12` to a scratch
 preamble must reconstruct the doc byte for byte (2026-10-12, `reference-doc-split`); its dry
 run on that doc, run from the doc's directory, must print `harness/split-fixture/dryrun.expected.txt`
 (the dated heading flagged, the stale lines listed), and pointed at a doc whose `##` headings
-are dates it must refuse (2026-10-12, `split-doc-field-fixes`). Its `survey.py`, run on
+are dates it must refuse (2026-10-12, `split-doc-field-fixes`). Applied (and then
+`--reindex`ed) on a copy of that doc converted to CRLF, every file it writes must pass
+`harness/split-fixture/eol_check.py` (one ending per file, no lone carriage return), and
+the output converted back must equal the LF run's but for the sizes (2026-10-12, the
+EP7314600 adjudication). Its `survey.py`, run on
 baselined copies (the harness recipe) of the base TidePool, the reefstack root and the
 `s8-field` variant with `--root <copy> --global none --memory none`, must print
 `harness/survey-fixture/<name>.expected.txt` byte for byte (2026-10-12, `setup-tools-first`).

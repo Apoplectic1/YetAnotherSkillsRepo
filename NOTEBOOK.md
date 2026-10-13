@@ -5,6 +5,17 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-10-12: **"CRLF line terminators" is not a uniformity check** (record
+  `docs/2026-10-12 - ep7314600-field-run.md`, the adjudication). A file-type tool prints it
+  when a file holds any CRLF, so this evening's CRLF check of `split_doc.py` passed a split
+  whose every file carried two lone carriage returns (the heading captured with its
+  return). The adjudication's apply found it: its reader asserts no lone return after
+  normalizing, and refused the first part file it read. The check is a byte count (CRLF,
+  bare LF, lone CR per file), now `harness/split-fixture/eol_check.py`; the script asserts
+  the same before it writes. Two more from the same apply, neither the skills': a fix in a
+  document that travels must pass the document's own audience rule (two audit fixes named
+  spec names in a document that leaves for the client), and a comment in a file the build
+  tool tracks by time waits for a build.
 - 2026-10-12: **The second field run of the day, on a sensitive repository: the
   scripts' defects outnumber the text's** (record
   `docs/2026-10-12 - ep7314600-field-run.md`; the project's findings stay in its tree).
@@ -223,9 +234,8 @@ existing example: the 2026-06-29 audit worker-model benchmark).
   not read as drift. The six HDL indexes were then regenerated and committed, which showed
   that the three 2026-10-01 rollovers (the R4 sessions) ran a copy of the script dividing
   by 1000 for the KB figure, not the shipped 1024. EP7314600's index was regenerated from
-  here too (43 titled lines): the live project is the F: working copy
-  (`F:\EMCORE\EP7314600\2026-10-02\EP7314600`), not the E: repo under L3Harris, which has
-  no doc set; the other session's path came from `~/.claude/projects/` (the session folder
+  here too (43 titled lines): the live project is its F: working copy, not the E:
+  repository, which has no doc set; the other session's path came from `~/.claude/projects/` (the session folder
   is named for its cwd), after Glob and the auto-mode classifier both came up empty on E:.
 - 2026-09-26: **Two more openspec CLI gotchas (1.13.2), from six spec-cleanup changes on the
   HDL tree.** (a) A MODIFIED requirement block is refused at validate and at archive when it
