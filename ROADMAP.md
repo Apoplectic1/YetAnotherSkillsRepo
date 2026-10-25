@@ -29,6 +29,28 @@ section closed 2026-07-07 with nothing open.
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found
   by the 2026-10-12 release-close audit). (b) TSM + siblings: resolve the glossary loop to
   one-way pointers against the portfolio DOMAIN (TP and IS point up; TSM's loop unverified).
+- **Strike superfluous text, by review** (proposed 2026-10-25 from a consumer's field finding:
+  its ROADMAP, NOTEBOOK and overview document had accrued session narrative, "what landed in
+  which commit" lists, old-to-new mappings, effort levels, tooling and presentation tweaks, and
+  an attribution on nearly every sentence; none of it bears on the design, every token is paid
+  on every read, and no skill removes it: M2 keeps it, M8 and M17 protect it, AUDIT checks
+  currency, and the MAINTAIN spec denies reference-tier deletion authority). The shape as
+  sketched: a MAINTAIN step with appended rule IDs, over the journal and the reference tier,
+  that only proposes. A strike candidate passes three tests: no design weight (it states no
+  fact, decision or its reason, rejected alternative, open item or gotcha; narrative only);
+  nothing cites it (section names, ids, anchors, rule IDs and dated citations searched); and
+  the owner reviews every candidate before anything is removed, each listed verbatim with its
+  location, the tests it meets and the commit that keeps the record, declined items recorded so
+  the next sweep does not re-offer them. M8 and M17 stay as they are for the graduate step.
+  Open: A1 (MAINTAIN strikes in both tiers, the review replacing the spec's no-deletion
+  clause as the safeguard) or A2 (MAINTAIN strikes the journal, AUDIT gains a strike lens for
+  the reference tier). Harness: a fixture variant with planted superfluous text and planted
+  look-alikes (a cited section, a rejected alternative with its reason, an attribution that
+  records an acceptance); RED on the current skill, GREEN lists the plants verbatim and none of
+  the look-alikes and removes nothing before approval; `sweep.py --check` reads the new slot.
+  Pairs with a writing-time rule in the consumer's router (the journal charter narrowed to
+  findings that affect the design or how it is built and checked), cheaper than any sweep.
+  Deferred by the owner: a diversion from the consumer's design work.
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
