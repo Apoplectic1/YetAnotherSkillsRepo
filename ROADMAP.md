@@ -22,8 +22,10 @@ section closed 2026-07-07 with nothing open.
   ARCHITECTURE opened, DOMAIN and ROADMAP split and the CHANGELOG rolled. Still open: the
   Arty's router lean (26.6 KB, 346 lines; deferred under the halt, the owner's call), the
   HDL router's and the owner's global file's own leans (the chains stay at 1.2x to 1.3x,
-  all of it theirs), and the umbrella's `ROADMAP/next-in-order.md` at 49.7 KB until its
-  items carry `###` headings.
+  all of it theirs), and the umbrella's `ROADMAP/next-in-order.md`: its items carry
+  `###` headings since 2026-11-05 and it stays one part at 63 KB, since T5 never cuts
+  below `##` (the headings serve a reader, no tool; what would bring it under is that
+  doc's own charter, a done item keeps one line, the consumer's call).
 - **Portfolio-convention consumer adoption** (post-`b4-portfolio-domain`, shipped
   2026-07-26): in their own sessions. (a) Astronomy container: done (the portfolio
   `DOMAIN.md` exists since 2026-08-16 and the router's Data-flow hubs point into it; found
