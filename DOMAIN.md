@@ -95,6 +95,10 @@ refactor to close the loopholes testing exposes. When iterating wording, micro-t
 (fresh-context reps + a no-guidance control; read every flagged match manually) before full
 scenario runs. This repo's implementation of the law **is** the harness: `VERIFICATION.md`.
 
+**A no-failed RED in the spec** (decided 2026-11-10): a requirement whose candidate skill text
+no-failed its RED stands in the spec as a requirement with no note; its test result lives in
+the change's design record and its dated RED/GREEN record.
+
 ### Repo mechanics
 - LF line endings (enforced via `.gitattributes`).
 - **Rule IDs are append-only** (decided 2026-07-12): never renumber or shift existing SKILL.md

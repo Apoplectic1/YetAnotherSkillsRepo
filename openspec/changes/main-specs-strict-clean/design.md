@@ -34,19 +34,34 @@ the approach:
 
 ## Decisions
 
-- **D1: the six status notes, classified.** Each is test history (the RED result, why no
-  skill text shipped, "encode it then"), which is not behavior. Four hold nothing else and
-  go: audit's "Worker evidence is disk-verified before adjudication", "The router sets the
-  tier, not the directory or the name" and "Ancestor routers are convention sources", and
-  setup's "A reference doc past its budget splits by topic into a directory named for it".
-  Two state behavior a RED cell showed correct. Setup's "Router lean on encounter" note
+- **D1: the eleven status notes, classified.** Each is test history (the RED result, why no
+  skill text shipped, "encode it then"), which is not behavior. Nine hold nothing else and
+  go: audit's "Worker evidence is disk-verified before adjudication", "Fan-out is
+  right-sized to doc volume", "A journal's overflow directory is journal-tier", "The router
+  sets the tier, not the directory or the name" and "Ancestor routers are convention
+  sources"; setup's "Legacy-named domain doc is normalized into DOMAIN.md" and "A reference
+  doc past its budget splits by topic into a directory named for it"; whats-next's
+  "Audit-first is scoped, not unconditional" and "Open items are read from the live
+  journal". (Five of the eleven sit after their scenarios, where the validator does not
+  count them; the plan first counted only the six inside a description.) Two state behavior
+  a RED cell showed correct. Setup's "Router lean on encounter" note
   carries four rules and maintain's "Graduations targeting a bloated doc are held, never
-  applied into it" carries one; each rule becomes an ADDED requirement with a scenario taken
-  from the cell that showed it (the deltas), and the history goes. Under the owner's rule,
-  this is what "contributes to behavior" means.
+  applied into it" carries one; each rule becomes a requirement and the history goes. Under
+  the owner's rule, this is what "contributes to behavior" means. Three of the five already
+  stand as scenarios (setup's "A block a reference doc already holds" and "A halt bounds the
+  plan" under the router-lean requirement, maintain's "A held promotion under a halt follows
+  the halt's terms" under the bloated-target one; found at the apply), so each becomes a
+  requirement in place with its scenario under it. The other two (a block at release cadence
+  goes to ROADMAP; breadth at a container root counts every session beneath it) stand
+  nowhere else, so they are ADDED deltas with a scenario taken from the cell that showed
+  them.
 - **D2: one behavior per requirement.** A behavior is one SHALL or MUST obligation with its
   trigger, its outcome and its own boundary or exception; a qualifier of that obligation
-  stays with it. The parent keeps its name and its lead behavior. Each other behavior
+  stays with it. The parent keeps its name and its lead behavior; when its name names a
+  behavior that moved away, it is renamed to what it still requires (decided at the apply:
+  a name that points a grep at the wrong requirement is worse than a rename, and no file
+  outside `openspec/` cites a requirement by name), the rename recorded in the ledger as
+  `Renamed: "<old>" -> "<new>"`, which the check reads. Each other behavior
   becomes a requirement placed directly after its parent and named for what it requires (as
   the specs already name theirs: "Router lean on encounter", "Fix-or-delete discriminator
   on derivable claims"), SHALL on its first line. A scenario moves to the requirement whose
@@ -62,8 +77,8 @@ the approach:
 - **D4: the main specs are edited in place.** The alternative, MODIFIED deltas, cannot
   move a scenario: every scenario would stay under its trimmed parent, and each split-off
   requirement would need a duplicate. In place, a scenario sits under the requirement it
-  tests, where a reader looks for it. The five rules from D1 are ADDED deltas, the change's
-  only deltas, and land at the end of their specs at the archive. They stay there; their
+  tests, where a reader looks for it. The two rules D1 finds stated nowhere else are ADDED
+  deltas, the change's only deltas, and land at the end of the setup spec at the archive. They stay there; their
   names say what they require and a grep finds them, so moving them beside their parent is
   not worth an edit outside the tracked tasks.
 - **D5: the ledger and its check prove that nothing was lost.** `ledger.md` in the change
@@ -85,8 +100,9 @@ the approach:
   stated the old habit, so without the line the next no-failed change would re-add a note.
 - **D8: reader reps for meaning.** The check proves clauses were kept, not that a split
   kept their sense (a qualifier moved away from its obligation would pass it). Four reps,
-  one per spec, each read the spec's old text and its new text (and, for setup and
-  maintain, the ADDED delta) and list any behavior lost, added or changed, by requirement
+  one per spec with a requirement cut (whats-next only loses two notes after its scenarios,
+  which the check covers alone), each read the spec's old text and its new text (and, for
+  setup, the ADDED delta) and list any behavior lost, added or changed, by requirement
   name. A finding is fixed and its rep rerun until it reports none.
 
 ## Risks / Trade-offs
@@ -99,7 +115,7 @@ the approach:
 - [The specs grow: about 24 parents become perhaps 60 to 70 requirements, with new headings
   and some new scenarios] -> accepted: they are read rarely and by grep, and one obligation
   per requirement is what a grep should land on.
-- [The five ADDED requirements sit at the ends of their specs, away from their parents] ->
+- [The two ADDED requirements sit at the end of the setup spec, away from their parent] ->
   accepted (D4).
 - [A later archive appends a requirement past 500 characters] -> the validator flags it in
   the change's own delta before the archive, as it does today.

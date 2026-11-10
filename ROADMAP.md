@@ -67,11 +67,11 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-11-10: **The main specs pass strict validation** (change `main-specs-strict-clean`; one behavior per requirement, 58 to 115 plus two ADDED; the eleven status notes gone, their five rules kept; a clause check and six reader reps, one fix; strict 1/5 to 5/5, no skill text changed)
 - 2026-11-10: **The split index says what each part holds** (change `split-index-written-lines`; a written line per part, checked, kept by `--reindex`; `--check` run by the survey and the audit's scope; the reps pass, no skill text changed)
 - 2026-10-12: **Field fixes from the EP7314600 run: the scripts, not the text** (no change; three plan reps on a sensitive repository and the applies there; the scope seed states a convention once; twelve fixture outputs byte-exact on fresh copies)
 - 2026-10-12: **Tools over prose, MAINTAIN: `sweep.py`, and the text to its actions** (change `maintain-tools-first`; 10.7 KB to 8.7 KB; a regression GREEN, five families, nothing restored; the family 38.7 KB to 29.3 KB over the day)
 - 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change `audit-tools-first`; 13.4 KB to 10.2 KB; a regression GREEN, five families, one clause restored and re-run to a pass: R29's cheap-run mapping)
-- 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change `setup-tools-first`; 14.6 KB to 10.4 KB; a regression GREEN, five families, every cell that fired held)
 
 The full history, every shipped unit as a dated entry, is `CHANGELOG.md` (newest
 first).

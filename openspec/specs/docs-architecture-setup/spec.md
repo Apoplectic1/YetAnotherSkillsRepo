@@ -1,9 +1,10 @@
 # docs-architecture-setup Specification
 
 ## Purpose
-TBD — created by syncing change `fix-skill-review-findings`. Covers only the requirements that
-change established for the SETUP skill (`skills/docs-architecture-setup/SKILL.md`); not a
-retroactive full spec of the skill.
+Bootstrapping or standardizing a project's docs into the convention: the router and the
+enforced reference set, the journal's three-way split, the shapes a run must recognize (a
+sub-project, a container root, a code-light design project), what a router may keep always-on,
+and the scripted survey and split.
 
 ## Requirements
 
@@ -11,9 +12,7 @@ retroactive full spec of the skill.
 A SETUP run at a root project SHALL NOT scaffold into, restructure, or edit the docs of a nested
 sub-project — detected by the sub-project having its own CLAUDE.md router or its own `.git`. On
 encountering one, the run SHALL flag it (reporting its path and any unconventional doc names) and
-direct the user to run SETUP from the sub-project's own directory. The skill's "coexist, never
-clobber / augment" rule SHALL be scoped to the root project's own files so it cannot be read as
-license to augment a sub-project's CLAUDE.md.
+direct the user to run SETUP from the sub-project's own directory.
 
 #### Scenario: Nested own-git project is skipped
 - **WHEN** a SETUP-guided agent runs on a fixture whose tree contains a nested directory with its
@@ -24,6 +23,16 @@ license to augment a sub-project's CLAUDE.md.
 #### Scenario: Root scaffolding is unaffected
 - **WHEN** the same run completes
 - **THEN** the root project still receives the full enforced doc set, charter-guarded
+
+### Requirement: The coexist rule covers the root project's own files only
+The skill's "coexist, never clobber / augment" rule SHALL be scoped to the root project's own
+files so it cannot be read as license to augment a sub-project's CLAUDE.md.
+
+#### Scenario: A sub-project's router is not augmented under the coexist rule
+- **WHEN** a SETUP run at a root project applies the coexist-and-augment rule and meets a
+  nested sub-project's `CLAUDE.md`
+- **THEN** the rule covers the root project's own files only, and the sub-project's
+  `CLAUDE.md` is left as it was
 
 ### Requirement: Design-heavy code-light projects keep their design doc whole
 When a project has minimal code but a large standalone design document, SETUP SHALL treat that
@@ -62,13 +71,6 @@ charter'd-thin `DOMAIN.md` alongside the legacy doc — two domain homes violate
 - **THEN** SETUP keeps that name (no rename to a content-specific name), per the existing
   always-`DOMAIN.md` rule
 
-**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
-both reps `git mv`'d `OBSERVING.md` → `DOMAIN.md` (content preserved, router updated, zero
-duplicate homes; disk-verified). The existing "whatever the content is, it lives in DOMAIN.md" +
-filename-normalization lines already induce the rename. Per the no-failure gate no text was
-added; if a future run mints a duplicate domain home, that is the failing test this guidance was
-waiting for. Record: design doc, review-round-2 RED/GREEN entry.
-
 ### Requirement: Non-git targets get a recovery net before restructuring
 When the target tree is not a git repository, SETUP SHALL establish a recovery net before any
 restructuring apply (offer `git init` + an initial commit, or snapshot the originals) rather
@@ -101,8 +103,7 @@ exclusions. SETUP SHALL NOT create the full enforced set at the container level.
 The SETUP skill SHALL teach that shipped history lives in `CHANGELOG.md` — journal tier:
 append-only, dated, newest first — created conditionally when history accrues (like README).
 `ROADMAP.md` SHALL keep only a short "Recently shipped" digest plus a one-line pointer;
-a long dated history embedded in ROADMAP is non-conformant. Shipped history SHALL never be
-routed into `archive/`; git remains the commit-level backstop. Relocating an embedded
+a long dated history embedded in ROADMAP is non-conformant. Relocating an embedded
 history SHALL be a content-preserving move (safety rule S1).
 
 #### Scenario: Embedded ROADMAP history is relocated, content-preserved
@@ -116,20 +117,30 @@ history SHALL be a content-preserving move (safety rule S1).
 - **WHEN** the target project has no shipped history to speak of
 - **THEN** no `CHANGELOG.md` is created (conditional file — don't force content)
 
+### Requirement: Shipped history is never routed into archive/
+Shipped history SHALL never be routed into `archive/`; git remains the commit-level backstop.
+
+#### Scenario: Relocated history skips archive/
+- **WHEN** a SETUP run moves a long shipped history out of ROADMAP
+- **THEN** the entries land in `CHANGELOG.md`, none goes into `archive/`, and git stays the
+  commit-level backstop
+
 ### Requirement: Router teaches the three-way journal split
 The router/tier guidance SHALL define the journal tier as `docs/YYYY-MM-DD-*.md` +
 `NOTEBOOK.md` + `CHANGELOG.md`, split three ways: small finding from doing the work →
-NOTEBOOK; shipped unit → CHANGELOG; substantial standalone record → `docs/`; and SHALL name
-the journals' overflow directories (`NOTEBOOK/`, `CHANGELOG/`): a journal past its budget
-rolls its oldest whole days into a directory named for the file, one frozen file per period
-named by its first date with an `INDEX.md`, the maintain skill's job. The router's journal
-line SHALL state the project's dated-record pattern and that a dated citation resolves by
-grep over a journal and its overflow directory.
+NOTEBOOK; shipped unit → CHANGELOG; substantial standalone record → `docs/`.
 
 #### Scenario: CLAUDE.md written by SETUP names the three-way split
 - **WHEN** SETUP writes or aligns a project's CLAUDE.md router
 - **THEN** the journal tier it teaches includes `CHANGELOG.md` with the shipped-unit
   routing, alongside NOTEBOOK and dated docs/
+
+### Requirement: The router's journal line names the overflow directories and the dated-record pattern
+The router/tier guidance SHALL name the journals' overflow directories (`NOTEBOOK/`,
+`CHANGELOG/`): a journal past its budget rolls its oldest whole days into a directory named
+for the file, one frozen file per period named by its first date with an `INDEX.md`, the
+maintain skill's job. The router's journal line SHALL state the project's dated-record pattern
+and that a dated citation resolves by grep over a journal and its overflow directory.
 
 #### Scenario: The router's journal line names the overflow directory and the pattern
 - **WHEN** SETUP writes or aligns a project's CLAUDE.md router
@@ -141,38 +152,7 @@ grep over a journal and its overflow directory.
 When a SETUP run encounters an existing `CLAUDE.md` router carrying off-charter reference
 content, it SHALL relocate that content to the charter-owning reference doc(s) as a
 content-preserving move (S1 semantics) in the same run, not leave it in place and not merely
-recommend a move. The trigger SHALL be a content test (is the passage reference content,
-glossary, contract/API prose, domain conventions, how-it-works mechanics, rather than routing
-or a load-bearing gotcha?), never a numeric size threshold. The router perf line (~40 KB) may be
-cited as rationale only. Destination selection SHALL follow the charters (e.g. glossary and
-CLI-abbreviation conventions → `DOMAIN.md`; subsystem mechanics → `ARCHITECTURE.md`), and each
-move SHALL be reported in the run summary (what moved, from → to). Beside the content test, the
-run SHALL apply a scope test to every item that loads at launch (the router, an always-on rule
-file): an item stays always-on only if it passes breadth (every session launched here needs
-it) and stability (it changes less often than a release); that test is what "load-bearing"
-means. A block or line that fails SHALL move behind a one-line always-on trigger to the home
-its need is keyed to, each home with its own load trigger: a path-scoped rule file
-(`.claude/rules/<name>.md` with `paths:`, loaded on a matching file's first touch, for files in
-this repository only), a skill (`.claude/skills/<name>/SKILL.md`, loaded on invocation, for an
-activity), a reference-doc section read by heading for prose; a guard keyed to neither keeps
-one router line. The router SHALL name every rule file and skill it writes. Every file that
-loads at launch SHALL be tested against its own line (200 lines, the harness's guidance); the
-chain a session loads SHALL be measured by the audit skill's `chain_budget.py`, the ancestors'
-and the owner's shares reported and never chased from below; the number detects, the test
-decides, and a router under its line still moves a block that fails.
-
-**Status note (2026-10-12):** four clauses drafted from the HDL pilot were RED no-failure on
-the TidePool `s8-field` and reefstack `fat-chain` variants and are not skill text: a block a
-reference doc already holds is dropped with a cross-reference (both reps deleted the
-duplicated module map as S1's merge); a status block at release cadence goes to ROADMAP (both
-reps sent "State" there for failing stability); a halt the ROADMAP states bounds the plan to
-docs-only moves (the rep read the halt and said so); breadth at a container root counts the
-sessions beneath it (the root rep counted them: "every session under the container pays").
-The field case for the last (the AtmlBoards rep of the pilot, which believed a board session
-never loads the umbrella router) stands as the evidence that a run can misread it; if one
-does again on a non-derived fixture, encode it then. The umbrella-with-first-party-content
-shape (B4) and a project's reference docs outside the enforced set were not probed; they wait
-for a cell.
+recommend a move.
 
 #### Scenario: Fat router is leaned during setup
 - **WHEN** a SETUP-guided agent runs on a fixture whose existing `CLAUDE.md` embeds a glossary
@@ -181,10 +161,54 @@ for a cell.
   the router retains routing + load-bearing gotchas (plus pointers where needed), no content is
   lost, and the run summary names each move
 
+### Requirement: The router-lean trigger is a content test, never a size threshold
+The trigger SHALL be a content test (is the passage reference content, glossary, contract/API
+prose, domain conventions, how-it-works mechanics, rather than routing or a load-bearing
+gotcha?), never a numeric size threshold. The router perf line (~40 KB) may be cited as
+rationale only.
+
 #### Scenario: Lean router is left alone
 - **WHEN** a SETUP-guided agent runs on a fixture whose `CLAUDE.md` contains only routing and
   gotchas every session launched there needs (regardless of its byte size)
 - **THEN** no router content is relocated and no lean action is reported
+
+### Requirement: A leaned block goes where the charters say and each move is reported
+Destination selection SHALL follow the charters (e.g. glossary and CLI-abbreviation
+conventions → `DOMAIN.md`; subsystem mechanics → `ARCHITECTURE.md`), and each move SHALL be
+reported in the run summary (what moved, from → to).
+
+#### Scenario: Each block lands in its charter's doc and the summary names it
+- **WHEN** a SETUP run relocates a glossary and a subsystem-mechanics block out of the router
+- **THEN** the glossary lands in `DOMAIN.md`, the mechanics in `ARCHITECTURE.md`, and the run
+  summary names each move from and to
+
+### Requirement: A router block a reference doc already holds is dropped with a cross-reference
+The SETUP skill SHALL drop a router block that ARCHITECTURE, a README or an ancestor router
+already holds, cross-referencing the doc that holds it, rather than moving a second copy.
+
+#### Scenario: A block a reference doc already holds
+- **WHEN** the router carries a block that ARCHITECTURE, a README or an ancestor router
+  already holds
+- **THEN** the plan cross-references it and drops the copy rather than moving it
+
+### Requirement: Every item that loads at launch meets the scope test
+Beside the content test, the run SHALL apply a scope test to every item that loads at launch
+(the router, an always-on rule file): an item stays always-on only if it passes breadth (every
+session launched here needs it) and stability (it changes less often than a release); that
+test is what "load-bearing" means.
+
+#### Scenario: A gotcha every session needs stays always-on
+- **WHEN** the router carries a gotcha that every session launched there needs and that
+  changes less often than a release
+- **THEN** the plan keeps it in the router, citing breadth and stability
+
+### Requirement: A block that fails the scope test moves behind a trigger to the home its need is keyed to
+A block or line that fails the scope test SHALL move behind a one-line always-on trigger to
+the home its need is keyed to, each home with its own load trigger: a path-scoped rule file
+(`.claude/rules/<name>.md` with `paths:`, loaded on a matching file's first touch, for files in
+this repository only), a skill (`.claude/skills/<name>/SKILL.md`, loaded on invocation, for an
+activity), a reference-doc section read by heading for prose; a guard keyed to neither keeps
+one router line.
 
 #### Scenario: A gotcha pack that fails breadth moves behind a trigger
 - **WHEN** the router carries, beside its load-bearing gotchas, a pack of true gotchas that
@@ -204,16 +228,29 @@ for a cell.
 - **THEN** the plan does not key a rule file to globs for files this repository lacks; it
   moves the block to a reference-doc section or keeps a one-line guard, and says why
 
+### Requirement: The router names every rule file and skill it writes
+The router SHALL name every rule file and skill it writes.
+
+#### Scenario: A written rule file and skill are named in the router
+- **WHEN** the plan moves one gotcha pack to `.claude/rules/<name>.md` and a procedure to
+  `.claude/skills/<name>/SKILL.md`
+- **THEN** the router carries a line naming each of them
+
+### Requirement: Each file that loads at launch is tested against its own line, the chain measured
+Every file that loads at launch SHALL be tested against its own line (200 lines, the harness's
+guidance); the chain a session loads SHALL be measured by the audit skill's `chain_budget.py`,
+the ancestors' and the owner's shares reported and never chased from below; the number
+detects, the test decides, and a router under its line still moves a block that fails.
+
 #### Scenario: The chain cannot be met from here
 - **WHEN** the owner's global file and the ancestor routers exceed the chain budget before the
   project's router counts
 - **THEN** the plan tests the router against its own 200 lines, reports the ancestors' and
   the owner's shares as theirs, and does not propose chasing the chain from below
 
-#### Scenario: A block a reference doc already holds
-- **WHEN** the router carries a block that ARCHITECTURE, a README or an ancestor router
-  already holds
-- **THEN** the plan cross-references it and drops the copy rather than moving it
+### Requirement: A halt the ROADMAP states bounds the plan to docs-only moves
+When the project's ROADMAP states a halt or freeze, the SETUP skill SHALL bound its plan to
+docs-only moves and say that the halt bounds it.
 
 #### Scenario: A halt bounds the plan
 - **WHEN** the project's ROADMAP states a halt or freeze
@@ -223,10 +260,8 @@ for a cell.
 When SETUP writes the router's scope-exclusion note on a project carrying an `openspec/`
 directory, the wording SHALL keep `openspec/` excluded from scaffolding while noting that
 archived design docs (`openspec/changes/archive/*/design.md`) are historical records the
-MAINTAIN sweep reads — so the router does not contradict maintain's source class or nudge a
-maintain worker into skipping it. SETUP SHALL NOT scaffold into `openspec/` (the existing
-hard exclusion stands), and SHALL NOT add archived design docs to the three-way journal
-authoring split (they are tool-produced, never an authoring target).
+MAINTAIN sweep reads. SETUP SHALL NOT scaffold into `openspec/` (the existing hard exclusion
+stands).
 
 #### Scenario: Router exclusion note carries the carve-out
 - **WHEN** a SETUP-guided run writes or aligns the router of a project with an `openspec/`
@@ -240,21 +275,38 @@ authoring split (they are tool-produced, never an authoring target).
 - **THEN** the router's exclusion wording is unchanged from current behavior (no speculative
   openspec clause)
 
+### Requirement: Archived design docs stay out of the journal authoring split
+SETUP SHALL NOT add archived design docs to the three-way journal authoring split (they are
+tool-produced, never an authoring target).
+
+#### Scenario: The journal split names no archived design doc
+- **WHEN** SETUP writes the three-way journal split on a project with archived openspec
+  design docs
+- **THEN** the split routes authoring to NOTEBOOK, CHANGELOG and dated `docs/` only, and no
+  archived `design.md` is named as a place to write
+
 ### Requirement: Container roots support a thin portfolio DOMAIN for cross-repo truth
 The SETUP skill SHALL treat a container root as router-plus-portfolio-tier: the `CLAUDE.md`
-router (B4's core, unchanged), optionally a thin portfolio `DOMAIN.md` chartered
-*cross-repo truth only* (shared glossary terms, cross-store disambiguations, cross-repo
-contracts by pointer where a sub-project owns the detail), and optionally a thin
+router (B4's core, unchanged), a thin portfolio `DOMAIN.md` chartered *cross-repo truth
+only* (shared glossary terms, cross-store disambiguations, cross-repo contracts by pointer
+where a sub-project owns the detail) created when cross-repo truth exists, never by default,
+and optionally a thin
 status/sequencing `ROADMAP.md` — and SHALL NOT scaffold the rest of the enforced set at a
-container root. The portfolio DOMAIN is created when cross-repo truth exists (e.g. found
-while leaning the container router per S7), never by default. Companion rules: content one
-project's code defines lives in that project's docs (owner-project rule); sub-projects
-point *up* to the portfolio DOMAIN for shared terms and the portfolio DOMAIN points *down*
-by name for owned detail — mutual cross-repo pointers are a violation (loop breaker).
-Leaning a container router routes cross-repo reference prose to the portfolio DOMAIN — not
-into ROADMAP, not retained as router "gotchas" (one-line genuine disambiguations may stay;
-the content test governs). Gated on RED→GREEN per the iron law on a synthetic container
-fixture (the Astronomy container and TSM are deriving evidence — poisoned).
+container root.
+
+#### Scenario: No portfolio set beyond the sanctioned pair
+- **WHEN** SETUP runs at a container root
+- **THEN** no portfolio-level ARCHITECTURE / NOTEBOOK / VERIFICATION / docs/ / CHANGELOG is
+  scaffolded, and a portfolio DOMAIN is not created when no cross-repo truth exists
+
+#### Scenario: Single-project tree control
+- **WHEN** SETUP runs on an ordinary (non-container) project
+- **THEN** no portfolio DOMAIN appears — the amendment changes container behavior only
+
+### Requirement: Cross-repo prose from a leaned container router goes to the portfolio DOMAIN
+Leaning a container router SHALL route cross-repo reference prose to the portfolio DOMAIN,
+creating it thin if absent, not into ROADMAP, not retained as router "gotchas" (one-line
+genuine disambiguations may stay; the content test governs).
 
 #### Scenario: Container router leaned with cross-repo prose present
 - **WHEN** SETUP runs at a container root whose router embeds cross-repo contract/glossary
@@ -262,10 +314,8 @@ fixture (the Astronomy container and TSM are deriving evidence — poisoned).
 - **THEN** the prose moves to the portfolio `DOMAIN.md` (created thin if absent, chartered
   cross-repo-only) with a router pointer — not into ROADMAP, not left in the router
 
-#### Scenario: No portfolio set beyond the sanctioned pair
-- **WHEN** SETUP runs at a container root
-- **THEN** no portfolio-level ARCHITECTURE / NOTEBOOK / VERIFICATION / docs/ / CHANGELOG is
-  scaffolded, and a portfolio DOMAIN is not created when no cross-repo truth exists
+### Requirement: Content one project's code defines lives in that project's docs
+Content one project's code defines SHALL live in that project's docs (owner-project rule).
 
 #### Scenario: Owner-project rule diverts ownable content
 - **WHEN** candidate portfolio-DOMAIN content is defined by a single sub-project's code
@@ -273,15 +323,21 @@ fixture (the Astronomy container and TSM are deriving evidence — poisoned).
 - **THEN** it lives in that sub-project's docs and the portfolio DOMAIN carries at most a
   one-line pointer down by name
 
-#### Scenario: Single-project tree control
-- **WHEN** SETUP runs on an ordinary (non-container) project
-- **THEN** no portfolio DOMAIN appears — the amendment changes container behavior only
+### Requirement: Cross-repo pointers run one way
+Cross-repo pointers SHALL run one way: sub-projects point *up* to the portfolio DOMAIN for
+shared terms and the portfolio DOMAIN points *down* by name for owned detail — mutual
+cross-repo pointers are a violation (loop breaker).
+
+#### Scenario: Up for a shared term, down for owned detail
+- **WHEN** a shared term lives in the portfolio DOMAIN and a sub-project owns a detail the
+  DOMAIN names
+- **THEN** the sub-project points up for the term, the DOMAIN points down by name for the
+  detail, and no two docs point at each other for the same truth
 
 ### Requirement: Dated-record filenames follow the project's stated pattern
 SETUP SHALL normalize a journal filename to the dated-record pattern the project's router
 states, the default being `YYYY-MM-DD-<slug>.md`, and SHALL NOT impose the default over a
-pattern the project states (a rename breaks every citation of the file). Gated on a RED probe
-(2026-09-26: an unguided run renamed three files against the project's stated rule).
+pattern the project states (a rename breaks every citation of the file).
 
 #### Scenario: A stated pattern is kept
 - **WHEN** the router's journal line states `YYYY-MM-DD - <slug>.md` and the records follow it
@@ -296,9 +352,7 @@ pattern the project states (a rename breaks every citation of the file). Gated o
 SETUP SHALL write a container root's `.gitignore` by name: one line per nested repository,
 each reason on its own line, and never a wildcard over the root's directories. On encounter
 SETUP SHALL flag a wildcard form (`/*/` with exceptions) as a safety item and rewrite it by
-name in the run, keeping the same directories out. Reason: a wildcard drops any new directory
-silently (an overflow directory first), and a kit copied from what is committed ships without
-it. Gated on a RED probe (2026-09-26: an unguided run left the wildcard, having no rule).
+name in the run, keeping the same directories out.
 
 #### Scenario: A wildcard ignore file is met
 - **WHEN** a container root's `.gitignore` reads `/*/` with exceptions for `docs/`,
@@ -314,24 +368,7 @@ it. Gated on a RED probe (2026-09-26: an unguided run left the wildcard, having 
 When a reference doc passes the budget (40 KB) and its weight is many `##` topics, the SETUP
 skill SHALL split it with `split_doc.py` beside the SKILL.md: each `##` section moves byte
 for byte into `<DOC>/<topic>.md`, one charter'd file per topic named by its heading, and the
-doc stays as the index (its charter, a split note, one line per part). The router SHALL keep
-naming the doc; a heading SHALL keep its text so a section citation resolves by grep over the
-file and the directory; a section is never split below `##`, and a single topic past the
-budget SHALL be reported and left as one part. A doc that the run's own moves push past the
-budget SHALL split in the same run, after the moves land. The script SHALL refuse a journal,
-keep its citation scan out of sub-projects and child repositories, list the lines a move one
-directory down leaves stale, and warn on a dated heading. A doc heavy with cold rationale
-SHALL extract (T3) instead, and a design doc in a code-light project SHALL stay whole (B5).
-
-**Status note (2026-10-12):** the same-run split is satisfied by baseline behavior, not by
-skill text. RED 2/2 on the TidePool `near-budget` variant (a 38 KB ARCHITECTURE and a router
-block S7 moves into it): both reps sequenced the split after the move ("only then is the doc
-over budget"), one previewing the dry run at a lowered budget. Per the no-failure gate the
-sentence was not added to T5; if a run ever leaves a doc its own moves pushed past the
-budget, encode it then. The single-part case is likewise baseline (the HDL pilot's rep
-reported the 49.7 KB part and left it, saying the rule offered no lever, which is the rule).
-The script's contracts (the journal refusal, the stale-line list, the dated-heading warning,
-the scan's scope) are verified at script level (`harness/split-fixture/`).
+doc stays as the index (its charter, a split note, one line per part).
 
 #### Scenario: A multi-topic reference doc past the budget is split
 - **WHEN** a SETUP run meets a 40 KB ARCHITECTURE of eighteen `##` topics true to code
@@ -339,13 +376,30 @@ the scan's scope) are verified at script level (`harness/split-fixture/`).
   doc as the index, the router naming the doc only, citations resolving by grep; nothing is
   moved into another doc
 
-#### Scenario: A doc bloated by rationale is extracted, not split
-- **WHEN** a SETUP run meets a 25 KB ARCHITECTURE dominated by design essays
-- **THEN** the plan proposes cold-rationale extraction and no split
-
 #### Scenario: A doc under budget is left alone
 - **WHEN** a reference doc is under the budget
 - **THEN** no split is proposed, whatever its topic count
+
+### Requirement: A split doc keeps its name in the router and each heading its text
+The router SHALL keep naming the doc; a heading SHALL keep its text so a section citation
+resolves by grep over the file and the directory.
+
+#### Scenario: A section citation resolves after the split
+- **WHEN** a reader follows a citation of a split doc's section by its heading
+- **THEN** a grep over the doc and its directory finds the heading as written, and the router
+  still names the doc, not its parts
+
+### Requirement: A split stops at ## and an oversized topic stays one part
+A section SHALL never be split below `##`, and a single topic past the budget SHALL be
+reported and left as one part.
+
+#### Scenario: A single topic past the budget
+- **WHEN** one `##` topic of a doc past the budget is itself past the budget
+- **THEN** the plan reports it and leaves it as one part, with no split at a lower heading
+
+### Requirement: A doc the run's own moves push past the budget splits in the same run
+A doc that the run's own moves push past the budget SHALL split in the same run, after the
+moves land.
 
 #### Scenario: The run's own moves push a doc past the budget
 - **WHEN** a 38 KB ARCHITECTURE receives a 4 KB mechanics block the same run moves out of the
@@ -353,9 +407,22 @@ the scan's scope) are verified at script level (`harness/split-fixture/`).
 - **THEN** the plan splits ARCHITECTURE in that run, after the move, citing the script's dry
   run, rather than leaving a 42 KB doc for a later run
 
+### Requirement: The split script refuses a journal and lists the lines a move leaves stale
+The script SHALL refuse a journal, keep its citation scan out of sub-projects and child
+repositories, list the lines a move one directory down leaves stale, and warn on a dated
+heading.
+
 #### Scenario: A journal is refused
 - **WHEN** `split_doc.py` is pointed at a doc whose `##` headings are dates
 - **THEN** it exits naming the rollover and writes nothing
+
+### Requirement: A rationale-heavy doc is extracted and a code-light design doc stays whole
+A doc heavy with cold rationale SHALL extract (T3) instead, and a design doc in a code-light
+project SHALL stay whole (B5).
+
+#### Scenario: A doc bloated by rationale is extracted, not split
+- **WHEN** a SETUP run meets a 25 KB ARCHITECTURE dominated by design essays
+- **THEN** the plan proposes cold-rationale extraction and no split
 
 ### Requirement: The survey step is scripted
 A SETUP run SHALL begin with `survey.py` beside the skill, which SHALL print one line per

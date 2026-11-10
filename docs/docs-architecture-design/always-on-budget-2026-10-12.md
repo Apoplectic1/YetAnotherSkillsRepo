@@ -50,7 +50,7 @@ glob cannot name a sibling's), a skill on invocation (an activity: a build, a be
 section on a read; a guard keyed to neither keeps one router line; B1 lets S8 write the
 skill; stability reads "changes less often than a release". RED 3/3 on the budget and the
 command-keyed block, 1/2 on the sibling's files; GREEN 2/2 on each. Five more clauses the
-pilot drafted were no-failure on the fixtures and are status notes in the specs, not text:
+pilot drafted were no-failure on the fixtures; they are requirements in the specs, not text:
 a block a reference doc already holds is dropped with a cross-reference (S1's merge), a
 status block is ROADMAP's, a halt bounds a lean to documentation, breadth at a container
 root counts the sessions beneath it (the pilot's AtmlBoards rep misread this; the fixture

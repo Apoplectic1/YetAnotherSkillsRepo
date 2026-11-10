@@ -12,7 +12,7 @@ container-root ignore file the pilot tripped on, and B2's stated dated-record pa
 Provenance: derived on the HDL tree (a 311 KB NOTEBOOK; the owner's decision; a pilot on
 seven journals), validated RED 2/2 and GREEN 2/2 on a non-derived fixture (TidePool's
 `big-journal` variant, a newest-first bullet journal), two SETUP halves RED-confirmed by
-prompt-only probes, the AUDIT and whats-next halves no-failed and status-noted. The record:
-`docs/2026-09-26 - journal-rollover-red-green.md`; the change:
+prompt-only probes, the AUDIT and whats-next halves no-failed and status-noted in the
+change's delta. The record: `docs/2026-09-26 - journal-rollover-red-green.md`; the change:
 `openspec/changes/archive/2026-09-26-journal-rollover`.
 

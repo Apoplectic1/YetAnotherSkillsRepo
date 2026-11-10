@@ -49,13 +49,6 @@ to the backlog, noting doc freshness in the coverage manifest instead of demandi
 - **THEN** the run recommends running docs-architecture-audit first (stale docs → stale
   backlog)
 
-**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
-on a fresh-docs fixture both reps proceeded straight to backlog + manifest without demanding or
-performing an audit, recording the absent audit output as an honest manifest row. The feared
-unconditional-precondition reading did not occur. Per the no-failure gate the When-to-use text
-was not changed; if a future run blocks on or performs an unneeded audit, encode then. Record:
-design doc, review-round-2 RED/GREEN entry.
-
 ### Requirement: Open items are read from the live journal
 The journal sweep row SHALL read the live `NOTEBOOK.md` (its "Open threads (carried at a
 rollover)" section first) and `docs/`; a journal's rolled files (`NOTEBOOK/`) SHALL be treated
@@ -67,9 +60,3 @@ items, the coverage manifest noting them as not reached by design.
   an item a later live entry closed
 - **THEN** the backlog lists the carried thread and not the closed item, and the manifest
   names the rolled files as not reached (carried at rollover)
-
-**Status note (2026-09-26):** satisfied by baseline behavior, not by skill text. The RED probe
-read the 18 KB live file only, listed the carried thread as a future-feature item, treated the
-closed item as closed, and marked the rolled files "not reached, carry-forward invariant" in
-the manifest; it noted the depth was its own call. Per the no-failure gate the skill text was
-not changed; if a future run sweeps rolled files or lists a closed item, encode then.

@@ -5,6 +5,19 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-11-10: **The main specs pass strict validation** (change `main-specs-strict-clean`;
+  record `docs/2026-11-10 - main-specs-strict-clean.md`). `openspec validate --specs --strict`
+  failed four of the five main specs: 26 requirements past 500 characters and two placeholder
+  Purposes. Each long requirement is cut in place to one behavior per requirement, its
+  scenarios under the behavior they test (58 requirements become 115, plus two ADDED in
+  setup); the eleven status notes are gone, the five rules two of them stated kept as
+  requirements (three already stood as scenarios, two are the ADDED ones); provenance,
+  field cases and why-clauses removed into the change's ledger; the audit and setup Purposes
+  written. A clause check (`check_specs.py`) shows every old clause kept or ledgered and
+  every requirement and scenario name present; reader reps at Sonnet/high, four plus two
+  reruns, 454k tokens, found one misplaced rule in setup, fixed. `DOMAIN.md` states the
+  convention for later work: a no-failed RED leaves a requirement with no note, its result
+  in the records. Strict 1/5 to 5/5; no skill text changed.
 - 2026-11-10: **The split index says what each part holds** (change
   `split-index-written-lines`; record `docs/2026-11-10 - split-index-written-lines-red-green.md`).
   `split_doc.py`'s line per part was the part's first sentence, in practice its first

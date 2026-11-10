@@ -1,9 +1,10 @@
 # docs-architecture-audit Specification
 
 ## Purpose
-TBD — created by syncing change `fix-skill-review-findings`. Covers only the requirements that
-change established for the AUDIT skill (`skills/docs-architecture-audit/SKILL.md`); not a
-retroactive full spec of the skill.
+Verifying that a project's reference docs still match its code and their charters: what is in
+scope (taken from the routers), the flags a run raises with their evidence, the owner's
+adjudication before anything is applied, and the report-only channels for what the audit must
+never fix itself.
 
 ## Requirements
 
@@ -11,15 +12,7 @@ retroactive full spec of the skill.
 Cold-rationale documents (dated `docs/` rationale notes that a reference doc cites) SHALL be
 audited with a decision-consistency check only — does the reasoning still support the decision it
 justifies? — not a full code-currency sweep. A code-coupled fact (file, function, flag, or value)
-found inside a cold-rationale doc SHALL be flagged as misplaced (tier violation), since code-coupled
-content parked in tier 3 escapes the currency sweep.
-
-**Carve-out — archived openspec design docs:** when the cited document is an archived openspec
-design doc (`openspec/changes/archive/*/design.md`), the decision-consistency check SHALL still
-run, but tier-violation flags for code-coupled facts SHALL be suppressed — such documents are
-dense with code-coupled facts by design and are immutable change records. The audit SHALL never
-edit a file under `openspec/changes/archive/`. Standing truth found there that belongs in the
-reference tier is the MAINTAIN graduate path's job, not a misplacement flag.
+found inside a cold-rationale doc SHALL be flagged as misplaced (tier violation).
 
 #### Scenario: Code-coupled fact in a cold doc is flagged
 - **WHEN** an audit worker reads a cold-rationale doc containing a drifted code-coupled fact
@@ -29,6 +22,13 @@ reference tier is the MAINTAIN graduate path's job, not a misplacement flag.
 #### Scenario: Sound evergreen reasoning is not flagged
 - **WHEN** a cold-rationale doc's reasoning still supports the decision it justifies
 - **THEN** no flag is emitted for it (no cry-wolf)
+
+### Requirement: Archived openspec design docs get the decision-consistency check only
+The decision-consistency check SHALL still run on a cited archived openspec design doc
+(`openspec/changes/archive/*/design.md`), but tier-violation flags for its code-coupled facts
+SHALL be suppressed. The audit SHALL never edit a file under `openspec/changes/archive/`.
+Standing truth found there that belongs in the reference tier is the MAINTAIN graduate path's
+job, not a misplacement flag.
 
 #### Scenario: Cited archived openspec design doc gets consistency-check only
 - **WHEN** a reference doc cites `openspec/changes/archive/<id>/design.md` and an audit worker
@@ -73,13 +73,6 @@ Before presenting the merged flag list for adjudication, the orchestrator SHALL 
 flag's cited evidence against disk (grep/read the cited file:line or symbol). A flag whose evidence
 does not hold SHALL be corrected or dropped with a note — never presented as verified.
 
-**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. The RED baseline
-passed 2/2 (orchestrators re-verified evidence and refuted a seeded false flag unprompted — the
-skill's conservative-evidence rule already induces this), so per the no-failure gate no explicit
-gate text was added to `skills/docs-architecture-audit/SKILL.md`. If a future run rubber-stamps
-false evidence, that is the failing test this requirement's guidance was waiting for — encode it
-then. RED/GREEN record: `docs/docs-architecture-design.md`, fix-batch behavioral half.
-
 #### Scenario: Plausible-but-false worker claim is caught
 - **WHEN** the merged list contains a flag whose cited evidence does not hold on disk (e.g., it
   asserts a dangling reference that grep shows clean)
@@ -101,13 +94,6 @@ results warrant. Loop-until-dry remains the terminator in all cases.
 - **WHEN** an audit runs on a project with large multi-section reference docs
 - **THEN** per-section workers, loop-until-dry, and model diversity apply as currently
   specified
-
-**Status note (2026-07-07):** satisfied by baseline behavior, not by skill text. RED 2/2 passed —
-on a 5-thin-doc fixture both reps planned a proportionate opening round (6 workers; explicit
-"per-section collapses to per-doc" volume reasoning), kept round 3 conditional on a wet round 2,
-and preserved loop-until-dry as the terminator. Per the no-failure gate no scale sentence was
-added; if a future run deploys machinery grossly over volume, encode then. Record: design doc,
-review-round-2 RED/GREEN entry.
 
 ### Requirement: Embedded shipped-history is one structural flag
 When a reference doc embeds a growing dated shipped-history (e.g. inside ROADMAP), the audit
@@ -153,19 +139,29 @@ SHALL NOT be accepted as grounds to skip the worker-model switch before concludi
 An audit run SHALL treat the `CLAUDE.md` router as an in-scope placement subject: off-charter
 reference content found in the router (glossary, contract/API prose, domain conventions,
 how-it-works mechanics — anything that is not routing or a load-bearing gotcha) SHALL yield a
-structural placement flag proposing a move to the charter-owning reference doc, in the same
-family as the embedded-shipped-history flag (R25): one structural placement flag per block,
-not per-fact placement flags. Unlike R25's journal-tier history, the block's content is
-reference-tier: currency flags on stale claims inside it remain legitimate and orthogonal
-(the two axes are judged separately). Routing lines and load-bearing gotchas SHALL NOT be
-placement-flagged on the content axis, regardless of router size; a gotcha block still meets
-the scope test (the always-on chain requirement).
+structural placement flag proposing a move to the charter-owning reference doc, one structural
+placement flag per block, not per-fact placement flags.
 
 #### Scenario: Off-charter router content is placement-flagged
 - **WHEN** an audit worker reads a `CLAUDE.md` router embedding a glossary or contract prose
 - **THEN** it emits a structural placement flag (move-to the charter-owning reference doc)
   identifying the off-charter block, rather than silently skipping it or emitting per-fact
   placement flags (currency flags on stale claims inside the block remain permitted)
+
+### Requirement: A router block's currency is judged apart from its placement
+A stale claim inside an off-charter router block SHALL still take a currency flag: unlike
+R25's journal-tier history, the block's content is reference-tier, and its placement and its
+currency are judged separately.
+
+#### Scenario: A stale claim inside a placement-flagged router block
+- **WHEN** a router block that draws a structural placement flag also states a value the code
+  has moved past
+- **THEN** that claim also takes a currency flag, judged on its own axis
+
+### Requirement: Routing lines and load-bearing gotchas are not placement-flagged
+Routing lines and load-bearing gotchas SHALL NOT be placement-flagged on the content axis,
+regardless of router size; a gotcha block still meets the scope test (the requirement "Router
+and always-on rule blocks meet the scope test").
 
 #### Scenario: Routing and gotchas are not flagged
 - **WHEN** an audit worker reads a router containing only routing entries and gotchas every
@@ -192,11 +188,7 @@ The AUDIT skill's apply step SHALL persist report-only findings (`flag-code-bug`
 `revisit-plan`, `spec-change`) to the target project's own doc tiers before the run ends: the
 full flags with evidence in a dated `docs/YYYY-MM-DD-<skill>-report.md`, and one line per
 adjudicated-surviving finding in ROADMAP § Open (deduplicated against existing open lines).
-If adjudication is deferred, a single ROADMAP § Open line SHALL point at the unadjudicated
-report instead. Persistence is disk-write only — the skill still never edits code and never
-initiates fix work. Gated on RED→GREEN per the iron law: this requirement's skill text ships
-only after a synthetic RED reproduces the loss on a non-derived fixture (no-failure →
-status-note only).
+Persistence is disk-write only — the skill still never edits code and never initiates fix work.
 
 #### Scenario: Bugs found, user adjudicates
 - **WHEN** an AUDIT run produces `flag-code-bug` findings and the user adjudicates them as
@@ -205,15 +197,19 @@ status-note only).
   its evidence, and adds one deduplicated line per surviving bug to the target project's
   ROADMAP § Open
 
-#### Scenario: Bugs found, adjudication deferred
-- **WHEN** an AUDIT run produces `flag-code-bug` findings and the user defers adjudication
-- **THEN** the dated `docs/` report is still written, and ROADMAP § Open gains a single
-  pointer line naming the unadjudicated report
-
 #### Scenario: Re-run on the same project
 - **WHEN** a later AUDIT run re-finds a defect already listed in the target ROADMAP § Open
 - **THEN** no duplicate ROADMAP line is added (the existing line stands; the new report may
   cite it)
+
+### Requirement: A deferred adjudication leaves one ROADMAP pointer line
+If adjudication is deferred, a single ROADMAP § Open line SHALL point at the unadjudicated
+report instead.
+
+#### Scenario: Bugs found, adjudication deferred
+- **WHEN** an AUDIT run produces `flag-code-bug` findings and the user defers adjudication
+- **THEN** the dated `docs/` report is still written, and ROADMAP § Open gains a single
+  pointer line naming the unadjudicated report
 
 ### Requirement: Fix-or-delete discriminator on derivable claims
 The AUDIT skill SHALL apply a derivability discriminator to currency `fix-doc` flags: when
@@ -221,11 +217,7 @@ the stale claim is both cheaply derivable from code (one grep/read re-derives it
 a version, an enumerated list) AND carries no rationale, contract force, or gotcha weight,
 the flag's proposed fix SHALL lead with removing the claim or rewording it without the
 perishable value (keeping the durable statement), offering the value-update as the stated
-alternative for adjudication. Claims with rationale attached, contract guarantees (R7
-territory), or gotcha weight are outside the discriminator — they get a normal fix. The
-discriminator changes only the proposed fix-shape; flagging, evidence, and
-adjudicate-before-apply are unchanged. Gated on RED→GREEN per the iron law (no-failure →
-status-note only).
+alternative for adjudication.
 
 #### Scenario: Stale rationale-free count
 - **WHEN** a reference doc says "ships with 12 curated stations", code shows 18, and no
@@ -233,11 +225,19 @@ status-note only).
 - **THEN** the flag proposes removing/de-valuing the count (e.g. "a curated station
   registry") with "update to 18" as the alternative, and the user adjudicates
 
+### Requirement: Rationale, contract and gotcha claims take the normal fix
+A claim with rationale attached, a contract guarantee (R7 territory) or gotcha weight SHALL
+take a normal fix: it is outside the derivability discriminator.
+
 #### Scenario: Rationale-bearing number is not deletion-proposed
 - **WHEN** a stale value is load-bearing for a stated why (a threshold with its rationale, a
   benchmark figure justifying a recommendation) or asserts a guarantee
 - **THEN** no deletion proposal is made — the flag takes the normal fix path (or R7 if a
   contract is violated)
+
+### Requirement: The derivability discriminator never suppresses a flag
+The discriminator SHALL change only the proposed fix-shape; flagging, evidence, and
+adjudicate-before-apply are unchanged.
 
 #### Scenario: Live-section control preserved
 - **WHEN** the discriminator applies to a claim in a live (non-history) section
@@ -261,21 +261,12 @@ the overflow directory.
   has rolled
 - **THEN** the citation is not reported as dangling
 
-**Status note (2026-09-26):** satisfied by baseline behavior, not by skill text. The RED probe
-(a worker assigned a rolled file whose 2026-01-22 entry says `CACHE_TTL_HOURS = 24` against
-code at 6) treated the file as journal under R14 by inheritance from the router's journal line
-(which SETUP now writes) and emitted no flags, while naming the ambiguity. Per the no-failure
-gate the audit text was not changed; if a future run currency-flags a rolled file, encode then.
-
 ### Requirement: A router-named spec is currency-audited and never edited
 A spec under `openspec/specs/` that the project's router names as its rules SHALL be in the
 currency audit's scope as reference-tier, and SHALL never be edited by the audit: a claim the
 spec makes that the code, the router and the reference docs agree is wrong SHALL be flagged
 with the report-only action `spec-change`, naming the change that would correct it, and R7's
-code-is-suspect reading SHALL apply only while the spec stands uncontradicted. A spec the
-router does not name stays excluded as tooling (R13). RED 2/2 on the reefstack `audit-scope`
-variant (SS1): the stale SHALL went out as `flag-code-bug` by R7's letter, the reps naming
-the missing action.
+code-is-suspect reading SHALL apply only while the spec stands uncontradicted.
 
 #### Scenario: A router-named spec's stale SHALL
 - **WHEN** a router-named spec says the poll loop writes every 5 seconds, and the code, the
@@ -283,6 +274,10 @@ the missing action.
 - **THEN** the merged list carries one currency flag on the spec with action `spec-change`,
   the spec file is byte-identical after the run, and no `flag-code-bug` is raised against
   the code for that claim
+
+### Requirement: A spec the router does not name stays excluded
+A spec under `openspec/specs/` that the router does not name SHALL stay excluded from the
+audit as tooling (R13).
 
 #### Scenario: An unnamed spec stays out
 - **WHEN** `openspec/specs/` holds a spec the router does not name, for unbuilt work
@@ -293,14 +288,6 @@ A doc the router routes as current truth SHALL be audited as reference-tier wher
 sits, a dated filename in `docs/` included; R14's journal exclusion SHALL cover only what the
 router does not route that way. The name cannot be the test: a project that dates every new
 `docs/` file dates its reference docs too.
-
-**Status note (2026-10-12):** satisfied by baseline behavior, not by skill text. RED 2/2 on
-the reefstack `audit-scope` variant (SP1, a router-routed `docs/2026-07-01 - probe-wiring.md`
-with a drifted channel map beside an unrouted dated record): both reps audited the routed
-doc under R12 and R2 and left the record out under R14, while listing "the skill does not
-say how to resolve a dated-name reference doc in `docs/`". Per the no-failure gate the audit
-text was not changed; the candidate sentence for R12 is held in the change's design record.
-If a future run skips a routed doc for its directory or its date, encode it then.
 
 #### Scenario: A routed dated reference doc is audited
 - **WHEN** the router routes `docs/<date> - <name>.md` as current truth, edited in place, and
@@ -314,25 +301,27 @@ If a future run skips a routed doc for its directory or its date, encode it then
 
 ### Requirement: Ancestor routers are convention sources
 Every `CLAUDE.md` above the audited project's root (each loads in every session launched
-there) SHALL be read as a convention source and never edited: the cross-reference pass SHALL
-resolve each upward pointer against the ancestor's current text, a convention the ancestor
-scopes to the repositories beneath it SHALL be checked as a contract (code violating it →
-`flag-code-bug` citing the ancestor line, R7; a repo doc agreeing with that code is not
-evidence against the convention), and a repo doc restating an ancestor's rule SHALL be a
-placement flag `cross-ref+delete`. The ancestor's own defects belong to its own audit (R16).
+there) SHALL be read as a convention source and never edited. The ancestor's own defects
+belong to its own audit (R16).
 
-**Status note (2026-10-12):** satisfied by baseline behavior, not by skill text. RED 6/6 on
-the reefstack `audit-scope` variant: on ReefDash (whose router points up twice) both reps
-resolved the dangling "Alert palette" pointer, raised `flag-code-bug` for naive local time
-against the root's UTC rule, and `cross-ref+delete` for the restated TOML rule (AR1 to AR3),
-leaving the valid pointer alone (AR4); on DoseKeeper (whose router never points up) both
-reps read the parent "as an ancestor, auto-loaded" unprompted and raised `flag-code-bug` for
-both violated conventions (AR5, AR6). Every rep listed "the skill does not say whether an
-ancestor router counts" among its uncertainties. Per the no-failure gate no ancestor-router
-rule was added to the skill; the candidate text (labeled R29 in that change's design record,
-a number the scoped-modes rule has since taken) is held there and takes the next free number
-if it ever ships. The field case (the ATML audit, 2026-09-24, a Sonnet fan-out over a 27 KB
-router) remains the evidence that a real run can miss it; if one does again, encode it then.
+#### Scenario: An ancestor with a defect of its own
+- **WHEN** an ancestor router above the audited project carries a stale claim of its own
+- **THEN** the audit edits nothing in the ancestor and leaves the claim to the ancestor's own
+  audit
+
+### Requirement: Upward pointers resolve against the ancestor's current text
+The cross-reference pass SHALL resolve each upward pointer in the audited project against the
+ancestor router's current text.
+
+#### Scenario: A pointer to a rule the ancestor no longer carries
+- **WHEN** the audited repo's router cites a named rule in an ancestor's section and that
+  section does not hold it
+- **THEN** the cross-reference pass reports the pointer as dangling
+
+### Requirement: An ancestor's scoped convention is checked as a contract
+A convention an ancestor router scopes to the repositories beneath it SHALL be checked as a
+contract: code violating it takes `flag-code-bug` citing the ancestor line (R7), and a repo
+doc agreeing with that code is not evidence against the convention.
 
 #### Scenario: An uncited ancestor convention is checked
 - **WHEN** an ancestor router states a convention for every repository beneath it, the
@@ -340,10 +329,8 @@ router) remains the evidence that a real run can miss it; if one does again, enc
 - **THEN** a `flag-code-bug` is raised citing the ancestor line, and the doc is not fixed
   toward the code
 
-#### Scenario: A pointer to a rule the ancestor no longer carries
-- **WHEN** the audited repo's router cites a named rule in an ancestor's section and that
-  section does not hold it
-- **THEN** the cross-reference pass reports the pointer as dangling
+### Requirement: A repo doc restating an ancestor's rule takes cross-ref+delete
+A repo doc restating an ancestor router's rule SHALL draw a placement flag `cross-ref+delete`.
 
 #### Scenario: A restated ancestor rule
 - **WHEN** a repo reference doc restates, unattributed, a rule the ancestor router carries
@@ -355,7 +342,7 @@ The AUDIT skill SHALL offer two scoped modes that the user invokes and the run n
 cross-reference pass) and `small-set` (one per-section round plus the cross-reference pass).
 A scoped run SHALL be one round at the default worker tier with no loop and no model switch,
 every other rule intact, and its coverage note SHALL name the mode and what a full run would
-have added. Without a mode invoked, an audit SHALL run the full loop.
+have added.
 
 #### Scenario: A release just closed, the user asks for one cheap round
 - **WHEN** the user asks for a cheap one-round audit at a release close
@@ -368,34 +355,55 @@ have added. Without a mode invoked, an audit SHALL run the full loop.
 - **THEN** the run names `small-set`, runs one per-section round plus the cross-reference
   pass at the default tier, stops, and its coverage note names the mode
 
-#### Scenario: No mode invoked
-- **WHEN** the user asks for an audit without naming a mode or asking for one round
-- **THEN** the run loops until dry and switches worker model as before
-
 #### Scenario: A real wait is not flagged
 - **WHEN** a `release-close` lens meets "waits for" or "future" over something the code has
   not done
 - **THEN** no currency flag is emitted for it
 
-### Requirement: The always-on chain is measured and router blocks pass breadth and stability
+### Requirement: Without a mode invoked, an audit runs the full loop
+Without a mode invoked, an audit SHALL run the full loop.
+
+#### Scenario: No mode invoked
+- **WHEN** the user asks for an audit without naming a mode or asking for one round
+- **THEN** the run loops until dry and switches worker model as before
+
+### Requirement: The always-on chain is measured and carried in the coverage note
 An audit run SHALL measure, with `chain_budget.py` beside the skill, what a session launched
 in the audited directory loads before its first question (the owner's global file, every
 ancestor router, the project's router and always-on rule files, the memory index) in bytes,
 lines and estimated tokens against a budget stated as a share of the window (5 percent by
-default, the router may state its own) and each file against its own line (200 lines, the
-harness's guidance: the budget a unit can act on; the chain's share is met when every level
-meets its own), and its coverage note SHALL carry the chain row. Each block of the project's
-router and always-on rule files SHALL meet the scope test (breadth: every session launched
-here needs it; stability: it changes less often than a release); a failing block SHALL yield
-one placement flag `move-to` an on-demand home (a path-scoped rule file, a skill, or a
-reference-doc section) with a trigger line left behind. An ancestor's weight SHALL be
-reported in the row and never flagged in this run.
+default, the router may state its own), and its coverage note SHALL carry the chain row.
+
+#### Scenario: The chain row in the coverage note
+- **WHEN** an audit runs in a project directory
+- **THEN** its coverage note carries the chain row: what a session launched there loads, in
+  bytes, lines and estimated tokens, against the budget
+
+### Requirement: An ancestor's weight is reported, never flagged
+An ancestor's weight SHALL be reported in the row and never flagged in this run.
 
 #### Scenario: A sub-project under a fat ancestor
 - **WHEN** an audit runs from a sub-project whose own router is thin and whose ancestor router
   carries another sub-project's gotcha pack, the chain over budget
 - **THEN** the coverage note carries the chain row naming the ancestor as the largest item and
   routing it to its own audit, and no placement flag is raised on the sub-project's router
+
+### Requirement: Each file that loads at launch is measured against its own line
+Each file that loads at launch SHALL be measured against its own line (200 lines, the
+harness's guidance: the budget a unit can act on), and the chain's share is met when every
+level meets its own.
+
+#### Scenario: A router over its own line under an unmeetable chain
+- **WHEN** the owner's global file and the ancestors exceed the chain budget and the audited
+  router is past 200 lines
+- **THEN** the row says which files are over their own line and whose they are, and the
+  scope test runs on the audited router's blocks regardless of the chain's verdict
+
+### Requirement: Router and always-on rule blocks meet the scope test
+Each block of the project's router and always-on rule files SHALL meet the scope test
+(breadth: every session launched here needs it; stability: it changes less often than a
+release); a failing block SHALL yield one placement flag `move-to` an on-demand home (a
+path-scoped rule file, a skill, or a reference-doc section) with a trigger line left behind.
 
 #### Scenario: A container root carrying a sub-project's gotcha pack
 - **WHEN** an audit runs at a container root whose router holds a pack of true gotchas that
@@ -406,12 +414,6 @@ reported in the row and never flagged in this run.
 #### Scenario: A router under budget still faces the test
 - **WHEN** the chain is within budget and the router holds a block that fails breadth
 - **THEN** the block is still flagged (the number detects, the test decides)
-
-#### Scenario: A router over its own line under an unmeetable chain
-- **WHEN** the owner's global file and the ancestors exceed the chain budget and the audited
-  router is past 200 lines
-- **THEN** the row says which files are over their own line and whose they are, and the
-  scope test runs on the audited router's blocks regardless of the chain's verdict
 
 ### Requirement: A split reference doc's parts are in scope and its section citations resolve
 The audit's in-scope set SHALL include the parts a split reference doc's index names
