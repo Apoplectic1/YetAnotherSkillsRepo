@@ -83,6 +83,19 @@ reaches the parts through the index. `split_doc.py` ships with the setup skill; 
 the Arty's 70 KB ARCHITECTURE (seven topics, 71 section citations listed) is the derivation
 evidence, the apply queued as consumer work.
 
+**The index's line per part is written (owner, 2026-11-10; change `split-index-written-lines`).**
+The index is the map a session opens first, and its reader is an agent choosing one part to
+read. The first-sentence extract the split began with rarely said what a part holds, so the
+run that splits a doc writes each part's line: what the part holds, in its own terms, at most
+320 characters, every backticked term occurring verbatim in its part (a term the line carries
+is a search term, and the check is the promise that the search lands there). This is the one
+place judgment enters a split; the boundaries and the moves stay mechanical. The entry stays
+one physical line with the part's size, so one grep returns the file to open and what it
+costs to open. `--reindex` keeps each line and lists a part whose size moved for review;
+`--check`, which the survey and the audit's scope step run, reports an index its parts have
+outgrown. A rolled journal's `INDEX.md` takes no such line: its entries' own titles are what
+a search matches.
+
 OpenSpec role: **workflow/task only** (explore / propose rituals). It is *not* a third
 knowledge home — durable knowledge stays in `.md` docs. `openspec/specs/` stays sparse by
 choice. (Decision records like the NSG-drizzle note belong in `docs/`, not as spec deltas —

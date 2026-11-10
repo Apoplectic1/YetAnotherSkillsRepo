@@ -58,7 +58,8 @@ decision below is taken by what that reader does next: a grep or a read.
   an identifier renamed later. Rejected: checking prose words (no stable match), and
   requiring a backticked term (a part of pure argument has none).
 - **D5: the lines arrive in a lines file.** Markdown: a `## <heading as written>` line, the
-  written line on the next non-empty line. Headings match the doc's by text and order; a
+  written line on the lines after it (a wrapped line is joined with spaces, so a soft wrap
+  loses nothing; text before the first heading is ignored). Headings match the doc's by text and order; a
   heading the doc lacks is refused by name, as is a part left without a line. The run writes
   the file in its scratch space; it is an input, not a doc. Rejected: an apply that writes
   placeholders to be filled afterwards (a broken map on disk, and nothing to refuse), and

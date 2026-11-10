@@ -12,10 +12,13 @@ design doc: `docs/docs-architecture-design.md`.
   report read back after it), deployed with it; `docs-architecture-audit/` carries
   `chain_budget.py` (the always-on chain, R30) and `scope.py` (the scope step: what is in
   and out with its rule, the chain row, the structural findings, the cross-reference seed,
-  the release-close lens; it runs `chain_budget.py` beside it), and `docs-architecture-setup/` carries
-  `split_doc.py` (the reference-doc split, T5) and `survey.py` (the survey step: one line
-  per finding with the rule it keys; it runs `chain_budget.py` from beside the audit skill,
-  so the two deploy side by side); the pilot's copies under
+  the release-close lens; it runs `chain_budget.py` beside it and the setup skill's
+  `split_doc.py --check`), and `docs-architecture-setup/` carries
+  `split_doc.py` (the reference-doc split, T5: the parts, the index with a written line per
+  part, `--reindex`, and `--check`, the stale-index test) and `survey.py` (the survey step:
+  one line per finding with the rule it keys; it runs `split_doc.py --check` beside it and
+  `chain_budget.py` from beside the audit skill, so the two skills deploy side by side); the
+  pilot's copies under
   `docs/2026-09-26 - journal-rollover/` are the frozen record of the first run.
 - `docs/` — journal (dated records) + the canonical design doc (its index, with the parts in
   `docs/docs-architecture-design/`) + benchmark data

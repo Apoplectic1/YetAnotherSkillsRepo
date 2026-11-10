@@ -205,10 +205,14 @@ def main(argv):
         sd = os.path.join(d, stem)
         if os.path.isdir(sd):
             ps = sorted(x for x in os.listdir(sd) if x.endswith('.md'))
-            listed = re.findall(r'\(`' + re.escape(stem) + r'/([^`]+)`', read(os.path.join(d, f)))
             parts[f] = [f'{stem}/{x}' for x in ps]
+            stale = split_check(os.path.join(d, f))
             say(f'  {stem}/: {len(ps)} parts of the split {f}, each the index\'s tier and charter -> R12'
-                + ('' if sorted(listed) == ps else f' (the index lists {len(listed)}: stale, split_doc.py --reindex)'))
+                + ('' if not stale else f' (the index is stale, {len(stale)} finding(s): split_doc.py --reindex)'))
+            for x in stale[:8]:
+                say(f'    {x}')
+            if len(stale) > 8:
+                say(f'    ... {len(stale) - 8} more (split_doc.py --check)')
 
     say('')
     say('out of scope')
@@ -392,6 +396,20 @@ def main(argv):
         if len(out) == n0:
             say('  none')
     print('\n'.join(out))
+
+
+def split_check(doc):
+    """The setup skill's split_doc.py --check on a split doc: the index's stale findings, [] when current."""
+    sd = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..',
+                                       'docs-architecture-setup', 'split_doc.py'))
+    if not os.path.isfile(sd):
+        return [f'split_doc.py not found beside the setup skill ({sd}): run its --check by hand']
+    r = subprocess.run([sys.executable, sd, doc, '--check'], capture_output=True, text=True,
+                       encoding='utf-8', errors='replace')
+    if r.returncode == 0:
+        return []
+    found = [l.strip() for l in r.stdout.split('\n')[1:] if l.strip()]
+    return found or [f'split_doc.py --check: {(r.stderr or r.stdout).strip()[:200]}']
 
 
 def chain_lines(d, glob_, memory, root_):

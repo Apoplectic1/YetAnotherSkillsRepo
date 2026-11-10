@@ -226,6 +226,19 @@ def chain_lines(d, glob_, memory, root_):
     return ['  the chain (chain_budget.py): ' + head] + ['    ' + ' '.join(k) for k in keep[1:]]
 
 
+def split_check(doc):
+    """split_doc.py --check (beside this script) on a split doc: the index's stale findings, [] when current."""
+    sd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'split_doc.py')
+    if not os.path.isfile(sd):
+        return [f'split_doc.py not found beside this script ({sd}): run its --check by hand']
+    r = subprocess.run([sys.executable, sd, doc, '--check'], capture_output=True, text=True,
+                       encoding='utf-8', errors='replace')
+    if r.returncode == 0:
+        return []
+    found = [l.strip() for l in r.stdout.split('\n')[1:] if l.strip()]
+    return found or [f'split_doc.py --check: {(r.stderr or r.stdout).strip()[:200]}']
+
+
 def journal_report(d, budget, say):
     for j in JOURNALS:
         p = os.path.join(d, j)
@@ -273,16 +286,22 @@ def reference_report(d, budget, say):
         line = f'  {r} {kb(b)}, {len(tp)} `##` topics'
         stem = r[:-3]
         sd = os.path.join(d, stem)
+        stale = []
         if os.path.isdir(sd):
             parts = sorted(f for f in os.listdir(sd) if f.endswith('.md'))
             listed = re.findall(r'\(`' + re.escape(stem) + r'/([^`]+)`', t)
             line += f'; split: {stem}/ holds {len(parts)} parts, the index lists {len(listed)}'
-            if sorted(listed) != parts:
-                line += ' -> T5 (--reindex)'
+            stale = split_check(p)
+            if stale:
+                line += f'; the index is stale, {len(stale)} finding(s) -> T5 (--reindex)'
         elif b > budget:
             line += f'; past {budget // 1024} KB -> ' + ('T5 (split_doc.py)' if len(tp) >= 2
                                                           else 'T5 cannot split one topic: its headings are the lever')
         say(line)
+        for x in stale[:8]:
+            say(f'    {x}')
+        if len(stale) > 8:
+            say(f'    ... {len(stale) - 8} more (split_doc.py --check)')
     p = os.path.join(d, 'ROADMAP.md')
     if os.path.isfile(p):
         t = read(p)

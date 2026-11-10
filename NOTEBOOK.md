@@ -5,6 +5,15 @@ observations that don't warrant a standalone dated note. Newest at the top. Subs
 records go to `docs/YYYY-MM-DD - <name>.md` (older ones keep `YYYY-MM-DD-<slug>.md`;
 existing example: the 2026-06-29 audit worker-model benchmark).
 
+- 2026-11-10: **A retrieval question is single-part only if no other part lets a reader
+  derive its answer** (record `docs/2026-11-10 - split-index-written-lines-red-green.md`).
+  The questions were checked by grepping each answer string over the parts, and all
+  sixteen hit one part; three still had a second defensible part (the 0.7 ceiling follows
+  from the weights in Window scoring, nineteen lines from "eighteen ... grows by one"), and
+  every miss of the written indexes was one of them. Check a question by asking which other
+  part would let a reader answer it, not by where its string sits. Beside it: the term
+  check refused the same paraphrase from three independent authors (`` `id  name` `` for a
+  part that writes the f-string), each fixed in one step, which is the check working.
 - 2026-10-12: **"CRLF line terminators" is not a uniformity check** (record
   `docs/2026-10-12 - ep7314600-field-run.md`, the adjudication). A file-type tool prints it
   when a file holds any CRLF, so this evening's CRLF check of `split_doc.py` passed a split

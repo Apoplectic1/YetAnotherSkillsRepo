@@ -1,16 +1,29 @@
 """Split a reference doc past its budget by topic: each `## ` section becomes one file in a
 directory named for the doc, and the doc itself becomes the index.
 
-python split_doc.py <repo>/<DOC>.md [--apply] [--budget-kb 40] [--today YYYY-MM-DD]
-python split_doc.py <repo>/<DOC>.md --reindex      (after a part is edited: the Parts list rewritten)
+python split_doc.py <repo>/<DOC>.md [--lines <file>] [--apply] [--budget-kb 40] [--today YYYY-MM-DD]
+python split_doc.py <repo>/<DOC>.md --reindex [--lines <file>]   (after a part is edited)
+python split_doc.py <repo>/<DOC>.md --check                      (read-only: is the index current?)
 
 The doc's title line and preamble (its charter, everything before the first `## `) stay in
-the index, followed by a split note and one line per part: the heading as written, the part's
-file and size, its first sentence. Each part file carries a one-line title naming its parent,
-a note, then the section byte for byte, its `## ` heading included, so a section citation
-("ARCHITECTURE § Build chain", or an unambiguous short form of the heading) resolves by grep
-over the file and the directory. The router keeps naming the parent only. A section is never
-split below `## `: a single topic past the budget stays one part, reported as such.
+the index, followed by a split note and one entry per part, on one line: the heading as
+written, the part's file and size, and a line the splitting run writes saying what the part
+holds. The lines come in a lines file: each part's `## ` heading as written, its line on the
+lines below (a wrapped line is joined); the dry run prints the headings to fill in. A line is
+at most 320 characters, and every `backticked` term in it occurs verbatim in its part. A part
+with no line, or a line failing either check, is refused and nothing is written. Each part
+file carries a one-line title naming its parent, a note, then the section byte for byte, its
+`## ` heading included, so a section citation ("ARCHITECTURE § Build chain", or an
+unambiguous short form of the heading) resolves by grep over the file and the directory. The
+router keeps naming the parent only. A section is never split below `## `: a single topic
+past the budget stays one part, reported as such.
+
+--reindex keeps every line byte for byte and refreshes each entry's heading, file and size
+from the directory; a part whose size moved is listed with its line for review (does the line
+still say what the part holds?); a lines file sets the line of each heading it names (a new
+part's, or one the review rewrote). The checks run again, so --reindex is also the check for
+a line edited in the index by hand. --check writes nothing and reports an index whose files,
+sizes or lines no longer match its parts, exiting 1 when it is stale.
 
 Refused: a doc under budget; a doc with no `## ` sections; a journal (dated `## ` headings or
 dated top-level bullets: a journal rolls over by date with rollover.py, it never splits by
@@ -18,9 +31,10 @@ topic); an existing directory (a split is never rewritten). The dry run lists th
 section citation it finds in the repository's own Markdown (child repositories and
 sub-projects with their own router are skipped), the lines inside each part that a move one
 directory down leaves stale (relative paths, "this file"), and any heading carrying a date (the
-part's filename follows the heading, and a dated heading is edited in place); `--apply`
-writes the parts, rewrites the index, and checks that the preamble and the parts reconstruct
-the original byte for byte. `--today` fixes the date in the notes, for a byte-exact check.
+part's filename follows the heading, and a dated heading is edited in place); with --lines it
+checks the lines without writing. `--apply` writes the parts, rewrites the index, and checks
+that the preamble and the parts reconstruct the original byte for byte. `--today` fixes the
+date in the notes, for a byte-exact check.
 """
 import datetime
 import os
@@ -32,6 +46,14 @@ DATE = r'\d{4}-\d{2}-\d{2}'
 DATED_HEAD = re.compile(r'(?m)^## ' + DATE)
 DATED_BULLET = re.compile(r'(?m)^- \**' + DATE)
 STALE = re.compile(r'\.\./|\bthis file\b|\bbeside this file\b|\]\(\./|\]\((?!https?://|#|/)[^)]*\.md')
+LINE_CAP = 320
+TERM = re.compile(r'(?<!`)`([^`\n]+)`(?!`)')  # a code-formatted term: a search term the line promises
+ENTRY = re.compile(r'^- \*\*(?P<h>.*?)\*\* \(`(?P<f>[^`]+)`, (?P<kb>\d+\.\d) KB\)(?:: (?P<line>.*))?$')
+WHAT_A_LINE_SAYS = (
+    "the index's line per part (--apply refuses a part without one) says what the part holds, in\n"
+    "its own terms: the things, names and rules a reader would search for there, not its opening\n"
+    "restated, its history or a judgment of it. At most 320 characters; every `backticked` term\n"
+    "must occur verbatim in its part.")
 
 
 def slug(heading, taken):
@@ -47,21 +69,68 @@ def slug(heading, taken):
     return s
 
 
-def first_sentence(body):
-    """The part's first prose sentence: skips headings, fences and their contents, tables, images."""
-    fenced = False
-    for line in body.split('\n')[1:]:
-        t = line.strip()
-        if t.startswith('```'):
-            fenced = not fenced
-            continue
-        if fenced or not t or t.startswith(('#', '|', '![', '>')):
-            continue
-        t = re.sub(r'^[-*]\s+', '', t)
-        m = re.search(r'\. ', t)
-        t = t[:m.end() - 1] if m else t
-        return t[:160].rstrip() + (' ...' if len(t) > 160 else '')
-    return ''
+def line_faults(line, section):
+    """The two mechanical checks on a written line; whether it describes the part is the run's judgment."""
+    if not line or not line.strip():
+        return ['no line']
+    out = []
+    if len(line) > LINE_CAP:
+        out.append(f'the line is {len(line)} characters, past the cap of {LINE_CAP}')
+    for t in TERM.findall(line):
+        if t not in section:
+            out.append(f'`{t}` does not occur in the part')
+    return out
+
+
+def read_lines(path):
+    """The lines file: [(heading, line)], each `## ` heading with the non-empty lines below it joined."""
+    if not os.path.isfile(path):
+        sys.exit(f'lines file {path}: not found')
+    out = []
+    for raw in open(path, encoding='utf-8').read().splitlines():
+        m = re.match(r'## (.+?)\s*$', raw)
+        if m:
+            out.append((m.group(1), []))
+        elif out and raw.strip():
+            out[-1][1].append(raw.strip())
+    return [(h, ' '.join(ls)) for h, ls in out]
+
+
+def match_lines(pairs, headings):
+    """Pair the lines file's headings with the doc's, by text and order: (lines, faults)."""
+    want = [h.rstrip() for h in headings]
+    got = [h for h, _ in pairs]
+    if got == want:
+        return [l for _, l in pairs], []
+    faults = []
+    for h in dict.fromkeys(want):
+        if want.count(h) > got.count(h):
+            faults.append(f'"{h}": no line in the lines file')
+    for h in dict.fromkeys(got):
+        if got.count(h) > want.count(h):
+            faults.append(f'"{h}": not a `## ` heading of the doc')
+    return None, faults or ["the lines file's headings are out of the doc's order"]
+
+
+def parse_index(text, nl, stem, fname):
+    """The Parts list: (its offset, [(heading, file, size text, line or None)]) in the index's order."""
+    i = text.find(nl + '## Parts' + nl)
+    if i < 0:
+        sys.exit(f'{fname} carries no "## Parts" list: not a split index')
+    entries = []
+    for raw in text[i:].split(nl):
+        m = ENTRY.match(raw)
+        if m and m.group('f').startswith(stem + '/'):
+            entries.append((m.group('h'), m.group('f')[len(stem) + 1:], m.group('kb'), m.group('line')))
+    return i, entries
+
+
+def read_part(odir, f):
+    """A part file's heading, its section (heading included), and that section's size as the index writes it."""
+    part = open(os.path.join(odir, f), encoding='utf-8', newline='').read()
+    m = HEAD.search(part)
+    body = part[m.start():] if m else part
+    return (m.group(1) if m else f), body, f'{len(body.encode("utf-8")) / 1024:.1f}'
 
 
 def parse(text):
@@ -135,46 +204,103 @@ def part_head(stem, fname, h, today):
             f"> the file and `{stem}/`. The index is `../{fname}`.\n\n")
 
 
+def check(fname, stem, odir, entries):
+    """--check: one finding per line for an index that no longer matches its parts; nothing written."""
+    present = sorted(f for f in os.listdir(odir) if f.endswith('.md'))
+    byfile = {e[1]: e for e in entries}
+    findings = [f'{stem}/{f}: listed in the index, not in {stem}/' for f in byfile if f not in present]
+    for f in [e[1] for e in entries if e[1] in present] + [f for f in present if f not in byfile]:
+        h, body, kb = read_part(odir, f)
+        if f not in byfile:
+            findings.append(f'{stem}/{f}: in {stem}/, not listed in the index')
+            continue
+        e = byfile[f]
+        if e[2] != kb:
+            findings.append(f'{stem}/{f}: the index records {e[2]} KB, the part is {kb} KB')
+        findings += [f'{stem}/{f}: {x}' for x in line_faults(e[3], body)]
+    if not findings:
+        print(f'{fname}: the index matches its {len(present)} parts')
+        return 0
+    print(f'{fname}: the index is stale, {len(findings)} finding(s) (split_doc.py --reindex)')
+    for x in findings:
+        print(f'  {x}')
+    return 1
+
+
+def reindex(path, text, nl, fname, stem, odir, entries, i, lines_path):
+    """--reindex: the lines kept, the heading, file and size refreshed, a changed part put to review."""
+    present = [f for f in os.listdir(odir) if f.endswith('.md')]
+    byfile = {e[1]: e for e in entries}
+    order = [e[1] for e in entries if e[1] in present] + sorted(f for f in present if f not in byfile)
+    parts = {f: read_part(odir, f) for f in order}
+    given, faults = {}, []
+    if lines_path:
+        heads = {}
+        for f in order:
+            heads.setdefault(parts[f][0].rstrip(), []).append(f)
+        for h, l in read_lines(lines_path):
+            fs = heads.get(h, [])
+            if not fs:
+                faults.append(f'"{h}" (lines file): not the heading of any part in {stem}/')
+            elif len(fs) > 1:
+                faults.append(f'"{h}" (lines file): the heading of {len(fs)} parts; set their lines in the index itself')
+            else:
+                given[fs[0]] = l
+    out, review = [], []
+    for f in order:
+        h, body, kb = parts[f]
+        e = byfile.get(f)
+        line = given[f] if f in given else (e[3] if e else None)
+        faults += [f'{stem}/{f}: {x}' + ('' if e or f in given else ' (a new part: give its line with --lines)')
+                   for x in line_faults(line, body)]
+        if e and f not in given and e[2] != kb:
+            review.append(f'    {stem}/{f}: {e[2]} KB -> {kb} KB: {line}')
+        out.append(f"- **{h}** (`{stem}/{f}`, {kb} KB): {line}")
+    if faults:
+        sys.exit(f'{fname}: not reindexed, the index is unchanged:\n' + '\n'.join(f'  {x}' for x in faults))
+    index = text[:i + len(nl)] + '## Parts' + nl + nl + nl.join(out) + nl
+    assert mixed(text) or not mixed(index), 'the index would mix line endings'
+    open(path, 'w', encoding='utf-8', newline='').write(index)
+    gone = [e[1] for e in entries if e[1] not in present]
+    print(f'  reindexed: {fname} lists {len(order)} parts in the index\'s order'
+          + (f'; dropped from the list, no longer in {stem}/: {", ".join(gone)}' if gone else '')
+          + (f'; {len(given)} line(s) set from the lines file' if given else ''))
+    if review:
+        print(f'  review: {len(review)} part(s) changed size since the index recorded them; does each line'
+              f' still say what its part holds? (edit the line in the index, or pass --lines, then --reindex)')
+        print('\n'.join(review))
+
+
 def main(argv):
     if len(argv) < 2:
         sys.exit(__doc__)
     sys.stdout.reconfigure(encoding='utf-8', errors='replace', newline='\n')  # the citation list carries the section mark
+
+    def opt(name):
+        if name not in argv:
+            return None
+        k = argv.index(name) + 1
+        if k >= len(argv) or argv[k].startswith('--'):
+            sys.exit(f'{name} needs a value')
+        return argv[k]
     path = os.path.abspath(argv[1])
     apply = '--apply' in argv
-    budget = 40 * 1024
-    if '--budget-kb' in argv:
-        budget = int(argv[argv.index('--budget-kb') + 1]) * 1024
+    lines_path = opt('--lines')
+    budget = int(opt('--budget-kb') or 40) * 1024
     repo, fname = os.path.split(path)
     stem = fname[:-3]
     odir = os.path.join(repo, stem)
-    today = datetime.date.today().isoformat()
-    if '--today' in argv:  # for a byte-exact fixture check
-        today = argv[argv.index('--today') + 1]
+    today = opt('--today') or datetime.date.today().isoformat()  # --today: for a byte-exact fixture check
 
     text = open(path, encoding='utf-8', newline='').read()
     nl = '\r\n' if '\r\n' in text else '\n'  # the doc's own line ending: the parts and the index keep it
-    if '--reindex' in argv:  # a part was edited: rewrite the index's Parts list from the directory, bodies untouched
+    if '--reindex' in argv or '--check' in argv:
         if not os.path.isdir(odir):
-            sys.exit(f'{stem}/ does not exist: nothing to reindex')
-        i = text.find(nl + '## Parts' + nl)
-        if i < 0:
-            sys.exit(f'{fname} carries no "## Parts" list: not a split index')
-        listed = re.findall(r'\(`' + re.escape(stem) + r'/([^`]+)`', text[i:])  # the index's own order
-        present = [f for f in os.listdir(odir) if f.endswith('.md')]
-        order = [f for f in listed if f in present] + sorted(f for f in present if f not in listed)
-        index = text[:i + len(nl)] + '## Parts' + nl + nl
-        for f in order:
-            part = open(os.path.join(odir, f), encoding='utf-8', newline='').read()
-            m = HEAD.search(part)
-            body = part[m.start():] if m else part
-            kb = len(body.encode('utf-8')) / 1024
-            fs = first_sentence(body)
-            index += f"- **{m.group(1) if m else f}** (`{stem}/{f}`, {kb:.1f} KB)" + (f": {fs}" if fs else '') + nl
-        assert mixed(text) or not mixed(index), 'the index would mix line endings'
-        open(path, 'w', encoding='utf-8', newline='').write(index)
-        gone = [f for f in listed if f not in present]
-        print(f'  reindexed: {fname} lists {len(order)} parts in the index\'s order'
-              + (f'; dropped from the list, no longer in {stem}/: {", ".join(gone)}' if gone else ''))
+            sys.exit(f'{stem}/ does not exist: not a split doc')
+        i, entries = parse_index(text, nl, stem, fname)
+        if '--check' in argv:
+            sys.exit(check(fname, stem, odir, entries))
+        reindex(path, text, nl, fname, stem, odir, entries, i, lines_path)
         return
     size = len(text.encode('utf-8'))
     if size <= budget:
@@ -186,31 +312,52 @@ def main(argv):
         sys.exit(f'{fname} is a journal (dated entries): a journal rolls over by date with rollover.py, it never splits by topic')
     taken = set()
     parts = [(h, s, slug(h, taken)) for h, s in sections]
+    lines, faults = None, []
+    if lines_path:
+        lines, faults = match_lines(read_lines(lines_path), [h for h, _, _ in parts])
+        if lines is not None:
+            faults = [f'{stem}/{sl}.md "{h}": {x}' for (h, s, sl), l in zip(parts, lines) for x in line_faults(l, s)]
+    elif apply:
+        faults = ['--apply needs --lines <file>: every part takes a written line (the dry run prints the headings)']
+    if apply and faults:
+        sys.exit(f'{fname}: refused, nothing written:\n' + '\n'.join(f'  {x}' for x in faults))
 
-    print(f'{fname}: {size / 1024:.1f} KB, {len(parts)} topics (budget {budget // 1024} KB)')
-    for h, s, sl in parts:
-        kb = len(s.encode('utf-8')) / 1024
-        flags = ''
-        if kb * 1024 > budget:
-            flags += '  [this part alone is past the budget: it stays one part; the author\'s `###` headings are the lever]'
-        if re.search(DATE, h):
-            flags += '  [dated heading: the part\'s filename follows it, and an edit in place renames the part]'
-        print(f'  {kb:5.1f} KB  {stem}/{sl}.md  "{h}"{flags}')
-    print(f'  {len(preamble.encode()) / 1024:5.1f} KB  preamble kept in the index')
-    cites = citations(repo, stem, odir, [h for h, _, _ in parts])
-    print(f'section citations in this repository\'s Markdown: {len(cites)} (each resolves by grep after the split; check they name a heading as written or an unambiguous short form)')
-    for p, i, line in cites[:40]:
-        print(f'  {p}:{i}: {line[:110]}')
-    if len(cites) > 40:
-        print(f'  ... {len(cites) - 40} more')
-    stale = [(sl, i + part_head(stem, fname, h, today).count('\n'), l) for h, s, sl in parts for i, l in stale_lines(s)]
-    print(f'lines a move one directory down leaves stale (relative paths, "this file"): {len(stale)} (fix after the apply; the numbers are the parts\' lines)')
-    for sl, i, l in stale[:40]:
-        print(f'  {stem}/{sl}.md:{i}: {l[:110]}')
-    if len(stale) > 40:
-        print(f'  ... {len(stale) - 40} more')
     if not apply:
-        print('  dry run: --apply writes the parts and the index')
+        print(f'{fname}: {size / 1024:.1f} KB, {len(parts)} topics (budget {budget // 1024} KB)')
+        for h, s, sl in parts:
+            kb = len(s.encode('utf-8')) / 1024
+            flags = ''
+            if kb * 1024 > budget:
+                flags += '  [this part alone is past the budget: it stays one part; the author\'s `###` headings are the lever]'
+            if re.search(DATE, h):
+                flags += '  [dated heading: the part\'s filename follows it, and an edit in place renames the part]'
+            print(f'  {kb:5.1f} KB  {stem}/{sl}.md  "{h}"{flags}')
+        print(f'  {len(preamble.encode()) / 1024:5.1f} KB  preamble kept in the index')
+        cites = citations(repo, stem, odir, [h for h, _, _ in parts])
+        print(f'section citations in this repository\'s Markdown: {len(cites)} (each resolves by grep after the split; check they name a heading as written or an unambiguous short form)')
+        for p, i, line in cites[:40]:
+            print(f'  {p}:{i}: {line[:110]}')
+        if len(cites) > 40:
+            print(f'  ... {len(cites) - 40} more')
+        stale = [(sl, i + part_head(stem, fname, h, today).count('\n'), l) for h, s, sl in parts for i, l in stale_lines(s)]
+        print(f'lines a move one directory down leaves stale (relative paths, "this file"): {len(stale)} (fix after the apply; the numbers are the parts\' lines)')
+        for sl, i, l in stale[:40]:
+            print(f'  {stem}/{sl}.md:{i}: {l[:110]}')
+        if len(stale) > 40:
+            print(f'  ... {len(stale) - 40} more')
+        print(WHAT_A_LINE_SAYS)
+        if lines_path:
+            if faults:
+                print(f'lines file {lines_path}: {len(faults)} fault(s); --apply refuses until they are fixed')
+                print('\n'.join(f'  {x}' for x in faults))
+                sys.exit(1)
+            print(f'lines file {lines_path}: a line for each of the {len(parts)} parts, every check passed')
+            print('  dry run: --apply --lines <file> writes the parts and the index')
+            return
+        print('the lines file (--lines <file>): each heading below, its line on the lines after it')
+        for h, _, _ in parts:
+            print(f'## {h}')
+        print('  dry run: --apply --lines <file> writes the parts and the index')
         return
 
     os.makedirs(odir)
@@ -222,10 +369,9 @@ def main(argv):
             f"`grep -n \"<heading>\" {fname} {stem}/*.md`.\n\n"
             f"## Parts\n\n").replace('\n', nl)
     index = preamble.rstrip('\r\n') + nl + nl + note
-    for h, s, sl in parts:
+    for (h, s, sl), l in zip(parts, lines):
         kb = len(s.encode('utf-8')) / 1024
-        fs = first_sentence(s)
-        index += f"- **{h}** (`{stem}/{sl}.md`, {kb:.1f} KB)" + (f": {fs}" if fs else '') + nl
+        index += f"- **{h}** (`{stem}/{sl}.md`, {kb:.1f} KB): {l}" + nl
     written = [open(os.path.join(odir, sl + '.md'), encoding='utf-8', newline='').read() for _, _, sl in parts]
     rebuilt = preamble + ''.join(w.split(nl + nl, 2)[2] for w in written)
     assert rebuilt == text, 'the parts would not reconstruct the original byte for byte'

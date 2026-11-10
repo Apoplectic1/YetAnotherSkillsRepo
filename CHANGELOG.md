@@ -5,6 +5,25 @@ first, append-only. Moved here from ROADMAP's Recently shipped on 2026-10-12 (SE
 the release-close audit of that day); ROADMAP keeps a five-line digest. A dated citation
 resolves by grep over this file and, once it rolls past its budget, `CHANGELOG/` (T1).
 
+- 2026-11-10: **The split index says what each part holds** (change
+  `split-index-written-lines`; record `docs/2026-11-10 - split-index-written-lines-red-green.md`).
+  `split_doc.py`'s line per part was the part's first sentence, in practice its first
+  physical line, which rarely said what the part holds. The run that splits a doc now writes
+  each line in a lines file the dry run prints the headings for; the apply refuses a part
+  with no line, a line past 320 characters and a backticked term its part does not contain,
+  and the first-sentence extract is gone. `--reindex` keeps every line, refreshes the sizes
+  and lists a part whose size moved for review; a new `--check` reports an index its parts
+  have outgrown, and `survey.py` and the audit skill's `scope.py` run it in place of their
+  own list comparison, so an edited part now reaches the next survey or audit.
+  `harness/split-fixture/check_split.py` runs the 27 script-level cases;
+  `build_cells.py` builds the rep projects (cells SD6 to SD9). Reps through a Workflow at
+  Sonnet/high, nine, 632k tokens: authoring 2/2 (each tripped the term check once and fixed
+  it), reviewing and auditing pass, no skill text changed; reading by first pick 6/8 and 7/8
+  against 6/8 on the fixture and a 7/8 tie on this repository's design doc, every miss of
+  the written indexes on a question with a second defensible part. The design doc's
+  fourteen lines are written; the three HDL split indexes are queued in ROADMAP. Decided by
+  what lets an agent find a fact fastest: the bullet entry kept (one grep returns file and
+  size), no content hash, no written line for a rolled journal's `INDEX.md`.
 - 2026-10-12: **`split_doc.py` keeps a CRLF doc's headings clean** (no change: a script fix
   found by the EP7314600 adjudication, `docs/2026-10-12 - ep7314600-field-run.md`). The
   heading pattern captured each heading with the CRLF working copy's carriage return and

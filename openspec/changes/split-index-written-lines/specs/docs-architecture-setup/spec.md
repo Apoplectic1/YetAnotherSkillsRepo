@@ -16,10 +16,14 @@ apply, writing nothing, when a part has no line.
   the part's file, its size and that line byte for byte
 
 #### Scenario: A part with no line is refused
-- **WHEN** the lines file holds no line for one of the doc's `##` headings, or no lines file
-  is passed
+- **WHEN** the lines file holds no line for one of the doc's `##` headings
 - **THEN** the script exits naming the heading, and neither the directory, the parts nor the
   index is written
+
+#### Scenario: An apply with no lines file is refused
+- **WHEN** `--apply` runs with no lines file
+- **THEN** the script exits saying every part takes a written line and that the dry run prints
+  the headings, and writes nothing
 
 #### Scenario: A heading the doc does not have is refused
 - **WHEN** the lines file carries a `##` heading that matches none of the doc's

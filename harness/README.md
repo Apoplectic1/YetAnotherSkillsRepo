@@ -27,8 +27,10 @@ must never be audited, graduated, or edited as if they were this repo's docs.
   ARCHITECTURE of eighteen true-to-code mechanics topics, the split's target; `fat-arch/`
   (rationale bloat) is its control, which must extract, never split. Cells SD1 to SD5 in the
   catalog. `split-fixture/index.expected.md` is what the setup skill's `split_doc.py` must
-  leave as the index when applied to that doc with `--today 2026-10-12` (the parts are the
-  doc's own sections and reconstruct it byte for byte).
+  leave as the index when applied to that doc with `--today 2026-10-12` and
+  `split-fixture/lines.md`, the written line per part (the parts are the doc's own sections
+  and reconstruct it byte for byte); `split-fixture/check_split.py` runs every script-level
+  case (VERIFICATION).
 - `tidepool-fixture-variants/fat-gotchas/` (2026-10-12, `always-on-budget`): the router with a
   6.6 KB pack of true, `tides.py`-only gotchas beside its three load-bearing ones: content
   passes, breadth fails. Cells ST1 to ST3 in the catalog. Its container twin is

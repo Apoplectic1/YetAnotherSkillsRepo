@@ -41,4 +41,28 @@ lines a move one directory down leaves stale (relative paths, "this file"): 4 (f
   ARCHITECTURE/state.md:10: moon-phase factor 2026-06-24 (the shipped history is in this file's sibling `../ROADMAP.md`
   ARCHITECTURE/state.md:11: until a CHANGELOG exists). The station refresh script is in progress; nothing in this file
   ARCHITECTURE/state.md:12: describes it yet. The archived designs beside this file (`../openspec/changes/archive/`)
-  dry run: --apply writes the parts and the index
+the index's line per part (--apply refuses a part without one) says what the part holds, in
+its own terms: the things, names and rules a reader would search for there, not its opening
+restated, its history or a judgment of it. At most 320 characters; every `backticked` term
+must occur verbatim in its part.
+the lines file (--lines <file>): each heading below, its line on the lines after it
+## Module map (`src/tidepool/`)
+## Station registry and the metadata cache (`stations.py`)
+## The CO-OPS client (`tides.py`)
+## Window scoring (`plan.py`)
+## CSV export (`export.py`)
+## The CLI (`cli.py`)
+## Time, zones and the day boundary
+## Errors and exit paths
+## Testing and the pure core
+## Packaging, configuration and paths
+## Requests and the network budget
+## The window dict: nine keys and their contract
+## Worked scoring examples
+## The `stations` subcommand and the registry listing
+## Adding a station: what changes where
+## The `tides` subcommand and the raw listing
+## Public names and their callers
+## State (2026-07-10)
+## Data flow and invariants
+  dry run: --apply --lines <file> writes the parts and the index

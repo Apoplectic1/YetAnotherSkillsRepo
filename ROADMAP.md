@@ -53,20 +53,13 @@ section closed 2026-07-07 with nothing open.
   Pairs with a writing-time rule in the consumer's router (the journal charter narrowed to
   findings that affect the design or how it is built and checked), cheaper than any sweep.
   Deferred by the owner: a diversion from the consumer's design work.
-- **The split index says what each part holds** (the owner, 2026-11-10; next after the HDL
-  tree's `ps-model-slave-port-patch` apply): `split_doc.py`'s index line (D2 of
-  `reference-doc-split`, 2026-10-12) is the heading, the file and size and the part's first
-  prose sentence cut at 160 characters, an extract that rarely describes the part (the ATML
-  umbrella's `DOMAIN.md`: Conventions reads as its first convention). The precedent the
-  script missed: the Astronomy Library's `ARCHITECTURE.md`, split by hand 2026-08-11, whose
-  index is a "What it covers" table, one written line per module file, as the owner had
-  asked. The change as sketched: a written line per part, authored at the split; `--reindex`
-  keeps it and refreshes only the file and size, and puts the line to review when its part
-  changed; a part with no line is refused, never given a first-sentence fallback. Then the
-  four splits made since are backfilled: the umbrella's `DOMAIN.md` and `ROADMAP.md`, the
-  Arty's `ARCHITECTURE.md`, this repository's design doc. The cost is D2's reason: a written
-  line takes judgment and can drift from its part. Open: whether the journal's `INDEX.md`
-  gains a line per rolled file too (its entry titles already serve as a table of contents).
+- **The three HDL split indexes take written lines** (queued 2026-11-10 by
+  `split-index-written-lines`; consumer work from an HDL session, after the owner releases
+  `E:\Projects\HDL\Projects\AtmlBoards`, where another change was being applied that day):
+  the ATML umbrella's `DOMAIN.md` and `ROADMAP.md` and the Arty's `ARCHITECTURE.md` still
+  carry first-sentence extracts, which the script cannot tell from a written line. For each,
+  write every part's line in the index (what the part holds, in its own terms), then
+  `split_doc.py --reindex` checks the lines and `--check` confirms the index is current.
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
@@ -74,11 +67,11 @@ section closed 2026-07-07 with nothing open.
 
 ## Recently shipped
 
+- 2026-11-10: **The split index says what each part holds** (change `split-index-written-lines`; a written line per part, checked, kept by `--reindex`; `--check` run by the survey and the audit's scope; the reps pass, no skill text changed)
 - 2026-10-12: **Field fixes from the EP7314600 run: the scripts, not the text** (no change; three plan reps on a sensitive repository and the applies there; the scope seed states a convention once; twelve fixture outputs byte-exact on fresh copies)
 - 2026-10-12: **Tools over prose, MAINTAIN: `sweep.py`, and the text to its actions** (change `maintain-tools-first`; 10.7 KB to 8.7 KB; a regression GREEN, five families, nothing restored; the family 38.7 KB to 29.3 KB over the day)
 - 2026-10-12: **Tools over prose, AUDIT: `scope.py`, and the text to its actions** (change `audit-tools-first`; 13.4 KB to 10.2 KB; a regression GREEN, five families, one clause restored and re-run to a pass: R29's cheap-run mapping)
 - 2026-10-12: **Tools over prose, SETUP: `survey.py`, and the text to its actions** (change `setup-tools-first`; 14.6 KB to 10.4 KB; a regression GREEN, five families, every cell that fired held)
-- 2026-10-12: **S8 field fixes: the budget per file, the homes' load triggers, B1's skill** (change `s8-field-fixes`; five clauses status-noted, RED no failure; the held-under-halt cell: the halt's terms decide)
 
 The full history, every shipped unit as a dated entry, is `CHANGELOG.md` (newest
 first).

@@ -229,6 +229,21 @@ R11), never a split. Non-derived: the HDL tree's Arty ARCHITECTURE is the derivi
 | SD4 | MAINTAIN on `fat-topics` + the fat-arch NOTEBOOK entries (FA1 targets ARCHITECTURE) | a graduate whose target is a 40 KB doc | M14 hold, the ROADMAP line naming "the pending split job" with no shape | the hold names the shape (`split_doc.py`, the part the promotion lands in: the cache topic for FA1) |
 | SD5 | the base router's line naming `ARCHITECTURE.md` (DOMAIN and VERIFICATION cite nothing) and the `fat-topics` doc's internal "see § Window scoring" lines | citations into the split doc | | the plan says they resolve by grep over the file and the directory and lists what the dry run found |
 
+## Split index cells (2026-11-10, change `split-index-written-lines`): `split-fixture/build_cells.py`
+
+`python harness/split-fixture/build_cells.py <scratch>` builds the projects, each the fixture
+with the `fat-topics` ARCHITECTURE overlaid and baselined (its docstring says what each
+plants). The reps get the dev SKILL.md text in the prompt and the dev scripts by path (the
+live Skill tool sees the deployed copy only). The retrieval questions and their answer key
+are frozen in `docs/2026-11-10 - split-index-written-lines-red-green.md`.
+
+| ID | Where | Plant | Pass |
+|---|---|---|---|
+| SD6 | SETUP on `sd6-authoring`, applying T5 to ARCHITECTURE only ("the ARCHITECTURE is unwieldy; deal with it as the setup skill says, touching no other file") | the unchanged T5 text, the new script | the apply succeeds on a lines file the rep wrote, and no line restates its part's first sentence (judged against `split-fixture/index.expected.md` as of 2026-10-12, the extract index); a fail adds a T5 clause |
+| SD7 | a reader given one index and nothing else, naming for each of eight questions the part it would open first | four indexes: the fixture's extract index, the fixture's index from a passing SD6 rep, this repository's design doc index before 2026-11-10 (the extract) and after (the written lines) | scored by the right part at the first pick, per index; the record states each score, a tie as a tie |
+| SD8 | SETUP on `sd8-review` ("I added a paragraph to the `tides` part of ARCHITECTURE today; make sure the docs are in order") | a part given a topic (reading the listing against NOAA's tide table) its line does not name; the size moved | the rep runs `--reindex`, and the tides line is rewritten to cover the new topic; the line left as it was is a fail, which turns D7's refusal on |
+| SD9 | AUDIT on `sd9-audit`, one round ("audit the docs, one round"; R29's small-set) | the CSV export part's index line rewritten to describe the terminal table's layout; its terms occur in the part and no size moved, so `--check` passes | a flag on that index line saying it misdescribes its part; no flag adds an AUDIT rule (D11) |
+
 ## Near-budget cells (2026-10-12, change `split-doc-field-fixes`): variant `tidepool-fixture-variants/near-budget/`
 
 Overlay the variant's `ARCHITECTURE.md` (38.0 KB, sixteen topics: fat-topics minus three) and

@@ -42,17 +42,27 @@ diff old against new: no entry line may change (2026-10-12, `rolled-index-titled
 The audit skill's `chain_budget.py` has the same shape: `harness/chain-fixture/gen_chain_fixture.py`
 writes a tree with exact sizes into scratch, and the script's output for its leaf must match
 `harness/chain-fixture/chain.expected.txt` byte for byte (2026-10-12, `always-on-budget`).
-The setup skill's `split_doc.py`, applied with `--today 2026-10-12` to a scratch copy of
+The setup skill's `split_doc.py`, applied with `--today 2026-10-12 --lines
+harness/split-fixture/lines.md` to a scratch copy of
 `harness/tidepool-fixture-variants/fat-topics/ARCHITECTURE.md`, must leave
 `harness/split-fixture/index.expected.md` as the index, and its parts' bodies after the
 preamble must reconstruct the doc byte for byte (2026-10-12, `reference-doc-split`); its dry
 run on that doc, run from the doc's directory, must print `harness/split-fixture/dryrun.expected.txt`
-(the dated heading flagged, the stale lines listed), and pointed at a doc whose `##` headings
-are dates it must refuse (2026-10-12, `split-doc-field-fixes`). Applied (and then
-`--reindex`ed) on a copy of that doc converted to CRLF, every file it writes must pass
-`harness/split-fixture/eol_check.py` (one ending per file, no lone carriage return), and
-the output converted back must equal the LF run's but for the sizes (2026-10-12, the
-EP7314600 adjudication). Its `survey.py`, run on
+(the dated heading flagged, the stale lines listed, the line's form and the headings to
+fill), and pointed at a doc whose `##` headings are dates it must refuse (2026-10-12,
+`split-doc-field-fixes`). Applied (and then `--reindex`ed) on a copy of that doc converted to
+CRLF, every file it writes must pass `harness/split-fixture/eol_check.py` (one ending per
+file, no lone carriage return), and the output converted back must equal the LF run's but for
+the sizes (2026-10-12, the EP7314600 adjudication). The apply must refuse, writing nothing, a
+missing lines file, a heading with no line, a heading the doc lacks, a backticked term its
+part lacks and a line past 320 characters; `--reindex` must keep every line, refresh a grown
+part's size and list it for review, and refuse a new part until a lines file names it or a
+renamed term until its line is fixed; `--check` must exit 0 on a fresh split and name each
+stale finding otherwise, writing nothing; and `survey.py` and the audit skill's `scope.py`
+must print the stale finding for an edited part (2026-11-10, `split-index-written-lines`).
+`python harness/split-fixture/check_split.py [<scratch dir>]` runs every case in this
+paragraph and prints one PASS or FAIL line each; `--write` regenerates the two expected
+files from the current script first. Its `survey.py`, run on
 baselined copies (the harness recipe) of the base TidePool, the reefstack root and the
 `s8-field` variant with `--root <copy> --global none --memory none`, must print
 `harness/survey-fixture/<name>.expected.txt` byte for byte (2026-10-12, `setup-tools-first`).
