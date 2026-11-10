@@ -53,6 +53,20 @@ section closed 2026-07-07 with nothing open.
   Pairs with a writing-time rule in the consumer's router (the journal charter narrowed to
   findings that affect the design or how it is built and checked), cheaper than any sweep.
   Deferred by the owner: a diversion from the consumer's design work.
+- **The split index says what each part holds** (the owner, 2026-11-10; next after the HDL
+  tree's `ps-model-slave-port-patch` apply): `split_doc.py`'s index line (D2 of
+  `reference-doc-split`, 2026-10-12) is the heading, the file and size and the part's first
+  prose sentence cut at 160 characters, an extract that rarely describes the part (the ATML
+  umbrella's `DOMAIN.md`: Conventions reads as its first convention). The precedent the
+  script missed: the Astronomy Library's `ARCHITECTURE.md`, split by hand 2026-08-11, whose
+  index is a "What it covers" table, one written line per module file, as the owner had
+  asked. The change as sketched: a written line per part, authored at the split; `--reindex`
+  keeps it and refreshes only the file and size, and puts the line to review when its part
+  changed; a part with no line is refused, never given a first-sentence fallback. Then the
+  four splits made since are backfilled: the umbrella's `DOMAIN.md` and `ROADMAP.md`, the
+  Arty's `ARCHITECTURE.md`, this repository's design doc. The cost is D2's reason: a written
+  line takes judgment and can drift from its part. Open: whether the journal's `INDEX.md`
+  gains a line per rolled file too (its entry titles already serve as a table of contents).
 - **Deferred until a second skill family onboards** (decided 2026-07-10: flat `skills/` stays):
   restructure into per-family dirs (`skills/docs-architecture/…`) — requires deploy.sh
   two-level glob + prune re-verify, README/CLAUDE/ARCHITECTURE link updates, one commit.
