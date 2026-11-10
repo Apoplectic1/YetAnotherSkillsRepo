@@ -471,3 +471,23 @@ left to the script and rationale to the design doc.
   beneath it, `release-lens` in release-close mode)
 - **THEN** every cell those families earned still passes; a cell that fails names the clause
   restored, in the shortest form that passes
+
+### Requirement: The scope step reports a split index that no longer matches its parts
+The audit's scope step SHALL report a split index stale by the test the setup skill's
+`split_doc.py --check` applies (the files listed, each part's recorded size, each part's
+written line and its checks), and SHALL name `split_doc.py --reindex` as the remedy. The
+scope step SHALL change nothing.
+
+#### Scenario: An edited part is reported
+- **WHEN** the scope step runs on a project whose split ARCHITECTURE has a part edited since
+  its index was written
+- **THEN** the line for the split's parts says the index is stale, names the part and points
+  at `split_doc.py --reindex`
+
+#### Scenario: A line naming a term its part lost is reported
+- **WHEN** a written line carries a code-formatted term that no longer occurs in its part
+- **THEN** the scope step's line says the index is stale and names the part and the term
+
+#### Scenario: A current index draws no remark
+- **WHEN** every part is as its index records it and every line passes its checks
+- **THEN** the line for the split's parts carries no stale remark
